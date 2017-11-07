@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 [![Platform](https://img.shields.io/cocoapods/p/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 
-MaLiang is a painting Framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush  in Chinese ancient fairy story.
+MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush  in Chinese ancient fairy story.
 
 ## Example
 
