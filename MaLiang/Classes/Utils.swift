@@ -19,7 +19,10 @@ struct BundleUtil {
     }
     
     static func image(name: String) -> UIImage? {
-        return UIImage(named: "\(name).png", in: BundleUtil.bundle, compatibleWith: nil)?.withRenderingMode(.automatic)
+        let collection = UITraitCollection(displayScale: 2)
+        return UIImage(named: name, in: BundleUtil.bundle, compatibleWith: collection)
+        
+//        return UIImage(named: "\(name).png", in: BundleUtil.bundle, compatibleWith: nil)?.withRenderingMode(.automatic)
     }
 }
 

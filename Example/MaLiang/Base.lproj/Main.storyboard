@@ -20,11 +20,30 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="Canvas" customModule="MaLiang">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AID-gC-Kue">
+                                <rect key="frame" x="16" y="619" width="343" height="29"/>
+                                <segments>
+                                    <segment title="pen"/>
+                                    <segment title="pencil"/>
+                                    <segment title="brush"/>
+                                </segments>
+                                <connections>
+                                    <action selector="styleChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="flD-Jd-1qp"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AID-gC-Kue" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Aqn-Ev-Yxs"/>
+                            <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AID-gC-Kue" secondAttribute="bottom" constant="20" id="yRe-lP-8Pf"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>
     </scenes>
 </document>

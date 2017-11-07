@@ -128,8 +128,8 @@
 		6826E19B283BE12CB45E2F724B034301 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D06193269DF7E1183BDC0277A9641DE5 /* point.fsh */,
 				CE4E627DEF8EE1DE89199B2B57E16D5E /* point.png */,
+				D06193269DF7E1183BDC0277A9641DE5 /* point.fsh */,
 				92288A85ADEA24C9FBC2F58ADDDA0623 /* point.vsh */,
 			);
 			name = Resources;

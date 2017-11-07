@@ -9,23 +9,23 @@ import Foundation
 import OpenGLES
 import UIKit
 
-public class Brush {
+open class Brush {
     
     var id: GLuint = 0
     var width: GLsizei = 0
     var height: GLsizei = 0
     
     var texture: UIImage
-    var opacity: Float = 0.3
-    var pixelStep = 3
-    var scale = 2
+    open var opacity: Float = 0.3
+    open var pixelStep = 3
+    open var scale = 2
     
-    init(texture: UIImage) {
+    public init(texture: UIImage) {
         self.texture = texture
     }
     
     // Create texture for brush
-    func createTexture() {
+    open func createTexture() {
         
         var texId: GLuint = 0
         
@@ -55,7 +55,7 @@ public class Brush {
             // Specify a 2D texture image, providing the a pointer to the image data in memory
             glTexImage2D(GL_TEXTURE_2D.gluint, 0, GL_RGBA, width.int32, height.int32, 0, GL_RGBA.gluint, GL_UNSIGNED_BYTE.gluint, brushData)
             // Release  the image data; it's no longer needed
-            
+
             self.id = texId
             self.width = width.int32
             self.height = height.int32

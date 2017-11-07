@@ -28,18 +28,53 @@ struct Line {
 }
 
 open class Canvas: UIView {
-
+    
     // MARK: - Open Property
-    open var brush: Brush = Brush(texture: BundleUtil.image(name: "point")!)
+    open var brush: Brush {
+        willSet {
+            if brush.id != 0 {
+                glDeleteTextures(1, &brush.id)
+            }
+        }
+        didSet {
+            if initialized {
+                brush.createTexture()
+                glUseProgram(programs[ShaderProgram.point].id)
+                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], brush.width.float / brush.scale.float)
+                
+                // alpha changed with different brushes, so color needs to be reset
+                resetColor()
+            }
+        }
+    }
     open var brushColor: UIColor = .black {
         didSet {
             // Update the brush color
-            let glcolor = brushColor.glcolorWith(opacity: brush.opacity)
-            if initialized {
-                glUseProgram(shaderProgram.id)
-                glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, glcolor)
-            }
-
+            resetColor()
+        }
+    }
+    
+    // MARK: - Functions
+    // Erases the screen
+    open func erase() {
+        EAGLContext.setCurrent(context)
+        
+        // Clear the buffer
+        glBindFramebuffer(GL_FRAMEBUFFER.gluint, viewFramebuffer)
+        glClearColor(0.0, 0.0, 0.0, 0.0)
+        glClear(GL_COLOR_BUFFER_BIT.gluint)
+        
+        // Display the buffer
+        glBindRenderbuffer(GL_RENDERBUFFER.gluint, viewRenderbuffer)
+        context.presentRenderbuffer(GL_RENDERBUFFER.int)
+    }
+    
+    private func resetColor() {
+        // Update the brush color
+        let glcolor = brushColor.glcolorWith(opacity: brush.opacity)
+        if initialized {
+            glUseProgram(programs[ShaderProgram.point].id)
+            glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, glcolor)
         }
     }
     
@@ -63,7 +98,7 @@ open class Canvas: UIView {
     // Shader objects
     private var vertexShader: GLuint = 0
     private var fragmentShader: GLuint = 0
-    private var shaderProgram: ShaderProgram
+    private var programs: [ShaderProgram]
     
     
     // Buffer Objects
@@ -73,18 +108,21 @@ open class Canvas: UIView {
     
     private var location: CGPoint = CGPoint()
     private var previousLocation: CGPoint = CGPoint()
-
+    
     // Implement this to override the default layer class (which is [CALayer class]).
     // We do this so that our view will be backed by a layer that is capable of OpenGL ES rendering.
     override open class var layerClass : AnyClass {
         return CAEAGLLayer.self
     }
-
+    
     private var glLayer: CAEAGLLayer {
         return layer as! CAEAGLLayer
     }
     
     struct ShaderProgram {
+        
+        static let point = 0
+        
         var vert: String
         var frag: String
         var uniform: [GLint]
@@ -95,23 +133,29 @@ open class Canvas: UIView {
     // The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
     required public init?(coder: NSCoder) {
         
-        shaderProgram = ShaderProgram(vert: "point.vsh", frag: "point.fsh", uniform: [0, 0, 0, 0], id: 0)
+        brush = Brush(texture: BundleUtil.image(name: "point")!)
+        programs = [ShaderProgram(
+            vert: "point.vsh",
+            frag: "point.fsh",
+            uniform: Array(repeating: 0, count: Uniform.count),
+            id: 0
+            )]
         
         super.init(coder: coder)
         
-        guard let eaglLayer = self.layer as? CAEAGLLayer else {
+        guard let _ = self.layer as? CAEAGLLayer else {
             return nil
         }
         
-        eaglLayer.isOpaque = true
+        glLayer.isOpaque = false
         
         // In this application, we want to retain the EAGLDrawable contents after a call to presentRenderbuffer.
-        eaglLayer.drawableProperties = [
+        glLayer.drawableProperties = [
             kEAGLDrawablePropertyRetainedBacking: true,
             kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8
         ]
         
-        context = EAGLContext(api: .openGLES2)
+        context = EAGLContext(api: .openGLES3)
         
         if context == nil || !EAGLContext.setCurrent(context) {
             fatalError("EAGLContext cannot be created")
@@ -123,7 +167,7 @@ open class Canvas: UIView {
         // Make sure to start with a cleared buffer
         needsErase = true
     }
-
+    
     // If our view is resized, we'll be asked to layout subviews.
     // This is the perfect opportunity to also update the framebuffer so that it is
     // the same size as our display area.
@@ -133,6 +177,7 @@ open class Canvas: UIView {
         
         if !initialized {
             initialized = initGL()
+            brushColor = .black
         } else {
             resize(from: glLayer)
         }
@@ -146,59 +191,65 @@ open class Canvas: UIView {
     
     private func setupShaders() {
         
-        let vsrc = FileUtil.readData(forResource: shaderProgram.vert)
-        let fsrc = FileUtil.readData(forResource: shaderProgram.frag)
-
-        var attribUsed: [String] = []
-        var attrib: [GLuint] = []
-        let attribName: [String] = [
-            "inVertex",
-            ]
-        let uniformName: [String] = [
-            "MVP", "pointSize", "vertexColor", "texture",
-            ]
-        
-        var prog: GLuint = 0
-        vsrc.withUnsafeBytes {(vsrcChars: UnsafePointer<GLchar>) in
+        for i in 0 ..< programs.count {
             
-            // auto-assign known attribs
-            for (j, name) in attribName.enumerated() {
-                if strstr(vsrcChars, name) != nil {
-                    attrib.append(GLuint(j))
-                    attribUsed.append(name)
+            let vsrc = FileUtil.readData(forResource: programs[i].vert)
+            let fsrc = FileUtil.readData(forResource: programs[i].frag)
+            
+            var attribUsed: [String] = []
+            var attrib: [GLuint] = []
+            let attribName: [String] = [
+                "inVertex",
+                ]
+            let uniformName: [String] = [
+                "MVP", "pointSize", "vertexColor", "texture",
+                ]
+            
+            var prog: GLuint = 0
+            vsrc.withUnsafeBytes {(vsrcChars: UnsafePointer<GLchar>) in
+                
+                // auto-assign known attribs
+                for (j, name) in attribName.enumerated() {
+                    if strstr(vsrcChars, name) != nil {
+                        attrib.append(GLuint(j))
+                        attribUsed.append(name)
+                    }
+                }
+                
+                fsrc.withUnsafeBytes {(fsrcChars: UnsafePointer<GLchar>) in
+                    _ = ShaderUtil.createProgram(UnsafeMutablePointer(mutating: vsrcChars), UnsafeMutablePointer(mutating: fsrcChars),
+                                                 attribUsed, attrib,
+                                                 uniformName, &programs[i].uniform,
+                                                 &prog)
                 }
             }
+            programs[i].id = prog
             
-            fsrc.withUnsafeBytes {(fsrcChars: UnsafePointer<GLchar>) in
-                _ = ShaderUtil.createProgram(UnsafeMutablePointer(mutating: vsrcChars), UnsafeMutablePointer(mutating: fsrcChars),
-                                       attribUsed, attrib,
-                                       uniformName, &shaderProgram.uniform,
-                                       &prog)
+            if i == ShaderProgram.point {
+                glUseProgram(programs[ShaderProgram.point].id)
+                
+                // the brush texture will be bound to texture unit 0
+                glUniform1i(programs[ShaderProgram.point].uniform[Uniform.texture], 0)
+                
+                // viewing matrices
+                let projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth.float, 0, backingHeight.float, -1, 1)
+                let modelViewMatrix = GLKMatrix4Identity
+                var MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
+                
+                withUnsafePointer(to: &MVPMatrix) {ptrMVP in
+                    ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
+                        glUniformMatrix4fv(programs[ShaderProgram.point].uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
+                    }
+                }
+                
+                // point size
+                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], brush.width.float / brush.scale.float)
+                
+                // initialize brush color
+                glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, brushColor.glcolor)
+                
             }
         }
-        shaderProgram.id = prog
-
-        glUseProgram(shaderProgram.id)
-        
-        // the brush texture will be bound to texture unit 0
-        glUniform1i(shaderProgram.uniform[Uniform.texture], 0)
-        
-        // viewing matrices
-        let projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth.float, 0, backingHeight.float, -1, 1)
-        let modelViewMatrix = GLKMatrix4Identity
-        var MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
-        
-        withUnsafePointer(to: &MVPMatrix) {ptrMVP in
-            ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
-                glUniformMatrix4fv(shaderProgram.uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
-            }
-        }
-        
-        // point size
-        glUniform1f(shaderProgram.uniform[Uniform.pointSize], brush.width.float / brush.scale.float)
-        
-        // initialize brush color
-        glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, brushColor.glcolor)
     }
     
     private func initGL() -> Bool {
@@ -234,7 +285,9 @@ open class Canvas: UIView {
         glGenBuffers(1, &vboId)
         
         // Load the brush texture
-        brush.createTexture()
+        if brush.id == 0 {
+            brush.createTexture()
+        }
         
         // Load shaders
         self.setupShaders()
@@ -243,17 +296,9 @@ open class Canvas: UIView {
         glEnable(GL_BLEND.gluint)
         glBlendFunc(GL_ONE.gluint, GL_ONE_MINUS_SRC_ALPHA.gluint)
         
-//        // Playback recorded path, which is "Shake Me"
-//        let recordedPaths = NSArray(contentsOfFile: Bundle.main.path(forResource: "Recording", ofType: "data")!)! as! [Data]
-//        if recordedPaths.count != 0 {
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 200 * NSEC_PER_MSEC.d / NSEC_PER_SEC.d) {
-//                self.playback(recordedPaths, fromIndex: 0)
-//            }
-//        }
-        
         return true
     }
-
+    
     @discardableResult
     private func resize(from layer: CAEAGLLayer) -> Bool {
         // Allocate color buffer backing based on the current layer size
@@ -277,10 +322,10 @@ open class Canvas: UIView {
         let modelViewMatrix = GLKMatrix4Identity // this sample uses a constant identity modelView matrix
         var MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
         
-        glUseProgram(shaderProgram.id)
-        withUnsafePointer(to: &MVPMatrix) {ptrMVP in
+        glUseProgram(programs[ShaderProgram.point].id)
+        withUnsafePointer(to: &MVPMatrix) { ptrMVP in
             ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
-                glUniformMatrix4fv(shaderProgram.uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
+                glUniformMatrix4fv(programs[ShaderProgram.point].uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
             }
         }
         
@@ -317,18 +362,8 @@ open class Canvas: UIView {
         }
     }
     
-    // Erases the screen
-    func erase() {
-        EAGLContext.setCurrent(context)
-        
-        // Clear the buffer
-        glBindFramebuffer(GL_FRAMEBUFFER.gluint, viewFramebuffer)
-        glClearColor(0.0, 0.0, 0.0, 0.0)
-        glClear(GL_COLOR_BUFFER_BIT.gluint)
-        
-        // Display the buffer
-        glBindRenderbuffer(GL_RENDERBUFFER.gluint, viewRenderbuffer)
-        context.presentRenderbuffer(GL_RENDERBUFFER.int)
+    override open var canBecomeFirstResponder : Bool {
+        return true
     }
     
     // MARK: - Drawing Actions
@@ -345,10 +380,6 @@ open class Canvas: UIView {
     
     // Drawings a line onscreen based on where the user touches
     private func renderLine(from _start: CGPoint, to _end: CGPoint, display: Bool = true) {
-        struct Static {
-            static var vertexBuffer: [GLfloat] = []
-        }
-        var count = 0
         
         EAGLContext.setCurrent(context)
         glBindFramebuffer(GL_FRAMEBUFFER.gluint, viewFramebuffer)
@@ -363,27 +394,27 @@ open class Canvas: UIView {
         end.y *= scale
         
         // Allocate vertex array buffer
-        
+        var vertexBuffer: [GLfloat] = []
+
         // Add points to the buffer so there are drawing points every X pixels
-        count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / brush.pixelStep.float)), 1)
-        Static.vertexBuffer.reserveCapacity(count * 2)
-        Static.vertexBuffer.removeAll(keepingCapacity: true)
-        for i in 0..<count {
-            
-            Static.vertexBuffer.append(start.x.float + (end.x - start.x).float * (i.float / count.float))
-            Static.vertexBuffer.append(start.y.float + (end.y - start.y).float * (i.float / count.float))
+        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / brush.pixelStep.float)), 1)
+        vertexBuffer.reserveCapacity(count * 2)
+        vertexBuffer.removeAll(keepingCapacity: true)
+        for i in 0 ..< count {
+            vertexBuffer.append(start.x.float + (end.x - start.x).float * (i.float / count.float))
+            vertexBuffer.append(start.y.float + (end.y - start.y).float * (i.float / count.float))
         }
         
         // Load data to the Vertex Buffer Object
         glBindBuffer(GL_ARRAY_BUFFER.gluint, vboId)
-        glBufferData(GL_ARRAY_BUFFER.gluint, count * 2 * MemoryLayout<GLfloat>.size, Static.vertexBuffer, GL_DYNAMIC_DRAW.gluint)
+        glBufferData(GL_ARRAY_BUFFER.gluint, count * 2 * MemoryLayout<GLfloat>.size, vertexBuffer, GL_DYNAMIC_DRAW.gluint)
         
         
         glEnableVertexAttribArray(Attribute.vertex)
         glVertexAttribPointer(Attribute.vertex, 2, GL_FLOAT.gluint, GL_FALSE.uint8, 0, nil)
         
         // Draw
-        glUseProgram(shaderProgram.id)
+        glUseProgram(programs[ShaderProgram.point].id)
         glDrawArrays(GL_POINTS.gluint, 0, count.int32)
         
         if display {
@@ -394,7 +425,7 @@ open class Canvas: UIView {
     }
     
     // MARK: - Gestures
-
+    
     // Handles the start of a touch
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let bounds = self.bounds
@@ -442,9 +473,5 @@ open class Canvas: UIView {
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         // If appropriate, add code necessary to save the state of the application.
         // This application is not saving state.
-    }
-    
-    override open var canBecomeFirstResponder : Bool {
-        return true
     }
 }
