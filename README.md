@@ -24,7 +24,7 @@ it, simply add the following line to your Podfile:
 pod 'MaLiang'
 ```
 
-## Installation
+## Usage
 
 MaLiang is simple to use.
 1. import MaLiang
