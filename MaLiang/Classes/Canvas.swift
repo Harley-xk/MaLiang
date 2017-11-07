@@ -47,6 +47,7 @@ open class Canvas: UIView {
             }
         }
     }
+    
     open var brushColor: UIColor = .black {
         didSet {
             // Update the brush color

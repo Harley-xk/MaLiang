@@ -13,6 +13,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+iOS 8.0+, Swift 4.0+
+
 ## Installation
 
 MaLiang is available through [CocoaPods](http://cocoapods.org). To install
@@ -21,6 +23,13 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'MaLiang'
 ```
+
+## Installation
+
+MaLiang is simple to use.
+1. import MaLiang
+2. add a custom view to your ViewController and change its class to `Canvas`
+3. enjoy painting!
 
 ## Author
 
