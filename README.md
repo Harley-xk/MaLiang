@@ -1,4 +1,4 @@
-# MaLiang
+# ![](icon-32.png) MaLiang
 
 [![CI Status](http://img.shields.io/travis/harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/harley-xk/MaLiang)
 [![Version](https://img.shields.io/cocoapods/v/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
