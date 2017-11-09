@@ -1,6 +1,6 @@
 # ![](icon-32.png) MaLiang
 
-[![CI Status](http://img.shields.io/travis/harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/harley-xk/MaLiang)
+[![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/Harley-xk/MaLiang)
 [![Version](https://img.shields.io/cocoapods/v/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 [![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 [![Platform](https://img.shields.io/cocoapods/p/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
