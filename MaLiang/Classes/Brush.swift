@@ -11,15 +11,24 @@ import UIKit
 
 open class Brush {
     
+    open var opacity: Float = 0.3
+    
+    open var strokeWidth: Int = 4
+    
+//    open var width: CGFloat = 1 {
+//        didSet {
+//            scale = scale / width
+//        }
+//    }
+
     var id: GLuint = 0
-    var width: GLsizei = 0
-    var height: GLsizei = 0
+    var textureWidth: GLsizei = 0
+    var textureHeight: GLsizei = 0
     
     var texture: UIImage
-    open var opacity: Float = 0.3
-    open var pixelStep = 3
-    open var scale = 2
-    
+    var scale: CGFloat = 10
+    var pixelStep = 3
+
     public init(texture: UIImage) {
         self.texture = texture
     }
@@ -57,8 +66,8 @@ open class Brush {
             // Release  the image data; it's no longer needed
 
             self.id = texId
-            self.width = width.int32
-            self.height = height.int32
+            self.textureWidth = width.int32
+            self.textureHeight = height.int32
         }
     }
 }

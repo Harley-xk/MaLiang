@@ -22,16 +22,16 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let pen = Brush(texture: #imageLiteral(resourceName: "pen"))
-        pen.scale = 20
-        pen.opacity = 0.8
+        pen.strokeWidth = 30
+        pen.opacity = 0.1
         canvas.brush = pen
 
         let pencil = Brush(texture: #imageLiteral(resourceName: "pencil"))
-        pencil.scale = 10
-        pencil.opacity = 0.1
+        pencil.strokeWidth = 3
+        pencil.opacity = 0.4
         
         let brush = Brush(texture: #imageLiteral(resourceName: "brush"))
-        brush.scale = 1
+        brush.strokeWidth = 30
 
         brushes = [pen, pencil, brush]
     }
@@ -46,6 +46,10 @@ class ViewController: UIViewController {
         let index = sender.selectedSegmentIndex
         let brush = brushes[index]
         canvas.brush = brush
+    }
+    
+    @IBAction func clearAction(_ sender: Any) {
+        canvas.erase()
     }
 }
 

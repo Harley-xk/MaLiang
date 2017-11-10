@@ -40,8 +40,8 @@ open class Canvas: UIView {
             if initialized {
                 brush.createTexture()
                 glUseProgram(programs[ShaderProgram.point].id)
-                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], brush.width.float / brush.scale.float)
-                
+                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
+
                 // alpha changed with different brushes, so color needs to be reset
                 resetColor()
             }
@@ -54,6 +54,9 @@ open class Canvas: UIView {
             resetColor()
         }
     }
+    
+    // optimize stroke with bezier path, defaults to true
+    private var enableBezierPath = true
     
     // MARK: - Functions
     // Erases the screen
@@ -109,6 +112,8 @@ open class Canvas: UIView {
     
     private var location: CGPoint = CGPoint()
     private var previousLocation: CGPoint = CGPoint()
+    
+    private var bezierGenerator = BezierGenerator()
     
     // Implement this to override the default layer class (which is [CALayer class]).
     // We do this so that our view will be backed by a layer that is capable of OpenGL ES rendering.
@@ -244,8 +249,8 @@ open class Canvas: UIView {
                 }
                 
                 // point size
-                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], brush.width.float / brush.scale.float)
-                
+                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
+
                 // initialize brush color
                 glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, brushColor.glcolor)
                 
@@ -396,7 +401,7 @@ open class Canvas: UIView {
         
         // Allocate vertex array buffer
         var vertexBuffer: [GLfloat] = []
-
+        
         // Add points to the buffer so there are drawing points every X pixels
         let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / brush.pixelStep.float)), 1)
         vertexBuffer.reserveCapacity(count * 2)
@@ -419,10 +424,14 @@ open class Canvas: UIView {
         glDrawArrays(GL_POINTS.gluint, 0, count.int32)
         
         if display {
-            // Display the buffer
-            glBindRenderbuffer(GL_RENDERBUFFER.gluint, viewRenderbuffer)
-            context.presentRenderbuffer(GL_RENDERBUFFER.int)
+            displayBuffer()
         }
+    }
+    
+    private func displayBuffer() {
+        // Display the buffer
+        glBindRenderbuffer(GL_RENDERBUFFER.gluint, viewRenderbuffer)
+        context.presentRenderbuffer(GL_RENDERBUFFER.int)
     }
     
     // MARK: - Gestures
@@ -435,6 +444,10 @@ open class Canvas: UIView {
         // Convert touch point from UIView referential to OpenGL one (upside-down flip)
         location = touch.location(in: self)
         location.y = bounds.size.height - location.y
+        
+        if enableBezierPath {
+            bezierGenerator.begin(with: location)
+        }
     }
     
     // Handles the continuation of a touch.
@@ -454,8 +467,19 @@ open class Canvas: UIView {
         location = touch.location(in: self)
         location.y = bounds.size.height - location.y
         
-        // Render the stroke
-        self.renderLine(from: previousLocation, to: location)
+        if enableBezierPath {
+            let vertices = bezierGenerator.pushPoint(location)
+            if vertices.count >= 2 {
+                for i in 0 ..< vertices.count - 1 {
+                    self.renderLine(from: vertices[i], to: vertices[i + 1], display: false)
+                }
+            }
+            displayBuffer()
+        } else {
+            // Render the stroke
+            self.renderLine(from: previousLocation, to: location)
+        }
+        
     }
     
     // Handles the end of a touch event when the touch is a tap.
@@ -467,6 +491,10 @@ open class Canvas: UIView {
             previousLocation = touch.previousLocation(in: self)
             previousLocation.y = bounds.size.height - previousLocation.y
             self.renderLine(from: previousLocation, to: location)
+        }
+        
+        if enableBezierPath {
+            bezierGenerator.finish()
         }
     }
     
