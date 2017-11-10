@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MaLiang'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'MaLiang is a painting Framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.'
 
 # This description is used to generate tags and improve search results.

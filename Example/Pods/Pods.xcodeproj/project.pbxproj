@@ -19,7 +19,7 @@
 		A231886ED87AC5557E78BC5F4F13919D /* MaLiang.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 554D35BD8A55D29F1075189AA5E5DA4E /* MaLiang.bundle */; };
 		AEB8CE5F716DA4EA6CF7444C9640B1B0 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5969649356812FCD0E75074FCA887AE0 /* Canvas.swift */; };
 		B61D43491FB15222003D37B8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D43481FB15222003D37B8 /* Utils.swift */; };
-		B66DF42C1FB5826C0099971A /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DF42B1FB5826C0099971A /* BezierGenerator.swift */; };
+		B66DF4301FB5DD800099971A /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DF42F1FB5DD800099971A /* BezierGenerator.swift */; };
 		CBF1F964AAF36590F395EA5EE16AA09E /* MaLiang-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FC4F9965282EC34054D8A22A73F7C /* MaLiang-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -61,7 +61,7 @@
 		9F7E50038D9A4D8A8A75CD367547D210 /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A5098A5DCDF299ED92BE2B2455B157D4 /* Pods-MaLiang_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MaLiang_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B61D43481FB15222003D37B8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = MaLiang/Classes/Utils.swift; sourceTree = "<group>"; };
-		B66DF42B1FB5826C0099971A /* BezierGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierGenerator.swift; sourceTree = "<group>"; };
+		B66DF42F1FB5DD800099971A /* BezierGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierGenerator.swift; path = MaLiang/Classes/BezierGenerator.swift; sourceTree = "<group>"; };
 		B8E5546A486B13C474D16A07158E8BFE /* Pods-MaLiang_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MaLiang_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		BCC8C0CCFD947BF560EA3287AD28914E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C26D977AE80ED27BD91210FAE1AC9DD5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				69ADB244C7F3521837C51983928423C0 /* Brush.swift */,
 				5969649356812FCD0E75074FCA887AE0 /* Canvas.swift */,
 				B61D43481FB15222003D37B8 /* Utils.swift */,
-				B66DF42B1FB5826C0099971A /* BezierGenerator.swift */,
+				B66DF42F1FB5DD800099971A /* BezierGenerator.swift */,
 				6826E19B283BE12CB45E2F724B034301 /* Resources */,
 				89930758439EAB01F0DA3EE925AEB7B8 /* Support Files */,
 			);
@@ -356,8 +356,8 @@
 			files = (
 				58127E9F72EB06C308A52280A1442AEB /* Brush.swift in Sources */,
 				AEB8CE5F716DA4EA6CF7444C9640B1B0 /* Canvas.swift in Sources */,
-				B66DF42C1FB5826C0099971A /* BezierGenerator.swift in Sources */,
 				046403964310A8717F5561A71C91F0CD /* MaLiang-dummy.m in Sources */,
+				B66DF4301FB5DD800099971A /* BezierGenerator.swift in Sources */,
 				B61D43491FB15222003D37B8 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
