@@ -14,9 +14,7 @@ class BezierGenerator {
         case quadratic  // this is the only style currently supported
         case cubic
     }
-    
-//    var segements = 20
-    
+        
     init() {
     }
     

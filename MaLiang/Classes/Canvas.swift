@@ -373,6 +373,24 @@ open class Canvas: UIView {
     }
     
     // MARK: - Drawing Actions
+    private var lastRenderedPoint: CGPoint?
+    private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator) {
+        let vertices = bezier.pushPoint(point)
+        if vertices.count >= 2 {
+            var lastPoint = lastRenderedPoint ?? vertices[0]
+            for i in 1 ..< vertices.count {
+                let p = vertices[i]
+                if brush.strokeWidth <= 1 ||
+                   (brush.strokeWidth > 1 && lastPoint.distance(to: p) >= brush.strokeStep) {
+                    self.renderLine(from: lastPoint, to: p, display: false)
+                    lastPoint = p
+                    lastRenderedPoint = p
+                }
+            }
+        }
+        displayBuffer()
+    }
+    
     private func renderLines(_ lines: [Line]) {
         
         for line in lines {
@@ -403,7 +421,7 @@ open class Canvas: UIView {
         var vertexBuffer: [GLfloat] = []
         
         // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / brush.pixelStep.float)), 1)
+        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (brush.strokeStep * contentScaleFactor).float)), 1)
         vertexBuffer.reserveCapacity(count * 2)
         vertexBuffer.removeAll(keepingCapacity: true)
         for i in 0 ..< count {
@@ -445,6 +463,7 @@ open class Canvas: UIView {
         location = touch.location(in: self)
         location.y = bounds.size.height - location.y
         
+        lastRenderedPoint = location
         if enableBezierPath {
             bezierGenerator.begin(with: location)
         }
@@ -468,15 +487,10 @@ open class Canvas: UIView {
         location.y = bounds.size.height - location.y
         
         if enableBezierPath {
-            let vertices = bezierGenerator.pushPoint(location)
-            if vertices.count >= 2 {
-                for i in 0 ..< vertices.count - 1 {
-                    self.renderLine(from: vertices[i], to: vertices[i + 1], display: false)
-                }
-            }
-            displayBuffer()
+            // Render the stroke with bezier optmized path
+            pushPoint(location, to: bezierGenerator)
         } else {
-            // Render the stroke
+            // Render the stroke directly
             self.renderLine(from: previousLocation, to: location)
         }
         
@@ -494,6 +508,7 @@ open class Canvas: UIView {
         }
         
         if enableBezierPath {
+            pushPoint(location, to: bezierGenerator)
             bezierGenerator.finish()
         }
     }

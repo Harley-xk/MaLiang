@@ -11,30 +11,28 @@ import UIKit
 
 open class Brush {
     
+    // opacity of texture, affects the darkness of stroke
     open var opacity: Float = 0.3
     
+    // this property defines the minimum distance (measureed in points) of nearest two textures
+    // defaults to 1, this means erery texture calculated will be rendered, dictance calculation will be skiped
+    open var strokeStep: CGFloat = 1
+
+    // width of stroke in points
     open var strokeWidth: Int = 4
     
-//    open var width: CGFloat = 1 {
-//        didSet {
-//            scale = scale / width
-//        }
-//    }
-
     var id: GLuint = 0
     var textureWidth: GLsizei = 0
     var textureHeight: GLsizei = 0
     
     var texture: UIImage
-    var scale: CGFloat = 10
-    var pixelStep = 3
 
     public init(texture: UIImage) {
         self.texture = texture
     }
     
     // Create texture for brush
-    open func createTexture() {
+    func createTexture() {
         
         var texId: GLuint = 0
         
