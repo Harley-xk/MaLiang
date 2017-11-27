@@ -421,7 +421,7 @@ open class Canvas: UIView {
         var vertexBuffer: [GLfloat] = []
         
         // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (brush.strokeStep * contentScaleFactor).float)), 1)
+        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / contentScaleFactor.float)), 1)
         vertexBuffer.reserveCapacity(count * 2)
         vertexBuffer.removeAll(keepingCapacity: true)
         for i in 0 ..< count {
@@ -432,7 +432,6 @@ open class Canvas: UIView {
         // Load data to the Vertex Buffer Object
         glBindBuffer(GL_ARRAY_BUFFER.gluint, vboId)
         glBufferData(GL_ARRAY_BUFFER.gluint, count * 2 * MemoryLayout<GLfloat>.size, vertexBuffer, GL_DYNAMIC_DRAW.gluint)
-        
         
         glEnableVertexAttribArray(Attribute.vertex)
         glVertexAttribPointer(Attribute.vertex, 2, GL_FLOAT.gluint, GL_FALSE.uint8, 0, nil)
