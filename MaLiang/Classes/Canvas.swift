@@ -364,7 +364,7 @@ open class Canvas: UIView {
         
         // tear down context
         if EAGLContext.current() === context {
-            EAGLContext.setCurrent(context)
+            EAGLContext.setCurrent(nil)
         }
     }
     
