@@ -11,7 +11,7 @@ import OpenGLES
 struct BundleUtil {
     static var bundle: Bundle {
         var bundle: Bundle = Bundle.main
-        let framework = Bundle(for: Canvas.classForCoder())
+        let framework = Bundle(for: GLView.classForCoder())
         if let resource = framework.path(forResource: "MaLiang", ofType: "bundle") {
             bundle = Bundle(path: resource) ?? Bundle.main
         }
@@ -55,7 +55,7 @@ struct ShaderUtil {
             let log = UnsafeMutablePointer<CChar>.allocate(capacity: logLength.int)
             glGetShaderInfoLog(shader, logLength, &logLength, log)
             LogInfo("Shader compile log:\n%@", args: String(cString: log))
-            log.deallocate(capacity: logLength.int)
+            log.deallocate()
         }
         
         glGetShaderiv(shader, GL_COMPILE_STATUS.gluint, &status)
@@ -81,7 +81,7 @@ struct ShaderUtil {
             let log = UnsafeMutablePointer<CChar>.allocate(capacity: logLength.int)
             glGetProgramInfoLog(program, logLength, &logLength, log)
             LogInfo("Program link log:\n%@", args: String(cString: log))
-            log.deallocate(capacity: logLength.int)
+            log.deallocate()
         }
         
         glGetProgramiv(program, GL_LINK_STATUS.gluint, &status)
@@ -104,7 +104,7 @@ struct ShaderUtil {
             let log = UnsafeMutablePointer<CChar>.allocate(capacity: logLength.int)
             glGetProgramInfoLog(program, logLength, &logLength, log)
             LogInfo("Program validate log:\n%@", args: String(cString: log))
-            log.deallocate(capacity: logLength.int)
+            log.deallocate()
         }
         
         glGetProgramiv(program, GL_VALIDATE_STATUS.gluint, &status)

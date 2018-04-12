@@ -1,7 +1,7 @@
 {
   "name": "MaLiang",
-  "version": "0.1.0",
-  "summary": "A short description of MaLiang.",
+  "version": "0.3.2",
+  "summary": "MaLiang is a painting Framework based on OpenGL ES. The name of \"MaLiang\" comes from a boy who had a magical brush in Chinese ancient fairy story.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/harley-xk/MaLiang",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/harley-xk/MaLiang.git",
-    "tag": "0.1.0"
+    "tag": "0.3.2"
   },
   "platforms": {
     "ios": "8.0"

@@ -50,7 +50,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clearAction(_ sender: Any) {
-        canvas.erase()
+        canvas.clear()
     }
 }
 
