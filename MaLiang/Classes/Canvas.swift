@@ -26,7 +26,8 @@ open class Canvas: GLView {
                 let p = vertices[i]
                 if brush.strokeWidth <= 1 ||
                     (brush.strokeWidth > 1 && lastPoint.distance(to: p) >= brush.strokeStep) {
-                    self.renderLine(from: lastPoint, to: p, display: false)
+                    let line = GLLine(begin: lastPoint, end: p, pointSize: brush.strokeWidth)
+                    self.renderLine(line, display: false)
                     lastPoint = p
                     lastRenderedPoint = p
                 }
@@ -36,6 +37,9 @@ open class Canvas: GLView {
     }
 
     // MARK: - Gestures
+    override open var canBecomeFirstResponder : Bool {
+        return true
+    }
     
     // Handles the start of a touch
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -74,7 +78,8 @@ open class Canvas: GLView {
             pushPoint(location, to: bezierGenerator)
         } else {
             // Render the stroke directly
-            self.renderLine(from: previousLocation, to: location)
+            let line = GLLine(begin: previousLocation, end: location, pointSize: brush.strokeWidth)
+            self.renderLine(line)
         }
         
     }
@@ -87,7 +92,8 @@ open class Canvas: GLView {
             firstTouch = false
             previousLocation = touch.previousLocation(in: self)
             previousLocation.y = bounds.size.height - previousLocation.y
-            self.renderLine(from: previousLocation, to: location)
+            let line = GLLine(begin: previousLocation, end: location, pointSize: brush.strokeWidth)
+            self.renderLine(line)
         }
         
         if enableBezierPath {

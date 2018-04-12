@@ -22,11 +22,6 @@ struct Attribute {
     static let count: GLuint = 1
 }
 
-struct Line {
-    var start: CGPoint
-    var end: CGPoint
-}
-
 open class GLView: UIView {
     
     // MARK: - Open Property
@@ -356,34 +351,28 @@ open class GLView: UIView {
         }
     }
     
-    override open var canBecomeFirstResponder : Bool {
-        return true
-    }
     
-    
-    private func renderLines(_ lines: [Line]) {
+    private func renderLines(_ lines: [GLLine]) {
         
         for line in lines {
-            renderLine(from: line.start, to: line.end, display: false)
+            renderLine(line, display: false)
         }
         
-        // Display the buffer
-        glBindRenderbuffer(GL_RENDERBUFFER.gluint, viewRenderbuffer)
-        context.presentRenderbuffer(GL_RENDERBUFFER.int)
+        displayBuffer()        
     }
     
     // Drawings a line onscreen based on where the user touches
-    func renderLine(from _start: CGPoint, to _end: CGPoint, display: Bool = true) {
+    func renderLine(_ line: GLLine, display: Bool = true) {
         
         EAGLContext.setCurrent(context)
         glBindFramebuffer(GL_FRAMEBUFFER.gluint, viewFramebuffer)
         
         // Convert locations from Points to Pixels
         let scale = self.contentScaleFactor
-        var start = _start
+        var start = line.begin
         start.x *= scale
         start.y *= scale
-        var end = _end
+        var end = line.end
         end.x *= scale
         end.y *= scale
         
@@ -405,6 +394,9 @@ open class GLView: UIView {
         
         glEnableVertexAttribArray(Attribute.vertex)
         glVertexAttribPointer(Attribute.vertex, 2, GL_FLOAT.gluint, GL_FALSE.uint8, 0, nil)
+        
+        // set line size
+        glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(line.pointSize) * GLfloat(contentScaleFactor))
         
         // Draw
         glUseProgram(programs[ShaderProgram.point].id)

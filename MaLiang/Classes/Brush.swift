@@ -19,7 +19,7 @@ open class Brush {
     open var strokeStep: CGFloat = 1
 
     // width of stroke in points
-    open var strokeWidth: Int = 4
+    open var strokeWidth: CGFloat = 4
     
     var id: GLuint = 0
     var textureWidth: GLsizei = 0
