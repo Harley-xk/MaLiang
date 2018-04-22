@@ -7,121 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0343E6E4A1CD81DE7AB46BB9675B074F /* point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 1369597A16C9AF5F63792B10FE12623E /* point.vsh */; };
-		0711361E87180F3B3B135C3E4EA43ED9 /* MaLiang.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C06C678EE0380DCC908BF72F9840D8B7 /* MaLiang.bundle */; };
-		175D514C292418484DD5545382ADFF13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		1C9A4015113F23D45EA079B92FBA9083 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		2021F09D4B12D6C756EAF4913FE499E6 /* Pods-MaLiang_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8698DB9300DFE092D53C0514ED1FC /* Pods-MaLiang_Example-dummy.m */; };
-		53C68185B05396EC6B2D2A4D21414B93 /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A53446F3E8A55C87AE15C8086B17CA5B /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5CF63A94086ADA2E3471EBDB83B78584 /* MaLiang-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DD331A192547051428DAA52601C44CB0 /* MaLiang-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6954728E86B77D2693046BB3F1F6C7A3 /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48512E986548A71355B54C0EA1685F6D /* Brush.swift */; };
-		861788AE3C988CA9778A6866FA51822A /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF41B171082807AAA8D385D404AD05A /* point.png */; };
-		8FC3DA07DFA58D486F80EE87F1AB1E79 /* MaLiang-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB6B04D2840BCBD756FD89CB2BE3EF6 /* MaLiang-dummy.m */; };
-		972615410B3C7CAA79CC98C1887D693D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375FBCEAED0B5857F179FD45BD35D302 /* Utils.swift */; };
-		A3CA1C3116DAFDBE1F790728AFBCC3E8 /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 263E9D776DA4C8965AEC2A54E1F66037 /* point.fsh */; };
-		B5F1CA735AD62B2CFC97A805E3881C39 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2831DD0A73E152697899E01C9F0521F6 /* Canvas.swift */; };
-		B6623590207FA6C700729892 /* ShaderUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B662358F207FA6C700729892 /* ShaderUtil.swift */; };
-		B6623592207FADE900729892 /* GLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6623591207FADE900729892 /* GLLine.swift */; };
-		B69E6696208C202F005ED0E1 /* GLPencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E6695208C202F005ED0E1 /* GLPencil.swift */; };
-		B69E6698208C2F6A005ED0E1 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E6697208C2F6A005ED0E1 /* MLColor.swift */; };
-		BE8F2649F289EFD7FD857704B794479C /* MLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B09BCC5537244530E2C97E7753B529 /* MLView.swift */; };
-		CBB06093301FF9E4A85EB2DED8BC54D0 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A4103D64B18AF3841E38E533F8FEA /* BezierGenerator.swift */; };
+		317C283B6FE4C67ED4D554CFE4740F1E /* Pods-MaLiang_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8698DB9300DFE092D53C0514ED1FC /* Pods-MaLiang_Example-dummy.m */; };
+		CE01940BE2819243D05F95C6C29B002C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		D8EB4E3F8730BDBDA791ED33758CB9DD /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A53446F3E8A55C87AE15C8086B17CA5B /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		42A7373035E997F299B6151B620F07B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 61787E4B256D9701970ACF6C003B00A0;
-			remoteInfo = "MaLiang-MaLiang";
-		};
-		9D1DD7782C7CA4AB287DC892C04D9D67 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 345420C81F7D070785D6CB4A340ACB90;
-			remoteInfo = MaLiang;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		054E21A48215BAA32B8E8FAB60BBE87F /* MaLiang-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MaLiang-prefix.pch"; sourceTree = "<group>"; };
-		1369597A16C9AF5F63792B10FE12623E /* point.vsh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.glsl; name = point.vsh; path = MaLiang/Resources/point.vsh; sourceTree = "<group>"; };
-		1FB6B04D2840BCBD756FD89CB2BE3EF6 /* MaLiang-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MaLiang-dummy.m"; sourceTree = "<group>"; };
-		21B09BCC5537244530E2C97E7753B529 /* MLView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MLView.swift; sourceTree = "<group>"; };
-		263E9D776DA4C8965AEC2A54E1F66037 /* point.fsh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.glsl; name = point.fsh; path = MaLiang/Resources/point.fsh; sourceTree = "<group>"; };
-		2831DD0A73E152697899E01C9F0521F6 /* Canvas.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Canvas.swift; path = MaLiang/Classes/Canvas.swift; sourceTree = "<group>"; };
-		2E41DA0D4CC54B3A3FCA9C6FC90AD010 /* MaLiang.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = MaLiang.podspec; sourceTree = "<group>"; };
-		308009DE61EE7B4DFA0FC6411DE671D5 /* MaLiang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaLiang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		375FBCEAED0B5857F179FD45BD35D302 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = MaLiang/Classes/Utils.swift; sourceTree = "<group>"; };
-		392B92E27F85AEBA69081B7507B77347 /* MaLiang.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MaLiang.xcconfig; sourceTree = "<group>"; };
 		39A6D6CBF41CBC744F19C5B700375E59 /* Pods-MaLiang_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MaLiang_Example.modulemap"; sourceTree = "<group>"; };
-		464A4103D64B18AF3841E38E533F8FEA /* BezierGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BezierGenerator.swift; path = MaLiang/Classes/BezierGenerator.swift; sourceTree = "<group>"; };
-		48512E986548A71355B54C0EA1685F6D /* Brush.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Brush.swift; path = MaLiang/Classes/Brush.swift; sourceTree = "<group>"; };
-		4E194F9E802C321C187A2CCB64E44E80 /* MaLiang.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MaLiang.modulemap; sourceTree = "<group>"; };
-		5B8967C00D0A2D63989167FD724E01C4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		641923231CC117EC2C48BAB92F0A3E4F /* Pods-MaLiang_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MaLiang_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7B58C8EDB61F5D031249CE9191535C91 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7B8B5A3750BFC5A21AC71CCE2A0D0877 /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		7EF41B171082807AAA8D385D404AD05A /* point.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = point.png; path = MaLiang/Resources/point.png; sourceTree = "<group>"; };
 		826C2E53D311E9CFB624BACD4BBFC9E0 /* Pods-MaLiang_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MaLiang_Example-resources.sh"; sourceTree = "<group>"; };
 		88E8698DB9300DFE092D53C0514ED1FC /* Pods-MaLiang_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MaLiang_Example-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		949554FA47300B22F3B352810F5D7C18 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C36799C4B2C1DB7358972D66F1C8A72 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MaLiang_Example.framework; path = "Pods-MaLiang_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A53446F3E8A55C87AE15C8086B17CA5B /* Pods-MaLiang_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MaLiang_Example-umbrella.h"; sourceTree = "<group>"; };
 		AACFF03AE501DC84A75E04F8B2DCDCB4 /* Pods-MaLiang_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MaLiang_Example-frameworks.sh"; sourceTree = "<group>"; };
-		B4158283CFAE1A61FB36F434B02B0130 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B662358F207FA6C700729892 /* ShaderUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShaderUtil.swift; path = MaLiang/Classes/ShaderUtil.swift; sourceTree = "<group>"; };
-		B6623591207FADE900729892 /* GLLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLLine.swift; sourceTree = "<group>"; };
 		B6994BD4DA3E9E3C80061CCAA5FE4431 /* Pods-MaLiang_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MaLiang_Example.release.xcconfig"; sourceTree = "<group>"; };
-		B69E6695208C202F005ED0E1 /* GLPencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GLPencil.swift; path = MaLiang/Classes/GLPencil.swift; sourceTree = "<group>"; };
-		B69E6697208C2F6A005ED0E1 /* MLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MLColor.swift; path = MaLiang/Classes/MLColor.swift; sourceTree = "<group>"; };
-		C06C678EE0380DCC908BF72F9840D8B7 /* MaLiang.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaLiang.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD331A192547051428DAA52601C44CB0 /* MaLiang-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MaLiang-umbrella.h"; sourceTree = "<group>"; };
 		E2BDF4966623D55EE1DEB8AB7E95D2E4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E52EF08D953B21B1D50B78F88320210F /* ResourceBundle-MaLiang-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MaLiang-Info.plist"; sourceTree = "<group>"; };
 		E985A69269FE0C3CF88C0CC4E6B36141 /* Pods-MaLiang_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MaLiang_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2ED00E5386F32B64BAFA83C53831C8E4 /* Frameworks */ = {
+		53F40EE7D4AAAF6FE25CEDB8A419DE15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175D514C292418484DD5545382ADFF13 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		57326FF28CA9570761647F87418BFE4B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1C9A4015113F23D45EA079B92FBA9083 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9D39414B15EFF49BE3C98E5D9A0D9E8A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				CE01940BE2819243D05F95C6C29B002C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01DD4A092BD83A0C1CE308047C553186 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				263E9D776DA4C8965AEC2A54E1F66037 /* point.fsh */,
-				7EF41B171082807AAA8D385D404AD05A /* point.png */,
-				1369597A16C9AF5F63792B10FE12623E /* point.vsh */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		35AFA8556285EAAFB8D15A5DD91878A0 /* Pods-MaLiang_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,78 +58,22 @@
 			path = "Target Support Files/Pods-MaLiang_Example";
 			sourceTree = "<group>";
 		};
-		38343A210CE0035CA3A40BE2270051CD /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				5B8967C00D0A2D63989167FD724E01C4 /* LICENSE */,
-				2E41DA0D4CC54B3A3FCA9C6FC90AD010 /* MaLiang.podspec */,
-				7B58C8EDB61F5D031249CE9191535C91 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		393A99AFD53687DE022B5C49FBC79C5A /* MaLiang */ = {
-			isa = PBXGroup;
-			children = (
-				B69E6694208C2010005ED0E1 /* MLCore */,
-				2831DD0A73E152697899E01C9F0521F6 /* Canvas.swift */,
-				464A4103D64B18AF3841E38E533F8FEA /* BezierGenerator.swift */,
-				48512E986548A71355B54C0EA1685F6D /* Brush.swift */,
-				375FBCEAED0B5857F179FD45BD35D302 /* Utils.swift */,
-				B662358F207FA6C700729892 /* ShaderUtil.swift */,
-				38343A210CE0035CA3A40BE2270051CD /* Pod */,
-				01DD4A092BD83A0C1CE308047C553186 /* Resources */,
-				B1002A766677264D1053DEAB87C79E51 /* Support Files */,
-			);
-			name = MaLiang;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				CB323AA7553956D5CB6FE18E8509DBCA /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				894562B6366A7F78662423982321B679 /* Products */,
+				7F384373B31791DE32FA0C33FA6558E3 /* Products */,
 				E5894976F7E1F95DDBF641B0837FF54F /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		894562B6366A7F78662423982321B679 /* Products */ = {
+		7F384373B31791DE32FA0C33FA6558E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C06C678EE0380DCC908BF72F9840D8B7 /* MaLiang.bundle */,
-				308009DE61EE7B4DFA0FC6411DE671D5 /* MaLiang.framework */,
-				949554FA47300B22F3B352810F5D7C18 /* Pods_MaLiang_Example.framework */,
+				8C36799C4B2C1DB7358972D66F1C8A72 /* Pods_MaLiang_Example.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B1002A766677264D1053DEAB87C79E51 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B4158283CFAE1A61FB36F434B02B0130 /* Info.plist */,
-				4E194F9E802C321C187A2CCB64E44E80 /* MaLiang.modulemap */,
-				392B92E27F85AEBA69081B7507B77347 /* MaLiang.xcconfig */,
-				1FB6B04D2840BCBD756FD89CB2BE3EF6 /* MaLiang-dummy.m */,
-				054E21A48215BAA32B8E8FAB60BBE87F /* MaLiang-prefix.pch */,
-				DD331A192547051428DAA52601C44CB0 /* MaLiang-umbrella.h */,
-				E52EF08D953B21B1D50B78F88320210F /* ResourceBundle-MaLiang-Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/MaLiang";
-			sourceTree = "<group>";
-		};
-		B69E6694208C2010005ED0E1 /* MLCore */ = {
-			isa = PBXGroup;
-			children = (
-				21B09BCC5537244530E2C97E7753B529 /* MLView.swift */,
-				B6623591207FADE900729892 /* GLLine.swift */,
-				B69E6695208C202F005ED0E1 /* GLPencil.swift */,
-				B69E6697208C2F6A005ED0E1 /* MLColor.swift */,
-			);
-			name = MLCore;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -220,14 +82,6 @@
 				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CB323AA7553956D5CB6FE18E8509DBCA /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				393A99AFD53687DE022B5C49FBC79C5A /* MaLiang */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
@@ -249,78 +103,33 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		13A5356A39278A12425D183E36DB71C1 /* Headers */ = {
+		8D4F881A6B2430EDE482944B721148C2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CF63A94086ADA2E3471EBDB83B78584 /* MaLiang-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		61DE602C644B4B25AD35D2A513A65796 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				53C68185B05396EC6B2D2A4D21414B93 /* Pods-MaLiang_Example-umbrella.h in Headers */,
+				D8EB4E3F8730BDBDA791ED33758CB9DD /* Pods-MaLiang_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		345420C81F7D070785D6CB4A340ACB90 /* MaLiang */ = {
+		8F68E7E60D8CE65944C0612B2D877B23 /* Pods-MaLiang_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 31175D291F95AAC54D85293ABA5F9AF0 /* Build configuration list for PBXNativeTarget "MaLiang" */;
+			buildConfigurationList = CC67BC94E0CE325406CE5BA18C96DD0F /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */;
 			buildPhases = (
-				BF95F4F80D379952FF6D53D984B29FFF /* Sources */,
-				57326FF28CA9570761647F87418BFE4B /* Frameworks */,
-				6CE27E6B7417DE1247083A2F63F3DFF9 /* Resources */,
-				13A5356A39278A12425D183E36DB71C1 /* Headers */,
+				9359332A51CFA9ADA309224395ACB2DF /* Sources */,
+				53F40EE7D4AAAF6FE25CEDB8A419DE15 /* Frameworks */,
+				8D4F881A6B2430EDE482944B721148C2 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				80C86DA2B5F71F96671F86ACE09E0452 /* PBXTargetDependency */,
-			);
-			name = MaLiang;
-			productName = MaLiang;
-			productReference = 308009DE61EE7B4DFA0FC6411DE671D5 /* MaLiang.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		52BA3F2A3D909EAB5F7B3AC72593ECC4 /* Pods-MaLiang_Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 018F9E7D86C2F06BE72DAB37DF99845A /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */;
-			buildPhases = (
-				3A1277BAFC557AFA9AE0870E94FA5F38 /* Sources */,
-				2ED00E5386F32B64BAFA83C53831C8E4 /* Frameworks */,
-				61DE602C644B4B25AD35D2A513A65796 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				79FFBA3785A8C68DE5FBD3D1DC7C8B6F /* PBXTargetDependency */,
 			);
 			name = "Pods-MaLiang_Example";
 			productName = "Pods-MaLiang_Example";
-			productReference = 949554FA47300B22F3B352810F5D7C18 /* Pods_MaLiang_Example.framework */;
+			productReference = 8C36799C4B2C1DB7358972D66F1C8A72 /* Pods_MaLiang_Example.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		61787E4B256D9701970ACF6C003B00A0 /* MaLiang-MaLiang */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C59F4CEDCC707B745437675187B852A7 /* Build configuration list for PBXNativeTarget "MaLiang-MaLiang" */;
-			buildPhases = (
-				018290B76F15E95669EFF869E6125A4A /* Sources */,
-				9D39414B15EFF49BE3C98E5D9A0D9E8A /* Frameworks */,
-				37DD13E6F77DCDC8F26F55924BFFB848 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "MaLiang-MaLiang";
-			productName = "MaLiang-MaLiang";
-			productReference = C06C678EE0380DCC908BF72F9840D8B7 /* MaLiang.bundle */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -339,105 +148,27 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 894562B6366A7F78662423982321B679 /* Products */;
+			productRefGroup = 7F384373B31791DE32FA0C33FA6558E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				345420C81F7D070785D6CB4A340ACB90 /* MaLiang */,
-				61787E4B256D9701970ACF6C003B00A0 /* MaLiang-MaLiang */,
-				52BA3F2A3D909EAB5F7B3AC72593ECC4 /* Pods-MaLiang_Example */,
+				8F68E7E60D8CE65944C0612B2D877B23 /* Pods-MaLiang_Example */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		37DD13E6F77DCDC8F26F55924BFFB848 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A3CA1C3116DAFDBE1F790728AFBCC3E8 /* point.fsh in Resources */,
-				861788AE3C988CA9778A6866FA51822A /* point.png in Resources */,
-				0343E6E4A1CD81DE7AB46BB9675B074F /* point.vsh in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6CE27E6B7417DE1247083A2F63F3DFF9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0711361E87180F3B3B135C3E4EA43ED9 /* MaLiang.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		018290B76F15E95669EFF869E6125A4A /* Sources */ = {
+		9359332A51CFA9ADA309224395ACB2DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3A1277BAFC557AFA9AE0870E94FA5F38 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2021F09D4B12D6C756EAF4913FE499E6 /* Pods-MaLiang_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BF95F4F80D379952FF6D53D984B29FFF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CBB06093301FF9E4A85EB2DED8BC54D0 /* BezierGenerator.swift in Sources */,
-				6954728E86B77D2693046BB3F1F6C7A3 /* Brush.swift in Sources */,
-				B6623592207FADE900729892 /* GLLine.swift in Sources */,
-				B5F1CA735AD62B2CFC97A805E3881C39 /* Canvas.swift in Sources */,
-				BE8F2649F289EFD7FD857704B794479C /* MLView.swift in Sources */,
-				8FC3DA07DFA58D486F80EE87F1AB1E79 /* MaLiang-dummy.m in Sources */,
-				B6623590207FA6C700729892 /* ShaderUtil.swift in Sources */,
-				972615410B3C7CAA79CC98C1887D693D /* Utils.swift in Sources */,
-				B69E6698208C2F6A005ED0E1 /* MLColor.swift in Sources */,
-				B69E6696208C202F005ED0E1 /* GLPencil.swift in Sources */,
+				317C283B6FE4C67ED4D554CFE4740F1E /* Pods-MaLiang_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		79FFBA3785A8C68DE5FBD3D1DC7C8B6F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MaLiang;
-			target = 345420C81F7D070785D6CB4A340ACB90 /* MaLiang */;
-			targetProxy = 9D1DD7782C7CA4AB287DC892C04D9D67 /* PBXContainerItemProxy */;
-		};
-		80C86DA2B5F71F96671F86ACE09E0452 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "MaLiang-MaLiang";
-			target = 61787E4B256D9701970ACF6C003B00A0 /* MaLiang-MaLiang */;
-			targetProxy = 42A7373035E997F299B6151B620F07B4 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		005BAF9E3C7CE7CDBAC3A34432D37C7F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 392B92E27F85AEBA69081B7507B77347 /* MaLiang.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MaLiang";
-				INFOPLIST_FILE = "Target Support Files/MaLiang/ResourceBundle-MaLiang-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = MaLiang;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 		1EE19F5DD95931924296F637BF18BD8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -501,10 +232,11 @@
 			};
 			name = Debug;
 		};
-		6C0EAB509DF061DC787C75F92BA74EBF /* Debug */ = {
+		E51CCEFE587E8EFF1BAF806251E4B26C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 392B92E27F85AEBA69081B7507B77347 /* MaLiang.xcconfig */;
+			baseConfigurationReference = B6994BD4DA3E9E3C80061CCAA5FE4431 /* Pods-MaLiang_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -514,26 +246,27 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/MaLiang/MaLiang-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MaLiang/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MaLiang_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MaLiang/MaLiang.modulemap";
-				PRODUCT_MODULE_NAME = MaLiang;
-				PRODUCT_NAME = MaLiang;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		7D32544B021CFEC2022B1A81899488E1 /* Debug */ = {
+		EDE6286841EE69546FEE49546C8071E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7B8B5A3750BFC5A21AC71CCE2A0D0877 /* Pods-MaLiang_Example.debug.xcconfig */;
 			buildSettings = {
@@ -560,46 +293,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		88A5694B831434EC99D322E2C7E10D28 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 392B92E27F85AEBA69081B7507B77347 /* MaLiang.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/MaLiang/MaLiang-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MaLiang/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MaLiang/MaLiang.modulemap";
-				PRODUCT_MODULE_NAME = MaLiang;
-				PRODUCT_NAME = MaLiang;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		F4568DEE257655D290C2B9CEAB37C934 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -655,74 +353,13 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		F9C8F284C1C4C2F18CE4731C460C7898 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 392B92E27F85AEBA69081B7507B77347 /* MaLiang.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MaLiang";
-				INFOPLIST_FILE = "Target Support Files/MaLiang/ResourceBundle-MaLiang-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = MaLiang;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		FFB5491B245AAA0DF652B34C7620AE43 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6994BD4DA3E9E3C80061CCAA5FE4431 /* Pods-MaLiang_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MaLiang_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		018F9E7D86C2F06BE72DAB37DF99845A /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7D32544B021CFEC2022B1A81899488E1 /* Debug */,
-				FFB5491B245AAA0DF652B34C7620AE43 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -732,20 +369,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		31175D291F95AAC54D85293ABA5F9AF0 /* Build configuration list for PBXNativeTarget "MaLiang" */ = {
+		CC67BC94E0CE325406CE5BA18C96DD0F /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6C0EAB509DF061DC787C75F92BA74EBF /* Debug */,
-				88A5694B831434EC99D322E2C7E10D28 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C59F4CEDCC707B745437675187B852A7 /* Build configuration list for PBXNativeTarget "MaLiang-MaLiang" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				005BAF9E3C7CE7CDBAC3A34432D37C7F /* Debug */,
-				F9C8F284C1C4C2F18CE4731C460C7898 /* Release */,
+				EDE6286841EE69546FEE49546C8071E9 /* Debug */,
+				E51CCEFE587E8EFF1BAF806251E4B26C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

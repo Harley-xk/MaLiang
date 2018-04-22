@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MaLiang
 
 class ViewController: UIViewController {
 
@@ -34,6 +33,7 @@ class ViewController: UIViewController {
         
         let brush = Brush(texture: #imageLiteral(resourceName: "brush"))
         brush.strokeWidth = 30
+        brush.strokeStep = 2
 
         brushes = [pen, pencil, brush]
     }

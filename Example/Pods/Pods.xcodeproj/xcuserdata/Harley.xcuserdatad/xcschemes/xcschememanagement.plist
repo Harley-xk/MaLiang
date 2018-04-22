@@ -4,16 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MaLiang-MaLiang.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MaLiang.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-MaLiang_Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>

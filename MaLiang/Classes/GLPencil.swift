@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreGraphics
+import OpenGLES
 
 open class GLPencil {
     
