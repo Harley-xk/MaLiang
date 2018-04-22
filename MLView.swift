@@ -1,5 +1,5 @@
 //
-//  GLView.swift
+//  MLView.swift
 //  MaLiang
 //
 //  Created by Harley.xk on 2017/11/6.
@@ -22,13 +22,13 @@ struct Attribute {
     static let count: GLuint = 1
 }
 
-open class GLView: UIView {
+open class MLView: UIView {
     
     // MARK: - Open Property
     open var brush: Brush {
         willSet {
-            if brush.id != 0 {
-                glDeleteTextures(1, &brush.id)
+            if brush.gl_id != 0 {
+                glDeleteTextures(1, &brush.gl_id)
             }
         }
         didSet {
@@ -37,19 +37,10 @@ open class GLView: UIView {
                 glUseProgram(programs[ShaderProgram.point].id)
                 glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
 
-                // alpha changed with different brushes, so color needs to be reset
-                resetColor()
+                updateColor(to: brush.mlColor)
             }
         }
     }
-    
-    open var brushColor: UIColor = .black {
-        didSet {
-            // Update the brush color
-            resetColor()
-        }
-    }
-    
     
     // MARK: - Functions
     // Erases the screen
@@ -66,12 +57,22 @@ open class GLView: UIView {
         context.presentRenderbuffer(GL_RENDERBUFFER.int)
     }
     
-    private func resetColor() {
+    
+    // MARK: - Color
+    
+    // last rendered color
+    private var lastColor: MLColor = .default
+    
+    // change glcolor if brush color changed
+    private func updateColor(to newColor: MLColor) {
+        guard lastColor != newColor else {
+            return
+        }
         // Update the brush color
-        let glcolor = brushColor.glcolorWith(opacity: brush.opacity)
         if initialized {
             glUseProgram(programs[ShaderProgram.point].id)
-            glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, glcolor)
+            glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, newColor.glColor)
+            lastColor = newColor
         }
     }
     
@@ -170,7 +171,6 @@ open class GLView: UIView {
         
         if !initialized {
             initialized = initGL()
-            brushColor = .black
         } else {
             resize(from: glLayer)
         }
@@ -235,7 +235,7 @@ open class GLView: UIView {
                 glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
 
                 // initialize brush color
-                glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, brushColor.glcolor)
+                glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, lastColor.glColor)
                 
             }
         }
@@ -274,7 +274,7 @@ open class GLView: UIView {
         glGenBuffers(1, &vboId)
         
         // Load the brush texture
-        if brush.id == 0 {
+        if brush.gl_id == 0 {
             brush.createTexture()
         }
         
@@ -337,8 +337,8 @@ open class GLView: UIView {
             glDeleteRenderbuffers(1, &depthRenderbuffer)
         }
         // texture
-        if brush.id != 0 {
-            glDeleteTextures(1, &brush.id)
+        if brush.gl_id != 0 {
+            glDeleteTextures(1, &brush.gl_id)
         }
         // vbo
         if vboId != 0 {
@@ -380,7 +380,7 @@ open class GLView: UIView {
         var vertexBuffer: [GLfloat] = []
         
         // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / contentScaleFactor.float)), 1)
+        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * brush.strokeStep.float))) + 1, 1)
         vertexBuffer.reserveCapacity(count * 2)
         vertexBuffer.removeAll(keepingCapacity: true)
         for i in 0 ..< count {

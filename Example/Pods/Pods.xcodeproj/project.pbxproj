@@ -22,7 +22,9 @@
 		B5F1CA735AD62B2CFC97A805E3881C39 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2831DD0A73E152697899E01C9F0521F6 /* Canvas.swift */; };
 		B6623590207FA6C700729892 /* ShaderUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B662358F207FA6C700729892 /* ShaderUtil.swift */; };
 		B6623592207FADE900729892 /* GLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6623591207FADE900729892 /* GLLine.swift */; };
-		BE8F2649F289EFD7FD857704B794479C /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B09BCC5537244530E2C97E7753B529 /* GLView.swift */; };
+		B69E6696208C202F005ED0E1 /* GLPencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E6695208C202F005ED0E1 /* GLPencil.swift */; };
+		B69E6698208C2F6A005ED0E1 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E6697208C2F6A005ED0E1 /* MLColor.swift */; };
+		BE8F2649F289EFD7FD857704B794479C /* MLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B09BCC5537244530E2C97E7753B529 /* MLView.swift */; };
 		CBB06093301FF9E4A85EB2DED8BC54D0 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A4103D64B18AF3841E38E533F8FEA /* BezierGenerator.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,10 +49,10 @@
 		054E21A48215BAA32B8E8FAB60BBE87F /* MaLiang-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MaLiang-prefix.pch"; sourceTree = "<group>"; };
 		1369597A16C9AF5F63792B10FE12623E /* point.vsh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.glsl; name = point.vsh; path = MaLiang/Resources/point.vsh; sourceTree = "<group>"; };
 		1FB6B04D2840BCBD756FD89CB2BE3EF6 /* MaLiang-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MaLiang-dummy.m"; sourceTree = "<group>"; };
-		21B09BCC5537244530E2C97E7753B529 /* GLView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GLView.swift; path = MaLiang/Classes/GLView.swift; sourceTree = "<group>"; };
+		21B09BCC5537244530E2C97E7753B529 /* MLView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MLView.swift; sourceTree = "<group>"; };
 		263E9D776DA4C8965AEC2A54E1F66037 /* point.fsh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.glsl; name = point.fsh; path = MaLiang/Resources/point.fsh; sourceTree = "<group>"; };
 		2831DD0A73E152697899E01C9F0521F6 /* Canvas.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Canvas.swift; path = MaLiang/Classes/Canvas.swift; sourceTree = "<group>"; };
-		2E41DA0D4CC54B3A3FCA9C6FC90AD010 /* MaLiang.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = MaLiang.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2E41DA0D4CC54B3A3FCA9C6FC90AD010 /* MaLiang.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = MaLiang.podspec; sourceTree = "<group>"; };
 		308009DE61EE7B4DFA0FC6411DE671D5 /* MaLiang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MaLiang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		375FBCEAED0B5857F179FD45BD35D302 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = MaLiang/Classes/Utils.swift; sourceTree = "<group>"; };
 		392B92E27F85AEBA69081B7507B77347 /* MaLiang.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MaLiang.xcconfig; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 		B662358F207FA6C700729892 /* ShaderUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShaderUtil.swift; path = MaLiang/Classes/ShaderUtil.swift; sourceTree = "<group>"; };
 		B6623591207FADE900729892 /* GLLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLLine.swift; sourceTree = "<group>"; };
 		B6994BD4DA3E9E3C80061CCAA5FE4431 /* Pods-MaLiang_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MaLiang_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B69E6695208C202F005ED0E1 /* GLPencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GLPencil.swift; path = MaLiang/Classes/GLPencil.swift; sourceTree = "<group>"; };
+		B69E6697208C2F6A005ED0E1 /* MLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MLColor.swift; path = MaLiang/Classes/MLColor.swift; sourceTree = "<group>"; };
 		C06C678EE0380DCC908BF72F9840D8B7 /* MaLiang.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaLiang.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD331A192547051428DAA52601C44CB0 /* MaLiang-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MaLiang-umbrella.h"; sourceTree = "<group>"; };
 		E2BDF4966623D55EE1DEB8AB7E95D2E4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,8 +153,7 @@
 		393A99AFD53687DE022B5C49FBC79C5A /* MaLiang */ = {
 			isa = PBXGroup;
 			children = (
-				21B09BCC5537244530E2C97E7753B529 /* GLView.swift */,
-				B6623591207FADE900729892 /* GLLine.swift */,
+				B69E6694208C2010005ED0E1 /* MLCore */,
 				2831DD0A73E152697899E01C9F0521F6 /* Canvas.swift */,
 				464A4103D64B18AF3841E38E533F8FEA /* BezierGenerator.swift */,
 				48512E986548A71355B54C0EA1685F6D /* Brush.swift */,
@@ -198,6 +201,17 @@
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/MaLiang";
+			sourceTree = "<group>";
+		};
+		B69E6694208C2010005ED0E1 /* MLCore */ = {
+			isa = PBXGroup;
+			children = (
+				21B09BCC5537244530E2C97E7753B529 /* MLView.swift */,
+				B6623591207FADE900729892 /* GLLine.swift */,
+				B69E6695208C202F005ED0E1 /* GLPencil.swift */,
+				B69E6697208C2F6A005ED0E1 /* MLColor.swift */,
+			);
+			name = MLCore;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -381,10 +395,12 @@
 				6954728E86B77D2693046BB3F1F6C7A3 /* Brush.swift in Sources */,
 				B6623592207FADE900729892 /* GLLine.swift in Sources */,
 				B5F1CA735AD62B2CFC97A805E3881C39 /* Canvas.swift in Sources */,
-				BE8F2649F289EFD7FD857704B794479C /* GLView.swift in Sources */,
+				BE8F2649F289EFD7FD857704B794479C /* MLView.swift in Sources */,
 				8FC3DA07DFA58D486F80EE87F1AB1E79 /* MaLiang-dummy.m in Sources */,
 				B6623590207FA6C700729892 /* ShaderUtil.swift in Sources */,
 				972615410B3C7CAA79CC98C1887D693D /* Utils.swift in Sources */,
+				B69E6698208C2F6A005ED0E1 /* MLColor.swift in Sources */,
+				B69E6696208C202F005ED0E1 /* GLPencil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

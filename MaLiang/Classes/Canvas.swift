@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class Canvas: GLView {
+open class Canvas: MLView {
 
     // optimize stroke with bezier path, defaults to true
     private var enableBezierPath = true
@@ -18,14 +18,14 @@ open class Canvas: GLView {
 
     // MARK: - Drawing Actions
     private var lastRenderedPoint: CGPoint?
-    private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator) {
+    private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator, isEnd: Bool = false) {
         let vertices = bezier.pushPoint(point)
         if vertices.count >= 2 {
             var lastPoint = lastRenderedPoint ?? vertices[0]
             for i in 1 ..< vertices.count {
                 let p = vertices[i]
-                if brush.strokeWidth <= 1 ||
-                    (brush.strokeWidth > 1 && lastPoint.distance(to: p) >= brush.strokeStep) {
+                if isEnd || brush.strokeWidth <= 1 ||
+                    (brush.strokeWidth > 1 && brush.strokeStep > 1 && lastPoint.distance(to: p) >= brush.strokeStep) {
                     let line = GLLine(begin: lastPoint, end: p, pointSize: brush.strokeWidth)
                     self.renderLine(line, display: false)
                     lastPoint = p
@@ -97,14 +97,14 @@ open class Canvas: GLView {
         }
         
         if enableBezierPath {
-            pushPoint(location, to: bezierGenerator)
+            pushPoint(location, to: bezierGenerator, isEnd: true)
             bezierGenerator.finish()
+
         }
     }
     
     // Handles the end of a touch event.
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // If appropriate, add code necessary to save the state of the application.
-        // This application is not saving state.
+        touchesEnded(touches, with: event)
     }    
 }

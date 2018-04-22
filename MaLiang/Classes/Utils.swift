@@ -10,7 +10,7 @@ import UIKit
 struct BundleUtil {
     static var bundle: Bundle {
         var bundle: Bundle = Bundle.main
-        let framework = Bundle(for: GLView.classForCoder())
+        let framework = Bundle(for: MLView.classForCoder())
         if let resource = framework.path(forResource: "MaLiang", ofType: "bundle") {
             bundle = Bundle(path: resource) ?? Bundle.main
         }
@@ -96,16 +96,16 @@ extension CGFloat {
 
 // MARK: - Color Utils
 extension UIColor {
-    var glcolor: [Float] {
+    var mlcolor: MLColor {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return [red.float, green.float, blue.float, alpha.float]
+        return MLColor(red: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
     }
     
-    func glcolorWith(opacity: Float = 1) -> [Float]{
+    func mlcolorWith(opacity: Float = 1) -> MLColor {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return [red.float * opacity, green.float * opacity, blue.float * opacity, alpha.float * opacity]
+        return MLColor(red: red.float * opacity, green: green.float * opacity, blue: blue.float * opacity, alpha: alpha.float * opacity)
     }
 }
 
