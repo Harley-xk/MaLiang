@@ -9,11 +9,12 @@ import Foundation
 import CoreGraphics
 import OpenGLES
 
-open class MLPencil {
+class MLPencil {
     
     // width of stroke in points
-    open var pointSize: CGFloat = 4
-    
+    var pointSize: CGFloat = 4
+    var pointStep: CGFloat = 1
+
     var mlColor: MLColor = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
     
     var gl_id: GLuint = 0

@@ -6,17 +6,18 @@
 //
 
 import Foundation
+import CoreGraphics
 
 /// Color to render on MLView
 struct MLColor: Equatable {
-    var red: Float
-    var green: Float
-    var blue: Float
-    var alpha: Float
+    var red: CGFloat
+    var green: CGFloat
+    var blue: CGFloat
+    var alpha: CGFloat
     
     static var `default` = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
         
     var glColor: [Float] {
-        return [red, green, blue, alpha]
+        return [red.float, green.float, blue.float, alpha.float]
     }
 }

@@ -25,15 +25,15 @@ struct Attribute {
 open class MLView: UIView {
     
     // MARK: - Open Property
-    open var brush: Brush {
+    var pencil: MLPencil {
         willSet {
-            if brush.gl_id != 0 {
-                glDeleteTextures(1, &brush.gl_id)
+            if pencil.gl_id != 0 {
+                glDeleteTextures(1, &pencil.gl_id)
             }
         }
         didSet {
             if initialized {
-                brush.createTexture()
+                pencil.createTexture()
             }
         }
     }
@@ -122,7 +122,7 @@ open class MLView: UIView {
     // The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
     required public init?(coder: NSCoder) {
         
-        brush = Brush(texture: BundleUtil.image(name: "point")!)
+        pencil = MLPencil(texture: BundleUtil.image(name: "point")!.cgImage!)
         let uniform: [GLint] = Array(repeating: 0, count: Uniform.count)
         shaderProgram = ShaderProgram(vert: "point.vsh", frag: "point.fsh", uniform: uniform, id: 0)
         //        programs = [ShaderProgram(
@@ -266,8 +266,8 @@ open class MLView: UIView {
         glGenBuffers(1, &vboId)
         
         // Load the brush texture
-        if brush.gl_id == 0 {
-            brush.createTexture()
+        if pencil.gl_id == 0 {
+            pencil.createTexture()
         }
         
         // Load shaders
@@ -329,8 +329,8 @@ open class MLView: UIView {
             glDeleteRenderbuffers(1, &depthRenderbuffer)
         }
         // texture
-        if brush.gl_id != 0 {
-            glDeleteTextures(1, &brush.gl_id)
+        if pencil.gl_id != 0 {
+            glDeleteTextures(1, &pencil.gl_id)
         }
         // vbo
         if vboId != 0 {
@@ -372,7 +372,7 @@ open class MLView: UIView {
         var vertexBuffer: [GLfloat] = []
         
         // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * brush.pointStep.float))) + 1, 1)
+        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * pencil.pointStep.float))) + 1, 1)
         vertexBuffer.reserveCapacity(count * 2)
         vertexBuffer.removeAll(keepingCapacity: true)
         for i in 0 ..< count {

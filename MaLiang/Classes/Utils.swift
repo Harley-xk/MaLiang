@@ -99,13 +99,13 @@ extension UIColor {
     var mlcolor: MLColor {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return MLColor(red: Float(red), green: Float(green), blue: Float(blue), alpha: Float(alpha))
+        return MLColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    func mlcolorWith(opacity: Float = 1) -> MLColor {
+    func mlcolorWith(opacity: CGFloat = 1) -> MLColor {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return MLColor(red: red.float * opacity, green: green.float * opacity, blue: blue.float * opacity, alpha: alpha.float * opacity)
+        return MLColor(red: red * opacity, green: green * opacity, blue: blue * opacity, alpha: alpha * opacity)
     }
 }
 

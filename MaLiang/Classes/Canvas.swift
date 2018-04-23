@@ -9,6 +9,20 @@ import UIKit
 
 open class Canvas: MLView {
 
+    open var brush: Brush! {
+        didSet {
+            if pencil !== brush.pencil {
+                pencil = brush.pencil
+            }
+        }
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        let image = UIImage(cgImage: pencil.gl_texture)
+        brush = Brush(texture: image)
+    }
+    
     // optimize stroke with bezier path, defaults to true
     private var enableBezierPath = true
     private var firstTouch: Bool = false
@@ -31,7 +45,7 @@ open class Canvas: MLView {
                     // distance larger than step
                     (brush.pointStep > 1 && lastPoint.distance(to: p) >= brush.pointStep)
                 {
-                    let line = MLLine(begin: lastPoint, end: p, pencil: brush)
+                    let line = MLLine(begin: lastPoint, end: p, pencil: brush.pencil)
                     self.renderLine(line, display: false)
                     lastPoint = p
                     lastRenderedPoint = p
@@ -84,7 +98,7 @@ open class Canvas: MLView {
             pushPoint(location, to: bezierGenerator)
         } else {
             // Render the stroke directly
-            let line = MLLine(begin: previousLocation, end: location, pencil: brush)
+            let line = MLLine(begin: previousLocation, end: location, pencil: brush.pencil)
             self.renderLine(line)
         }
         
@@ -94,20 +108,28 @@ open class Canvas: MLView {
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let bounds = self.bounds
         let touch = event!.touches(for: self)!.first!
-        if firstTouch {
-            firstTouch = false
-            previousLocation = touch.previousLocation(in: self)
-            previousLocation.y = bounds.size.height - previousLocation.y
-        }
-        
         var location = touch.location(in: self)
         location.y = bounds.size.height - location.y
 
+        if firstTouch {
+            previousLocation = touch.previousLocation(in: self)
+            previousLocation.y = bounds.size.height - previousLocation.y
+            var line = MLLine(begin: previousLocation, end: location, pencil: brush.pencil)
+            /// fix the opacity of color when there is only one point
+            let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
+            let opacity = brush.opacity + (1 - brush.opacity) * delta
+            line.color = brush.color.mlcolorWith(opacity: opacity)
+            self.renderLine(line)
+        }
         if enableBezierPath {
-            pushPoint(location, to: bezierGenerator, isEnd: true)
+            if firstTouch {
+                firstTouch = false
+            } else {
+                pushPoint(location, to: bezierGenerator, isEnd: true)
+            }
             bezierGenerator.finish()
-        } else {
-            let line = MLLine(begin: previousLocation, end: location, pencil: brush)
+        } else if !firstTouch {
+            let line = MLLine(begin: previousLocation, end: location, pencil: brush.pencil)
             self.renderLine(line)
         }
     }
