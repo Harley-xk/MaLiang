@@ -34,7 +34,6 @@ open class MLView: UIView {
         didSet {
             if initialized {
                 brush.createTexture()
-                updateColor(to: brush.mlColor)
             }
         }
     }
@@ -98,7 +97,7 @@ open class MLView: UIView {
     private var vboId: GLuint = 0
     
     private var initialized: Bool = false
-        
+    
     // Implement this to override the default layer class (which is [CALayer class]).
     // We do this so that our view will be backed by a layer that is capable of OpenGL ES rendering.
     override open class var layerClass : AnyClass {
@@ -126,12 +125,12 @@ open class MLView: UIView {
         brush = Brush(texture: BundleUtil.image(name: "point")!)
         let uniform: [GLint] = Array(repeating: 0, count: Uniform.count)
         shaderProgram = ShaderProgram(vert: "point.vsh", frag: "point.fsh", uniform: uniform, id: 0)
-//        programs = [ShaderProgram(
-//            vert: "point.vsh",
-//            frag: "point.fsh",
-//            uniform: Array(repeating: 0, count: Uniform.count),
-//            id: 0
-//            )]
+        //        programs = [ShaderProgram(
+        //            vert: "point.vsh",
+        //            frag: "point.fsh",
+        //            uniform: Array(repeating: 0, count: Uniform.count),
+        //            id: 0
+        //            )]
         
         super.init(coder: coder)
         
@@ -182,57 +181,56 @@ open class MLView: UIView {
     
     private func setupShaders() {
         
+        let vsrc = FileUtil.readData(forResource: shaderProgram.vert)
+        let fsrc = FileUtil.readData(forResource: shaderProgram.frag)
         
-            let vsrc = FileUtil.readData(forResource: shaderProgram.vert)
-            let fsrc = FileUtil.readData(forResource: shaderProgram.frag)
+        var attribUsed: [String] = []
+        var attrib: [GLuint] = []
+        let attribName: [String] = ["inVertex"]
+        let uniformName: [String] = ["MVP", "pointSize", "vertexColor", "texture"]
+        
+        var prog: GLuint = 0
+        vsrc.withUnsafeBytes {(vsrcChars: UnsafePointer<GLchar>) in
             
-            var attribUsed: [String] = []
-            var attrib: [GLuint] = []
-            let attribName: [String] = ["inVertex"]
-            let uniformName: [String] = ["MVP", "pointSize", "vertexColor", "texture"]
-            
-            var prog: GLuint = 0
-            vsrc.withUnsafeBytes {(vsrcChars: UnsafePointer<GLchar>) in
-                
-                // auto-assign known attribs
-                for (j, name) in attribName.enumerated() {
-                    if strstr(vsrcChars, name) != nil {
-                        attrib.append(GLuint(j))
-                        attribUsed.append(name)
-                    }
-                }
-                
-                fsrc.withUnsafeBytes {(fsrcChars: UnsafePointer<GLchar>) in
-                    _ = ShaderUtil.createProgram(UnsafeMutablePointer(mutating: vsrcChars), UnsafeMutablePointer(mutating: fsrcChars),
-                                                 attribUsed, attrib,
-                                                 uniformName, &shaderProgram.uniform,
-                                                 &prog)
+            // auto-assign known attribs
+            for (j, name) in attribName.enumerated() {
+                if strstr(vsrcChars, name) != nil {
+                    attrib.append(GLuint(j))
+                    attribUsed.append(name)
                 }
             }
-            shaderProgram.id = prog
             
-                glUseProgram(shaderProgram.id)
-                
-                // the brush texture will be bound to texture unit 0
-                glUniform1i(shaderProgram.uniform[Uniform.texture], 0)
-                
-                // viewing matrices
-                let projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth.float, 0, backingHeight.float, -1, 1)
-                let modelViewMatrix = GLKMatrix4Identity
-                var MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
-                
-                withUnsafePointer(to: &MVPMatrix) {ptrMVP in
-                    ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
-                        glUniformMatrix4fv(shaderProgram.uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
-                    }
-                }
-                
-                // point size
-//                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
-
-                // initialize brush color
-                glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, lastColor.glColor)
-                
+            fsrc.withUnsafeBytes {(fsrcChars: UnsafePointer<GLchar>) in
+                _ = ShaderUtil.createProgram(UnsafeMutablePointer(mutating: vsrcChars), UnsafeMutablePointer(mutating: fsrcChars),
+                                             attribUsed, attrib,
+                                             uniformName, &shaderProgram.uniform,
+                                             &prog)
+            }
+        }
+        shaderProgram.id = prog
+        
+        glUseProgram(shaderProgram.id)
+        
+        // the brush texture will be bound to texture unit 0
+        glUniform1i(shaderProgram.uniform[Uniform.texture], 0)
+        
+        // viewing matrices
+        let projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth.float, 0, backingHeight.float, -1, 1)
+        let modelViewMatrix = GLKMatrix4Identity
+        var MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
+        
+        withUnsafePointer(to: &MVPMatrix) {ptrMVP in
+            ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
+                glUniformMatrix4fv(shaderProgram.uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
+            }
+        }
+        
+        // point size
+        //                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
+        
+        // initialize brush color
+        glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, lastColor.glColor)
+        
     }
     
     private func initGL() -> Bool {
@@ -284,6 +282,7 @@ open class MLView: UIView {
     
     @discardableResult
     private func resize(from layer: CAEAGLLayer) -> Bool {
+        
         // Allocate color buffer backing based on the current layer size
         glBindRenderbuffer(GL_RENDERBUFFER.gluint, viewRenderbuffer)
         context.renderbufferStorage(GL_RENDERBUFFER.int, from: layer)
@@ -345,7 +344,7 @@ open class MLView: UIView {
     }
     
     
-    private func renderLines(_ lines: [GLLine]) {
+    private func renderLines(_ lines: [MLLine]) {
         
         for line in lines {
             renderLine(line, display: false)
@@ -355,7 +354,7 @@ open class MLView: UIView {
     }
     
     // Drawings a line onscreen based on where the user touches
-    func renderLine(_ line: GLLine, display: Bool = true) {
+    func renderLine(_ line: MLLine, display: Bool = true) {
         
         EAGLContext.setCurrent(context)
         glBindFramebuffer(GL_FRAMEBUFFER.gluint, viewFramebuffer)
@@ -380,6 +379,9 @@ open class MLView: UIView {
             vertexBuffer.append(start.x.float + (end.x - start.x).float * (i.float / count.float))
             vertexBuffer.append(start.y.float + (end.y - start.y).float * (i.float / count.float))
         }
+        
+        /// update color if needs
+        updateColor(to: line.color)
         
         // Load data to the Vertex Buffer Object
         glBindBuffer(GL_ARRAY_BUFFER.gluint, vboId)

@@ -21,8 +21,9 @@ class ViewController: UIViewController {
         
         let pen = Brush(texture: #imageLiteral(resourceName: "pen"))
         pen.strokeWidth = 5
-        pen.strokeStep = 30
+        pen.strokeStep = 1
         pen.opacity = 1
+        pen.color = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
         canvas.brush = pen
 
         let pencil = Brush(texture: #imageLiteral(resourceName: "pencil"))
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
         let brush = Brush(texture: #imageLiteral(resourceName: "brush"))
         brush.strokeWidth = 30
         brush.strokeStep = 2
+        brush.color = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
 
         brushes = [pen, pencil, brush]
     }

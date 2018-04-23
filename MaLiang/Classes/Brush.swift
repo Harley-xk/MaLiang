@@ -9,7 +9,7 @@ import Foundation
 import OpenGLES
 import UIKit
 
-open class Brush: GLPencil {
+open class Brush: MLPencil {
     
     // opacity of texture, affects the darkness of stroke
     open var opacity: Float = 0.3
@@ -19,7 +19,11 @@ open class Brush: GLPencil {
     open var strokeStep: CGFloat = 1
     
     /// color of stroke
-    open var color: UIColor = .black
+    open var color: UIColor = .black {
+        didSet {
+            mlColor = color.mlcolorWith(opacity: opacity)
+        }
+    }
     
     var texture: UIImage
 
@@ -30,9 +34,4 @@ open class Brush: GLPencil {
         self.texture = texture
         super.init(texture: cgImage)
     }
-    
-    var mlColor: MLColor {
-        return color.mlcolorWith(opacity: opacity)
-    }
-    
 }

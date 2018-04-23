@@ -31,7 +31,7 @@ open class Canvas: MLView {
                     // distance larger than step
                     (brush.strokeStep > 1 && lastPoint.distance(to: p) >= brush.strokeStep)
                 {
-                    let line = GLLine(begin: lastPoint, end: p, pointSize: brush.strokeWidth)
+                    let line = MLLine(begin: lastPoint, end: p, pencil: brush)
                     self.renderLine(line, display: false)
                     lastPoint = p
                     lastRenderedPoint = p
@@ -84,7 +84,7 @@ open class Canvas: MLView {
             pushPoint(location, to: bezierGenerator)
         } else {
             // Render the stroke directly
-            let line = GLLine(begin: previousLocation, end: location, pointSize: brush.strokeWidth)
+            let line = MLLine(begin: previousLocation, end: location, pencil: brush)
             self.renderLine(line)
         }
         
@@ -107,7 +107,7 @@ open class Canvas: MLView {
             pushPoint(location, to: bezierGenerator, isEnd: true)
             bezierGenerator.finish()
         } else {
-            let line = GLLine(begin: previousLocation, end: location, pointSize: brush.strokeWidth)
+            let line = MLLine(begin: previousLocation, end: location, pencil: brush)
             self.renderLine(line)
         }
     }

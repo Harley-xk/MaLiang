@@ -1,5 +1,5 @@
 //
-//  GLPencil.swift
+//  MLPencil.swift
 //  MaLiang
 //
 //  Created by Harley.xk on 2018/4/22.
@@ -9,10 +9,12 @@ import Foundation
 import CoreGraphics
 import OpenGLES
 
-open class GLPencil {
+open class MLPencil {
     
     // width of stroke in points
     open var strokeWidth: CGFloat = 4
+    
+    var mlColor: MLColor = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
     
     var gl_id: GLuint = 0
     var gl_width: size_t = 0

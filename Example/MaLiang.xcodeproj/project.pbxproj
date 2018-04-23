@@ -13,7 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		B69E66A8208C6117005ED0E1 /* GLPencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* GLPencil.swift */; };
+		B69E66A8208C6117005ED0E1 /* MLPencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLPencil.swift */; };
 		B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669D208C6117005ED0E1 /* Canvas.swift */; };
 		B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669E208C6117005ED0E1 /* BezierGenerator.swift */; };
 		B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669F208C6117005ED0E1 /* ShaderUtil.swift */; };
@@ -23,7 +23,7 @@
 		B69E66AF208C6117005ED0E1 /* point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A4208C6117005ED0E1 /* point.vsh */; };
 		B69E66B0208C6117005ED0E1 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A5208C6117005ED0E1 /* point.png */; };
 		B69E66B1208C6117005ED0E1 /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A6208C6117005ED0E1 /* point.fsh */; };
-		B69E66B4208C61C4005ED0E1 /* GLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B2208C61C4005ED0E1 /* GLLine.swift */; };
+		B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B2208C61C4005ED0E1 /* MLLine.swift */; };
 		B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B3208C61C4005ED0E1 /* MLView.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +38,7 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B69E669C208C6117005ED0E1 /* GLPencil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLPencil.swift; sourceTree = "<group>"; };
+		B69E669C208C6117005ED0E1 /* MLPencil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPencil.swift; sourceTree = "<group>"; };
 		B69E669D208C6117005ED0E1 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		B69E669E208C6117005ED0E1 /* BezierGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierGenerator.swift; sourceTree = "<group>"; };
 		B69E669F208C6117005ED0E1 /* ShaderUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaderUtil.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		B69E66A4208C6117005ED0E1 /* point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vsh; sourceTree = "<group>"; };
 		B69E66A5208C6117005ED0E1 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
 		B69E66A6208C6117005ED0E1 /* point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.fsh; sourceTree = "<group>"; };
-		B69E66B2208C61C4005ED0E1 /* GLLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLLine.swift; sourceTree = "<group>"; };
+		B69E66B2208C61C4005ED0E1 /* MLLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLLine.swift; sourceTree = "<group>"; };
 		B69E66B3208C61C4005ED0E1 /* MLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLView.swift; sourceTree = "<group>"; };
 		E4F56C2627A50ADFF8265C8F /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F3CBFDC0B0167759FA9BD760 /* MaLiang.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MaLiang.podspec; path = ../MaLiang.podspec; sourceTree = "<group>"; };
@@ -128,6 +128,16 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		B68CFBE8208DF34F006170E7 /* MLBase */ = {
+			isa = PBXGroup;
+			children = (
+				B69E669C208C6117005ED0E1 /* MLPencil.swift */,
+				B69E66B2208C61C4005ED0E1 /* MLLine.swift */,
+				B69E66B3208C61C4005ED0E1 /* MLView.swift */,
+			);
+			path = MLBase;
+			sourceTree = "<group>";
+		};
 		B69E6699208C6117005ED0E1 /* MaLiang */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,9 +151,7 @@
 		B69E669A208C6117005ED0E1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B69E669C208C6117005ED0E1 /* GLPencil.swift */,
-				B69E66B2208C61C4005ED0E1 /* GLLine.swift */,
-				B69E66B3208C61C4005ED0E1 /* MLView.swift */,
+				B68CFBE8208DF34F006170E7 /* MLBase */,
 				B69E669D208C6117005ED0E1 /* Canvas.swift */,
 				B69E669E208C6117005ED0E1 /* BezierGenerator.swift */,
 				B69E669F208C6117005ED0E1 /* ShaderUtil.swift */,
@@ -272,8 +280,8 @@
 			files = (
 				B69E66AD208C6117005ED0E1 /* MLColor.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				B69E66B4208C61C4005ED0E1 /* GLLine.swift in Sources */,
-				B69E66A8208C6117005ED0E1 /* GLPencil.swift in Sources */,
+				B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */,
+				B69E66A8208C6117005ED0E1 /* MLPencil.swift in Sources */,
 				B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */,
 				B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */,
 				B69E66AC208C6117005ED0E1 /* Utils.swift in Sources */,
