@@ -34,7 +34,8 @@ open class MLView: UIView {
         didSet {
             if initialized {
                 brush.createTexture()
-                glUseProgram(programs[ShaderProgram.point].id)
+                glUseProgram(shaderProgram.id)
+//                glUseProgram(programs[ShaderProgram.point].id)
 //                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
 
                 updateColor(to: brush.mlColor)
@@ -70,8 +71,10 @@ open class MLView: UIView {
         }
         // Update the brush color
         if initialized {
-            glUseProgram(programs[ShaderProgram.point].id)
-            glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, newColor.glColor)
+            glUseProgram(shaderProgram.id)
+            glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, newColor.glColor)
+//            glUseProgram(programs[ShaderProgram.point].id)
+//            glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, newColor.glColor)
             lastColor = newColor
         }
     }
@@ -95,7 +98,7 @@ open class MLView: UIView {
     // Shader objects
     private var vertexShader: GLuint = 0
     private var fragmentShader: GLuint = 0
-    private var programs: [ShaderProgram]
+    private var shaderProgram: ShaderProgram!
     
     
     // Buffer Objects
@@ -128,12 +131,14 @@ open class MLView: UIView {
     required public init?(coder: NSCoder) {
         
         brush = Brush(texture: BundleUtil.image(name: "point")!)
-        programs = [ShaderProgram(
-            vert: "point.vsh",
-            frag: "point.fsh",
-            uniform: Array(repeating: 0, count: Uniform.count),
-            id: 0
-            )]
+        let uniform: [GLint] = Array(repeating: 0, count: Uniform.count)
+        shaderProgram = ShaderProgram(vert: "point.vsh", frag: "point.fsh", uniform: uniform, id: 0)
+//        programs = [ShaderProgram(
+//            vert: "point.vsh",
+//            frag: "point.fsh",
+//            uniform: Array(repeating: 0, count: Uniform.count),
+//            id: 0
+//            )]
         
         super.init(coder: coder)
         
@@ -184,10 +189,9 @@ open class MLView: UIView {
     
     private func setupShaders() {
         
-        for i in 0 ..< programs.count {
-            
-            let vsrc = FileUtil.readData(forResource: programs[i].vert)
-            let fsrc = FileUtil.readData(forResource: programs[i].frag)
+        
+            let vsrc = FileUtil.readData(forResource: shaderProgram.vert)
+            let fsrc = FileUtil.readData(forResource: shaderProgram.frag)
             
             var attribUsed: [String] = []
             var attrib: [GLuint] = []
@@ -208,17 +212,16 @@ open class MLView: UIView {
                 fsrc.withUnsafeBytes {(fsrcChars: UnsafePointer<GLchar>) in
                     _ = ShaderUtil.createProgram(UnsafeMutablePointer(mutating: vsrcChars), UnsafeMutablePointer(mutating: fsrcChars),
                                                  attribUsed, attrib,
-                                                 uniformName, &programs[i].uniform,
+                                                 uniformName, &shaderProgram.uniform,
                                                  &prog)
                 }
             }
-            programs[i].id = prog
+            shaderProgram.id = prog
             
-            if i == ShaderProgram.point {
-                glUseProgram(programs[ShaderProgram.point].id)
+                glUseProgram(shaderProgram.id)
                 
                 // the brush texture will be bound to texture unit 0
-                glUniform1i(programs[ShaderProgram.point].uniform[Uniform.texture], 0)
+                glUniform1i(shaderProgram.uniform[Uniform.texture], 0)
                 
                 // viewing matrices
                 let projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth.float, 0, backingHeight.float, -1, 1)
@@ -227,7 +230,7 @@ open class MLView: UIView {
                 
                 withUnsafePointer(to: &MVPMatrix) {ptrMVP in
                     ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
-                        glUniformMatrix4fv(programs[ShaderProgram.point].uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
+                        glUniformMatrix4fv(shaderProgram.uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
                     }
                 }
                 
@@ -235,10 +238,8 @@ open class MLView: UIView {
 //                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
 
                 // initialize brush color
-                glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, lastColor.glColor)
+                glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, lastColor.glColor)
                 
-            }
-        }
     }
     
     private func initGL() -> Bool {
@@ -311,10 +312,10 @@ open class MLView: UIView {
         let modelViewMatrix = GLKMatrix4Identity // this sample uses a constant identity modelView matrix
         var MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
         
-        glUseProgram(programs[ShaderProgram.point].id)
+        glUseProgram(shaderProgram.id)
         withUnsafePointer(to: &MVPMatrix) { ptrMVP in
             ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
-                glUniformMatrix4fv(programs[ShaderProgram.point].uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
+                glUniformMatrix4fv(shaderProgram.uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
             }
         }
         
@@ -396,10 +397,10 @@ open class MLView: UIView {
         glVertexAttribPointer(Attribute.vertex, 2, GL_FLOAT.gluint, GL_FALSE.uint8, 0, nil)
         
         // set line size
-        glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(line.pointSize) * GLfloat(contentScaleFactor))
+        glUniform1f(shaderProgram.uniform[Uniform.pointSize], GLfloat(line.pointSize) * GLfloat(contentScaleFactor))
         
         // Draw
-        glUseProgram(programs[ShaderProgram.point].id)
+        glUseProgram(shaderProgram.id)
         glDrawArrays(GL_POINTS.gluint, 0, count.int32)
         
         if display {
