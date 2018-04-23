@@ -34,10 +34,6 @@ open class MLView: UIView {
         didSet {
             if initialized {
                 brush.createTexture()
-                glUseProgram(shaderProgram.id)
-//                glUseProgram(programs[ShaderProgram.point].id)
-//                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
-
                 updateColor(to: brush.mlColor)
             }
         }
@@ -71,10 +67,7 @@ open class MLView: UIView {
         }
         // Update the brush color
         if initialized {
-            glUseProgram(shaderProgram.id)
             glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, newColor.glColor)
-//            glUseProgram(programs[ShaderProgram.point].id)
-//            glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, newColor.glColor)
             lastColor = newColor
         }
     }
@@ -312,7 +305,6 @@ open class MLView: UIView {
         let modelViewMatrix = GLKMatrix4Identity // this sample uses a constant identity modelView matrix
         var MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
         
-        glUseProgram(shaderProgram.id)
         withUnsafePointer(to: &MVPMatrix) { ptrMVP in
             ptrMVP.withMemoryRebound(to: GLfloat.self, capacity: 16) {ptrGLfloat in
                 glUniformMatrix4fv(shaderProgram.uniform[Uniform.mvp], 1, GL_FALSE.uint8, ptrGLfloat)
@@ -400,7 +392,6 @@ open class MLView: UIView {
         glUniform1f(shaderProgram.uniform[Uniform.pointSize], GLfloat(line.pointSize) * GLfloat(contentScaleFactor))
         
         // Draw
-        glUseProgram(shaderProgram.id)
         glDrawArrays(GL_POINTS.gluint, 0, count.int32)
         
         if display {
