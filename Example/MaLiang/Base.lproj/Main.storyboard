@@ -18,10 +18,14 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQo-w2-cHe" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AID-gC-Kue">
                                 <rect key="frame" x="16" y="539" width="343" height="29"/>
                                 <segments>
@@ -57,10 +61,14 @@
                         <constraints>
                             <constraint firstItem="y2M-JQ-hAq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="4ez-NC-2I7"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Aqn-Ev-Yxs"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vQo-w2-cHe" secondAttribute="bottom" id="F5v-Kn-8w0"/>
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="leading" secondItem="y2M-JQ-hAq" secondAttribute="trailing" constant="8" id="Hnq-Yj-r3Y"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="y2M-JQ-hAq" secondAttribute="bottom" constant="20" id="J1c-NG-Rrz"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="X7T-Is-9js" secondAttribute="bottom" constant="8" id="KcT-3X-OMO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X7T-Is-9js" secondAttribute="trailing" constant="5" id="OvN-q6-WAK"/>
+                            <constraint firstItem="vQo-w2-cHe" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="YVI-K5-Qeo"/>
+                            <constraint firstAttribute="trailing" secondItem="vQo-w2-cHe" secondAttribute="trailing" id="cTE-vy-8Uo"/>
+                            <constraint firstItem="vQo-w2-cHe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dEd-Rs-CIw"/>
                             <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IoO-2f-vXQ" secondAttribute="trailing" id="fam-Nf-FS9"/>
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="centerY" secondItem="y2M-JQ-hAq" secondAttribute="centerY" id="w50-U0-Z6C"/>
@@ -68,6 +76,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="canvas" destination="vQo-w2-cHe" id="UQa-09-gdK"/>
                         <outlet property="strokeSizeLabel" destination="IoO-2f-vXQ" id="5Ht-Vl-Mld"/>
                     </connections>
                 </viewController>

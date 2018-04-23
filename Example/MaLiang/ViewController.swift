@@ -10,11 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var canvas: Canvas!
     @IBOutlet weak var strokeSizeLabel: UILabel!
-    
-    var canvas: Canvas {
-        return view as! Canvas
-    }
     
     var brushes: [Brush] = []
     
