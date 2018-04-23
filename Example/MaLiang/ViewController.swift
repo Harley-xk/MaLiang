@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var strokeSizeLabel: UILabel!
+    
     var canvas: Canvas {
         return view as! Canvas
     }
@@ -44,10 +46,17 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func changeSizeAction(_ sender: UISlider) {
+        let size = sender.value
+        canvas.brush.strokeWidth = CGFloat(size)
+        strokeSizeLabel.text = "\(size)"
+    }
+    
     @IBAction func styleChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         let brush = brushes[index]
         canvas.brush = brush
+        strokeSizeLabel.text = "\(brush.strokeWidth)"
     }
     
     @IBAction func clearAction(_ sender: Any) {

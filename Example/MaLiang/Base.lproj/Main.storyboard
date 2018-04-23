@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AID-gC-Kue">
-                                <rect key="frame" x="16" y="619" width="343" height="29"/>
+                                <rect key="frame" x="16" y="539" width="343" height="29"/>
                                 <segments>
                                     <segment title="pen"/>
                                     <segment title="pencil"/>
@@ -34,26 +34,46 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7T-Is-9js">
-                                <rect key="frame" x="318" y="581" width="36" height="30"/>
+                                <rect key="frame" x="318" y="501" width="36" height="30"/>
                                 <state key="normal" title="Clear"/>
                                 <connections>
                                     <action selector="clearAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YoX-yV-8pC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoO-2f-vXQ">
+                                <rect key="frame" x="351" y="621" width="8" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="y2M-JQ-hAq">
+                                <rect key="frame" x="14" y="617" width="331" height="31"/>
+                                <connections>
+                                    <action selector="changeSizeAction:" destination="vXZ-lx-hvc" eventType="valueChanged" id="1eg-Zu-CyY"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="y2M-JQ-hAq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="4ez-NC-2I7"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Aqn-Ev-Yxs"/>
+                            <constraint firstItem="IoO-2f-vXQ" firstAttribute="leading" secondItem="y2M-JQ-hAq" secondAttribute="trailing" constant="8" id="Hnq-Yj-r3Y"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="y2M-JQ-hAq" secondAttribute="bottom" constant="20" id="J1c-NG-Rrz"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="X7T-Is-9js" secondAttribute="bottom" constant="8" id="KcT-3X-OMO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X7T-Is-9js" secondAttribute="trailing" constant="5" id="OvN-q6-WAK"/>
                             <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AID-gC-Kue" secondAttribute="bottom" constant="20" id="yRe-lP-8Pf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IoO-2f-vXQ" secondAttribute="trailing" id="fam-Nf-FS9"/>
+                            <constraint firstItem="IoO-2f-vXQ" firstAttribute="centerY" secondItem="y2M-JQ-hAq" secondAttribute="centerY" id="w50-U0-Z6C"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AID-gC-Kue" secondAttribute="bottom" constant="100" id="yRe-lP-8Pf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="strokeSizeLabel" destination="IoO-2f-vXQ" id="5Ht-Vl-Mld"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.5" y="33.5"/>
+            <point key="canvasLocation" x="31.199999999999999" y="32.833583208395808"/>
         </scene>
     </scenes>
 </document>

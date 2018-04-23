@@ -35,7 +35,7 @@ open class MLView: UIView {
             if initialized {
                 brush.createTexture()
                 glUseProgram(programs[ShaderProgram.point].id)
-                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
+//                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
 
                 updateColor(to: brush.mlColor)
             }
@@ -232,7 +232,7 @@ open class MLView: UIView {
                 }
                 
                 // point size
-                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
+//                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
 
                 // initialize brush color
                 glUniform4fv(programs[ShaderProgram.point].uniform[Uniform.vertexColor], 1, lastColor.glColor)
