@@ -372,7 +372,7 @@ open class MLView: UIView {
         var vertexBuffer: [GLfloat] = []
         
         // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * brush.strokeStep.float))) + 1, 1)
+        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * brush.pointStep.float))) + 1, 1)
         vertexBuffer.reserveCapacity(count * 2)
         vertexBuffer.removeAll(keepingCapacity: true)
         for i in 0 ..< count {

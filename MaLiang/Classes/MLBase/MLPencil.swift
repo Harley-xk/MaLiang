@@ -12,7 +12,7 @@ import OpenGLES
 open class MLPencil {
     
     // width of stroke in points
-    open var strokeWidth: CGFloat = 4
+    open var pointSize: CGFloat = 4
     
     var mlColor: MLColor = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
     

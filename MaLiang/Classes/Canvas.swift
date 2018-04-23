@@ -27,9 +27,9 @@ open class Canvas: MLView {
                 if  // end point of line
                     (isEnd && i == vertices.count - 1) ||
                     // ignore step
-                    brush.strokeStep <= 1 ||
+                    brush.pointStep <= 1 ||
                     // distance larger than step
-                    (brush.strokeStep > 1 && lastPoint.distance(to: p) >= brush.strokeStep)
+                    (brush.pointStep > 1 && lastPoint.distance(to: p) >= brush.pointStep)
                 {
                     let line = MLLine(begin: lastPoint, end: p, pencil: brush)
                     self.renderLine(line, display: false)

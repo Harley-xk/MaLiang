@@ -23,6 +23,6 @@ struct MLLine {
     }
     
     init(begin: CGPoint, end: CGPoint, pencil: MLPencil) {
-        self.init(begin: begin, end: end, pointSize: pencil.strokeWidth, color: pencil.mlColor)
+        self.init(begin: begin, end: end, pointSize: pencil.pointSize, color: pencil.mlColor)
     }
 }

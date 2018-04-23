@@ -16,7 +16,7 @@ open class Brush: MLPencil {
     
     // this property defines the minimum distance (measureed in points) of nearest two textures
     // defaults to 1, this means erery texture calculated will be rendered, dictance calculation will be skiped
-    open var strokeStep: CGFloat = 1
+    open var pointStep: CGFloat = 1
     
     /// color of stroke
     open var color: UIColor = .black {

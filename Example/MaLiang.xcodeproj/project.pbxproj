@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B4DA98A9B94C222D685CB81 /* Pods_MaLiang_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */; };
+		2D1EBAA1B445058D51C18AAF /* Pods_MaLiang_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B4DA98A9B94C222D685CB81 /* Pods_MaLiang_Example.framework in Frameworks */,
+				2D1EBAA1B445058D51C18AAF /* Pods_MaLiang_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +187,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "MaLiang_Example" */;
 			buildPhases = (
-				F7D805A7A4C1F8987F9F1FCA /* [CP] Check Pods Manifest.lock */,
+				0AB7B8A066F8971C13A58EF6 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
@@ -253,7 +253,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F7D805A7A4C1F8987F9F1FCA /* [CP] Check Pods Manifest.lock */ = {
+		0AB7B8A066F8971C13A58EF6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
