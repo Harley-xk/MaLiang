@@ -13,7 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		B69E66A8208C6117005ED0E1 /* MLPencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLPencil.swift */; };
+		B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLTexture.swift */; };
 		B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669D208C6117005ED0E1 /* Canvas.swift */; };
 		B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669E208C6117005ED0E1 /* BezierGenerator.swift */; };
 		B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669F208C6117005ED0E1 /* ShaderUtil.swift */; };
@@ -38,7 +38,7 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B69E669C208C6117005ED0E1 /* MLPencil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPencil.swift; sourceTree = "<group>"; };
+		B69E669C208C6117005ED0E1 /* MLTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLTexture.swift; sourceTree = "<group>"; };
 		B69E669D208C6117005ED0E1 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		B69E669E208C6117005ED0E1 /* BezierGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierGenerator.swift; sourceTree = "<group>"; };
 		B69E669F208C6117005ED0E1 /* ShaderUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaderUtil.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 		B68CFBE8208DF34F006170E7 /* MLBase */ = {
 			isa = PBXGroup;
 			children = (
-				B69E669C208C6117005ED0E1 /* MLPencil.swift */,
+				B69E669C208C6117005ED0E1 /* MLTexture.swift */,
 				B69E66B2208C61C4005ED0E1 /* MLLine.swift */,
 				B69E66B3208C61C4005ED0E1 /* MLView.swift */,
 			);
@@ -281,7 +281,7 @@
 				B69E66AD208C6117005ED0E1 /* MLColor.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */,
-				B69E66A8208C6117005ED0E1 /* MLPencil.swift in Sources */,
+				B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */,
 				B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */,
 				B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */,
 				B69E66AC208C6117005ED0E1 /* Utils.swift in Sources */,

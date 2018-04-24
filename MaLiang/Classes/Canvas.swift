@@ -11,16 +11,13 @@ open class Canvas: MLView {
 
     open var brush: Brush! {
         didSet {
-            if pencil !== brush.pencil {
-                pencil = brush.pencil
-            }
+            texture = brush.texture
         }
     }
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        let image = UIImage(cgImage: pencil.gl_texture)
-        brush = Brush(texture: image)
+        brush = defaultBrush
     }
     
     // optimize stroke with bezier path, defaults to true
@@ -45,7 +42,7 @@ open class Canvas: MLView {
                     // distance larger than step
                     (brush.pointStep > 1 && lastPoint.distance(to: p) >= brush.pointStep)
                 {
-                    let line = MLLine(begin: lastPoint, end: p, pencil: brush.pencil)
+                    let line = MLLine(begin: lastPoint, end: p, brush: brush)
                     self.renderLine(line, display: false)
                     lastPoint = p
                     lastRenderedPoint = p
@@ -98,7 +95,7 @@ open class Canvas: MLView {
             pushPoint(location, to: bezierGenerator)
         } else {
             // Render the stroke directly
-            let line = MLLine(begin: previousLocation, end: location, pencil: brush.pencil)
+            let line = MLLine(begin: previousLocation, end: location, brush: brush)
             self.renderLine(line)
         }
         
@@ -114,7 +111,7 @@ open class Canvas: MLView {
         if firstTouch {
             previousLocation = touch.previousLocation(in: self)
             previousLocation.y = bounds.size.height - previousLocation.y
-            var line = MLLine(begin: previousLocation, end: location, pencil: brush.pencil)
+            var line = MLLine(begin: previousLocation, end: location, brush: brush)
             /// fix the opacity of color when there is only one point
             let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
             let opacity = brush.opacity + (1 - brush.opacity) * delta
@@ -129,7 +126,7 @@ open class Canvas: MLView {
             }
             bezierGenerator.finish()
         } else if !firstTouch {
-            let line = MLLine(begin: previousLocation, end: location, pencil: brush.pencil)
+            let line = MLLine(begin: previousLocation, end: location, brush: brush)
             self.renderLine(line)
         }
     }

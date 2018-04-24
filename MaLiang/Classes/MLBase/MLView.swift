@@ -24,20 +24,6 @@ struct Attribute {
 
 open class MLView: UIView {
     
-    // MARK: - Open Property
-    var pencil: MLPencil {
-        willSet {
-            if pencil.gl_id != 0 {
-                glDeleteTextures(1, &pencil.gl_id)
-            }
-        }
-        didSet {
-            if initialized {
-                pencil.createTexture()
-            }
-        }
-    }
-    
     // MARK: - Functions
     // Erases the screen
     open func clear() {
@@ -54,21 +40,56 @@ open class MLView: UIView {
     }
     
     
-    // MARK: - Color
+    // MARK: - Color & Testure
     
     // last rendered color
-    private var lastColor: MLColor = .default
+    private var currentColor: MLColor = .default
     
     // change glcolor if brush color changed
     private func updateColor(to newColor: MLColor) {
-        guard lastColor != newColor else {
+        guard currentColor != newColor else {
             return
         }
         // Update the brush color
         if initialized {
             glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, newColor.glColor)
-            lastColor = newColor
+            currentColor = newColor
         }
+    }
+    
+    /// default texture, make sure mlview have at least one texture to use
+    open var defaultTexture = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
+    
+    /// currently used texture
+    open var texture: MLTexture! {
+        didSet {
+            cacheTextureIfNeeds(texture)
+            glBindTexture(GL_TEXTURE_2D.gluint, texture.gl_id)
+        }
+    }
+    
+    /// Cache a texture if not cached
+    private var cachedTextures: [MLTexture] = []
+    private func cacheTextureIfNeeds(_ texture: MLTexture) {
+        
+        /// ignore already cached texture
+        guard texture.gl_id == 0 else {
+            return
+        }
+        
+        /// create gl texture and get an id
+        texture.createGLTexture()
+        
+        /// default Texture is hold by mlview, needn't to be cached
+        if texture.gl_id != defaultTexture.gl_id {
+            cachedTextures.append(texture)
+        }
+    }
+    
+    /// clear all cachedTexture when delloac or memery warnings
+    open func clearCachedTextures() {
+        let ids = cachedTextures.compactMap{ $0.gl_id }
+        glDeleteTextures(ids.count.int32, ids)
     }
     
     // MARK: - Private Property
@@ -122,7 +143,6 @@ open class MLView: UIView {
     // The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
     required public init?(coder: NSCoder) {
         
-        pencil = MLPencil(texture: BundleUtil.image(name: "point")!.cgImage!)
         let uniform: [GLint] = Array(repeating: 0, count: Uniform.count)
         shaderProgram = ShaderProgram(vert: "point.vsh", frag: "point.fsh", uniform: uniform, id: 0)
         
@@ -219,12 +239,8 @@ open class MLView: UIView {
             }
         }
         
-        // point size
-        //                glUniform1f(programs[ShaderProgram.point].uniform[Uniform.pointSize], GLfloat(brush.strokeWidth) * GLfloat(contentScaleFactor))
-        
         // initialize brush color
-        glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, lastColor.glColor)
-        
+        glUniform4fv(shaderProgram.uniform[Uniform.vertexColor], 1, currentColor.glColor)
     }
     
     private func initGL() -> Bool {
@@ -259,10 +275,8 @@ open class MLView: UIView {
         // Create a Vertex Buffer Object to hold our data
         glGenBuffers(1, &vboId)
         
-        // Load the brush texture
-        if pencil.gl_id == 0 {
-            pencil.createTexture()
-        }
+        // Load the default texture
+        texture = defaultTexture
         
         // Load shaders
         self.setupShaders()
@@ -323,9 +337,8 @@ open class MLView: UIView {
             glDeleteRenderbuffers(1, &depthRenderbuffer)
         }
         // texture
-        if pencil.gl_id != 0 {
-            glDeleteTextures(1, &pencil.gl_id)
-        }
+        clearCachedTextures()
+        glDeleteTextures(1, &defaultTexture.gl_id)
         // vbo
         if vboId != 0 {
             glDeleteBuffers(1, &vboId)

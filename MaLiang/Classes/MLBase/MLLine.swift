@@ -23,8 +23,4 @@ struct MLLine {
         self.pointStep = pointStep
         self.color = color
     }
-    
-    init(begin: CGPoint, end: CGPoint, pencil: MLPencil) {
-        self.init(begin: begin, end: end, pointSize: pencil.pointSize, pointStep: pencil.pointStep, color: pencil.mlColor)
-    }
 }
