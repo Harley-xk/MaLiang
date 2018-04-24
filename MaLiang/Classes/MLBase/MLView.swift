@@ -125,12 +125,6 @@ open class MLView: UIView {
         pencil = MLPencil(texture: BundleUtil.image(name: "point")!.cgImage!)
         let uniform: [GLint] = Array(repeating: 0, count: Uniform.count)
         shaderProgram = ShaderProgram(vert: "point.vsh", frag: "point.fsh", uniform: uniform, id: 0)
-        //        programs = [ShaderProgram(
-        //            vert: "point.vsh",
-        //            frag: "point.fsh",
-        //            uniform: Array(repeating: 0, count: Uniform.count),
-        //            id: 0
-        //            )]
         
         super.init(coder: coder)
         
@@ -372,7 +366,7 @@ open class MLView: UIView {
         var vertexBuffer: [GLfloat] = []
         
         // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * pencil.pointStep.float))) + 1, 1)
+        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * line.pointStep.float))) + 1, 1)
         vertexBuffer.reserveCapacity(count * 2)
         vertexBuffer.removeAll(keepingCapacity: true)
         for i in 0 ..< count {
