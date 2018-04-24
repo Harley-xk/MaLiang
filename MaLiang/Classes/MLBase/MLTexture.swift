@@ -11,10 +11,14 @@ import OpenGLES
 
 open class MLTexture {
     
+    static let `default` = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
+    
     var gl_id: GLuint = 0
     var gl_width: size_t
     var gl_height: size_t
     var gl_data: [GLubyte]
+    
+    var gl_blend_enabled = true
 
     init(image: CGImage) {
         
@@ -43,4 +47,18 @@ open class MLTexture {
         // Specify a 2D texture image, providing the a pointer to the image data in memory
         glTexImage2D(GL_TEXTURE_2D.gluint, 0, GL_RGBA, gl_width.int32, gl_height.int32, 0, GL_RGBA.gluint, GL_UNSIGNED_BYTE.gluint, gl_data)
     }
+    
+    /// copy current texture, the copied obj will share the same texture data with this one
+    func copy() -> MLTexture {
+        return MLTexture(texture: self)
+    }
+    
+    private init(texture: MLTexture) {
+        self.gl_id = texture.gl_id
+        self.gl_width = texture.gl_width
+        self.gl_height = texture.gl_height
+        self.gl_data = texture.gl_data
+        self.gl_blend_enabled = texture.gl_blend_enabled
+    }
+
 }

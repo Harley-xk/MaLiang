@@ -12,7 +12,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var canvas: Canvas!
     @IBOutlet weak var strokeSizeLabel: UILabel!
+    @IBOutlet weak var brushSegement: UISegmentedControl!
+    @IBOutlet weak var sizeSlider: UISlider!
     
+    var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
     
     override func viewDidLoad() {
@@ -33,9 +36,17 @@ class ViewController: UIViewController {
         let brush = Brush(texture: #imageLiteral(resourceName: "brush"))
         brush.pointSize = 30
         brush.pointStep = 2
-        brush.color = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
+        brush.color = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
 
-        brushes = [pen, pencil, brush]
+        let eraser = Eraser.global
+        
+        brushes = [pen, pencil, brush, eraser]
+        
+        brushSegement.removeAllSegments()
+        for i in 0 ..< brushes.count {
+            let name = brushNames[i]
+            brushSegement.insertSegment(withTitle: name, at: i, animated: false)
+        }
     }
     
 
@@ -55,15 +66,11 @@ class ViewController: UIViewController {
         let brush = brushes[index]
         canvas.brush = brush
         strokeSizeLabel.text = "\(brush.pointSize)"
+        sizeSlider.value = brush.pointSize.float
     }
     
     @IBAction func clearAction(_ sender: Any) {
         canvas.clear()
-    }
-    
-    
-    private func updatePointSize() {
-        strokeSizeLabel.text = String(format: "%i", canvas.brush.pointSize)
     }
 }
 

@@ -9,11 +9,6 @@ import Foundation
 import OpenGLES
 import UIKit
 
-extension MLView {
-    var defaultBrush: Brush {
-        return Brush(texture: defaultTexture)
-    }
-}
 
 extension MLLine {
     init(begin: CGPoint, end: CGPoint, brush: Brush) {
@@ -23,7 +18,7 @@ extension MLLine {
 }
 
 open class Brush {
-    
+        
     // opacity of texture, affects the darkness of stroke
     // set opacity to 1 may cause heavy aliasing
     open var opacity: CGFloat = 0.3
@@ -48,7 +43,31 @@ open class Brush {
         self.texture = MLTexture(image: cgImage)
     }
     
-    fileprivate init(texture: MLTexture) {
+    init(texture: MLTexture) {
         self.texture = texture
+    }
+}
+
+final class Eraser: Brush {
+    
+    /// only a global eraser needed
+    public static let global = Eraser()
+    
+    private init() {
+        let texture = MLTexture.default.copy()
+        texture.gl_blend_enabled = false
+        super.init(texture: texture)
+        pointSize = 10
+        opacity = 1
+    }
+    
+    // color of eraser can't be changed
+    override open var color: UIColor {
+        get {
+            return .clear
+        }
+        set {
+            // set color of eraser will do nothing
+        }
     }
 }

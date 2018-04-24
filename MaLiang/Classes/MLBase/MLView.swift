@@ -57,14 +57,17 @@ open class MLView: UIView {
         }
     }
     
-    /// default texture, make sure mlview have at least one texture to use
-    open var defaultTexture = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
-    
     /// currently used texture
     open var texture: MLTexture! {
         didSet {
             cacheTextureIfNeeds(texture)
             glBindTexture(GL_TEXTURE_2D.gluint, texture.gl_id)
+            if texture.gl_blend_enabled {
+                glEnable(GL_BLEND.gluint)
+            } else {
+                glDisable(GL_BLEND.gluint)
+                glColor4f(0, 0, 0, 0)
+            }
         }
     }
     
@@ -81,7 +84,7 @@ open class MLView: UIView {
         texture.createGLTexture()
         
         /// default Texture is hold by mlview, needn't to be cached
-        if texture.gl_id != defaultTexture.gl_id {
+        if texture.gl_id != MLTexture.default.gl_id {
             cachedTextures.append(texture)
         }
     }
@@ -276,7 +279,7 @@ open class MLView: UIView {
         glGenBuffers(1, &vboId)
         
         // Load the default texture
-        texture = defaultTexture
+        texture = MLTexture.default
         
         // Load shaders
         self.setupShaders()
@@ -338,7 +341,7 @@ open class MLView: UIView {
         }
         // texture
         clearCachedTextures()
-        glDeleteTextures(1, &defaultTexture.gl_id)
+        glDeleteTextures(1, &MLTexture.default.gl_id)
         // vbo
         if vboId != 0 {
             glDeleteBuffers(1, &vboId)

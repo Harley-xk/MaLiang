@@ -17,7 +17,7 @@ open class Canvas: MLView {
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        brush = defaultBrush
+        brush = Brush(texture: MLTexture.default)
     }
     
     // optimize stroke with bezier path, defaults to true
