@@ -23,7 +23,6 @@ open class Canvas: MLView {
     // optimize stroke with bezier path, defaults to true
     private var enableBezierPath = true
     private var firstTouch: Bool = false
-//    private var location: CGPoint = CGPoint()
     private var previousLocation: CGPoint = CGPoint()
     private var bezierGenerator = BezierGenerator()
 

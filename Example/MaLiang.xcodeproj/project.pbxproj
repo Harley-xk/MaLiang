@@ -134,6 +134,7 @@
 				B69E669C208C6117005ED0E1 /* MLTexture.swift */,
 				B69E66B2208C61C4005ED0E1 /* MLLine.swift */,
 				B69E66B3208C61C4005ED0E1 /* MLView.swift */,
+				B69E66A1208C6117005ED0E1 /* MLColor.swift */,
 			);
 			path = MLBase;
 			sourceTree = "<group>";
@@ -151,13 +152,10 @@
 		B69E669A208C6117005ED0E1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B68CFBE8208DF34F006170E7 /* MLBase */,
 				B69E669D208C6117005ED0E1 /* Canvas.swift */,
-				B69E669E208C6117005ED0E1 /* BezierGenerator.swift */,
-				B69E669F208C6117005ED0E1 /* ShaderUtil.swift */,
-				B69E66A0208C6117005ED0E1 /* Utils.swift */,
-				B69E66A1208C6117005ED0E1 /* MLColor.swift */,
 				B69E66A2208C6117005ED0E1 /* Brush.swift */,
+				B6F023B0208F1E9200D5CFA7 /* Utils */,
+				B68CFBE8208DF34F006170E7 /* MLBase */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -170,6 +168,16 @@
 				B69E66A6208C6117005ED0E1 /* point.fsh */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B6F023B0208F1E9200D5CFA7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B69E66A0208C6117005ED0E1 /* Utils.swift */,
+				B69E669F208C6117005ED0E1 /* ShaderUtil.swift */,
+				B69E669E208C6117005ED0E1 /* BezierGenerator.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F678FE9C7E0D82A7E1EBC344 /* Frameworks */ = {
