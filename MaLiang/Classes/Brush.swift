@@ -12,6 +12,7 @@ import UIKit
 open class Brush {
     
     // opacity of texture, affects the darkness of stroke
+    // set opacity to 1 may cause heavy aliasing
     open var opacity: CGFloat = 0.3
     
     // width of stroke line in points
