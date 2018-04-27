@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct MLLine: Codable {
+public struct MLLine: Codable {
     var begin: CGPoint
     var end: CGPoint
     

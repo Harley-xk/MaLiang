@@ -9,23 +9,35 @@ import Foundation
 import CoreGraphics
 import OpenGLES
 
+struct CodableTexture: Codable {
+    var w: size_t
+    var h: size_t
+    var bytes: [GLubyte]
+    var blend: Bool
+}
+
+extension MLTexture {
+    var codable: CodableTexture {
+        return CodableTexture(w: gl_width, h: gl_height, bytes: gl_data, blend: gl_blend_enabled)
+    }
+}
+
 open class MLTexture {
     
     static let `default` = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
     
-    var gl_id: GLuint = 0
-    var gl_width: size_t
-    var gl_height: size_t
-    var gl_data: [GLubyte]
+    public internal(set) var gl_id: GLuint = 0
+    public private(set) var gl_width: size_t
+    public private(set) var gl_height: size_t
+    public private(set) var gl_data: [GLubyte]
     
     var gl_blend_enabled = true
-
+    
     init(image: CGImage) {
         
         // Get the width and height of the image
         gl_width = image.width
         gl_height = image.height
-        
         // Allocate  memory needed for the bitmap context
         gl_data = [GLubyte](repeating: 0, count: gl_width * gl_height * 4)
         // Use  the bitmatp creation function provided by the Core Graphics framework.
@@ -52,7 +64,7 @@ open class MLTexture {
     func copy() -> MLTexture {
         return MLTexture(texture: self)
     }
-    
+        
     private init(texture: MLTexture) {
         self.gl_id = texture.gl_id
         self.gl_width = texture.gl_width

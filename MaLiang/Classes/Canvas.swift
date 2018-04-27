@@ -20,10 +20,10 @@ open class Canvas: MLView {
         brush = Brush(texture: MLTexture.default)
     }
     
+    private var previousLocation: CGPoint = CGPoint()
+    
     // optimize stroke with bezier path, defaults to true
     private var enableBezierPath = true
-    private var firstTouch: Bool = false
-    private var previousLocation: CGPoint = CGPoint()
     private var bezierGenerator = BezierGenerator()
 
     // MARK: - Drawing Actions
@@ -50,6 +50,11 @@ open class Canvas: MLView {
         }
         displayBuffer()
     }
+    
+    // MARK: - Rendering
+    override open func renderLine(_ line: MLLine, display: Bool = true) {
+        super.renderLine(line, display: display)
+    }
 
     // MARK: - Gestures
     override open var canBecomeFirstResponder : Bool {
@@ -57,10 +62,12 @@ open class Canvas: MLView {
     }
     
     // Handles the start of a touch
+    private var touchMoved: Bool = false
+
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let bounds = self.bounds
         let touch = event!.touches(for: self)!.first!
-        firstTouch = true
+        touchMoved = false
         // Convert touch point from UIView referential to OpenGL one (upside-down flip)
         var location = touch.location(in: self)
         location.y = bounds.size.height - location.y
@@ -78,8 +85,8 @@ open class Canvas: MLView {
         let touch = event!.touches(for: self)!.first!
         
         // Convert touch point from UIView referential to OpenGL one (upside-down flip)
-        if firstTouch {
-            firstTouch = false
+        if !touchMoved {
+            touchMoved = true
 //            previousLocation = location
         } else {
             previousLocation = touch.previousLocation(in: self)
@@ -107,7 +114,7 @@ open class Canvas: MLView {
         var location = touch.location(in: self)
         location.y = bounds.size.height - location.y
 
-        if firstTouch {
+        if !touchMoved {
             previousLocation = touch.previousLocation(in: self)
             previousLocation.y = bounds.size.height - previousLocation.y
             var line = MLLine(begin: previousLocation, end: location, brush: brush)
@@ -118,13 +125,11 @@ open class Canvas: MLView {
             self.renderLine(line)
         }
         if enableBezierPath {
-            if firstTouch {
-                firstTouch = false
-            } else {
+            if touchMoved {
                 pushPoint(location, to: bezierGenerator, isEnd: true)
             }
             bezierGenerator.finish()
-        } else if !firstTouch {
+        } else if touchMoved {
             let line = MLLine(begin: previousLocation, end: location, brush: brush)
             self.renderLine(line)
         }

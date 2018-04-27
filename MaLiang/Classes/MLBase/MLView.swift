@@ -364,7 +364,7 @@ open class MLView: UIView {
     }
     
     // Drawings a line onscreen based on where the user touches
-    func renderLine(_ line: MLLine, display: Bool = true) {
+    open func renderLine(_ line: MLLine, display: Bool = true) {
         
         EAGLContext.setCurrent(context)
         glBindFramebuffer(GL_FRAMEBUFFER.gluint, viewFramebuffer)

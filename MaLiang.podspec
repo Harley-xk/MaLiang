@@ -9,11 +9,11 @@
 Pod::Spec.new do |s|
   s.name             = 'MaLiang'
   s.version          = '0.5.0'
-  s.summary          = 'MaLiang is a painting Framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.'
+  s.summary          = 'MaLiang is a painting Framework based on OpenGL ES.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
+                        DESC
 
   s.homepage         = 'https://github.com/harley-xk/MaLiang'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
