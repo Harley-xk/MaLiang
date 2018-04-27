@@ -25,8 +25,8 @@ struct Attribute {
 open class MLView: UIView {
     
     // MARK: - Functions
-    // Erases the screen
-    open func clear() {
+    // Erases the screen, redisplay the buffer if display sets to true
+    open func clear(display: Bool = true) {
         EAGLContext.setCurrent(context)
         
         // Clear the buffer
@@ -34,9 +34,9 @@ open class MLView: UIView {
         glClearColor(0.0, 0.0, 0.0, 0.0)
         glClear(GL_COLOR_BUFFER_BIT.gluint)
         
-        // Display the buffer
-        glBindRenderbuffer(GL_RENDERBUFFER.gluint, viewRenderbuffer)
-        context.presentRenderbuffer(GL_RENDERBUFFER.int)
+        if display {
+            displayBuffer()
+        }
     }
     
     

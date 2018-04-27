@@ -9,19 +9,6 @@ import Foundation
 import CoreGraphics
 import OpenGLES
 
-struct CodableTexture: Codable {
-    var w: size_t
-    var h: size_t
-    var bytes: [GLubyte]
-    var blend: Bool
-}
-
-extension MLTexture {
-    var codable: CodableTexture {
-        return CodableTexture(w: gl_width, h: gl_height, bytes: gl_data, blend: gl_blend_enabled)
-    }
-}
-
 open class MLTexture {
     
     static let `default` = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)

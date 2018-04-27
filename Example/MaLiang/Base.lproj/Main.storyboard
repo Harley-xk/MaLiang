@@ -22,16 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qbk-mY-htw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQo-w2-cHe" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vQo-w2-cHe" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AID-gC-Kue">
-                                <rect key="frame" x="16" y="539" width="343" height="29"/>
+                                <rect key="frame" x="16" y="574" width="343" height="29"/>
                                 <segments>
                                     <segment title="pen"/>
                                     <segment title="pencil"/>
@@ -42,7 +38,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7T-Is-9js">
-                                <rect key="frame" x="318" y="501" width="36" height="30"/>
+                                <rect key="frame" x="318" y="536" width="36" height="30"/>
                                 <state key="normal" title="Clear"/>
                                 <connections>
                                     <action selector="clearAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YoX-yV-8pC"/>
@@ -60,27 +56,41 @@
                                     <action selector="changeSizeAction:" destination="vXZ-lx-hvc" eventType="valueChanged" id="1eg-Zu-CyY"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arX-yu-Unn">
+                                <rect key="frame" x="16" y="532" width="35" height="30"/>
+                                <state key="normal" title="undo"/>
+                                <connections>
+                                    <action selector="undoAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ruD-k3-Qrq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9t-VJ-CAY">
+                                <rect key="frame" x="59" y="532" width="32" height="30"/>
+                                <state key="normal" title="redo"/>
+                                <connections>
+                                    <action selector="redoAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="v7q-aT-od9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qbk-mY-htw" secondAttribute="bottom" id="261-zK-To6"/>
+                            <constraint firstItem="y2M-JQ-hAq" firstAttribute="top" secondItem="AID-gC-Kue" secondAttribute="bottom" constant="15" id="0G7-OG-6nm"/>
+                            <constraint firstItem="arX-yu-Unn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2sr-El-CpJ"/>
                             <constraint firstItem="y2M-JQ-hAq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="4ez-NC-2I7"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Aqn-Ev-Yxs"/>
+                            <constraint firstItem="N9t-VJ-CAY" firstAttribute="leading" secondItem="arX-yu-Unn" secondAttribute="trailing" constant="8" id="Bpk-kh-IFT"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vQo-w2-cHe" secondAttribute="bottom" id="F5v-Kn-8w0"/>
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="leading" secondItem="y2M-JQ-hAq" secondAttribute="trailing" constant="8" id="Hnq-Yj-r3Y"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="y2M-JQ-hAq" secondAttribute="bottom" constant="20" id="J1c-NG-Rrz"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="X7T-Is-9js" secondAttribute="bottom" constant="8" id="KcT-3X-OMO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X7T-Is-9js" secondAttribute="trailing" constant="5" id="OvN-q6-WAK"/>
-                            <constraint firstItem="qbk-mY-htw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="WiO-wL-3lf"/>
                             <constraint firstItem="vQo-w2-cHe" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="YVI-K5-Qeo"/>
+                            <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="arX-yu-Unn" secondAttribute="bottom" constant="12" id="b1P-JI-o0c"/>
                             <constraint firstAttribute="trailing" secondItem="vQo-w2-cHe" secondAttribute="trailing" id="cTE-vy-8Uo"/>
                             <constraint firstItem="vQo-w2-cHe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dEd-Rs-CIw"/>
                             <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IoO-2f-vXQ" secondAttribute="trailing" id="fam-Nf-FS9"/>
-                            <constraint firstItem="qbk-mY-htw" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="uvq-90-q32"/>
-                            <constraint firstAttribute="trailing" secondItem="qbk-mY-htw" secondAttribute="trailing" id="vAb-0l-UBF"/>
+                            <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="N9t-VJ-CAY" secondAttribute="bottom" constant="12" id="uby-W8-tDr"/>
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="centerY" secondItem="y2M-JQ-hAq" secondAttribute="centerY" id="w50-U0-Z6C"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AID-gC-Kue" secondAttribute="bottom" constant="100" id="yRe-lP-8Pf"/>
                         </constraints>
                     </view>
                     <connections>

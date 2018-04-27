@@ -20,8 +20,37 @@ open class Canvas: MLView {
         brush = Brush(texture: MLTexture.default)
     }
     
-    private var previousLocation: CGPoint = CGPoint()
+    // MARK: - Document
+    private var document: Document?
+    public func setupDocument() throws {
+        document = try Document()
+    }
     
+    public func undo() {
+        if let doc = document, doc.undo() {
+            redraw()
+        }
+    }
+    
+    public func redo() {
+        if let doc = document, doc.redo() {
+            redraw()
+        }
+    }
+    
+    /// redraw elemets in document
+    private func redraw() {
+        if let doc = document {
+            clear(display: false)
+            let lines = doc.elements.flatMap{ $0.lines }
+            for line in lines {
+                super.renderLine(line, display: false)
+            }
+            displayBuffer()
+        }
+    }
+        
+    // MARK: - Bezier
     // optimize stroke with bezier path, defaults to true
     private var enableBezierPath = true
     private var bezierGenerator = BezierGenerator()
@@ -54,6 +83,7 @@ open class Canvas: MLView {
     // MARK: - Rendering
     override open func renderLine(_ line: MLLine, display: Bool = true) {
         super.renderLine(line, display: display)
+        document?.appendLines([line], with: brush.texture)
     }
 
     // MARK: - Gestures
@@ -63,6 +93,7 @@ open class Canvas: MLView {
     
     // Handles the start of a touch
     private var touchMoved: Bool = false
+    private var previousLocation: CGPoint = CGPoint()
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let bounds = self.bounds
@@ -133,6 +164,7 @@ open class Canvas: MLView {
             let line = MLLine(begin: previousLocation, end: location, brush: brush)
             self.renderLine(line)
         }
+        document?.finishCurrentElement()
     }
     
     // Handles the end of a touch event.

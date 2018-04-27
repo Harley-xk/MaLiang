@@ -47,6 +47,14 @@ class ViewController: UIViewController {
             let name = brushNames[i]
             brushSegement.insertSegment(withTitle: name, at: i, animated: false)
         }
+
+        do {
+            try canvas.setupDocument()
+        } catch {
+            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 
@@ -69,6 +77,14 @@ class ViewController: UIViewController {
         sizeSlider.value = brush.pointSize.float
     }
     
+    @IBAction func undoAction(_ sender: Any) {
+        canvas.undo()
+    }
+
+    @IBAction func redoAction(_ sender: Any) {
+        canvas.redo()
+    }
+
     @IBAction func clearAction(_ sender: Any) {
         canvas.clear()
     }
