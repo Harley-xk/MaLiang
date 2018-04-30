@@ -71,6 +71,15 @@ open class MLView: UIView {
         }
     }
     
+    func getCachedTexture(with id: GLuint) -> MLTexture? {
+        for text in cachedTextures {
+            if text.gl_id == id {
+                return text
+            }
+        }
+        return nil
+    }
+    
     /// Cache a texture if not cached
     private var cachedTextures: [MLTexture] = []
     private func cacheTextureIfNeeds(_ texture: MLTexture) {

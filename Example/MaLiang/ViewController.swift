@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var strokeSizeLabel: UILabel!
     @IBOutlet weak var brushSegement: UISegmentedControl!
     @IBOutlet weak var sizeSlider: UISlider!
+    @IBOutlet weak var undoButton: UIButton!
+    @IBOutlet weak var redoButton: UIButton!
     
     var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
@@ -54,6 +56,18 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
+        }
+        
+        canvas.document?.onElementBegin { doc in
+            self.redoButton.isEnabled = false
+            }.onElementFinish { doc in
+                self.undoButton.isEnabled = true
+            }.onRedo { doc in
+                self.undoButton.isEnabled = true
+                self.redoButton.isEnabled = doc.canRedo
+            }.onUndo { doc in
+                self.redoButton.isEnabled = true
+                self.undoButton.isEnabled = doc.canUndo
         }
     }
     

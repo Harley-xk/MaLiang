@@ -34,6 +34,13 @@ open class MLTexture {
         brushContext?.draw(image, in: CGRect(x: 0.0, y: 0.0, width: gl_width.cgfloat, height: gl_height.cgfloat))
     }
     
+    init(width: Int, height: Int, data: [GLubyte]) {
+        // Get the width and height of the image
+        gl_width = width
+        gl_height = height
+        gl_data = data
+    }
+    
     func createGLTexture() {
         guard gl_id == 0 else {
             return

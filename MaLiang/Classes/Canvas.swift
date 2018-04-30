@@ -21,7 +21,7 @@ open class Canvas: MLView {
     }
     
     // MARK: - Document
-    private var document: Document?
+    public private(set) var document: Document?
     public func setupDocument() throws {
         document = try Document()
     }
@@ -42,11 +42,18 @@ open class Canvas: MLView {
     private func redraw() {
         if let doc = document {
             clear(display: false)
-            let lines = doc.elements.flatMap{ $0.lines }
-            for line in lines {
-                super.renderLine(line, display: false)
+            for element in doc.elements {
+                let texture = getCachedTexture(with: element.textureId)
+                if texture == nil {
+                    doc.createTexture(for: element)
+                }
+                for line in element.lines {
+                    self.texture = texture
+                    super.renderLine(line, display: false)
+                }
             }
             displayBuffer()
+            texture = brush.texture
         }
     }
         

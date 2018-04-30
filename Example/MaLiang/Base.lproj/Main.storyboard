@@ -56,14 +56,14 @@
                                     <action selector="changeSizeAction:" destination="vXZ-lx-hvc" eventType="valueChanged" id="1eg-Zu-CyY"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arX-yu-Unn">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arX-yu-Unn">
                                 <rect key="frame" x="16" y="532" width="35" height="30"/>
                                 <state key="normal" title="undo"/>
                                 <connections>
                                     <action selector="undoAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ruD-k3-Qrq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9t-VJ-CAY">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9t-VJ-CAY">
                                 <rect key="frame" x="59" y="532" width="32" height="30"/>
                                 <state key="normal" title="redo"/>
                                 <connections>
@@ -96,8 +96,10 @@
                     <connections>
                         <outlet property="brushSegement" destination="AID-gC-Kue" id="Yl2-Db-yy6"/>
                         <outlet property="canvas" destination="vQo-w2-cHe" id="UQa-09-gdK"/>
+                        <outlet property="redoButton" destination="N9t-VJ-CAY" id="ZQz-S4-Ul8"/>
                         <outlet property="sizeSlider" destination="y2M-JQ-hAq" id="bu6-Va-1Kp"/>
                         <outlet property="strokeSizeLabel" destination="IoO-2f-vXQ" id="5Ht-Vl-Mld"/>
+                        <outlet property="undoButton" destination="arX-yu-Unn" id="SQH-GZ-GjQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

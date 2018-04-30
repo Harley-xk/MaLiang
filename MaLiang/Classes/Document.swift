@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import CoreGraphics
 
 /// Element 由多个 MLLine 组成，MLLine 是画布绘制的基本单位
 open class CanvasElement: Codable {
     /// 纹理文件名称，同一个 Element 只能使用同一个纹理
     var textureName: String?
+    
+    /// 纹理在 OPENGL 中的 id，0 表示纹理还未创建
+    var textureId: UInt32 = 0
     
     /// 保存纹理的尺寸，以便从缓存的纹理文件重新创建时能正确设置
     var t_w: Int = 0
@@ -34,6 +38,23 @@ open class Document {
     
     /// current unfinished element, will be added into elements once finished
     open var currentElement: CanvasElement?
+    
+    /// get the element id of element, create if not exists
+    open func createTexture(for element: CanvasElement) {
+        guard element.textureId <= 0, let name = element.textureName else {
+            return
+        }
+        
+        let path = self.texturePath.appendingPathComponent(name)
+        if let data = try? Data(contentsOf: path) {
+            let bytes = data.withUnsafeBytes {
+                [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
+            }
+            let texture = MLTexture(width: element.t_w, height: element.t_w, data: bytes)
+            texture.createGLTexture()
+            element.textureId = texture.gl_id
+        }
+    }
     
     /// a path to place elements、textures and any other datas
     public private(set) var tempPath: URL
@@ -72,6 +93,7 @@ open class Document {
         if let element = currentElement {
             elements.append(element)
             currentElement = nil
+            h_onElementFinish?(self)
         }
     }
     
@@ -82,6 +104,7 @@ open class Document {
 
         let name = String(texture.gl_id)
         let element = CanvasElement()
+        element.textureId = texture.gl_id
         element.textureName = name
         element.t_w = texture.gl_width
         element.t_h = texture.gl_height
@@ -91,8 +114,7 @@ open class Document {
         save(texture: texture, name: name)
         
         undoElements.removeAll()
-        
-        delegate
+        h_onElementBegin?(self)
     }
     
     /// saving texture in a background thread
@@ -106,9 +128,16 @@ open class Document {
     
     // MARK: - Undo & Redo
     /// Notice: Do not call these two function directly, they will be called by Canvas
+    public var canRedo: Bool {
+        return undoElements.count > 0
+    }
     
-    public private(set) var undoElements: [CanvasElement] = []
+    public var canUndo: Bool {
+        return elements.count > 0
+    }
     
+    private(set) var undoElements: [CanvasElement] = []
+
     func undo() -> Bool {
         if let current = currentElement {
             undoElements.append(current)
@@ -119,6 +148,7 @@ open class Document {
         } else {
             return false
         }
+        h_onUndo?(self)
         return true
     }
     
@@ -128,7 +158,40 @@ open class Document {
         }
         elements.append(undoElements.last!)
         undoElements.removeLast()
+        h_onRedo?(self)
         return true
+    }
+    
+    // MARK: - EventHandler
+    public typealias EventHandler = (Document) -> ()
+    
+    private var h_onElementBegin: EventHandler?
+    private var h_onElementFinish: EventHandler?
+    private var h_onRedo: EventHandler?
+    private var h_onUndo: EventHandler?
+    
+    @discardableResult
+    public func onElementBegin(_ h: @escaping EventHandler) -> Self {
+        h_onElementBegin = h
+        return self
+    }
+    
+    @discardableResult
+    public func onElementFinish(_ h: @escaping EventHandler) -> Self {
+        h_onElementFinish = h
+        return self
+    }
+    
+    @discardableResult
+    public func onRedo(_ h: @escaping EventHandler) -> Self {
+        h_onRedo = h
+        return self
+    }
+    
+    @discardableResult
+    public func onUndo(_ h: @escaping EventHandler) -> Self {
+        h_onUndo = h
+        return self
     }
     
 }
