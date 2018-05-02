@@ -27,6 +27,9 @@ class BezierGenerator {
     }
     
     func pushPoint(_ point: CGPoint) -> [CGPoint] {
+        if point == points.last {
+            return []
+        }
         points.append(point)
         if points.count < style.pointCount {
             return []

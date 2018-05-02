@@ -109,6 +109,18 @@ extension UIColor {
     }
 }
 
+extension UIGestureRecognizer {
+    func gl_location(in view: UIView?) -> CGPoint {
+        guard let view = view else {
+            return .zero
+        }
+        var location = self.location(in: view)
+        location.y = view.bounds.size.height - location.y
+        return location
+    }
+
+}
+
 // MARK: - Point Utils
 extension CGPoint {
     static func middle(p1: CGPoint, p2: CGPoint) -> CGPoint {

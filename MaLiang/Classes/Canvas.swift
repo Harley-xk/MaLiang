@@ -14,10 +14,19 @@ open class Canvas: MLView {
             texture = brush.texture
         }
     }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    
+    open override func setup() {
+        super.setup()
         brush = Brush(texture: MLTexture.default)
+        
+        /// gesture to render line
+        let paintingGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePaingtingGesture(_:)))
+        paintingGesture.maximumNumberOfTouches = 1
+        addGestureRecognizer(paintingGesture)
+        
+        /// gesture to render dot
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        addGestureRecognizer(tapGesture)
     }
     
     // MARK: - Document
@@ -59,7 +68,7 @@ open class Canvas: MLView {
         
     // MARK: - Bezier
     // optimize stroke with bezier path, defaults to true
-    private var enableBezierPath = true
+//    private var enableBezierPath = true
     private var bezierGenerator = BezierGenerator()
 
     // MARK: - Drawing Actions
@@ -94,88 +103,33 @@ open class Canvas: MLView {
     }
 
     // MARK: - Gestures
-    override open var canBecomeFirstResponder : Bool {
-        return true
-    }
-    
-    // Handles the start of a touch
-    private var touchMoved: Bool = false
-    private var previousLocation: CGPoint = CGPoint()
-
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let bounds = self.bounds
-        let touch = event!.touches(for: self)!.first!
-        touchMoved = false
-        // Convert touch point from UIView referential to OpenGL one (upside-down flip)
-        var location = touch.location(in: self)
-        location.y = bounds.size.height - location.y
-        
-        lastRenderedPoint = location
-        previousLocation = location
-        if enableBezierPath {
-            bezierGenerator.begin(with: location)
-        }
-    }
-    
-    // Handles the continuation of a touch.
-    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let bounds = self.bounds
-        let touch = event!.touches(for: self)!.first!
-        
-        // Convert touch point from UIView referential to OpenGL one (upside-down flip)
-        if !touchMoved {
-            touchMoved = true
-//            previousLocation = location
-        } else {
-            previousLocation = touch.previousLocation(in: self)
-            previousLocation.y = bounds.size.height - previousLocation.y
-        }
-        
-        var location = touch.location(in: self)
-        location.y = bounds.size.height - location.y
-        
-        if enableBezierPath {
-            // Render the stroke with bezier optmized path
-            pushPoint(location, to: bezierGenerator)
-        } else {
-            // Render the stroke directly
-            let line = MLLine(begin: previousLocation, end: location, brush: brush)
-            self.renderLine(line)
-        }
-        
-    }
-    
-    // Handles the end of a touch event when the touch is a tap.
-    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let bounds = self.bounds
-        let touch = event!.touches(for: self)!.first!
-        var location = touch.location(in: self)
-        location.y = bounds.size.height - location.y
-
-        if !touchMoved {
-            previousLocation = touch.previousLocation(in: self)
-            previousLocation.y = bounds.size.height - previousLocation.y
-            var line = MLLine(begin: previousLocation, end: location, brush: brush)
+    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        if gesture.state == .recognized {
+            let location = gesture.gl_location(in: self)
+            var line = MLLine(begin: location, end: location, brush: brush)
             /// fix the opacity of color when there is only one point
             let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
             let opacity = brush.opacity + (1 - brush.opacity) * delta
             line.color = brush.color.mlcolorWith(opacity: opacity)
             self.renderLine(line)
         }
-        if enableBezierPath {
-            if touchMoved {
-                pushPoint(location, to: bezierGenerator, isEnd: true)
-            }
-            bezierGenerator.finish()
-        } else if touchMoved {
-            let line = MLLine(begin: previousLocation, end: location, brush: brush)
-            self.renderLine(line)
-        }
-        document?.finishCurrentElement()
     }
     
-    // Handles the end of a touch event.
-    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touchesEnded(touches, with: event)
+    @objc private func handlePaingtingGesture(_ gesture: UIPanGestureRecognizer) {
+        
+        let location = gesture.gl_location(in: self)
+
+        if gesture.state == .began {
+            lastRenderedPoint = location
+            bezierGenerator.begin(with: location)
+        }
+        else if gesture.state == .changed {
+            pushPoint(location, to: bezierGenerator)
+        }
+        else if gesture.state == .ended {
+            pushPoint(location, to: bezierGenerator, isEnd: true)
+            bezierGenerator.finish()
+            document?.finishCurrentElement()
+        }
     }
 }

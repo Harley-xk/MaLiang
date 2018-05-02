@@ -152,17 +152,21 @@ open class MLView: UIView {
     }
     
     // MARK: - Initialize
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
     // The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
     required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    open func setup() {
         
         let uniform: [GLint] = Array(repeating: 0, count: Uniform.count)
         shaderProgram = ShaderProgram(vert: "point.vsh", frag: "point.fsh", uniform: uniform, id: 0)
-        
-        super.init(coder: coder)
-        
-        guard let _ = self.layer as? CAEAGLLayer else {
-            return nil
-        }
         
         glLayer.isOpaque = false
         
