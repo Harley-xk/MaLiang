@@ -25,6 +25,8 @@
 		B69E66B1208C6117005ED0E1 /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A6208C6117005ED0E1 /* point.fsh */; };
 		B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B2208C61C4005ED0E1 /* MLLine.swift */; };
 		B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B3208C61C4005ED0E1 /* MLView.swift */; };
+		B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */; };
+		B6C188BF2099AA6800A312B6 /* ScrollableSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */; };
 		B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F023B1208F2A4700D5CFA7 /* Document.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		B69E66A6208C6117005ED0E1 /* point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.fsh; sourceTree = "<group>"; };
 		B69E66B2208C61C4005ED0E1 /* MLLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLLine.swift; sourceTree = "<group>"; };
 		B69E66B3208C61C4005ED0E1 /* MLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLView.swift; sourceTree = "<group>"; };
+		B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableCanvas.swift; sourceTree = "<group>"; };
+		B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSample.swift; sourceTree = "<group>"; };
 		B6F023B1208F2A4700D5CFA7 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		E4F56C2627A50ADFF8265C8F /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F3CBFDC0B0167759FA9BD760 /* MaLiang.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MaLiang.podspec; path = ../MaLiang.podspec; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -157,6 +162,7 @@
 				B69E669D208C6117005ED0E1 /* Canvas.swift */,
 				B69E66A2208C6117005ED0E1 /* Brush.swift */,
 				B6F023B1208F2A4700D5CFA7 /* Document.swift */,
+				B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */,
 				B6F023B0208F1E9200D5CFA7 /* Utils */,
 				B68CFBE8208DF34F006170E7 /* MLBase */,
 			);
@@ -295,10 +301,12 @@
 				B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */,
 				B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */,
 				B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */,
+				B6C188BF2099AA6800A312B6 /* ScrollableSample.swift in Sources */,
 				B69E66AC208C6117005ED0E1 /* Utils.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */,
 				B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */,
+				B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */,
 				B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */,
 				B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */,
 			);
