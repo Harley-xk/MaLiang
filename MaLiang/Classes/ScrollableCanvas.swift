@@ -8,14 +8,26 @@
 
 import UIKit
 
-class ScrollableCanvas: UIScrollView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+open class ScrollableCanvas: UIScrollView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
     }
-    */
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
+        // Do any additional setup after loading the view.
+        panGestureRecognizer.minimumNumberOfTouches = 2
+        delaysContentTouches = false
+    }
 
+    open override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
+        return touches.count == 1
+    }
+    
 }
