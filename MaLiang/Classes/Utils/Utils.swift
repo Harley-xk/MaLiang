@@ -118,7 +118,6 @@ extension UIGestureRecognizer {
         location.y = view.bounds.size.height - location.y
         return location
     }
-
 }
 
 // MARK: - Point Utils

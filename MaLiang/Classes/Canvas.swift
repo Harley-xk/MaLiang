@@ -20,9 +20,7 @@ open class Canvas: MLView {
         brush = Brush(texture: MLTexture.default)
         
         /// gesture to render line
-        let paintingGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePaingtingGesture(_:)))
-        paintingGesture.maximumNumberOfTouches = 1
-        addGestureRecognizer(paintingGesture)
+        let paintingGesture = PaintingGestureRecognizer(addTo: self, action: #selector(handlePaingtingGesture(_:)))
         
         /// gesture to render dot
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
@@ -118,7 +116,7 @@ open class Canvas: MLView {
     @objc private func handlePaingtingGesture(_ gesture: UIPanGestureRecognizer) {
         
         let location = gesture.gl_location(in: self)
-
+        
         if gesture.state == .began {
             lastRenderedPoint = location
             bezierGenerator.begin(with: location)
