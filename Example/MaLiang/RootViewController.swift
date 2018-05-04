@@ -1,34 +1,21 @@
 //
-//  ScrollableSample.swift
+//  RootViewController.swift
 //  MaLiang_Example
 //
-//  Created by Harley.xk on 2018/5/2.
+//  Created by Harley.xk on 2018/5/4.
 //  Copyright © 2018年 CocoaPods. All rights reserved.
 //
 
 import UIKit
 
-class ScrollableSample: UIViewController {
+class RootViewController: UITableViewController {
 
-    @IBOutlet weak var scrollView: ScrollableCanvas!
-    @IBOutlet weak var canvas: Canvas!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        performSegue(withIdentifier: "default", sender: nil)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let pencil = Brush(texture: #imageLiteral(resourceName: "pencil"))
-        pencil.pointSize = 3
-        pencil.pointStep = 2
-        pencil.opacity = 0.6
-        pencil.forceSensitive = 0.3
-        canvas.brush = pencil
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

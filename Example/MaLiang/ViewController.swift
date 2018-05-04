@@ -30,14 +30,16 @@ class ViewController: UIViewController {
         pen.color = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
         canvas.brush = pen
 
-        let pencil = Brush(texture: #imageLiteral(resourceName: "pencil"))
+        let pencil = Brush(texture: #imageLiteral(resourceName: "pencil-2.png"))
         pencil.pointSize = 3
         pencil.pointStep = 2
+        pencil.forceSensitive = 0.3
         pencil.opacity = 0.6
         
-        let brush = Brush(texture: #imageLiteral(resourceName: "brush"))
+        let brush = Brush(texture: #imageLiteral(resourceName: "painting_texture_mb.png"))
         brush.pointSize = 30
         brush.pointStep = 2
+        brush.forceSensitive = 0.6
         brush.color = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
 
         let eraser = Eraser.global
@@ -71,6 +73,11 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        canvas.brush = brushes.first
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

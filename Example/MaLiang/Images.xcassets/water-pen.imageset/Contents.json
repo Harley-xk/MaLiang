@@ -6,7 +6,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "water-pen.png"
     },
     {
       "idiom" : "universal",
@@ -15,7 +16,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "water-pen@3x.png"
     }
   ]
 }

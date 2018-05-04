@@ -29,7 +29,7 @@
         <!--Samples-->
         <scene sceneID="v9P-XF-WXL">
             <objects>
-                <tableViewController id="qk8-Ea-M28" sceneMemberID="viewController">
+                <tableViewController id="qk8-Ea-M28" customClass="RootViewController" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="K6L-gb-p9b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="vXZ-lx-hvc" kind="show" id="irS-PI-4Xu"/>
+                                            <segue destination="vXZ-lx-hvc" kind="show" identifier="default" id="irS-PI-4Xu"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="QIp-3L-1rY" detailTextLabel="lXm-De-3h8" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="mAF-7q-XCa">
@@ -88,7 +88,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="2Ag-HM-wp1" kind="show" id="n6E-sc-i7x"/>
+                                            <segue destination="2Ag-HM-wp1" kind="show" identifier="" id="n6E-sc-i7x"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -202,7 +202,7 @@
             </objects>
             <point key="canvasLocation" x="244" y="374"/>
         </scene>
-        <!--Scrollable Sample-->
+        <!--Scrollable-->
         <scene sceneID="V0u-An-6vP">
             <objects>
                 <viewController id="2Ag-HM-wp1" customClass="ScrollableSample" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -242,6 +242,7 @@
                             <constraint firstItem="bXU-Tk-Cyf" firstAttribute="leading" secondItem="egp-KQ-7Do" secondAttribute="leading" id="lgE-Uy-QyM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Scrollable" id="YKu-JO-61c"/>
                     <connections>
                         <outlet property="canvas" destination="Ae7-3i-tGI" id="TxG-Vp-rGt"/>
                         <outlet property="scrollView" destination="bXU-Tk-Cyf" id="3LD-Sj-wEq"/>

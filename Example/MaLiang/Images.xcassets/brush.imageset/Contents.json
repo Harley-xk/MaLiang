@@ -6,7 +6,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "brush.png"
     },
     {
       "idiom" : "universal",
@@ -15,7 +16,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "brush@3x.png"
     }
   ]
 }
