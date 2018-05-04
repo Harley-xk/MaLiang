@@ -9,12 +9,9 @@ import Foundation
 import OpenGLES
 import UIKit
 
-
-extension MLLine {
-    init(begin: CGPoint, end: CGPoint, brush: Brush) {
-        let color = brush.color.mlcolorWith(opacity: brush.opacity)
-        self.init(begin: begin, end: end, pointSize: brush.pointSize, pointStep: brush.pointStep, color: color)
-    }
+public struct Pan {
+    var point: CGPoint
+    var force: CGFloat
 }
 
 open class Brush {
@@ -29,6 +26,9 @@ open class Brush {
     // this property defines the minimum distance (measureed in points) of nearest two textures
     // defaults to 1, this means erery texture calculated will be rendered, dictance calculation will be skiped
     open var pointStep: CGFloat = 1
+    
+    // sensitive of pointsize changed from force, from 0 - 1
+    open var forceSensitive: CGFloat = 0
     
     /// color of stroke
     open var color: UIColor = .black
@@ -46,6 +46,19 @@ open class Brush {
     init(texture: MLTexture) {
         self.texture = texture
     }
+    
+    open func line(from: CGPoint, to: CGPoint) -> MLLine {
+        let color = self.color.mlcolorWith(opacity: opacity)
+        return MLLine(begin: from, end: to, pointSize: pointSize, pointStep: pointStep, color: color)
+    }
+    
+    open func pan(from: Pan, to: Pan) -> MLLine {
+        let color = self.color.mlcolorWith(opacity: opacity)
+        var endForce = from.force * 0.95 + to.force * 0.05
+        endForce = pow(endForce, forceSensitive)
+        let line = MLLine(begin: from.point, end: to.point, pointSize: pointSize * endForce, pointStep: pointStep, color: color)
+        return line
+    }
 }
 
 final class Eraser: Brush {
@@ -59,6 +72,7 @@ final class Eraser: Brush {
         super.init(texture: texture)
         pointSize = 10
         opacity = 1
+        forceSensitive = 0
     }
     
     // color of eraser can't be changed

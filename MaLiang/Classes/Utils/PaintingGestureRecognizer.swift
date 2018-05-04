@@ -13,34 +13,40 @@ class PaintingGestureRecognizer: UIPanGestureRecognizer {
 
     private var targetView: UIView
     
-    init(addTo target: UIView, action: Selector?) {
+    @discardableResult
+    class func addToTarget(_ target: UIView, action: Selector) -> PaintingGestureRecognizer {
+        let ges = PaintingGestureRecognizer(target: target, action: action)
+        target.addGestureRecognizer(ges)
+        return ges
+    }
+    
+    init(target: UIView, action: Selector?) {
         targetView = target
         super.init(target: target, action: action)
         maximumNumberOfTouches = 1
-        target.addGestureRecognizer(self)
+        
     }
     
     /// 当前压力值，启用压力感应时，使用真实的压力，否则使用模拟压感
     var force: CGFloat = 1
     
-    /// 是否启用压力感应，默认关闭
-    var pressEnabled = false
+    /// 是否启用压力感应，默认开启
+    var forceEnabled = true
     
     private func updateForceFromTouches(_ touches: Set<UITouch>) {
         guard let touch = touches.first else {
             return
         }
-        if pressEnabled, touch.force > 0 {
-            force = touch.force
+        if forceEnabled, touch.force > 0 {
+            force = touch.force / 3
             return
         }
         
         let vel = velocity(in: targetView)
         var length = vel.distance(to: .zero)
         length = min(length, 5000)
-        length = max(50, length)
-        let speed = 500 / length
-        print("Gesture Speed: ", String(format: "%.1f", speed))
+        length = max(100, length)
+        force = sqrt(1000 / length)
     }
     
     // MARK: - Touch Handling

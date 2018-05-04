@@ -20,8 +20,7 @@ open class Canvas: MLView {
         brush = Brush(texture: MLTexture.default)
         
         /// gesture to render line
-        let paintingGesture = PaintingGestureRecognizer(addTo: self, action: #selector(handlePaingtingGesture(_:)))
-        
+        PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
         /// gesture to render dot
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         addGestureRecognizer(tapGesture)
@@ -70,11 +69,13 @@ open class Canvas: MLView {
     private var bezierGenerator = BezierGenerator()
 
     // MARK: - Drawing Actions
-    private var lastRenderedPoint: CGPoint?
-    private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator, isEnd: Bool = false) {
+    private var lastRenderedPan: Pan?
+
+    private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator, force: CGFloat, isEnd: Bool = false) {
         let vertices = bezier.pushPoint(point)
         if vertices.count >= 2 {
-            var lastPoint = lastRenderedPoint ?? vertices[0]
+            var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
+            let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / vertices.count.cgfloat
             for i in 1 ..< vertices.count {
                 let p = vertices[i]
                 if  // end point of line
@@ -82,12 +83,14 @@ open class Canvas: MLView {
                     // ignore step
                     brush.pointStep <= 1 ||
                     // distance larger than step
-                    (brush.pointStep > 1 && lastPoint.distance(to: p) >= brush.pointStep)
+                    (brush.pointStep > 1 && lastPan.point.distance(to: p) >= brush.pointStep)
                 {
-                    let line = MLLine(begin: lastPoint, end: p, brush: brush)
+                    let f = lastPan.force + deltaForce
+                    let pan = Pan(point: p, force: f)
+                    let line = brush.pan(from: lastPan, to: pan)
                     self.renderLine(line, display: false)
-                    lastPoint = p
-                    lastRenderedPoint = p
+                    lastPan = pan
+                    lastRenderedPan = pan
                 }
             }
         }
@@ -104,7 +107,7 @@ open class Canvas: MLView {
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .recognized {
             let location = gesture.gl_location(in: self)
-            var line = MLLine(begin: location, end: location, brush: brush)
+            var line = brush.line(from: location, to: location)
             /// fix the opacity of color when there is only one point
             let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
             let opacity = brush.opacity + (1 - brush.opacity) * delta
@@ -113,20 +116,21 @@ open class Canvas: MLView {
         }
     }
     
-    @objc private func handlePaingtingGesture(_ gesture: UIPanGestureRecognizer) {
+    @objc private func handlePaingtingGesture(_ gesture: PaintingGestureRecognizer) {
         
         let location = gesture.gl_location(in: self)
         
         if gesture.state == .began {
-            lastRenderedPoint = location
+            lastRenderedPan = Pan(point: location, force: gesture.force)
             bezierGenerator.begin(with: location)
         }
         else if gesture.state == .changed {
-            pushPoint(location, to: bezierGenerator)
+            pushPoint(location, to: bezierGenerator, force: gesture.force)
         }
         else if gesture.state == .ended {
-            pushPoint(location, to: bezierGenerator, isEnd: true)
+            pushPoint(location, to: bezierGenerator, force: gesture.force, isEnd: true)
             bezierGenerator.finish()
+            lastRenderedPan = nil
             document?.finishCurrentElement()
         }
     }
