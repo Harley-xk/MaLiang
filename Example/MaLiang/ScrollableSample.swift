@@ -15,17 +15,17 @@ class ScrollableSample: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        scrollView.canvas = canvas
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let pencil = Brush(texture: #imageLiteral(resourceName: "pencil"))
-        pencil.pointSize = 3
+        let pencil = Brush(texture: #imageLiteral(resourceName: "pen"))
+        pencil.pointSize = 5
         pencil.pointStep = 2
         pencil.opacity = 0.6
-        pencil.forceSensitive = 0.3
+        pencil.forceSensitive = 0
         canvas.brush = pencil
     }
     

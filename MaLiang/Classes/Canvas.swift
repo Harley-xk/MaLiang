@@ -25,7 +25,7 @@ open class Canvas: MLView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         addGestureRecognizer(tapGesture)
     }
-    
+        
     // MARK: - Document
     public private(set) var document: Document?
     public func setupDocument() throws {
@@ -78,12 +78,13 @@ open class Canvas: MLView {
             let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / vertices.count.cgfloat
             for i in 1 ..< vertices.count {
                 let p = vertices[i]
+                let pointStep = brush.pointStep / self.scale
                 if  // end point of line
                     (isEnd && i == vertices.count - 1) ||
                     // ignore step
-                    brush.pointStep <= 1 ||
+                    pointStep <= 1 ||
                     // distance larger than step
-                    (brush.pointStep > 1 && lastPan.point.distance(to: p) >= brush.pointStep)
+                    (pointStep > 1 && lastPan.point.distance(to: p) >= pointStep)
                 {
                     let f = lastPan.force + deltaForce
                     let pan = Pan(point: p, force: f)

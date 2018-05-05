@@ -10,6 +10,8 @@ import UIKit
 
 open class ScrollableCanvas: UIScrollView {
     
+    open var canvas: Canvas!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -24,10 +26,23 @@ open class ScrollableCanvas: UIScrollView {
         // Do any additional setup after loading the view.
         panGestureRecognizer.minimumNumberOfTouches = 2
         delaysContentTouches = false
+        delegate = self
     }
-
+    
     open override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
         return touches.count == 1
     }
     
+    
+    
+}
+
+extension ScrollableCanvas: UIScrollViewDelegate {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return canvas
+    }
+    
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        canvas.scale = scrollView.zoomScale
+    }
 }

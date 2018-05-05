@@ -39,6 +39,8 @@ open class MLView: UIView {
         }
     }
     
+    /// current scale of canvas, will set stroke line size to fit this
+    public internal(set) var scale: CGFloat = 1
     
     // MARK: - Color & Testure
     
@@ -395,7 +397,8 @@ open class MLView: UIView {
         var vertexBuffer: [GLfloat] = []
         
         // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * line.pointStep.float))) + 1, 1)
+        var count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (contentScaleFactor.float * line.pointStep.float)) * self.scale.float) + 1, 1)
+        
         vertexBuffer.reserveCapacity(count * 2)
         vertexBuffer.removeAll(keepingCapacity: true)
         for i in 0 ..< count {
@@ -414,7 +417,7 @@ open class MLView: UIView {
         glVertexAttribPointer(Attribute.vertex, 2, GL_FLOAT.gluint, GL_FALSE.uint8, 0, nil)
         
         // set line size
-        glUniform1f(shaderProgram.uniform[Uniform.pointSize], GLfloat(line.pointSize) * GLfloat(contentScaleFactor))
+        glUniform1f(shaderProgram.uniform[Uniform.pointSize], GLfloat(line.pointSize) * GLfloat(contentScaleFactor) / GLfloat(self.scale))
         
         // Draw
         glDrawArrays(GL_POINTS.gluint, 0, count.int32)
