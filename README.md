@@ -9,7 +9,7 @@ MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes 
 
 ## Requirements
 
-iOS 7.0+, Swift 4.1+ </br>
+iOS 9.0+, Swift 4.1+ </br>
 
 The core painting Module is baseed on OpenGL ES 3.0. Which comes with iOS 7.0</br>
 
@@ -85,17 +85,17 @@ With all these properties, you can create you own brush as your imagination.
 
 ### Document
 
-Document is not required. It holds all the data on the canvas, and makes the undo and redo actions to be possiable. </br>
-And you can implement your own saving logic with the data holds by Document.
+`Document` is not required. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
+And you can implement your own **saving logic** with the data holds by `Document`.
 
-To enable the document for Canvas, there needs only one line of code: 
+To enable the `Document` for `Canvas`, there needs only one line of code: 
 
 ```swift
 canvas.setupDocument()
 ```
 
-The operation above may be failed if there's not enough disk rooms.Because we need rooms to keep textures and painting datas on disk.</br>
-Use do catch to get the error when it appears:
+The operation above may be failed if there's not enough disk rooms. Because we need rooms to keep textures and painting datas on disk.</br>
+Use `do-catch` to process the error when it appears:
 
 ```swift
 do {

@@ -20,7 +20,7 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
   s.author           = { 'harley-xk' => 'halrey.gb@foxmail.com' }
   s.source           = { :git => 'https://github.com/harley-xk/MaLiang.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'MaLiang/Classes/**/*'
   
