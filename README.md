@@ -105,9 +105,10 @@ do {
 }
 ```
 
-## Author
-
-harley-xk, Halrey.gb@foxmail.com
+## TODO
+- [] Text Element
+- [] Image Element
+- [] Texture rotation
 
 ## License
 
