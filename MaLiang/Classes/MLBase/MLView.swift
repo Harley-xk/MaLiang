@@ -206,7 +206,7 @@ open class MLView: UIView {
         
         // Clear the framebuffer the first time it is allocated
         if needsClear {
-            clear()
+            clear(display: false)
             needsClear = false
         }
     }

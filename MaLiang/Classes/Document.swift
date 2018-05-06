@@ -29,12 +29,22 @@ open class CanvasElement: Codable {
     }
 }
 
+public struct CanvasAction {
+    enum ActionType {
+        case painting
+        case clear
+    }
+    
+    var actionType: ActionType = .painting
+    var element: CanvasElement?
+}
+
 /// Document only manage the data in memory and temp file path
 /// Save the data and read it with your onwn logic
 open class Document {
     
-    /// all finished elements
-    open var elements: [CanvasElement] = []
+    /// all stored actions
+    open var actions: [CanvasAction] = []
     
     /// current unfinished element, will be added into elements once finished
     open var currentElement: CanvasElement?
@@ -91,7 +101,8 @@ open class Document {
     
     open func finishCurrentElement() {
         if let element = currentElement {
-            elements.append(element)
+            let action = CanvasAction(actionType: .painting, element: element)
+            actions.append(action)
             currentElement = nil
             h_onElementFinish?(self)
         }
@@ -113,7 +124,7 @@ open class Document {
         
         save(texture: texture, name: name)
         
-        undoElements.removeAll()
+        undoActions.removeAll()
         h_onElementBegin?(self)
     }
     
@@ -126,25 +137,32 @@ open class Document {
         }
     }
     
+    open func appendClearAction() {
+        let action = CanvasAction(actionType: .clear, element: nil)
+        actions.append(action)
+        undoActions.removeAll()
+    }
+    
     // MARK: - Undo & Redo
     /// Notice: Do not call these two function directly, they will be called by Canvas
     public var canRedo: Bool {
-        return undoElements.count > 0
+        return undoActions.count > 0
     }
     
     public var canUndo: Bool {
-        return elements.count > 0
+        return actions.count > 0
     }
     
-    private(set) var undoElements: [CanvasElement] = []
+    private(set) var undoActions: [CanvasAction] = []
 
     func undo() -> Bool {
         if let current = currentElement {
-            undoElements.append(current)
+            let action = CanvasAction(actionType: .painting, element: current)
+            undoActions.append(action)
             currentElement = nil
-        } else if elements.count > 0 {
-            undoElements.append(elements.last!)
-            elements.removeLast()
+        } else if actions.count > 0 {
+            undoActions.append(actions.last!)
+            actions.removeLast()
         } else {
             return false
         }
@@ -153,11 +171,11 @@ open class Document {
     }
     
     func redo() -> Bool {
-        guard currentElement == nil, undoElements.count > 0 else {
+        guard currentElement == nil, undoActions.count > 0 else {
             return false
         }
-        elements.append(undoElements.last!)
-        undoElements.removeLast()
+        actions.append(undoActions.last!)
+        undoActions.removeLast()
         h_onRedo?(self)
         return true
     }

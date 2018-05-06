@@ -25,7 +25,15 @@ open class Canvas: MLView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         addGestureRecognizer(tapGesture)
     }
+    
+    open override func clear(display: Bool = true) {
+        super.clear(display: display)
         
+        if display {
+            document?.appendClearAction()
+        }
+    }
+    
     // MARK: - Document
     public private(set) var document: Document?
     public func setupDocument() throws {
@@ -47,8 +55,17 @@ open class Canvas: MLView {
     /// redraw elemets in document
     private func redraw() {
         if let doc = document {
-            clear(display: false)
-            for element in doc.elements {
+            
+            super.clear(display: false)
+
+            /// find elements to draw, until last clear action
+            let count = doc.actions.count
+            for i in 0 ..< count {
+                let index = count - i - 1
+                let action = doc.actions[index]
+                guard action.actionType != .clear, let element = action.element else {
+                    break
+                }
                 let texture = getCachedTexture(with: element.textureId)
                 if texture == nil {
                     doc.createTexture(for: element)
@@ -114,6 +131,7 @@ open class Canvas: MLView {
             let opacity = brush.opacity + (1 - brush.opacity) * delta
             line.color = brush.color.mlcolorWith(opacity: opacity)
             self.renderLine(line)
+            document?.finishCurrentElement()
         }
     }
     
@@ -122,6 +140,7 @@ open class Canvas: MLView {
         let location = gesture.gl_location(in: self)
         
         if gesture.state == .began {
+            document?.finishCurrentElement()
             lastRenderedPan = Pan(point: location, force: gesture.force)
             bezierGenerator.begin(with: location)
         }
