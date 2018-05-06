@@ -7,6 +7,8 @@
 
 MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush  in Chinese ancient fairy story.
 
+![](sample.png)
+
 ## Requirements
 
 iOS 9.0+, Swift 4.1+ </br>
@@ -85,7 +87,7 @@ With all these properties, you can create you own brush as your imagination.
 
 #### Force & 3D Touch
 
-MaLiang supports automatically adjustment of stroke size with painting force. 3D Touch is supported by default, and simulated force will be setup on devices those are not supporting this.
+MaLiang supports automatically adjustment if stroke size with painting force. 3D Touch is supported by default, and simulated force will be setup on devices those are not supporting this.
 
 `forceSensitive` is the property that force affects the storke size. It should be set between `0` to `1`. the smaller the value is, the less sensitive will be. if sets to `0`, then force will not affects the stroke size.
 
