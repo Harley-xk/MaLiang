@@ -9,12 +9,22 @@ import UIKit
 
 open class Canvas: MLView {
 
+    /// specify a brush to paint
     open var brush: Brush! {
         didSet {
             texture = brush.texture
         }
     }
     
+    /// enable force
+    open var forceEnabled: Bool {
+        get {
+            return paintingGesture.forceEnabled
+        }
+        set {
+            paintingGesture.forceEnabled = newValue
+        }
+    }
     
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
@@ -22,11 +32,13 @@ open class Canvas: MLView {
         brush = Brush(texture: MLTexture.default)
         
         /// gesture to render line
-        PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
+        paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
         /// gesture to render dot
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         addGestureRecognizer(tapGesture)
     }
+    
+    private var paintingGesture: PaintingGestureRecognizer!
     
     
     /// clear all things on the canvas
