@@ -15,6 +15,8 @@ open class Canvas: MLView {
         }
     }
     
+    
+    /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
         brush = Brush(texture: MLTexture.default)
@@ -26,6 +28,10 @@ open class Canvas: MLView {
         addGestureRecognizer(tapGesture)
     }
     
+    
+    /// clear all things on the canvas
+    ///
+    /// - Parameter display: redraw the canvas if this sets to true
     open override func clear(display: Bool = true) {
         super.clear(display: display)
         
