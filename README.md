@@ -13,7 +13,7 @@ MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes 
 
 iOS 9.0+, Swift 4.1+ </br>
 
-The core painting Module is baseed on OpenGL ES 3.0. Which comes with iOS 7.0</br>
+The core painting module is based on OpenGL ES 3.0</br>
 
 You can simply make it compatible with lower version of iOS and swift by changing only serval lines of code.
 
