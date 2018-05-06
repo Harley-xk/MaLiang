@@ -116,8 +116,9 @@ do {
 
 ## TODO
 - [x] ~~Undo & Redo~~
-- [ ] Text Element
-- [ ] Image Element
+- [ ] Export to image
+- [ ] Text element
+- [ ] Image element
 - [ ] Texture rotation
 
 ## License
