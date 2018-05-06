@@ -44,7 +44,7 @@ A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
 `Canvas` can be simply created with xib or code.
 
 - with xib or storyboard, simply drag and drop an `UIView` object into your view controller and change it's class to `Canvas` and module to `MaLiang`
-- whit code, just create with `init(frame:)` as any `UIView` you do before.
+- with code, just create with `init(frame:)` as any `UIView` you do before.
 
 Now, all things necessary is done!
 
@@ -60,6 +60,7 @@ With all things done, you can do more with `Brush`!
 ```swift
 let image = UIImage(named: "pencil.png")
 let pencil = Brush(texture: image)
+canvas.brush = pencil
 ```
 
 `Brush` have serval properties for you to custmize:
