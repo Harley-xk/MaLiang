@@ -60,18 +60,25 @@ open class Canvas: MLView {
 
             /// find elements to draw, until last clear action
             let count = doc.actions.count
+            var elementsToRedraw: [CanvasElement] = []
             for i in 0 ..< count {
                 let index = count - i - 1
                 let action = doc.actions[index]
                 guard action.actionType != .clear, let element = action.element else {
                     break
                 }
-                let texture = getCachedTexture(with: element.textureId)
+                elementsToRedraw.insert(element, at: 0)
+            }
+            
+            /// redraw with the order it does originaly
+            for element in elementsToRedraw {
+                var texture = getCachedTexture(with: element.textureId)
                 if texture == nil {
                     doc.createTexture(for: element)
+                    texture = getCachedTexture(with: element.textureId)
                 }
+                self.texture = texture
                 for line in element.lines {
-                    self.texture = texture
                     super.renderLine(line, display: false)
                 }
             }

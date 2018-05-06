@@ -67,7 +67,7 @@ final class Eraser: Brush {
     public static let global = Eraser()
     
     private init() {
-        let texture = MLTexture.default.copy()
+        let texture = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
         texture.gl_blend_enabled = false
         super.init(texture: texture)
         pointSize = 10

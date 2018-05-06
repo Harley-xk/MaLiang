@@ -51,7 +51,7 @@ open class Document {
     
     /// get the element id of element, create if not exists
     open func createTexture(for element: CanvasElement) {
-        guard element.textureId <= 0, let name = element.textureName else {
+        guard let name = element.textureName else {
             return
         }
         
