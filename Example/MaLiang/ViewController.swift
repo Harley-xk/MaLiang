@@ -10,13 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var canvas: Canvas!
     @IBOutlet weak var strokeSizeLabel: UILabel!
     @IBOutlet weak var brushSegement: UISegmentedControl!
     @IBOutlet weak var sizeSlider: UISlider!
     @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var redoButton: UIButton!
     
+    weak var canvas: Canvas!
+
     var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
     
@@ -27,6 +28,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        canvas = Canvas(frame: CGRect(x: 0, y: 0, width: 1024, height: 1024))
+        view.addSubview(canvas)
+        view.sendSubview(toBack: canvas)
         
         let pen = Brush(texture: #imageLiteral(resourceName: "pen"))
         pen.pointSize = 5

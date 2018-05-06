@@ -117,10 +117,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vQo-w2-cHe" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AID-gC-Kue">
                                 <rect key="frame" x="16" y="574" width="343" height="29"/>
                                 <segments>
@@ -315,16 +311,12 @@
                             <constraint firstItem="AID-gC-Kue" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Aqn-Ev-Yxs"/>
                             <constraint firstItem="F2e-tb-ZXo" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="AuU-wd-uTa"/>
                             <constraint firstItem="N9t-VJ-CAY" firstAttribute="leading" secondItem="arX-yu-Unn" secondAttribute="trailing" constant="8" id="Bpk-kh-IFT"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vQo-w2-cHe" secondAttribute="bottom" id="F5v-Kn-8w0"/>
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="leading" secondItem="y2M-JQ-hAq" secondAttribute="trailing" constant="8" id="Hnq-Yj-r3Y"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="y2M-JQ-hAq" secondAttribute="bottom" constant="20" id="J1c-NG-Rrz"/>
                             <constraint firstItem="F2e-tb-ZXo" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="J5t-G3-mG6"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="X7T-Is-9js" secondAttribute="bottom" constant="8" id="KcT-3X-OMO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X7T-Is-9js" secondAttribute="trailing" constant="5" id="OvN-q6-WAK"/>
-                            <constraint firstItem="vQo-w2-cHe" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="YVI-K5-Qeo"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="arX-yu-Unn" secondAttribute="bottom" constant="12" id="b1P-JI-o0c"/>
-                            <constraint firstAttribute="trailing" secondItem="vQo-w2-cHe" secondAttribute="trailing" id="cTE-vy-8Uo"/>
-                            <constraint firstItem="vQo-w2-cHe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dEd-Rs-CIw"/>
                             <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IoO-2f-vXQ" secondAttribute="trailing" id="fam-Nf-FS9"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="N9t-VJ-CAY" secondAttribute="bottom" constant="12" id="uby-W8-tDr"/>
@@ -336,7 +328,6 @@
                         <outlet property="bl" destination="Nu8-A6-wuf" id="fuO-Fq-UPr"/>
                         <outlet property="blueSlider" destination="sTw-Ab-px5" id="W6K-w5-Luq"/>
                         <outlet property="brushSegement" destination="AID-gC-Kue" id="Yl2-Db-yy6"/>
-                        <outlet property="canvas" destination="vQo-w2-cHe" id="UQa-09-gdK"/>
                         <outlet property="colorSampleView" destination="4Rz-xR-sMg" id="dau-U0-bit"/>
                         <outlet property="gl" destination="go5-Cs-Qn4" id="N3Y-pb-HQK"/>
                         <outlet property="greenSlider" destination="2bk-oc-Dro" id="27g-0x-sYZ"/>
