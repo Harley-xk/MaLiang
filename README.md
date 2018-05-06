@@ -112,9 +112,10 @@ do {
 ```
 
 ## TODO
-- [] Text Element
-- [] Image Element
-- [] Texture rotation
+- [x] ~~Undo & Redo~~
+- [ ] Text Element
+- [ ] Image Element
+- [ ] Texture rotation
 
 ## License
 
