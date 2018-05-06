@@ -107,8 +107,8 @@ do {
 
 ## TODO
 - [ ] Text Element
-- [] Image Element
-- [] Texture rotation
+- [ ] Image Element
+- [ ] Texture rotation
 
 ## License
 
