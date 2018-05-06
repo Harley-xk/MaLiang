@@ -241,7 +241,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = CocoaPods;
+				ORGANIZATIONNAME = "Harley-xk";
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;

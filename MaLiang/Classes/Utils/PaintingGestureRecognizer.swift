@@ -1,9 +1,8 @@
 //
 //  PaintingGestureRecognizer.swift
-//  MaLiang_Example
+//  MaLiang
 //
 //  Created by Harley.xk on 2018/5/3.
-//  Copyright © 2018年 CocoaPods. All rights reserved.
 //
 
 import UIKit.UIGestureRecognizerSubclass

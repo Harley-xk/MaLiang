@@ -1,9 +1,8 @@
 //
 //  Document.swift
-//  MaLiang_Example
+//  MaLiang
 //
 //  Created by Harley.xk on 2018/4/24.
-//  Copyright © 2018年 CocoaPods. All rights reserved.
 //
 
 import Foundation
