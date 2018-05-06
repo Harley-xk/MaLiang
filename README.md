@@ -106,7 +106,7 @@ do {
 ```
 
 ## TODO
-- [x] Undo & Redo
+- [x] ~~Undo & Redo~~
 - [ ] Text Element
 - [ ] Image Element
 - [ ] Texture rotation
