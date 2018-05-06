@@ -7,13 +7,13 @@
 
 MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush  in Chinese ancient fairy story.
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 ## Requirements
 
-iOS 8.0+, Swift 4.0+
+iOS 7.0+, Swift 4.1+ </br>
+
+The core painting Module is baseed on OpenGL ES 3.0. Which comes with iOS 7.0</br>
+
+You can simply make it compatible with lower version of iOS and swift by changing only serval lines of code.
 
 ## Installation
 
@@ -28,8 +28,82 @@ pod 'MaLiang'
 
 MaLiang is simple to use.
 1. import MaLiang
-2. add a custom view to your ViewController and change its class to `Canvas`
 3. enjoy painting!
+
+### Canvas
+
+```swift
+open class Canvas: MLView
+```
+
+A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
+`Canvas` extends from `MLView`, whitch extends from `UIView`. `MLView` handles all the logic with OpenGL and hides them from you.
+
+`Canvas` can be simply created with xib or code.
+
+- with xib or storyboard, simply drag and drop an `UIView` object into your view controller and change it's class to `Canvas` and module to `MaLiang`
+- whit code, just create with `init(frame:)` as any `UIView` you do before.
+
+Now, all things necessary is done!
+
+
+### Brush
+
+With all things done, you can do more with `Brush`!
+
+`Brush` is the key feature to `MaLiang`. It holds textures and colors, whitch makes it possiable to paint amazing things.
+
+`Brush` can be created with a image:
+
+```swift
+let image = UIImage(named: "pencil.png")
+let pencil = Brush(texture: image)
+```
+
+`Brush` have serval properties for you to custmize:
+
+```swift
+// opacity of texture, affects the darkness of stroke
+// set opacity to 1 may cause heavy aliasing
+open var opacity: CGFloat = 0.3
+
+// width of stroke line in points
+open var pointSize: CGFloat = 4
+
+// this property defines the minimum distance (measureed in points) of nearest two textures
+// defaults to 1, this means erery texture calculated will be rendered, dictance calculation will be skiped
+open var pointStep: CGFloat = 1
+
+// sensitive of pointsize changed from force, from 0 - 1
+open var forceSensitive: CGFloat = 0
+
+/// color of stroke
+open var color: UIColor = .black
+```
+
+With all these properties, you can create you own brush as your imagination.
+
+### Document
+
+Document is not required. It holds all the data on the canvas, and makes the undo and redo actions to be possiable. </br>
+And you can implement your own saving logic with the data holds by Document.
+
+To enable the document for Canvas, there needs only one line of code: 
+
+```swift
+canvas.setupDocument()
+```
+
+The operation above may be failed if there's not enough disk rooms.Because we need rooms to keep textures and painting datas on disk.</br>
+Use do catch to get the error when it appears:
+
+```swift
+do {
+    try canvas.setupDocument()
+} catch {
+    // do somthing when error occurs
+}
+```
 
 ## Author
 

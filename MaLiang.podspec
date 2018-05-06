@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MaLiang'
-  s.version          = '0.5.0'
+  s.version          = '1.0.0'
   s.summary          = 'MaLiang is a painting Framework based on OpenGL ES.'
 
   s.description      = <<-DESC
@@ -20,7 +20,7 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
   s.author           = { 'harley-xk' => 'halrey.gb@foxmail.com' }
   s.source           = { :git => 'https://github.com/harley-xk/MaLiang.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '7.0'
 
   s.source_files = 'MaLiang/Classes/**/*'
   
