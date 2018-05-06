@@ -20,6 +20,10 @@ class ViewController: UIViewController {
     var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
     
+    var color: UIColor {
+        return UIColor(red: r, green: g, blue: b, alpha: 1)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -27,7 +31,7 @@ class ViewController: UIViewController {
         let pen = Brush(texture: #imageLiteral(resourceName: "pen"))
         pen.pointSize = 5
         pen.pointStep = 1
-        pen.color = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        pen.color = color
         canvas.brush = pen
 
         let pencil = Brush(texture: #imageLiteral(resourceName: "pencil-2.png"))
@@ -40,7 +44,7 @@ class ViewController: UIViewController {
         brush.pointSize = 30
         brush.pointStep = 2
         brush.forceSensitive = 0.6
-        brush.color = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
+        brush.color = color
 
         let eraser = Eraser.global
         
@@ -93,6 +97,7 @@ class ViewController: UIViewController {
     @IBAction func styleChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         let brush = brushes[index]
+        brush.color = color
         canvas.brush = brush
         strokeSizeLabel.text = "\(brush.pointSize)"
         sizeSlider.value = brush.pointSize.float
@@ -108,6 +113,46 @@ class ViewController: UIViewController {
 
     @IBAction func clearAction(_ sender: Any) {
         canvas.clear()
+    }
+    
+    // MARK: - color
+    @IBOutlet weak var colorSampleView: UIView!
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
+    @IBOutlet weak var rl: UILabel!
+    @IBOutlet weak var gl: UILabel!
+    @IBOutlet weak var bl: UILabel!
+    
+    var r: CGFloat = 0
+    var g: CGFloat = 0
+    var b: CGFloat = 0
+
+    @IBAction func colorChanged(_ sender: UISlider) {
+        let value = Int(sender.value)
+        let colorv = CGFloat(value) / 255
+        switch sender.tag {
+        case 0:
+            r = colorv
+            rl.text = "\(value)"
+        case 1:
+            g = colorv
+            gl.text = "\(value)"
+        case 2:
+            b = colorv
+            bl.text = "\(value)"
+        default: break
+        }
+        
+        colorSampleView.backgroundColor = color
+        canvas.brush.color = color
+    }
+}
+
+extension String {
+    var floatValue: CGFloat {
+        let db = Double(self) ?? 0
+        return CGFloat(db)
     }
 }
 
