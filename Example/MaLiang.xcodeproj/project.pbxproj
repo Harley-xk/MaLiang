@@ -119,6 +119,7 @@
 				B6FFA544209CAB9600936E58 /* RootViewController.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */,
+				B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */,
 				B6FFA542209CA31700936E58 /* painting_texture_mb.png */,
 				B6FFA53E209CA26100936E58 /* pencil-2@2x.png */,
 				B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */,
@@ -176,7 +177,6 @@
 				B69E669D208C6117005ED0E1 /* Canvas.swift */,
 				B69E66A2208C6117005ED0E1 /* Brush.swift */,
 				B6F023B1208F2A4700D5CFA7 /* Document.swift */,
-				B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */,
 				B6F023B0208F1E9200D5CFA7 /* Utils */,
 				B68CFBE8208DF34F006170E7 /* MLBase */,
 			);

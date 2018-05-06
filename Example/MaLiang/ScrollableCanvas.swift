@@ -32,9 +32,6 @@ open class ScrollableCanvas: UIScrollView {
     open override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
         return touches.count == 1
     }
-    
-    
-    
 }
 
 extension ScrollableCanvas: UIScrollViewDelegate {
