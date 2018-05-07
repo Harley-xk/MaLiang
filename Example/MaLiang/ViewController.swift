@@ -30,9 +30,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        canvas = Canvas(frame: CGRect(x: 0, y: 0, width: 1024, height: 1024))
-        view.addSubview(canvas)
-        view.sendSubview(toBack: canvas)
+        let c = Canvas(frame: CGRect(x: 0, y: 0, width: 1024, height: 1024))
+        view.addSubview(c)
+        view.sendSubview(toBack: c)
+        canvas = c
         
         let pen = Brush(texture: #imageLiteral(resourceName: "pen"))
         pen.pointSize = 5

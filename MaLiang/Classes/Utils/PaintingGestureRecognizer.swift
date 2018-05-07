@@ -10,7 +10,7 @@ import UIKit.UIGestureRecognizerSubclass
 
 class PaintingGestureRecognizer: UIPanGestureRecognizer {
 
-    private var targetView: UIView
+    private weak var targetView: UIView!
     
     @discardableResult
     class func addToTarget(_ target: UIView, action: Selector) -> PaintingGestureRecognizer {
