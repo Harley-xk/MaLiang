@@ -7,6 +7,8 @@
 
 MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush  in Chinese ancient fairy story.
 
+![Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
+
 <img src="sample.png" width=450></img>
 
 ## Requirements
