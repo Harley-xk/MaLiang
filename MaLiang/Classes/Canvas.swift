@@ -26,6 +26,7 @@ open class Canvas: MLView {
         }
     }
     
+    private var paintingGesture: PaintingGestureRecognizer!
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
@@ -41,8 +42,14 @@ open class Canvas: MLView {
         addGestureRecognizer(tapGesture)
     }
     
-    private var paintingGesture: PaintingGestureRecognizer!
-    
+    /// take a snapshot on current canvas and export an image
+    open func snapshot() -> UIImage? {
+        UIGraphicsBeginImageContext(bounds.size)
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
     
     /// clear all things on the canvas
     ///
