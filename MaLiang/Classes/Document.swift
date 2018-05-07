@@ -28,10 +28,11 @@ open class CanvasElement: Codable {
     }
 }
 
-public struct CanvasAction {
-    enum ActionType {
-        case painting
-        case clear
+public struct CanvasAction: Codable {
+    
+    enum ActionType: String, Codable {
+        case painting = "paint"
+        case clear = "clear"
     }
     
     var actionType: ActionType = .painting
