@@ -13,75 +13,29 @@ struct ShaderUtil {
     /* Shader Utilities */
     /* Compile a shader from the provided source(s) */
     static func compileShader(_ target: GLenum, _ count: GLsizei, _ sources: UnsafePointer<UnsafePointer<GLchar>?>, _ shader: inout GLuint) -> GLint {
-        var logLength: GLint = 0
-        var status: GLint = 0
-        
+        var status: GLint = 0        
         shader = glCreateShader(target)
         glShaderSource(shader, count, sources, nil)
         glCompileShader(shader)
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH.gluint, &logLength)
-        if logLength > 0 {
-            let log = UnsafeMutablePointer<CChar>.allocate(capacity: logLength.int)
-            glGetShaderInfoLog(shader, logLength, &logLength, log)
-            LogInfo("Shader compile log:\n%@", args: String(cString: log))
-            log.deallocate()
-        }
-        
         glGetShaderiv(shader, GL_COMPILE_STATUS.gluint, &status)
-        if status == 0 {
-            LogError("Failed to compile shader:\n")
-            for i in 0 ..< count.int {
-                LogInfo("%@", args: sources[i].map{String(cString: $0)} ?? "")
-            }
-        }
-        LogGLError()
-        
         return status
     }
     
     
     /* Link a program with all currently attached shaders */
     static func linkProgram(_ program: GLuint) -> GLint {
-        var logLength: GLint = 0, status: GLint = 0
-        
+        var status: GLint = 0
         glLinkProgram(program)
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH.gluint, &logLength)
-        if logLength > 0 {
-            let log = UnsafeMutablePointer<CChar>.allocate(capacity: logLength.int)
-            glGetProgramInfoLog(program, logLength, &logLength, log)
-            LogInfo("Program link log:\n%@", args: String(cString: log))
-            log.deallocate()
-        }
-        
         glGetProgramiv(program, GL_LINK_STATUS.gluint, &status)
-        if status == 0 {
-            LogError("Failed to link program %d", args: program)
-        }
-        LogGLError()
-        
         return status
     }
     
     
     /* Validate a program (for i.e. inconsistent samplers) */
     static func validateProgram(_ program: GLuint) -> GLint {
-        var logLength: GLint = 0, status: GLint = 0
-        
+        var status: GLint = 0
         glValidateProgram(program)
-        glGetProgramiv(program, GL_INFO_LOG_LENGTH.gluint, &logLength)
-        if logLength > 0 {
-            let log = UnsafeMutablePointer<CChar>.allocate(capacity: logLength.int)
-            glGetProgramInfoLog(program, logLength, &logLength, log)
-            LogInfo("Program validate log:\n%@", args: String(cString: log))
-            log.deallocate()
-        }
-        
         glGetProgramiv(program, GL_VALIDATE_STATUS.gluint, &status)
-        if status == 0 {
-            LogError("Failed to validate program %d", args: program)
-        }
-        LogGLError()
-        
         return status
     }
     
@@ -130,7 +84,6 @@ struct ShaderUtil {
         if fragShader != 0 {
             glDeleteShader(fragShader)
         }
-        LogGLError()
         
         return status
     }

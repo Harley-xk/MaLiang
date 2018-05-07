@@ -32,28 +32,6 @@ struct FileUtil {
     }
 }
 
-// MARK: - Log Utils
-func LogInfo(_ format: String, args: CVarArg...) {
-    #if DEBUG
-    print(String(format: format, arguments: args), terminator: "")
-    #endif
-}
-
-func LogError(_ format: String, args: CVarArg...) {
-    #if DEBUG
-    print(String(format: format, arguments: args), terminator: "")
-    #endif
-}
-
-func LogGLError(_ file: String = #file, line: Int = #line) {
-    #if DEBUG
-    let err = glGetError()
-    if err != GL_NO_ERROR.gluint {
-        print("GLError: \(String(err, radix: 16)) caught at \(file):\(line)")
-    }
-    #endif
-}
-
 // MARK: - Number Extensions
 
 extension Int32 {
