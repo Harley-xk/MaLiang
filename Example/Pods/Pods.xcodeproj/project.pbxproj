@@ -7,39 +7,174 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		317C283B6FE4C67ED4D554CFE4740F1E /* Pods-MaLiang_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8698DB9300DFE092D53C0514ED1FC /* Pods-MaLiang_Example-dummy.m */; };
-		CE01940BE2819243D05F95C6C29B002C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		D8EB4E3F8730BDBDA791ED33758CB9DD /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A53446F3E8A55C87AE15C8086B17CA5B /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0FE4CCACFBFB0BD9C9B1F31E90C740C9 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3444B450ED19224E5B405C839361B /* Path.swift */; };
+		0FE6AAADFDFD0454D213C7D58B2CBB5D /* UITextField+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C4CEACDFDB65B8B727B7C667D16A34 /* UITextField+Comet.swift */; };
+		1328F64D683E501AD511547ABA18D7EA /* UINavigationBar+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063FBF52D6DC68717FF6C8E51DAA652 /* UINavigationBar+Comet.swift */; };
+		1AA1D4FAAA4F2F1CC17D17FF84566B02 /* PinyinIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC4A282D97B7622EF4A1B9EB9553E3F /* PinyinIndexer.swift */; };
+		1CC347AB8EF8DEBDA0F38695A02A976E /* String+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9FA36636CDF0EDE1DC7E52C9C83FD4 /* String+Comet.swift */; };
+		238B0C9D1D01BAE04EB6B80ED5C9A073 /* UIResponder+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BF0A1C9B28E8FDE866D76045B086F /* UIResponder+Comet.swift */; };
+		2520CD64880BBEC8783FF17F3B4DD8C8 /* UICollectionView+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D53B29A600F2A57759C3F5854681E4 /* UICollectionView+Comet.swift */; };
+		2BDB7BBD8DB8F97DAC73026083A528AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		309AA1829BF465E1E71D929464B7F24D /* Dispatch+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EA51D4E6C67F9E2EFA1FF9514D6FA2 /* Dispatch+Comet.swift */; };
+		34E4488C08F6B9346A37A9EF18315CE9 /* UIColor+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4708154D767CC0DB0A47F27192A5C7E /* UIColor+Comet.swift */; };
+		3F670658390EC2B118B4F6B89087B42E /* Numbers+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3880D1A4586045F6CD60C781C2C55 /* Numbers+Comet.swift */; };
+		4F0E5884E4AF70453AB8F71BA6A297BD /* UIVIew+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3FEA1C3C1A8DCBBEB54985BA73134 /* UIVIew+Comet.swift */; };
+		546D08B0AA96DE3DCE62CFB6E8862B4F /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC2318CD7292EAD45665B6D5A962405 /* KeyboardManager.swift */; };
+		57213E82DFADE6F1AD37DC84A0C49314 /* UIScrollView+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41C4316E7EEC95DFEA8EC925E2B1EB /* UIScrollView+Comet.swift */; };
+		65E759D74A60AEA620FE4E7A86E1E9D2 /* Comet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F91ED54DFC307571C90A14A4B4163B /* Comet-dummy.m */; };
+		78A82D60520544CB554CF4EA2F4F4E53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		7E6D79CD46C63FBEFE8232CE0B3ECC34 /* NSObject+KVOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B492C026023E21D9571FFA821E955E /* NSObject+KVOHandler.swift */; };
+		8042B59E31E2EBFAAA2EBC9E71D51995 /* Date+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D484FFF91E13F596F8937F0CC4EB4 /* Date+Comet.swift */; };
+		8377349105F3874AE054BEA021D248FF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FACCB626AF6B0B95039DD4B345D45DB /* Utils.swift */; };
+		92C49157EFE5D9590BDC8A3F1CC0E738 /* UIBarButtonItem+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722071814CB9D529FDD1991C307F9DC1 /* UIBarButtonItem+Closure.swift */; };
+		BEFF67ABB16E87754FB9D69528D87DF1 /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A53446F3E8A55C87AE15C8086B17CA5B /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D356CDEE9DB7B1E8E1EF7C28CC9551A9 /* HairLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1319064B78AAA38315C963CD360F2 /* HairLine.swift */; };
+		D639F443597EB13DB3C69B2124C68229 /* UIAlertController+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14811C86D63DFA17EC889B7931C86059 /* UIAlertController+Comet.swift */; };
+		D71912EB7D6DB1252E58A74D4A784032 /* TaskRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5DC0D18ECE029CA09FAA6D430B1722 /* TaskRecorder.swift */; };
+		D7D5BCC4238688E64A24873158560580 /* Pods-MaLiang_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E8698DB9300DFE092D53C0514ED1FC /* Pods-MaLiang_Example-dummy.m */; };
+		DAEC513F837D3B1A644346331EE335D0 /* Bool+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FB6C46D3F17BCAFDEC4F6E6735BAA0 /* Bool+Comet.swift */; };
+		DDAFA8D42220376DBE50E2FB07411576 /* UINavigationController+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C26CB4B225EBABCDAF8B652530FEBA1 /* UINavigationController+Comet.swift */; };
+		DFDBB3B83E7AC9830EC7C9DC8EB01D20 /* Text+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2CD44AC2B3D005C9CFC11F22BCC1A /* Text+Localize.swift */; };
+		EE528A2BB5DE5FB38B5F5039B051BA2E /* Comet-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 51DB977970A6B43305711D3454E70B41 /* Comet-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3C23B3773CA7EB82E9FD0801A5A954C /* UIViewController+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EE5D9AB97104FBCAEDF2B51DC78F8E /* UIViewController+Comet.swift */; };
+		F7EDFF89A1FB00F4C5A11CB5B7963E7C /* UITableView+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B9F5EE998E3CD78CBCC80CB90E327E /* UITableView+Comet.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		75C102F185B96F0D652E9EC5DDF8C10A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF316E052F345662902590B77BA68341;
+			remoteInfo = Comet;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		066BEA9955C421E487E29ACBC1875B5F /* Comet.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Comet.modulemap; sourceTree = "<group>"; };
+		0BF2CD44AC2B3D005C9CFC11F22BCC1A /* Text+Localize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Text+Localize.swift"; path = "Comet/Extensions/Text+Localize.swift"; sourceTree = "<group>"; };
+		0C9FA36636CDF0EDE1DC7E52C9C83FD4 /* String+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Comet.swift"; path = "Comet/Extensions/String+Comet.swift"; sourceTree = "<group>"; };
+		0FC2318CD7292EAD45665B6D5A962405 /* KeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyboardManager.swift; path = Comet/Classes/KeyboardManager.swift; sourceTree = "<group>"; };
+		128F7DB748D6ED971DA1E0AD850F0BB7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12F172EDAFC3EA74B302479B92933DA2 /* Comet-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Comet-prefix.pch"; sourceTree = "<group>"; };
+		14811C86D63DFA17EC889B7931C86059 /* UIAlertController+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIAlertController+Comet.swift"; path = "Comet/Extensions/UIAlertController+Comet.swift"; sourceTree = "<group>"; };
+		1D5DC0D18ECE029CA09FAA6D430B1722 /* TaskRecorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskRecorder.swift; path = Comet/Classes/TaskRecorder.swift; sourceTree = "<group>"; };
+		2BC4A282D97B7622EF4A1B9EB9553E3F /* PinyinIndexer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PinyinIndexer.swift; path = Comet/Classes/PinyinIndexer.swift; sourceTree = "<group>"; };
 		39A6D6CBF41CBC744F19C5B700375E59 /* Pods-MaLiang_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MaLiang_Example.modulemap"; sourceTree = "<group>"; };
+		3CF904B172429ACAB0605898C2B73924 /* Comet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Comet.framework; path = Comet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50B9F5EE998E3CD78CBCC80CB90E327E /* UITableView+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView+Comet.swift"; path = "Comet/Extensions/UITableView+Comet.swift"; sourceTree = "<group>"; };
+		51DB977970A6B43305711D3454E70B41 /* Comet-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Comet-umbrella.h"; sourceTree = "<group>"; };
+		548C0CC34FA84952CB5878FBC220FC78 /* Comet.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Comet.xcconfig; sourceTree = "<group>"; };
+		57B3444B450ED19224E5B405C839361B /* Path.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Path.swift; path = Comet/Classes/Path.swift; sourceTree = "<group>"; };
+		57C4CEACDFDB65B8B727B7C667D16A34 /* UITextField+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITextField+Comet.swift"; path = "Comet/Extensions/UITextField+Comet.swift"; sourceTree = "<group>"; };
+		5C41C4316E7EEC95DFEA8EC925E2B1EB /* UIScrollView+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIScrollView+Comet.swift"; path = "Comet/Extensions/UIScrollView+Comet.swift"; sourceTree = "<group>"; };
+		63F91ED54DFC307571C90A14A4B4163B /* Comet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Comet-dummy.m"; sourceTree = "<group>"; };
 		641923231CC117EC2C48BAB92F0A3E4F /* Pods-MaLiang_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MaLiang_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		722071814CB9D529FDD1991C307F9DC1 /* UIBarButtonItem+Closure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+Closure.swift"; path = "Comet/Extensions/UIBarButtonItem+Closure.swift"; sourceTree = "<group>"; };
 		7B8B5A3750BFC5A21AC71CCE2A0D0877 /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		7FACCB626AF6B0B95039DD4B345D45DB /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Comet/Classes/Utils.swift; sourceTree = "<group>"; };
 		826C2E53D311E9CFB624BACD4BBFC9E0 /* Pods-MaLiang_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MaLiang_Example-resources.sh"; sourceTree = "<group>"; };
+		84EE5D9AB97104FBCAEDF2B51DC78F8E /* UIViewController+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Comet.swift"; path = "Comet/Extensions/UIViewController+Comet.swift"; sourceTree = "<group>"; };
 		88E8698DB9300DFE092D53C0514ED1FC /* Pods-MaLiang_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MaLiang_Example-dummy.m"; sourceTree = "<group>"; };
-		8C36799C4B2C1DB7358972D66F1C8A72 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MaLiang_Example.framework; path = "Pods-MaLiang_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89EA51D4E6C67F9E2EFA1FF9514D6FA2 /* Dispatch+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dispatch+Comet.swift"; path = "Comet/Extensions/Dispatch+Comet.swift"; sourceTree = "<group>"; };
+		8AD3FEA1C3C1A8DCBBEB54985BA73134 /* UIVIew+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIVIew+Comet.swift"; path = "Comet/Extensions/UIVIew+Comet.swift"; sourceTree = "<group>"; };
+		8C26CB4B225EBABCDAF8B652530FEBA1 /* UINavigationController+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+Comet.swift"; path = "Comet/Extensions/UINavigationController+Comet.swift"; sourceTree = "<group>"; };
+		8F5D484FFF91E13F596F8937F0CC4EB4 /* Date+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Comet.swift"; path = "Comet/Extensions/Date+Comet.swift"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97FB6C46D3F17BCAFDEC4F6E6735BAA0 /* Bool+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bool+Comet.swift"; path = "Comet/Extensions/Bool+Comet.swift"; sourceTree = "<group>"; };
 		A53446F3E8A55C87AE15C8086B17CA5B /* Pods-MaLiang_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MaLiang_Example-umbrella.h"; sourceTree = "<group>"; };
+		A5B492C026023E21D9571FFA821E955E /* NSObject+KVOHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+KVOHandler.swift"; path = "Comet/Extensions/NSObject+KVOHandler.swift"; sourceTree = "<group>"; };
 		AACFF03AE501DC84A75E04F8B2DCDCB4 /* Pods-MaLiang_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MaLiang_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B6994BD4DA3E9E3C80061CCAA5FE4431 /* Pods-MaLiang_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MaLiang_Example.release.xcconfig"; sourceTree = "<group>"; };
+		BFE1319064B78AAA38315C963CD360F2 /* HairLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HairLine.swift; path = Comet/Classes/HairLine.swift; sourceTree = "<group>"; };
+		D56F334FE811156343F53D1B7E95EE30 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MaLiang_Example.framework; path = "Pods-MaLiang_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BDF4966623D55EE1DEB8AB7E95D2E4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4708154D767CC0DB0A47F27192A5C7E /* UIColor+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Comet.swift"; path = "Comet/Extensions/UIColor+Comet.swift"; sourceTree = "<group>"; };
+		E8D53B29A600F2A57759C3F5854681E4 /* UICollectionView+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView+Comet.swift"; path = "Comet/Extensions/UICollectionView+Comet.swift"; sourceTree = "<group>"; };
 		E985A69269FE0C3CF88C0CC4E6B36141 /* Pods-MaLiang_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MaLiang_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F063FBF52D6DC68717FF6C8E51DAA652 /* UINavigationBar+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationBar+Comet.swift"; path = "Comet/Extensions/UINavigationBar+Comet.swift"; sourceTree = "<group>"; };
+		F26BF0A1C9B28E8FDE866D76045B086F /* UIResponder+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIResponder+Comet.swift"; path = "Comet/Extensions/UIResponder+Comet.swift"; sourceTree = "<group>"; };
+		F6F3880D1A4586045F6CD60C781C2C55 /* Numbers+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Numbers+Comet.swift"; path = "Comet/Extensions/Numbers+Comet.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		53F40EE7D4AAAF6FE25CEDB8A419DE15 /* Frameworks */ = {
+		014C6BEC513359357EF2528149B4C5B6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE01940BE2819243D05F95C6C29B002C /* Foundation.framework in Frameworks */,
+				78A82D60520544CB554CF4EA2F4F4E53 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65449EBB72DEFBA6A6BB7C892603468E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BDB7BBD8DB8F97DAC73026083A528AE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F7E8DD6203C5365101420FE38C5B023 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CF904B172429ACAB0605898C2B73924 /* Comet.framework */,
+				D56F334FE811156343F53D1B7E95EE30 /* Pods_MaLiang_Example.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28171BF702973E15E3AD293F5935541F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				066BEA9955C421E487E29ACBC1875B5F /* Comet.modulemap */,
+				548C0CC34FA84952CB5878FBC220FC78 /* Comet.xcconfig */,
+				63F91ED54DFC307571C90A14A4B4163B /* Comet-dummy.m */,
+				12F172EDAFC3EA74B302479B92933DA2 /* Comet-prefix.pch */,
+				51DB977970A6B43305711D3454E70B41 /* Comet-umbrella.h */,
+				128F7DB748D6ED971DA1E0AD850F0BB7 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Comet";
+			sourceTree = "<group>";
+		};
+		2CD9A8DBE2AFEF3D4B13320D0C0FD0EB /* Comet */ = {
+			isa = PBXGroup;
+			children = (
+				97FB6C46D3F17BCAFDEC4F6E6735BAA0 /* Bool+Comet.swift */,
+				8F5D484FFF91E13F596F8937F0CC4EB4 /* Date+Comet.swift */,
+				89EA51D4E6C67F9E2EFA1FF9514D6FA2 /* Dispatch+Comet.swift */,
+				BFE1319064B78AAA38315C963CD360F2 /* HairLine.swift */,
+				0FC2318CD7292EAD45665B6D5A962405 /* KeyboardManager.swift */,
+				A5B492C026023E21D9571FFA821E955E /* NSObject+KVOHandler.swift */,
+				F6F3880D1A4586045F6CD60C781C2C55 /* Numbers+Comet.swift */,
+				57B3444B450ED19224E5B405C839361B /* Path.swift */,
+				2BC4A282D97B7622EF4A1B9EB9553E3F /* PinyinIndexer.swift */,
+				0C9FA36636CDF0EDE1DC7E52C9C83FD4 /* String+Comet.swift */,
+				1D5DC0D18ECE029CA09FAA6D430B1722 /* TaskRecorder.swift */,
+				0BF2CD44AC2B3D005C9CFC11F22BCC1A /* Text+Localize.swift */,
+				14811C86D63DFA17EC889B7931C86059 /* UIAlertController+Comet.swift */,
+				722071814CB9D529FDD1991C307F9DC1 /* UIBarButtonItem+Closure.swift */,
+				E8D53B29A600F2A57759C3F5854681E4 /* UICollectionView+Comet.swift */,
+				E4708154D767CC0DB0A47F27192A5C7E /* UIColor+Comet.swift */,
+				F063FBF52D6DC68717FF6C8E51DAA652 /* UINavigationBar+Comet.swift */,
+				8C26CB4B225EBABCDAF8B652530FEBA1 /* UINavigationController+Comet.swift */,
+				F26BF0A1C9B28E8FDE866D76045B086F /* UIResponder+Comet.swift */,
+				5C41C4316E7EEC95DFEA8EC925E2B1EB /* UIScrollView+Comet.swift */,
+				50B9F5EE998E3CD78CBCC80CB90E327E /* UITableView+Comet.swift */,
+				57C4CEACDFDB65B8B727B7C667D16A34 /* UITextField+Comet.swift */,
+				8AD3FEA1C3C1A8DCBBEB54985BA73134 /* UIVIew+Comet.swift */,
+				84EE5D9AB97104FBCAEDF2B51DC78F8E /* UIViewController+Comet.swift */,
+				7FACCB626AF6B0B95039DD4B345D45DB /* Utils.swift */,
+				28171BF702973E15E3AD293F5935541F /* Support Files */,
+			);
+			name = Comet;
+			path = Comet;
+			sourceTree = "<group>";
+		};
 		35AFA8556285EAAFB8D15A5DD91878A0 /* Pods-MaLiang_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,17 +198,10 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				7F384373B31791DE32FA0C33FA6558E3 /* Products */,
+				EBEEFFB20BF65B113F1D3388870845D3 /* Pods */,
+				0F7E8DD6203C5365101420FE38C5B023 /* Products */,
 				E5894976F7E1F95DDBF641B0837FF54F /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		7F384373B31791DE32FA0C33FA6558E3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8C36799C4B2C1DB7358972D66F1C8A72 /* Pods_MaLiang_Example.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -100,35 +228,69 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		EBEEFFB20BF65B113F1D3388870845D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2CD9A8DBE2AFEF3D4B13320D0C0FD0EB /* Comet */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		8D4F881A6B2430EDE482944B721148C2 /* Headers */ = {
+		12AB7A7CA8DDEF97E4424D09D3B9D5EF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8EB4E3F8730BDBDA791ED33758CB9DD /* Pods-MaLiang_Example-umbrella.h in Headers */,
+				BEFF67ABB16E87754FB9D69528D87DF1 /* Pods-MaLiang_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6877947BFF2C758A2F1A97D07FA63EF4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE528A2BB5DE5FB38B5F5039B051BA2E /* Comet-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8F68E7E60D8CE65944C0612B2D877B23 /* Pods-MaLiang_Example */ = {
+		285728CDB1129DD176FAC3C456B25CFF /* Pods-MaLiang_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC67BC94E0CE325406CE5BA18C96DD0F /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */;
+			buildConfigurationList = 9086EC2311AD6EA6AE0D4AF77AC20303 /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */;
 			buildPhases = (
-				9359332A51CFA9ADA309224395ACB2DF /* Sources */,
-				53F40EE7D4AAAF6FE25CEDB8A419DE15 /* Frameworks */,
-				8D4F881A6B2430EDE482944B721148C2 /* Headers */,
+				DF05267C3EDE34D063D07994D6936FAC /* Sources */,
+				014C6BEC513359357EF2528149B4C5B6 /* Frameworks */,
+				12AB7A7CA8DDEF97E4424D09D3B9D5EF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87DA473A3520E79EA9FA0F27C79DC5DA /* PBXTargetDependency */,
+			);
+			name = "Pods-MaLiang_Example";
+			productName = "Pods-MaLiang_Example";
+			productReference = D56F334FE811156343F53D1B7E95EE30 /* Pods_MaLiang_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BF316E052F345662902590B77BA68341 /* Comet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F7345ED56394F5CF2A8F01AC206BF5E /* Build configuration list for PBXNativeTarget "Comet" */;
+			buildPhases = (
+				9D741B51BF5CA87439323C3EF5B81ABA /* Sources */,
+				65449EBB72DEFBA6A6BB7C892603468E /* Frameworks */,
+				6877947BFF2C758A2F1A97D07FA63EF4 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-MaLiang_Example";
-			productName = "Pods-MaLiang_Example";
-			productReference = 8C36799C4B2C1DB7358972D66F1C8A72 /* Pods_MaLiang_Example.framework */;
+			name = Comet;
+			productName = Comet;
+			productReference = 3CF904B172429ACAB0605898C2B73924 /* Comet.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -148,28 +310,104 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 7F384373B31791DE32FA0C33FA6558E3 /* Products */;
+			productRefGroup = 0F7E8DD6203C5365101420FE38C5B023 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8F68E7E60D8CE65944C0612B2D877B23 /* Pods-MaLiang_Example */,
+				BF316E052F345662902590B77BA68341 /* Comet */,
+				285728CDB1129DD176FAC3C456B25CFF /* Pods-MaLiang_Example */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9359332A51CFA9ADA309224395ACB2DF /* Sources */ = {
+		9D741B51BF5CA87439323C3EF5B81ABA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				317C283B6FE4C67ED4D554CFE4740F1E /* Pods-MaLiang_Example-dummy.m in Sources */,
+				DAEC513F837D3B1A644346331EE335D0 /* Bool+Comet.swift in Sources */,
+				65E759D74A60AEA620FE4E7A86E1E9D2 /* Comet-dummy.m in Sources */,
+				8042B59E31E2EBFAAA2EBC9E71D51995 /* Date+Comet.swift in Sources */,
+				309AA1829BF465E1E71D929464B7F24D /* Dispatch+Comet.swift in Sources */,
+				D356CDEE9DB7B1E8E1EF7C28CC9551A9 /* HairLine.swift in Sources */,
+				546D08B0AA96DE3DCE62CFB6E8862B4F /* KeyboardManager.swift in Sources */,
+				7E6D79CD46C63FBEFE8232CE0B3ECC34 /* NSObject+KVOHandler.swift in Sources */,
+				3F670658390EC2B118B4F6B89087B42E /* Numbers+Comet.swift in Sources */,
+				0FE4CCACFBFB0BD9C9B1F31E90C740C9 /* Path.swift in Sources */,
+				1AA1D4FAAA4F2F1CC17D17FF84566B02 /* PinyinIndexer.swift in Sources */,
+				1CC347AB8EF8DEBDA0F38695A02A976E /* String+Comet.swift in Sources */,
+				D71912EB7D6DB1252E58A74D4A784032 /* TaskRecorder.swift in Sources */,
+				DFDBB3B83E7AC9830EC7C9DC8EB01D20 /* Text+Localize.swift in Sources */,
+				D639F443597EB13DB3C69B2124C68229 /* UIAlertController+Comet.swift in Sources */,
+				92C49157EFE5D9590BDC8A3F1CC0E738 /* UIBarButtonItem+Closure.swift in Sources */,
+				2520CD64880BBEC8783FF17F3B4DD8C8 /* UICollectionView+Comet.swift in Sources */,
+				34E4488C08F6B9346A37A9EF18315CE9 /* UIColor+Comet.swift in Sources */,
+				1328F64D683E501AD511547ABA18D7EA /* UINavigationBar+Comet.swift in Sources */,
+				DDAFA8D42220376DBE50E2FB07411576 /* UINavigationController+Comet.swift in Sources */,
+				238B0C9D1D01BAE04EB6B80ED5C9A073 /* UIResponder+Comet.swift in Sources */,
+				57213E82DFADE6F1AD37DC84A0C49314 /* UIScrollView+Comet.swift in Sources */,
+				F7EDFF89A1FB00F4C5A11CB5B7963E7C /* UITableView+Comet.swift in Sources */,
+				0FE6AAADFDFD0454D213C7D58B2CBB5D /* UITextField+Comet.swift in Sources */,
+				4F0E5884E4AF70453AB8F71BA6A297BD /* UIVIew+Comet.swift in Sources */,
+				F3C23B3773CA7EB82E9FD0801A5A954C /* UIViewController+Comet.swift in Sources */,
+				8377349105F3874AE054BEA021D248FF /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF05267C3EDE34D063D07994D6936FAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7D5BCC4238688E64A24873158560580 /* Pods-MaLiang_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		87DA473A3520E79EA9FA0F27C79DC5DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Comet;
+			target = BF316E052F345662902590B77BA68341 /* Comet */;
+			targetProxy = 75C102F185B96F0D652E9EC5DDF8C10A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		1EE19F5DD95931924296F637BF18BD8F /* Debug */ = {
+		054E57001B96D3558D2CEBD9A7DBA4B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 548C0CC34FA84952CB5878FBC220FC78 /* Comet.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Comet/Comet-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Comet/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Comet/Comet.modulemap";
+				PRODUCT_MODULE_NAME = Comet;
+				PRODUCT_NAME = Comet;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		199D972A13F2B4C56847F7A89CCA83BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -222,7 +460,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -232,7 +470,7 @@
 			};
 			name = Debug;
 		};
-		E51CCEFE587E8EFF1BAF806251E4B26C /* Release */ = {
+		71B0AE22321F430E44EB5A8AE48C6257 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B6994BD4DA3E9E3C80061CCAA5FE4431 /* Pods-MaLiang_Example.release.xcconfig */;
 			buildSettings = {
@@ -248,7 +486,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-MaLiang_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.modulemap";
@@ -259,6 +497,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -266,7 +505,7 @@
 			};
 			name = Release;
 		};
-		EDE6286841EE69546FEE49546C8071E9 /* Debug */ = {
+		D33D5253889E135B0AC1EC3949E068E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7B8B5A3750BFC5A21AC71CCE2A0D0877 /* Pods-MaLiang_Example.debug.xcconfig */;
 			buildSettings = {
@@ -282,7 +521,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-MaLiang_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.modulemap";
@@ -293,13 +532,47 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		F4568DEE257655D290C2B9CEAB37C934 /* Release */ = {
+		FAF3BAB6AFCE52DF76D8119C783ACF3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 548C0CC34FA84952CB5878FBC220FC78 /* Comet.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Comet/Comet-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Comet/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Comet/Comet.modulemap";
+				PRODUCT_MODULE_NAME = Comet;
+				PRODUCT_NAME = Comet;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FDB2FC4A1E5891381CD9D922145497F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -349,7 +622,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -363,17 +636,26 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1EE19F5DD95931924296F637BF18BD8F /* Debug */,
-				F4568DEE257655D290C2B9CEAB37C934 /* Release */,
+				199D972A13F2B4C56847F7A89CCA83BC /* Debug */,
+				FDB2FC4A1E5891381CD9D922145497F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC67BC94E0CE325406CE5BA18C96DD0F /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */ = {
+		5F7345ED56394F5CF2A8F01AC206BF5E /* Build configuration list for PBXNativeTarget "Comet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDE6286841EE69546FEE49546C8071E9 /* Debug */,
-				E51CCEFE587E8EFF1BAF806251E4B26C /* Release */,
+				FAF3BAB6AFCE52DF76D8119C783ACF3E /* Debug */,
+				054E57001B96D3558D2CEBD9A7DBA4B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9086EC2311AD6EA6AE0D4AF77AC20303 /* Build configuration list for PBXNativeTarget "Pods-MaLiang_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D33D5253889E135B0AC1EC3949E068E2 /* Debug */,
+				71B0AE22321F430E44EB5A8AE48C6257 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

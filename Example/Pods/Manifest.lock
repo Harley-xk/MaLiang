@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 8dd826c6c4275e8cbccc08e6a7e7efe481708265
+PODS:
+  - Comet (1.3.4)
+
+DEPENDENCIES:
+  - Comet
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Comet
+
+SPEC CHECKSUMS:
+  Comet: ac6323511eed179f1ab9b472862a739364f71c0b
+
+PODFILE CHECKSUM: 2aef2277e07f39430fec698d16891242152936c7
 
 COCOAPODS: 1.5.0

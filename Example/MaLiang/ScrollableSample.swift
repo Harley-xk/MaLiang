@@ -16,17 +16,19 @@ class ScrollableSample: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.canvas = canvas
+        
+        DispatchQueue.main.async {
+            let pencil = Brush(texture: #imageLiteral(resourceName: "pencil"))
+            pencil.pointSize = 5
+            pencil.pointStep = 2
+            pencil.opacity = 0.6
+            pencil.forceSensitive = 0
+            self.canvas.brush = pencil
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let pencil = Brush(texture: #imageLiteral(resourceName: "pen"))
-        pencil.pointSize = 5
-        pencil.pointStep = 2
-        pencil.opacity = 0.6
-        pencil.forceSensitive = 0
-        canvas.brush = pencil
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,7 +36,12 @@ class ScrollableSample: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func snapshotAction(_ sender: Any) {
+        let preview = PaintingPreview.createFromStoryboard()
+        preview.image = canvas.snapshot()
+        navigationController?.push(preview)
+    }
+    
     /*
     // MARK: - Navigation
 

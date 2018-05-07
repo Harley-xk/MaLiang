@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kdy-L1-4Gm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kdy-L1-4Gm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -323,7 +324,13 @@
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="centerY" secondItem="y2M-JQ-hAq" secondAttribute="centerY" id="w50-U0-Z6C"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Single View" id="6of-dD-zPZ"/>
+                    <navigationItem key="navigationItem" title="Single View" id="6of-dD-zPZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="KqJ-DL-lvb">
+                            <connections>
+                                <action selector="snapshotAction:" destination="vXZ-lx-hvc" id="6nA-qu-GFS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bl" destination="Nu8-A6-wuf" id="fuO-Fq-UPr"/>
                         <outlet property="blueSlider" destination="sTw-Ab-px5" id="W6K-w5-Luq"/>
@@ -342,6 +349,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="244" y="373.76311844077964"/>
+        </scene>
+        <!--Preview-->
+        <scene sceneID="xiY-6e-ocn">
+            <objects>
+                <viewController storyboardIdentifier="PaintingPreview" id="mJZ-YC-gTn" customClass="PaintingPreview" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="glj-zf-hW8"/>
+                        <viewControllerLayoutGuide type="bottom" id="DVd-yH-Jkd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tWd-HY-QHR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ag-qD-mlj">
+                                <rect key="frame" x="10" y="74" width="343" height="573"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9ag-qD-mlj" secondAttribute="height" id="6qN-oy-ebh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9ag-qD-mlj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="glj-zf-hW8" secondAttribute="bottom" constant="15" id="CuC-hO-v62"/>
+                            <constraint firstItem="DVd-yH-Jkd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9ag-qD-mlj" secondAttribute="bottom" constant="15" id="Idc-dw-qPy"/>
+                            <constraint firstItem="9ag-qD-mlj" firstAttribute="centerY" secondItem="tWd-HY-QHR" secondAttribute="centerY" id="IsB-WA-KZD"/>
+                            <constraint firstItem="9ag-qD-mlj" firstAttribute="centerX" secondItem="tWd-HY-QHR" secondAttribute="centerX" id="QiL-QB-sbZ"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="9ag-qD-mlj" secondAttribute="trailing" id="X8a-Jk-ERB"/>
+                            <constraint firstItem="9ag-qD-mlj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tWd-HY-QHR" secondAttribute="leadingMargin" id="tPA-Jm-aUk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Preview" id="2fJ-d8-wHv"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="imageView" destination="9ag-qD-mlj" id="kdT-iA-mPh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dso-5L-amq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1085.5999999999999" y="373.76311844077964"/>
         </scene>
         <!--Scrollable-->
         <scene sceneID="V0u-An-6vP">
@@ -383,7 +430,13 @@
                             <constraint firstItem="bXU-Tk-Cyf" firstAttribute="leading" secondItem="egp-KQ-7Do" secondAttribute="leading" id="lgE-Uy-QyM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Scrollable" id="YKu-JO-61c"/>
+                    <navigationItem key="navigationItem" title="Scrollable" id="YKu-JO-61c">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="2HP-dx-W3s">
+                            <connections>
+                                <action selector="snapshotAction:" destination="2Ag-HM-wp1" id="27O-c3-IMf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="canvas" destination="Ae7-3i-tGI" id="TxG-Vp-rGt"/>
                         <outlet property="scrollView" destination="bXU-Tk-Cyf" id="3LD-Sj-wEq"/>

@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		B604919D209A71C000372B21 /* PaintingGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */; };
+		B6202B88209F50B900DC0C20 /* PaintingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6202B87209F50B900DC0C20 /* PaintingPreview.swift */; };
 		B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLTexture.swift */; };
 		B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669D208C6117005ED0E1 /* Canvas.swift */; };
 		B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669E208C6117005ED0E1 /* BezierGenerator.swift */; };
@@ -47,6 +48,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingGestureRecognizer.swift; sourceTree = "<group>"; };
+		B6202B87209F50B900DC0C20 /* PaintingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingPreview.swift; sourceTree = "<group>"; };
 		B69E669C208C6117005ED0E1 /* MLTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLTexture.swift; sourceTree = "<group>"; };
 		B69E669D208C6117005ED0E1 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		B69E669E208C6117005ED0E1 /* BezierGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierGenerator.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */,
 				B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */,
+				B6202B87209F50B900DC0C20 /* PaintingPreview.swift */,
 				B6FFA542209CA31700936E58 /* painting_texture_mb.png */,
 				B6FFA53E209CA26100936E58 /* pencil-2@2x.png */,
 				B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */,
@@ -223,6 +226,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
+				E1EBFC16932D85391E716663 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -306,6 +310,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E1EBFC16932D85391E716663 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Comet/Comet.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Comet.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -325,6 +347,7 @@
 				B69E66AC208C6117005ED0E1 /* Utils.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */,
+				B6202B88209F50B900DC0C20 /* PaintingPreview.swift in Sources */,
 				B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */,
 				B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */,
 				B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */,

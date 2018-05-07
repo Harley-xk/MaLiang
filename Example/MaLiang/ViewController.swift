@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Comet
 
 class ViewController: UIViewController {
 
@@ -117,7 +118,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func clearAction(_ sender: Any) {
-        canvas.clear()
+        canvas.clear()        
+    }
+    
+    @IBAction func snapshotAction(_ sender: Any) {
+        let preview = PaintingPreview.createFromStoryboard()
+        preview.image = canvas.snapshot()
+        navigationController?.push(preview)
     }
     
     // MARK: - color
