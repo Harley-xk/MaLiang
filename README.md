@@ -48,6 +48,8 @@ A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
 
 Now, all things necessary is done!
 
+#### Snapshot
+You can take snapshot on canvas now. Just call `snapshot` function on `Canvas` and you will get an optional `UIImage` object.
 
 ### Brush
 
@@ -115,8 +117,8 @@ do {
 ```
 
 ## TODO
-- [x] ~~Undo & Redo~~
-- [ ] Export to image
+- [x] Undo & Redo
+- [x] Export to image
 - [ ] Text element
 - [ ] Image element
 - [ ] Texture rotation
