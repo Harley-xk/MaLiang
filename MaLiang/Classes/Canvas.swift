@@ -29,7 +29,10 @@ open class Canvas: MLView {
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
-        brush = Brush(texture: MLTexture.default)
+        
+        if brush == nil {
+            brush = Brush(texture: MLTexture.default)
+        }
         
         /// gesture to render line
         paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
