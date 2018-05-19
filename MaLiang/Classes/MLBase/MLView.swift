@@ -189,6 +189,9 @@ open class MLView: UIView {
         
         // Make sure to start with a cleared buffer
         needsClear = true
+        
+        // initializ OpenGL
+        initialized = initGL()
     }
     
     // If our view is resized, we'll be asked to layout subviews.
