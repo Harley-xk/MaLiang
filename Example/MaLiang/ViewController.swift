@@ -39,7 +39,6 @@ class ViewController: UIViewController {
         pen.pointSize = 5
         pen.pointStep = 1
         pen.color = color
-        canvas.brush = pen
 
         let pencil = Brush(texture: #imageLiteral(resourceName: "pencil-2.png"))
         pencil.pointSize = 3
@@ -62,7 +61,9 @@ class ViewController: UIViewController {
             let name = brushNames[i]
             brushSegement.insertSegment(withTitle: name, at: i, animated: false)
         }
-
+        brushSegement.selectedSegmentIndex = 0
+        styleChanged(brushSegement)
+        
         do {
             try canvas.setupDocument()
         } catch {
@@ -84,17 +85,6 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        canvas.brush = brushes.first
-    }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func changeSizeAction(_ sender: UISlider) {
         let size = Int(sender.value)
         canvas.brush.pointSize = CGFloat(size)
