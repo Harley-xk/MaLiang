@@ -21,6 +21,7 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
   s.source           = { :git => 'https://github.com/harley-xk/MaLiang.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1' }
 
   s.source_files = 'MaLiang/Classes/**/*'
   
