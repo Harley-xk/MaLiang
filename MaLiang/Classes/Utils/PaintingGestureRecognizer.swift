@@ -14,14 +14,14 @@ class PaintingGestureRecognizer: UIPanGestureRecognizer {
     
     @discardableResult
     class func addToTarget(_ target: UIView, action: Selector) -> PaintingGestureRecognizer {
-        let ges = PaintingGestureRecognizer(target: target, action: action)
+        let ges = PaintingGestureRecognizer(targetView: target, action: action)
         target.addGestureRecognizer(ges)
         return ges
     }
     
-    init(target: UIView, action: Selector?) {
-        targetView = target
-        super.init(target: target, action: action)
+    convenience init(targetView t: UIView, action: Selector?) {
+        self.init(target: t, action: action)
+        targetView = t
         maximumNumberOfTouches = 1
         
     }
