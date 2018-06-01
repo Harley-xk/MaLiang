@@ -19,14 +19,25 @@ open class Canvas: MLView {
     /// enable force
     open var forceEnabled: Bool {
         get {
-            return paintingGesture.forceEnabled
+            return paintingGesture?.forceEnabled ?? false
         }
         set {
-            paintingGesture.forceEnabled = newValue
+            paintingGesture?.forceEnabled = newValue
         }
     }
     
-    private var paintingGesture: PaintingGestureRecognizer!
+    // setup gestures
+    open var paintingGesture: PaintingGestureRecognizer?
+
+    open func setupGestureRecognizers() {
+        /// gesture to render line
+        paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
+        /// gesture to render dot
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
@@ -35,11 +46,7 @@ open class Canvas: MLView {
             brush = Brush(texture: MLTexture.default)
         }
         
-        /// gesture to render line
-        paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
-        /// gesture to render dot
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        addGestureRecognizer(tapGesture)
+        setupGestureRecognizers()
     }
     
     /// take a snapshot on current canvas and export an image
