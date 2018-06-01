@@ -8,7 +8,7 @@
 import UIKit.UIGestureRecognizerSubclass
 
 
-class PaintingGestureRecognizer: UIPanGestureRecognizer {
+open class PaintingGestureRecognizer: UIPanGestureRecognizer {
 
     private weak var targetView: UIView!
     
@@ -49,17 +49,17 @@ class PaintingGestureRecognizer: UIPanGestureRecognizer {
     }
     
     // MARK: - Touch Handling
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         updateForceFromTouches(touches)
         super.touchesBegan(touches, with: event)
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         updateForceFromTouches(touches)
         super.touchesMoved(touches, with: event)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
         updateForceFromTouches(touches)
         super.touchesEnded(touches, with: event)
     }
