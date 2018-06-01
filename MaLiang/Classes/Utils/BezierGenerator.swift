@@ -44,8 +44,8 @@ class BezierGenerator {
         points.removeAll()
     }
     
-    private var points: [CGPoint] = []
-    private var style: Style = .quadratic
+    var points: [CGPoint] = []
+    var style: Style = .quadratic
     
     private var step = 0
     private func genericPathPoints() -> [CGPoint] {

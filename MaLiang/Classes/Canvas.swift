@@ -162,17 +162,21 @@ open class Canvas: MLView {
         super.renderLine(line, display: display)
         document?.appendLines([line], with: brush.texture)
     }
+    
+    open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
+        var line = brush.line(from: point, to: to ?? point)
+        /// fix the opacity of color when there is only one point
+        let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
+        let opacity = brush.opacity + (1 - brush.opacity) * delta
+        line.color = brush.color.mlcolorWith(opacity: opacity)
+        self.renderLine(line)
+    }
 
     // MARK: - Gestures
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .recognized {
             let location = gesture.gl_location(in: self)
-            var line = brush.line(from: location, to: location)
-            /// fix the opacity of color when there is only one point
-            let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
-            let opacity = brush.opacity + (1 - brush.opacity) * delta
-            line.color = brush.color.mlcolorWith(opacity: opacity)
-            self.renderLine(line)
+            renderTap(at: location)
             document?.finishCurrentElement()
         }
     }
@@ -190,7 +194,12 @@ open class Canvas: MLView {
             pushPoint(location, to: bezierGenerator, force: gesture.force)
         }
         else if gesture.state == .ended {
-            pushPoint(location, to: bezierGenerator, force: gesture.force, isEnd: true)
+            let count = bezierGenerator.points.count
+            if count < 3 {
+                renderTap(at: bezierGenerator.points.first!, to: bezierGenerator.points.last!)
+            } else {
+                pushPoint(location, to: bezierGenerator, force: gesture.force, isEnd: true)
+            }
             bezierGenerator.finish()
             lastRenderedPan = nil
             document?.finishCurrentElement()
