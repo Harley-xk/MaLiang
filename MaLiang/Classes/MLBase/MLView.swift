@@ -24,6 +24,13 @@ struct Attribute {
 
 open class MLView: UIView {
     
+    open var ciimage: CIImage? {
+        didSet {
+            draw(bounds)
+        }
+    }
+    private var showed = false
+    
     // MARK: - Functions
     // Erases the screen, redisplay the buffer if display sets to true
     open func clear(display: Bool = true) {
@@ -211,6 +218,13 @@ open class MLView: UIView {
         if needsClear {
             clear(display: false)
             needsClear = false
+        }
+        
+        if !showed, let image = ciimage {
+            
+            let ciContext = CIContext(eaglContext: context)
+            ciContext.draw(image, in: bounds, from: image.extent)
+            showed = true
         }
     }
     
