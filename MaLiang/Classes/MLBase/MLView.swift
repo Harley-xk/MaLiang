@@ -225,6 +225,8 @@ open class MLView: UIView {
             let ciContext = CIContext(eaglContext: context)
             ciContext.draw(image, in: bounds, from: image.extent)
             showed = true
+            
+            displayBuffer()
         }
     }
     
@@ -450,4 +452,28 @@ open class MLView: UIView {
         context.presentRenderbuffer(GL_RENDERBUFFER.int)
     }
     
+    public func glToUIImage() -> UIImage? {
+        
+        let x: Int = 0
+        let y: Int = 0
+        let width = backingWidth
+        let height = backingHeight
+        let dataLength: Int = Int(width) * Int(height) * 4
+        let pixels: UnsafeMutableRawPointer? = malloc(dataLength * MemoryLayout<GLubyte>.size)
+        glPixelStorei(GLenum(GL_PACK_ALIGNMENT), 4)
+        glReadPixels(GLint(x), GLint(y), GLsizei(width), GLsizei(height), GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), pixels)
+        let pixelData: UnsafePointer = (UnsafeRawPointer(pixels)?.assumingMemoryBound(to: UInt8.self))!
+        let cfdata: CFData = CFDataCreate(kCFAllocatorDefault, pixelData, dataLength * MemoryLayout<GLubyte>.size)
+        
+        let provider: CGDataProvider! = CGDataProvider(data: cfdata)
+        
+        let iref: CGImage? = CGImage(width: Int(width), height: Int(height), bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: Int(width)*4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGBitmapInfo.byteOrder32Big, provider: provider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent)
+        UIGraphicsBeginImageContext(CGSize(width: CGFloat(width), height: CGFloat(height)))
+        let cgcontext: CGContext? = UIGraphicsGetCurrentContext()
+        cgcontext!.setBlendMode(CGBlendMode.normal)
+        cgcontext!.draw(iref!, in: CGRect(x: CGFloat(0.0), y: CGFloat(0.0), width: CGFloat(width), height: CGFloat(height)))
+        let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
