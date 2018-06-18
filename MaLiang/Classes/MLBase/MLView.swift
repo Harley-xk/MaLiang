@@ -223,7 +223,7 @@ open class MLView: UIView {
         if !showed, let image = ciimage {
             
             let ciContext = CIContext(eaglContext: context)
-            ciContext.draw(image, in: bounds, from: image.extent)
+            ciContext.draw(image, in: image.extent, from: image.extent)
             showed = true
             
             displayBuffer()
