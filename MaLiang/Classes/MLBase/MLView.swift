@@ -36,6 +36,16 @@ open class MLView: UIView {
         glClearColor(0.0, 0.0, 0.0, 0.0)
         glClear(GL_COLOR_BUFFER_BIT.gluint)
         
+        if let image = ciimage {
+            
+            let ciContext = CIContext(eaglContext: context)
+            ciContext.draw(image, in: image.extent, from: image.extent)
+            
+            if needsClear && !display {
+                displayBuffer()
+            }
+        }
+        
         if display {
             displayBuffer()
         }
@@ -214,14 +224,6 @@ open class MLView: UIView {
             clear(display: false)
             needsClear = false
         }
-        
-        if let image = ciimage {
-            
-            let ciContext = CIContext(eaglContext: context)
-            ciContext.draw(image, in: image.extent, from: image.extent)
-            
-            displayBuffer()
-        }
     }
     
     private func setupShaders() {
@@ -388,7 +390,7 @@ open class MLView: UIView {
             renderLine(line, display: false)
         }
         
-        displayBuffer()        
+        displayBuffer()
     }
     
     // Drawings a line onscreen based on where the user touches
