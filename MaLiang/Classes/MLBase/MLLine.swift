@@ -14,7 +14,7 @@ public struct MLLine: Codable {
     
     var pointSize: CGFloat
     var pointStep: CGFloat
-    var color: MLColor
+    public var color: MLColor
     
     init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor) {
         self.begin = begin

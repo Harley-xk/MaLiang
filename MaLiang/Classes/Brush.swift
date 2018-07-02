@@ -61,7 +61,7 @@ open class Brush {
     }
 }
 
-final class Eraser: Brush {
+final public class Eraser: Brush {
     
     /// only a global eraser needed
     public static let global = Eraser()

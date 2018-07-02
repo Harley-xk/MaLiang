@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 
 /// Color to render on MLView
-struct MLColor: Equatable, Codable {
+public struct MLColor: Equatable, Codable {
     var red: CGFloat
     var green: CGFloat
     var blue: CGFloat

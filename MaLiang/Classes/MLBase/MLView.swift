@@ -24,6 +24,11 @@ struct Attribute {
 
 open class MLView: UIView {
     
+    open var ciimage: CIImage?
+    
+    open var ciContext: CIContext!
+    
+    
     // MARK: - Functions
     // Erases the screen, redisplay the buffer if display sets to true
     open func clear(display: Bool = true) {
@@ -33,6 +38,15 @@ open class MLView: UIView {
         glBindFramebuffer(GL_FRAMEBUFFER.gluint, viewFramebuffer)
         glClearColor(0.0, 0.0, 0.0, 0.0)
         glClear(GL_COLOR_BUFFER_BIT.gluint)
+        
+        if let image = ciimage, let ciContext = self.ciContext {
+            
+            ciContext.draw(image, in: image.extent, from: image.extent)
+            
+            if needsClear && !display {
+                displayBuffer()
+            }
+        }
         
         if display {
             displayBuffer()
@@ -120,7 +134,7 @@ open class MLView: UIView {
     // OpenGL name for the depth buffer that is attached to viewFramebuffer, if it exists (0 if it does not exist)
     private var depthRenderbuffer: GLuint = 0
     
-    private var needsClear: Bool = false
+    var needsClear: Bool = false
     
     // Shader objects
     private var vertexShader: GLuint = 0
@@ -192,6 +206,8 @@ open class MLView: UIView {
         
         // initializ OpenGL
         initialized = initGL()
+        
+        ciContext = CIContext(eaglContext: context)
     }
     
     // If our view is resized, we'll be asked to layout subviews.
@@ -378,7 +394,7 @@ open class MLView: UIView {
             renderLine(line, display: false)
         }
         
-        displayBuffer()        
+        displayBuffer()
     }
     
     // Drawings a line onscreen based on where the user touches
@@ -436,4 +452,28 @@ open class MLView: UIView {
         context.presentRenderbuffer(GL_RENDERBUFFER.int)
     }
     
+    public func glToUIImage() -> UIImage? {
+        
+        let x: Int = 0
+        let y: Int = 0
+        let width = backingWidth
+        let height = backingHeight
+        let dataLength: Int = Int(width) * Int(height) * 4
+        let pixels: UnsafeMutableRawPointer? = malloc(dataLength * MemoryLayout<GLubyte>.size)
+        glPixelStorei(GLenum(GL_PACK_ALIGNMENT), 4)
+        glReadPixels(GLint(x), GLint(y), GLsizei(width), GLsizei(height), GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), pixels)
+        let pixelData: UnsafePointer = (UnsafeRawPointer(pixels)?.assumingMemoryBound(to: UInt8.self))!
+        let cfdata: CFData = CFDataCreate(kCFAllocatorDefault, pixelData, dataLength * MemoryLayout<GLubyte>.size)
+        
+        let provider: CGDataProvider! = CGDataProvider(data: cfdata)
+        
+        let iref: CGImage? = CGImage(width: Int(width), height: Int(height), bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: Int(width)*4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGBitmapInfo.byteOrder32Big, provider: provider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent)
+        UIGraphicsBeginImageContext(CGSize(width: CGFloat(width), height: CGFloat(height)))
+        let cgcontext: CGContext? = UIGraphicsGetCurrentContext()
+        cgcontext!.setBlendMode(CGBlendMode.normal)
+        cgcontext!.draw(iref!, in: CGRect(x: CGFloat(0.0), y: CGFloat(0.0), width: CGFloat(width), height: CGFloat(height)))
+        let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
