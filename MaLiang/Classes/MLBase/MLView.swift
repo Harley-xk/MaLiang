@@ -26,6 +26,9 @@ open class MLView: UIView {
     
     open var ciimage: CIImage?
     
+    open var ciContext: CIContext!
+    
+    
     // MARK: - Functions
     // Erases the screen, redisplay the buffer if display sets to true
     open func clear(display: Bool = true) {
@@ -36,9 +39,8 @@ open class MLView: UIView {
         glClearColor(0.0, 0.0, 0.0, 0.0)
         glClear(GL_COLOR_BUFFER_BIT.gluint)
         
-        if let image = ciimage {
+        if let image = ciimage, let ciContext = self.ciContext {
             
-            let ciContext = CIContext(eaglContext: context)
             ciContext.draw(image, in: image.extent, from: image.extent)
             
             if needsClear && !display {
@@ -132,7 +134,7 @@ open class MLView: UIView {
     // OpenGL name for the depth buffer that is attached to viewFramebuffer, if it exists (0 if it does not exist)
     private var depthRenderbuffer: GLuint = 0
     
-    private var needsClear: Bool = false
+    var needsClear: Bool = false
     
     // Shader objects
     private var vertexShader: GLuint = 0
@@ -204,6 +206,8 @@ open class MLView: UIView {
         
         // initializ OpenGL
         initialized = initGL()
+        
+        ciContext = CIContext(eaglContext: context)
     }
     
     // If our view is resized, we'll be asked to layout subviews.
