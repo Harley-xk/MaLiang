@@ -1,6 +1,6 @@
 language: swift
 os: osx
-osx_image: xcode9.3
+osx_image: xcode10
 
 podfile: Example/Podfile
 script: xcodebuild -workspace Example/MaLiang.xcworkspace -scheme MaLiang-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
