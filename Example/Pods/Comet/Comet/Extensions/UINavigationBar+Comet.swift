@@ -21,11 +21,11 @@ public extension UINavigationBar {
     /// 设置导航栏的文字颜色
     public var textColor: UIColor? {
         get {
-            return self.titleTextAttributes?[NSAttributedStringKey.foregroundColor] as? UIColor
+            return self.titleTextAttributes?[.foregroundColor] as? UIColor
         }
         set {
-            var attributes = self.titleTextAttributes ?? [NSAttributedStringKey : Any]()
-            attributes[NSAttributedStringKey.foregroundColor] = newValue
+            var attributes = self.titleTextAttributes ?? [NSAttributedString.Key : Any]()
+            attributes[.foregroundColor] = newValue
             self.titleTextAttributes = attributes
         }
     }
@@ -33,11 +33,11 @@ public extension UINavigationBar {
     /// 设置导航栏标题的字体
     public var titleFont: UIFont? {
         get {
-            return self.titleTextAttributes?[NSAttributedStringKey.font] as? UIFont
+            return self.titleTextAttributes?[.font] as? UIFont
         }
         set {
-            var attributes = self.titleTextAttributes ?? [NSAttributedStringKey : Any]()
-            attributes[NSAttributedStringKey.font] = newValue
+            var attributes = self.titleTextAttributes ?? [NSAttributedString.Key : Any]()
+            attributes[.font] = newValue
             self.titleTextAttributes = attributes
         }
     }

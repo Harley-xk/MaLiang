@@ -46,5 +46,16 @@ public extension UIScrollView {
         let destination = CGRect(x: contentSize.width - 1, y: y, width: 1, height: 1)
         scrollRectToVisible(destination, animated: animated)
     }
+    
+    
+    /// 快速设置 ContentInset
+    public func addContentInset(left: CGFloat = 0, top: CGFloat = 0, right: CGFloat = 0, bottom: CGFloat = 0) {
+        var inset = contentInset
+        inset.left += left
+        inset.top += top
+        inset.right += right
+        inset.bottom += bottom
+        contentInset = inset
+    }
 }
 

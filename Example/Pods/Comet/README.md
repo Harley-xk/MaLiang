@@ -7,14 +7,16 @@
 
 
 iOS 项目的 Swift 基础库，提供大量常用组件、便利方法等。支持 **Swift 3.0+**。
-1.0.0 起支持 Swift 4.0，需要支持 Swift 3.x 请使用 0.7.5 版本。
-
+1.0.0 起支持 Swift 4.x，需要支持 Swift 3.x 请使用 0.7.5 版本。
+1.5.0 起支持 Swift 4.2， 需要支持 Swift 4.0/4.1 请指定 1.4.1 版本。
 ### 安装
 支持 CocoaPods 安装：
 
 ```ruby
-# for swift 4.0
+# for swift 4.2
 pod 'Comet'
+# for swift 4.0/4.1
+pod 'Comet', :git => 'https://github.com/Harley-xk/Comet.git, :tag=>1.4.1'
 # for swift 3.1/3.2
 pod 'Comet', :git => 'https://github.com/Harley-xk/Comet.git, :tag=>0.7.5'
 ```
@@ -51,17 +53,7 @@ pod 'Comet', :git => 'https://github.com/Harley-xk/Comet.git, :tag=>0.7.5'
 
 将所有需要调整的控件都放在一个 **ScrollView** 中并设置合适的约束，初始化键盘控制器时，只需要传入 **ScrollView** 底部到父视图底部的约束以及 **ScrollView** 本身作为参数，就可以实现大多数场景的需求。这时键盘弹出时 **ScrollView** 就可以自行调整大小以适应键盘了。
 
-##### 2. HairLine —— 极细的线？（即将废除）
-
-由于 IB 中无法将约束值设置为小数，而通过代码创建约束相对繁琐，并且与 IB 拖界面的开发风格不符，因此专门设计了该类，用于在 IB 中设置宽度 <1 的细线
-
-***注: Xcode 8.0 及更高版本已经支持在 IB 中设置约束值为小数，该工具类将在不久后废除***
-
-用法：
-
-1. 拖一个 UIView 到界面上，根据业务需求设置好背景色及约束（上下左右、长宽等）
-2. 将需要设置为极细的维度（Width 或 Height）通过输出口链接到 ***lineConstraint*** 属性
-3. 设置 ***constant*** 属性的值（可选），默认值为 0.3，应该可以满足大部分的需求
+##### ~~2. HairLine —— 极细的线？（已废除）~~
 
 ##### 3. Path —— 路径
 文件读写是大多数 App 或多或少需要涉及的内容，路径类主要用于快速获取设备的各种文件及文件夹路径。 **Path** 类的本质是对路径字符串的封装，在此基础上提供额外的简便操作方法。详细可以查看 **Path** 类的方法注释

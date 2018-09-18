@@ -71,7 +71,6 @@ public extension Date {
         var components = calendar.dateComponents(Set(Calendar.Component.dateAndTime), from: self)
         components.timeZone = TimeZone.current
         components.setValue(unit.value, for: unit.component)
-
         let date = calendar.date(from: components)
         return date ?? self
     }
@@ -81,11 +80,28 @@ public extension Date {
         let calendar = Calendar.current
         var components = calendar.dateComponents([.year, .month, .day], from: self)
         components.timeZone = TimeZone.current
-
         let date = calendar.date(from: components)
         return date ?? self
     }
-
+    
+    /// 某个日期的开始，即 0 时 0 分 0 秒
+    public var beginTime: Date {
+        return withoutTime
+    }
+    
+    /// 某个日期的结束，即 23 时 59 分 59 秒
+    public var endTime: Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
+        components.timeZone = TimeZone.current
+        components.hour = 23
+        components.minute = 59
+        components.second = 59
+        
+        let date = calendar.date(from: components)
+        return date ?? self
+    }
+    
     /// 某个单位的值
     public func unit(_ unit: Calendar.Component) -> Int {
         let calendar = Calendar.current

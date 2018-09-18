@@ -1,16 +1,16 @@
 PODS:
-  - Comet (1.3.4)
+  - Comet (1.5.0)
 
 DEPENDENCIES:
   - Comet
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Comet
 
 SPEC CHECKSUMS:
-  Comet: ac6323511eed179f1ab9b472862a739364f71c0b
+  Comet: 785333ec44d6a6e8edfa566d24927449122f660c
 
 PODFILE CHECKSUM: 2aef2277e07f39430fec698d16891242152936c7
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.0.beta.1

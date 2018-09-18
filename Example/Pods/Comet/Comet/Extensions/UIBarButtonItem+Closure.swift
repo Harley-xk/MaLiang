@@ -14,23 +14,23 @@ import Foundation
 public extension UIBarButtonItem {
     
     // MARK: - Override convenience methods
-    public convenience init(image: UIImage?, style: UIBarButtonItemStyle, callback: ButtonActionCallBack?) {
+    public convenience init(image: UIImage?, style: UIBarButtonItem.Style, callback: ButtonActionCallBack?) {
         self.init(image: image, style: style, target: nil, action: nil)
         self.closureAction = callback
     }
     
     @available(iOS 5.0, *)
-    public convenience init(image: UIImage?, landscapeImagePhone: UIImage?, style: UIBarButtonItemStyle, callback: ButtonActionCallBack?) {
+    public convenience init(image: UIImage?, landscapeImagePhone: UIImage?, style: UIBarButtonItem.Style, callback: ButtonActionCallBack?) {
         self.init(image: image, landscapeImagePhone: landscapeImagePhone, style: style, target: nil, action: nil)
         self.closureAction = callback
     }
     
-    public convenience init(title: String?, style: UIBarButtonItemStyle, callback: ButtonActionCallBack?) {
+    public convenience init(title: String?, style: UIBarButtonItem.Style, callback: ButtonActionCallBack?) {
         self.init(title: title, style: style, target:nil, action: nil)
         self.closureAction = callback
     }
     
-    public convenience init(barButtonSystemItem systemItem: UIBarButtonSystemItem, callback: ButtonActionCallBack?) {
+    public convenience init(barButtonSystemItem systemItem: UIBarButtonItem.SystemItem, callback: ButtonActionCallBack?) {
         self.init(barButtonSystemItem: systemItem, target:nil, action: nil)
         self.closureAction = callback
     }

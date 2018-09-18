@@ -89,10 +89,10 @@ open class KeyboardManager {
     // MARK: - Private Logics
     private func registerKeyboardEvents() {
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardDidShow), name: Notification.Name.UIKeyboardDidShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func viewBottomSpace() -> CGFloat {
@@ -146,8 +146,8 @@ open class KeyboardManager {
         
         if (enabled) {
             let userInfo = notification.userInfo!
-            let timeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-            let option = UIViewAnimationOptions(rawValue: UInt(truncating: userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber))
+            let timeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+            let option = UIView.AnimationOptions(rawValue: UInt(truncating: userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber))
             
             UIView.animate(withDuration: timeInterval, delay: 0, options:option, animations: {
                 positionConstraint.constant = self.originalConstant
@@ -164,7 +164,7 @@ open class KeyboardManager {
         }
         
         let userInfo = notification.userInfo!
-        let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let frameInView = viewController.view.convert(endFrame, from: viewController.view.window)
         var keyBoardHeight = viewController.view.frame.size.height - frameInView.origin.y
         keyBoardHeight = max(0, keyBoardHeight)
@@ -176,8 +176,8 @@ open class KeyboardManager {
         
         let offset = keyBoardHeight - bottomSpace;
         
-        let timeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-        let option = UIViewAnimationOptions(rawValue: UInt(truncating: userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber))
+        let timeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let option = UIView.AnimationOptions(rawValue: UInt(truncating: userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber))
         
         UIView.animate(withDuration: timeInterval, delay: 0, options:option, animations: {
             positionConstraint.constant = self.originalConstant + offset

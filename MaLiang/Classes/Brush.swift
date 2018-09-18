@@ -76,7 +76,7 @@ final class Eraser: Brush {
     }
     
     // color of eraser can't be changed
-    override open var color: UIColor {
+    override public var color: UIColor {
         get {
             return .clear
         }

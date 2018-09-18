@@ -16,7 +16,7 @@ public protocol TaskProtocol: AnyObject {
 /**
  用于记录发起的任务（比如网络请求），如果在对象被销毁时任务还未执行完毕，这些任务将被取消并销毁
  */
-class TaskRecorder: NSObject {
+class TaskRecorder {
 
     var unfinishedTasks = NSHashTable<AnyObject>.weakObjects()
     
