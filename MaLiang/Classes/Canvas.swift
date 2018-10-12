@@ -69,6 +69,11 @@ open class Canvas: MLView {
         }
     }
     
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        redraw()
+    }
+    
     // MARK: - Document
     public private(set) var document: Document?
     public func setupDocument() throws {
