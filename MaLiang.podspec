@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MaLiang'
-  s.version          = '1.1.7'
+  s.version          = '1.1.8'
   s.summary          = 'MaLiang is a painting Framework based on OpenGL ES.'
 
   s.description      = <<-DESC
