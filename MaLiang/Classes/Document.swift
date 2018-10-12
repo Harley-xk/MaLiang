@@ -50,9 +50,10 @@ open class Document {
     open var currentElement: CanvasElement?
     
     /// get the element id of element, create if not exists
-    open func createTexture(for element: CanvasElement) {
+    @discardableResult
+    open func createTexture(for element: CanvasElement) -> MLTexture? {
         guard let name = element.textureName else {
-            return
+            return nil
         }
         
         let path = self.texturePath.appendingPathComponent(name)
@@ -63,7 +64,9 @@ open class Document {
             let texture = MLTexture(width: element.t_w, height: element.t_w, data: bytes)
             texture.createGLTexture()
             element.textureId = texture.gl_id
+            return texture
         }
+        return nil
     }
     
     /// a path to place elements、textures and any other datas

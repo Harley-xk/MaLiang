@@ -112,12 +112,9 @@ open class Canvas: MLView {
             
             /// redraw with the order it does originaly
             for element in elementsToRedraw {
-                var texture = getCachedTexture(with: element.textureId)
-                if texture == nil {
-                    doc.createTexture(for: element)
-                    texture = getCachedTexture(with: element.textureId)
+                if let texture = getCachedTexture(for: element) {
+                    self.texture = texture
                 }
-                self.texture = texture
                 for line in element.lines {
                     super.renderLine(line, display: false)
                 }
@@ -125,6 +122,13 @@ open class Canvas: MLView {
             displayBuffer()
             texture = brush.texture
         }
+    }
+    
+    func getCachedTexture(for element: CanvasElement) -> MLTexture? {
+        if let t = super.getCachedTexture(with: element.textureId) {
+            return t
+        }
+        return document?.createTexture(for: element)
     }
         
     // MARK: - Bezier
