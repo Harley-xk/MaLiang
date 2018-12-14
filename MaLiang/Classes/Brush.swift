@@ -43,7 +43,7 @@ open class Brush {
         self.texture = MLTexture(image: cgImage)
     }
     
-    init(texture: MLTexture) {
+    public init(texture: MLTexture) {
         self.texture = texture
     }
     
