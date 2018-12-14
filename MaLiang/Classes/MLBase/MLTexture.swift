@@ -11,16 +11,16 @@ import OpenGLES
 
 open class MLTexture {
     
-    static let `default` = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
+    public static let `default` = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
     
     public internal(set) var gl_id: GLuint = 0
     public private(set) var gl_width: size_t
     public private(set) var gl_height: size_t
     public private(set) var gl_data: [GLubyte]
     
-    var gl_blend_enabled = true
+    public var gl_blend_enabled = true
     
-    init(image: CGImage) {
+    public init(image: CGImage) {
         
         // Get the width and height of the image
         gl_width = image.width
@@ -34,14 +34,14 @@ open class MLTexture {
         brushContext?.draw(image, in: CGRect(x: 0.0, y: 0.0, width: gl_width.cgfloat, height: gl_height.cgfloat))
     }
     
-    init(width: Int, height: Int, data: [GLubyte]) {
+    public init(width: Int, height: Int, data: [GLubyte]) {
         // Get the width and height of the image
         gl_width = width
         gl_height = height
         gl_data = data
     }
     
-    func createGLTexture() {
+    public func createGLTexture() {
         guard gl_id == 0 else {
             return
         }
@@ -55,7 +55,7 @@ open class MLTexture {
     }
     
     /// copy current texture, the copied obj will share the same texture data with this one
-    func copy() -> MLTexture {
+    public func copy() -> MLTexture {
         return MLTexture(texture: self)
     }
         

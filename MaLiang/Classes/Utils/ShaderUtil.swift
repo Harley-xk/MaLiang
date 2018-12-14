@@ -8,11 +8,11 @@
 import Foundation
 import OpenGLES
 
-struct ShaderUtil {
+public struct ShaderUtil {
     
     /* Shader Utilities */
     /* Compile a shader from the provided source(s) */
-    static func compileShader(_ target: GLenum, _ count: GLsizei, _ sources: UnsafePointer<UnsafePointer<GLchar>?>, _ shader: inout GLuint) -> GLint {
+    public static func compileShader(_ target: GLenum, _ count: GLsizei, _ sources: UnsafePointer<UnsafePointer<GLchar>?>, _ shader: inout GLuint) -> GLint {
         var status: GLint = 0        
         shader = glCreateShader(target)
         glShaderSource(shader, count, sources, nil)
@@ -23,7 +23,7 @@ struct ShaderUtil {
     
     
     /* Link a program with all currently attached shaders */
-    static func linkProgram(_ program: GLuint) -> GLint {
+    public static func linkProgram(_ program: GLuint) -> GLint {
         var status: GLint = 0
         glLinkProgram(program)
         glGetProgramiv(program, GL_LINK_STATUS.gluint, &status)
@@ -32,7 +32,7 @@ struct ShaderUtil {
     
     
     /* Validate a program (for i.e. inconsistent samplers) */
-    static func validateProgram(_ program: GLuint) -> GLint {
+    public static func validateProgram(_ program: GLuint) -> GLint {
         var status: GLint = 0
         glValidateProgram(program)
         glGetProgramiv(program, GL_VALIDATE_STATUS.gluint, &status)
@@ -41,7 +41,7 @@ struct ShaderUtil {
     
     
     /* Return named uniform location after linking */
-    static func getUniformLocation(_ program: GLuint, _ uniformName: UnsafePointer<CChar>) -> GLint {
+    public static func getUniformLocation(_ program: GLuint, _ uniformName: UnsafePointer<CChar>) -> GLint {
         return glGetUniformLocation(program, uniformName)
     }
     
@@ -49,7 +49,7 @@ struct ShaderUtil {
     /* Shader Conveniences */
     /* Convenience wrapper that compiles, links, enumerates uniforms and attribs */
     @discardableResult
-    static func createProgram(_ _vertSource: UnsafePointer<CChar>, _ _fragSource: UnsafePointer<CChar>, _ attribNames: [String], _ attribLocations: [GLuint], _ uniformNames: [String], _ uniformLocations: inout [GLint], _ program: inout GLuint) -> GLint {
+    public static func createProgram(_ _vertSource: UnsafePointer<CChar>, _ _fragSource: UnsafePointer<CChar>, _ attribNames: [String], _ attribLocations: [GLuint], _ uniformNames: [String], _ uniformLocations: inout [GLint], _ program: inout GLuint) -> GLint {
         var vertShader: GLuint = 0, fragShader: GLuint = 0, prog: GLuint = 0, status: GLint = 1
         
         prog = glCreateProgram()

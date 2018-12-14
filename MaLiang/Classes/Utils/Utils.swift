@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct BundleUtil {
-    static var bundle: Bundle {
+public struct BundleUtil {
+    public static var bundle: Bundle {
         var bundle: Bundle = Bundle.main
         let framework = Bundle(for: MLView.classForCoder())
         if let resource = framework.path(forResource: "MaLiang", ofType: "bundle") {
@@ -17,13 +17,13 @@ struct BundleUtil {
         return bundle
     }
     
-    static func image(name: String) -> UIImage? {
+    public static func image(name: String) -> UIImage? {
         return UIImage(named: name, in: BundleUtil.bundle, compatibleWith: nil)
     }
 }
 
-struct FileUtil {
-    static func readData(forResource name: String, withExtension ext: String? = nil) -> Data {
+public struct FileUtil {
+    public static func readData(forResource name: String, withExtension ext: String? = nil) -> Data {
         let url = BundleUtil.bundle.url(forResource: name, withExtension: ext)!
         var source = try! Data(contentsOf: url)
         var trailingNul: UInt8 = 0
@@ -34,7 +34,7 @@ struct FileUtil {
 
 // MARK: - Number Extensions
 
-extension Int32 {
+public extension Int32 {
     var gluint: GLuint {
         return GLuint(self)
     }
@@ -52,7 +52,7 @@ extension Int32 {
     }
 }
 
-extension Int {
+public extension Int {
     var float: Float {
         return Float(self)
     }
@@ -66,14 +66,14 @@ extension Int {
     }
 }
 
-extension CGFloat {
+public extension CGFloat {
     var float: Float {
         return Float(self)
     }
 }
 
 // MARK: - Color Utils
-extension UIColor {
+public extension UIColor {
     var mlcolor: MLColor {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
@@ -87,7 +87,7 @@ extension UIColor {
     }
 }
 
-extension UIGestureRecognizer {
+public extension UIGestureRecognizer {
     func gl_location(in view: UIView?) -> CGPoint {
         guard let view = view else {
             return .zero
@@ -99,7 +99,7 @@ extension UIGestureRecognizer {
 }
 
 // MARK: - Point Utils
-extension CGPoint {
+public extension CGPoint {
     static func middle(p1: CGPoint, p2: CGPoint) -> CGPoint {
         return CGPoint(x: (p1.x + p2.x) * 0.5, y: (p1.y + p2.y) * 0.5)
     }

@@ -9,14 +9,14 @@ import Foundation
 import CoreGraphics
 
 public struct MLLine: Codable {
-    var begin: CGPoint
-    var end: CGPoint
+    public var begin: CGPoint
+    public var end: CGPoint
     
-    var pointSize: CGFloat
-    var pointStep: CGFloat
-    var color: MLColor
+    public var pointSize: CGFloat
+    public var pointStep: CGFloat
+    public var color: MLColor
     
-    init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor) {
+    public init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor) {
         self.begin = begin
         self.end = end
         self.pointSize = pointSize

@@ -10,8 +10,8 @@ import OpenGLES
 import UIKit
 
 public struct Pan {
-    var point: CGPoint
-    var force: CGFloat
+    public var point: CGPoint
+    public var force: CGFloat
 }
 
 open class Brush {

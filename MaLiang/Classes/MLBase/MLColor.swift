@@ -9,15 +9,15 @@ import Foundation
 import CoreGraphics
 
 /// Color to render on MLView
-struct MLColor: Equatable, Codable {
-    var red: CGFloat
-    var green: CGFloat
-    var blue: CGFloat
-    var alpha: CGFloat
+public struct MLColor: Equatable, Codable {
+    public var red: CGFloat
+    public var green: CGFloat
+    public var blue: CGFloat
+    public var alpha: CGFloat
     
-    static var `default` = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
+    public static var `default` = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
         
-    var glColor: [Float] {
+    public var glColor: [Float] {
         return [red.float, green.float, blue.float, alpha.float]
     }
 }
