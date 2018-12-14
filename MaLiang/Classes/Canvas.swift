@@ -197,7 +197,7 @@ open class Canvas: MLView {
 
     // MARK: - Gestures
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        if gesture.state == .recognized {
+        if gesture.state == .began {
             let location = gesture.gl_location(in: self)
             renderTap(at: location)
             document?.finishCurrentElement()
