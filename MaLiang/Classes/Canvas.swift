@@ -28,6 +28,7 @@ open class Canvas: MLView {
     
     // setup gestures
     open var paintingGesture: PaintingGestureRecognizer?
+    open var tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
 
     open func setupGestureRecognizers() {
         /// gesture to render line
@@ -56,6 +57,19 @@ open class Canvas: MLView {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+
+    open var stylusOnly: Bool = false {
+        didSet {
+            if stylusOnly {
+                tapGesture.allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]
+                paintingGesture?.allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]
+            } else {
+                let allTypes = [UITouch.TouchType.pencil.rawValue as NSNumber, UITouch.TouchType.direct.rawValue as NSNumber, UITouch.TouchType.indirect.rawValue as NSNumber]
+                tapGesture.allowedTouchTypes = allTypes
+                paintingGesture?.allowedTouchTypes = allTypes
+            }
+        }
     }
     
     /// clear all things on the canvas
@@ -191,7 +205,7 @@ open class Canvas: MLView {
     }
     
     @objc private func handlePaingtingGesture(_ gesture: PaintingGestureRecognizer) {
-        
+
         let location = gesture.gl_location(in: self)
         
         if gesture.state == .began {
