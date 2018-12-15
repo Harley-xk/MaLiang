@@ -47,12 +47,9 @@ open class Canvas: MLView {
         
         if brush == nil {
             brush = Brush(texture: MLTexture.default)
+            tempBrush = brush
         }
 
-        if tempBrush == nil {
-            tempBrush = Brush(texture: MLTexture.default)
-        }
-        
         setupGestureRecognizers()
     }
     
