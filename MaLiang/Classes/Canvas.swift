@@ -34,7 +34,7 @@ open class Canvas: MLView {
         /// gesture to render line
         paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
         /// gesture to render dot
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         addGestureRecognizer(tapGesture)
     }
     
