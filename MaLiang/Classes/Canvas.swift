@@ -16,6 +16,8 @@ open class Canvas: MLView {
         }
     }
     
+    var tempBrush: Brush!
+    
     /// enable force
     open var forceEnabled: Bool {
         get {
@@ -34,7 +36,7 @@ open class Canvas: MLView {
         /// gesture to render line
         paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
         /// gesture to render dot
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         addGestureRecognizer(tapGesture)
     }
     
@@ -45,6 +47,10 @@ open class Canvas: MLView {
         
         if brush == nil {
             brush = Brush(texture: MLTexture.default)
+        }
+
+        if tempBrush == nil {
+            tempBrush = Brush(texture: MLTexture.default)
         }
         
         setupGestureRecognizers()
@@ -205,10 +211,16 @@ open class Canvas: MLView {
     }
     
     @objc private func handlePaingtingGesture(_ gesture: PaintingGestureRecognizer) {
-
+        
         let location = gesture.gl_location(in: self)
         
         if gesture.state == .began {
+            if let type = gesture.type, type == .direct {
+                tempBrush = brush
+                brush = Eraser.global
+            } else if let type = gesture.type, type == .pencil {
+                brush = tempBrush
+            }
             document?.finishCurrentElement()
             lastRenderedPan = Pan(point: location, force: gesture.force)
             bezierGenerator.begin(with: location)

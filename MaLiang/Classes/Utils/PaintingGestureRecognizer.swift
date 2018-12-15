@@ -23,7 +23,6 @@ open class PaintingGestureRecognizer: UIPanGestureRecognizer {
         self.init(target: t, action: action)
         targetView = t
         maximumNumberOfTouches = 1
-        
     }
     
     /// 当前压力值，启用压力感应时，使用真实的压力，否则使用模拟压感
@@ -48,8 +47,18 @@ open class PaintingGestureRecognizer: UIPanGestureRecognizer {
         force = sqrt(1000 / length)
     }
     
+    var type: UITouch.TouchType?
+    var beforeTapTime: TimeInterval?
+    
     // MARK: - Touch Handling
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {        
+        if touches.count == 3 {
+            NotificationCenter.default.post(name: .init("redoaction"), object: nil)
+        } else if touches.count == 2 {
+            NotificationCenter.default.post(name: .init("undoaction"), object: nil)
+        }
+        
+        self.type = touches.first!.type
         updateForceFromTouches(touches)
         super.touchesBegan(touches, with: event)
     }
