@@ -5,7 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 [![Platform](https://img.shields.io/cocoapods/p/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 
-MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush  in Chinese ancient fairy story.
+🚧🚧🚧🚧🚧🚧 **MaLiang is porting to Metal, comming soon...** 🚧🚧🚧🚧🚧🚧
+
+MaLiang is a painting framework based on ~~OpenGL ES~~. The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
 
@@ -31,8 +33,9 @@ pod 'MaLiang'
 ## Usage
 
 MaLiang is simple to use.
+
 1. import MaLiang
-3. enjoy painting!
+2. enjoy painting!
 
 ### Canvas
 
@@ -51,6 +54,7 @@ A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
 Now, all things necessary is done!
 
 #### Snapshot
+
 You can take snapshot on canvas now. Just call `snapshot` function on `Canvas` and you will get an optional `UIImage` object.
 
 ### Brush
@@ -101,7 +105,7 @@ MaLiang supports automatically adjustment of stroke size with painting force. 3D
 `Document` is not required. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
 And you can implement your own **saving logic** with the data holds by `Document`.
 
-To enable the `Document` for `Canvas`, there needs only one line of code: 
+To enable the `Document` for `Canvas`, there needs only one line of code:
 
 ```swift
 canvas.setupDocument()
@@ -119,6 +123,8 @@ do {
 ```
 
 ## TODO
+
+- [ ] Port to Metal
 - [x] Undo & Redo
 - [x] Export to image
 - [ ] Text element
@@ -128,4 +134,3 @@ do {
 ## License
 
 MaLiang is available under the MIT license. See the LICENSE file for more info.
-
