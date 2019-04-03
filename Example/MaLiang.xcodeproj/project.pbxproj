@@ -30,10 +30,13 @@
 		B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */; };
 		B6C188BF2099AA6800A312B6 /* ScrollableSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */; };
 		B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F023B1208F2A4700D5CFA7 /* Document.swift */; };
-		B6FFA53F209CA26100936E58 /* pencil-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FFA53E209CA26100936E58 /* pencil-2@2x.png */; };
-		B6FFA541209CA2C300936E58 /* water-pen-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */; };
-		B6FFA543209CA31700936E58 /* painting_texture_mb.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FFA542209CA31700936E58 /* painting_texture_mb.png */; };
+		B6FFA543209CA31700936E58 /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FFA542209CA31700936E58 /* brush.png */; };
 		B6FFA545209CAB9600936E58 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FFA544209CAB9600936E58 /* RootViewController.swift */; };
+		C388DE532254F5A400CE19C6 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C388DE522254F5A400CE19C6 /* MetalView.swift */; };
+		C388DE552254F7CC00CE19C6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C388DE542254F7CC00CE19C6 /* Shaders.metal */; };
+		C388DE572254FB6900CE19C6 /* Maths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C388DE562254FB6900CE19C6 /* Maths.swift */; };
+		C388DE5A22550F1200CE19C6 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = C388DE5822550F1200CE19C6 /* pen.png */; };
+		C388DE5B22550F1200CE19C6 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C388DE5922550F1200CE19C6 /* pencil.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,10 +67,13 @@
 		B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableCanvas.swift; sourceTree = "<group>"; };
 		B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSample.swift; sourceTree = "<group>"; };
 		B6F023B1208F2A4700D5CFA7 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		B6FFA53E209CA26100936E58 /* pencil-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pencil-2@2x.png"; path = "Images.xcassets/pencil.imageset/pencil-2@2x.png"; sourceTree = "<group>"; };
-		B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "water-pen-2@2x.png"; path = "Images.xcassets/water-pen.imageset/water-pen-2@2x.png"; sourceTree = "<group>"; };
-		B6FFA542209CA31700936E58 /* painting_texture_mb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = painting_texture_mb.png; sourceTree = "<group>"; };
+		B6FFA542209CA31700936E58 /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
 		B6FFA544209CAB9600936E58 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		C388DE522254F5A400CE19C6 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		C388DE542254F7CC00CE19C6 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		C388DE562254FB6900CE19C6 /* Maths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maths.swift; sourceTree = "<group>"; };
+		C388DE5822550F1200CE19C6 /* pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pen.png; sourceTree = "<group>"; };
+		C388DE5922550F1200CE19C6 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		E4F56C2627A50ADFF8265C8F /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F3CBFDC0B0167759FA9BD760 /* MaLiang.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MaLiang.podspec; path = ../MaLiang.podspec; sourceTree = "<group>"; };
 		F4B98B2F9C80C87DAC438AFA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -123,9 +129,9 @@
 				B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */,
 				B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */,
 				B6202B87209F50B900DC0C20 /* PaintingPreview.swift */,
-				B6FFA542209CA31700936E58 /* painting_texture_mb.png */,
-				B6FFA53E209CA26100936E58 /* pencil-2@2x.png */,
-				B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */,
+				B6FFA542209CA31700936E58 /* brush.png */,
+				C388DE5822550F1200CE19C6 /* pen.png */,
+				C388DE5922550F1200CE19C6 /* pencil.png */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -181,6 +187,7 @@
 				B69E66A2208C6117005ED0E1 /* Brush.swift */,
 				B6F023B1208F2A4700D5CFA7 /* Document.swift */,
 				B6F023B0208F1E9200D5CFA7 /* Utils */,
+				C388DE512254F57800CE19C6 /* MetalBase */,
 				B68CFBE8208DF34F006170E7 /* MLBase */,
 			);
 			path = Classes;
@@ -205,6 +212,16 @@
 				B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		C388DE512254F57800CE19C6 /* MetalBase */ = {
+			isa = PBXGroup;
+			children = (
+				C388DE522254F5A400CE19C6 /* MetalView.swift */,
+				C388DE562254FB6900CE19C6 /* Maths.swift */,
+				C388DE542254F7CC00CE19C6 /* Shaders.metal */,
+			);
+			path = MetalBase;
 			sourceTree = "<group>";
 		};
 		F678FE9C7E0D82A7E1EBC344 /* Frameworks */ = {
@@ -259,6 +276,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -277,13 +295,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6FFA541209CA2C300936E58 /* water-pen-2@2x.png in Resources */,
-				B6FFA53F209CA26100936E58 /* pencil-2@2x.png in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				B69E66B0208C6117005ED0E1 /* point.png in Resources */,
-				B6FFA543209CA31700936E58 /* painting_texture_mb.png in Resources */,
+				B6FFA543209CA31700936E58 /* brush.png in Resources */,
 				B69E66AF208C6117005ED0E1 /* point.vsh in Resources */,
+				C388DE5A22550F1200CE19C6 /* pen.png in Resources */,
+				C388DE5B22550F1200CE19C6 /* pencil.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				B69E66B1208C6117005ED0E1 /* point.fsh in Resources */,
 			);
@@ -335,12 +353,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C388DE552254F7CC00CE19C6 /* Shaders.metal in Sources */,
 				B604919D209A71C000372B21 /* PaintingGestureRecognizer.swift in Sources */,
 				B69E66AD208C6117005ED0E1 /* MLColor.swift in Sources */,
+				C388DE572254FB6900CE19C6 /* Maths.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */,
 				B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */,
 				B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */,
+				C388DE532254F5A400CE19C6 /* MetalView.swift in Sources */,
 				B6FFA545209CAB9600936E58 /* RootViewController.swift in Sources */,
 				B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */,
 				B6C188BF2099AA6800A312B6 /* ScrollableSample.swift in Sources */,

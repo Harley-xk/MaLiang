@@ -26,35 +26,40 @@ class ViewController: UIViewController {
         return UIColor(red: r, green: g, blue: b, alpha: 1)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func registerBrush(with imageName: String) -> Brush {
+        let path = Bundle.main.path(forResource: imageName, ofType: "png")!
+        return try! canvas.registerBrush(with: URL(fileURLWithPath: path))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         // Do any additional setup after loading the view, typically from a nib.
         
-        let c = Canvas(frame: CGRect(x: 0, y: 0, width: 1024, height: 1024))
+        let c = Canvas(frame: view.bounds)
         view.addSubview(c)
         view.sendSubviewToBack(c)
         canvas = c
         
-        let pen = Brush(texture: #imageLiteral(resourceName: "pen"))
+        let pen = registerBrush(with: "pen")
         pen.pointSize = 5
         pen.pointStep = 1
         pen.color = color
 
-        let pencil = Brush(texture: #imageLiteral(resourceName: "pencil-2.png"))
+        let pencil = registerBrush(with: "pencil")
         pencil.pointSize = 3
         pencil.pointStep = 2
         pencil.forceSensitive = 0.3
         pencil.opacity = 0.6
         
-        let brush = Brush(texture: #imageLiteral(resourceName: "painting_texture_mb.png"))
+        let brush = registerBrush(with: "brush")
         brush.pointSize = 30
         brush.pointStep = 2
         brush.forceSensitive = 0.6
         brush.color = color
 
-        let eraser = Eraser.global
+//        let eraser = Eraser.global
         
-        brushes = [pen, pencil, brush, eraser]
+        brushes = [pen, pencil, brush]
         
         brushSegement.removeAllSegments()
         for i in 0 ..< brushes.count {
@@ -87,7 +92,7 @@ class ViewController: UIViewController {
     
     @IBAction func changeSizeAction(_ sender: UISlider) {
         let size = Int(sender.value)
-        canvas.brush.pointSize = CGFloat(size)
+        canvas.currentBrush.pointSize = CGFloat(size)
         strokeSizeLabel.text = "\(size)"
     }
     
@@ -95,7 +100,7 @@ class ViewController: UIViewController {
         let index = sender.selectedSegmentIndex
         let brush = brushes[index]
         brush.color = color
-        canvas.brush = brush
+        brush.use()
         strokeSizeLabel.text = "\(brush.pointSize)"
         sizeSlider.value = brush.pointSize.float
     }
@@ -148,7 +153,7 @@ class ViewController: UIViewController {
         }
         
         colorSampleView.backgroundColor = color
-        canvas.brush.color = color
+        canvas.currentBrush.color = color
     }
 }
 

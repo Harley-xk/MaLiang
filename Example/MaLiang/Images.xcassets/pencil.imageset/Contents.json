@@ -1,4 +1,8 @@
 {
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
   "images" : [
     {
       "idiom" : "universal",
@@ -7,7 +11,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "pencil-2@2x.png",
+      "filename" : "pencil@2x.png",
       "scale" : "2x"
     },
     {
@@ -15,9 +19,5 @@
       "filename" : "pencil@3x.png",
       "scale" : "3x"
     }
-  ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
-  }
+  ]
 }

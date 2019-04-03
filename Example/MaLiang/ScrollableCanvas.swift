@@ -40,6 +40,6 @@ extension ScrollableCanvas: UIScrollViewDelegate {
     }
     
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        canvas.scale = scrollView.zoomScale
+        canvas.zoomScale = scrollView.zoomScale
     }
 }

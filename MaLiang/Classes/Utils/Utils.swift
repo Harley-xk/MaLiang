@@ -23,12 +23,9 @@ struct BundleUtil {
 }
 
 struct FileUtil {
-    static func readData(forResource name: String, withExtension ext: String? = nil) -> Data {
+    static func readData(forResource name: String, withExtension ext: String? = nil) throws -> Data {
         let url = BundleUtil.bundle.url(forResource: name, withExtension: ext)!
-        var source = try! Data(contentsOf: url)
-        var trailingNul: UInt8 = 0
-        source.append(&trailingNul, count: 1)
-        return source
+        return try Data(contentsOf: url)
     }
 }
 

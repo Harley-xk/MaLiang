@@ -18,12 +18,14 @@ class ScrollableSample: UIViewController {
         scrollView.canvas = canvas
         
         DispatchQueue.main.async {
-            let pencil = Brush(texture: #imageLiteral(resourceName: "pencil"))
+            
+            let asset = NSDataAsset(name: "pencil")!
+            let pencil = try! self.canvas.registerBrush(with: asset.data)
             pencil.pointSize = 5
             pencil.pointStep = 2
             pencil.opacity = 0.6
             pencil.forceSensitive = 0
-            self.canvas.brush = pencil
+            pencil.use()
         }
     }
 

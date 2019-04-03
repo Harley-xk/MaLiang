@@ -211,8 +211,8 @@ open class MLView: UIView {
     
     private func setupShaders() {
         
-        let vsrc = FileUtil.readData(forResource: shaderProgram.vert)
-        let fsrc = FileUtil.readData(forResource: shaderProgram.frag)
+        let vsrc = try! FileUtil.readData(forResource: shaderProgram.vert)
+        let fsrc = try! FileUtil.readData(forResource: shaderProgram.frag)
         
         var attribUsed: [String] = []
         var attrib: [GLuint] = []

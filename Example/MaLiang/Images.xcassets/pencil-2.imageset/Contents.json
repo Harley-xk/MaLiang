@@ -6,18 +6,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "pen.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "pen@2x.png",
+      "filename" : "pencil-2@2x.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "pen@3x.png"
+      "filename" : "pencil-2@3x.png"
     }
   ]
 }

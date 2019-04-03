@@ -7,14 +7,38 @@
 
 import UIKit
 
-open class Canvas: MLView {
+open class Canvas: MetalView {
     
-    /// specify a brush to paint
-    open var brush: Brush! {
-        didSet {
-            texture = brush.texture
-        }
+    
+    // MARK: - Brushes
+    
+    /// Register a brush with image data
+    ///
+    /// - Parameter texture: texture data of brush
+    /// - Returns: registered brush
+    @discardableResult open func registerBrush(with texture: Data) throws -> Brush {
+        let texture = try makeTexture(with: texture)
+        let brush = Brush(texture: texture, target: self)
+        registeredBrushes.append(brush)
+        return brush
     }
+    
+    /// Register a brush with image data
+    ///
+    /// - Parameter file: texture file of brush
+    /// - Returns: registered brush
+    @discardableResult open func registerBrush(with file: URL) throws -> Brush {
+        let data = try Data(contentsOf: file)
+        return try registerBrush(with: data)
+    }
+    
+    /// current brush used to draw
+    /// only registered brushed can be set to current
+    /// get a brush from registeredBrushes and call it's use() method to make it current
+    open internal(set) var currentBrush: Brush!
+    
+    /// All registered brushes
+    open private(set) var registeredBrushes: [Brush] = []
     
     /// enable force
     open var forceEnabled: Bool {
@@ -42,8 +66,11 @@ open class Canvas: MLView {
     open override func setup() {
         super.setup()
         
-        if brush == nil {
-            brush = Brush(texture: MLTexture.default)
+        do {
+            let data = try FileUtil.readData(forResource: "point", withExtension: "png")
+            try currentBrush = registerBrush(with: data)
+        } catch {
+            
         }
         
         setupGestureRecognizers()
@@ -51,7 +78,7 @@ open class Canvas: MLView {
     
     /// take a snapshot on current canvas and export an image
     open func snapshot() -> UIImage? {
-        UIGraphicsBeginImageContext(bounds.size)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, contentScaleFactor)
         drawHierarchy(in: bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -94,42 +121,43 @@ open class Canvas: MLView {
     
     /// redraw elemets in document
     private func redraw() {
-        if let doc = document {
-            
-            super.clear(display: false)
-            
-            /// find elements to draw, until last clear action
-            let count = doc.actions.count
-            var elementsToRedraw: [CanvasElement] = []
-            for i in 0 ..< count {
-                let index = count - i - 1
-                let action = doc.actions[index]
-                guard action.actionType != .clear, let element = action.element else {
-                    break
-                }
-                elementsToRedraw.insert(element, at: 0)
-            }
-            
-            /// redraw with the order it does originaly
-            for element in elementsToRedraw {
-                if let texture = getCachedTexture(for: element) {
-                    self.texture = texture
-                }
-                for line in element.lines {
-                    super.renderLine(line, display: false)
-                }
-            }
-            displayBuffer()
-            texture = brush.texture
-        }
     }
-    
-    func getCachedTexture(for element: CanvasElement) -> MLTexture? {
-        if let t = super.getCachedTexture(with: element.textureId) {
-            return t
-        }
-        return document?.createTexture(for: element)
-    }
+//        if let doc = document {
+//
+//            super.clear(display: false)
+//
+//            /// find elements to draw, until last clear action
+//            let count = doc.actions.count
+//            var elementsToRedraw: [CanvasElement] = []
+//            for i in 0 ..< count {
+//                let index = count - i - 1
+//                let action = doc.actions[index]
+//                guard action.actionType != .clear, let element = action.element else {
+//                    break
+//                }
+//                elementsToRedraw.insert(element, at: 0)
+//            }
+//
+//            /// redraw with the order it does originaly
+//            for element in elementsToRedraw {
+//                if let texture = getCachedTexture(for: element) {
+//                    self.texture = texture
+//                }
+//                for line in element.lines {
+//                    super.renderLine(line, display: false)
+//                }
+//            }
+//            displayBuffer()
+//            texture = brush.texture
+//        }
+//    }
+//
+//    func getCachedTexture(for element: CanvasElement) -> MLTexture? {
+//        if let t = super.getCachedTexture(with: element.textureId) {
+//            return t
+//        }
+//        return document?.createTexture(for: element)
+//    }
     
     // MARK: - Bezier
     // optimize stroke with bezier path, defaults to true
@@ -146,7 +174,7 @@ open class Canvas: MLView {
             let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / vertices.count.cgfloat
             for i in 1 ..< vertices.count {
                 let p = vertices[i]
-                let pointStep = brush.pointStep / self.scale
+                let pointStep = currentBrush.pointStep / self.zoomScale
                 if  // end point of line
                     (isEnd && i == vertices.count - 1) ||
                         // ignore step
@@ -156,23 +184,28 @@ open class Canvas: MLView {
                 {
                     let f = lastPan.force + deltaForce
                     let pan = Pan(point: p, force: f)
-                    let line = brush.pan(from: lastPan, to: pan)
+                    let line = currentBrush.pan(from: lastPan, to: pan)
                     self.renderLine(line, display: false)
                     lastPan = pan
                     lastRenderedPan = pan
                 }
             }
         }
-        displayBuffer()
+        presentRenderTarget()
     }
     
     // MARK: - Rendering
-    override open func renderLine(_ line: MLLine, display: Bool = true) {
-        super.renderLine(line, display: display)
-        document?.appendLines([line], with: brush.texture)
+    open func renderLine(_ line: MLLine, display: Bool = true) {
+        currentBrush.renderLine(line)
+        if display {
+            presentRenderTarget()
+        }
+//        super.renderLine(line, display: display)
+//        document?.appendLines([line], with: brush.texture)
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
+        let brush = currentBrush!
         var line = brush.line(from: point, to: to ?? point)
         /// fix the opacity of color when there is only one point
         let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
