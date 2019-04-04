@@ -129,6 +129,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				B68CFBE8208DF34F006170E7 /* Deprecated */,
 			);
 			name = "Example for MaLiang";
 			path = MaLiang;
@@ -152,13 +153,13 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		B68CFBE8208DF34F006170E7 /* MLBase */ = {
+		B68CFBE8208DF34F006170E7 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
 				B69E669C208C6117005ED0E1 /* MLTexture.swift */,
 				B69E66B3208C61C4005ED0E1 /* MLView.swift */,
 			);
-			path = MLBase;
+			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		B69E6699208C6117005ED0E1 /* MaLiang */ = {
@@ -179,7 +180,6 @@
 				B6F023B1208F2A4700D5CFA7 /* Document.swift */,
 				B6F023B0208F1E9200D5CFA7 /* Utils */,
 				C388DE512254F57800CE19C6 /* MetalBase */,
-				B68CFBE8208DF34F006170E7 /* MLBase */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

@@ -82,7 +82,7 @@ open class Brush {
         rpd.colorAttachments[0].isBlendingEnabled = true
         rpd.colorAttachments[0].alphaBlendOperation = .add
         rpd.colorAttachments[0].rgbBlendOperation = .add
-        rpd.colorAttachments[0].sourceRGBBlendFactor = .one
+        rpd.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
         rpd.colorAttachments[0].sourceAlphaBlendFactor = .one
         rpd.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
         rpd.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
@@ -121,7 +121,7 @@ open class Brush {
             let index = CGFloat(i)
             let x = start.x + (end.x - start.x) * (index / count)
             let y = start.y + (end.y - start.y) * (index / count)
-            vertexes.append(Point(x: x, y: y, size: line.pointSize * scale))
+            vertexes.append(Point(x: x, y: y, color: line.color, size: line.pointSize * scale))
         }
         
         if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
