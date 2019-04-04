@@ -126,13 +126,17 @@ open class MetalView: MTKView {
     
     private func updateBuffers() {
         let size = bounds.size
-        let point = CGPoint(x: size.width / 2, y: size.height / 2)
-        
+//        let point = CGPoint(x: size.width / 2, y: size.height / 2)
+        let w = size.width, h = size.height
         let vertices = [
-            Vertex(position: point.offsetedBy(x: -size.width / 2, y: -size.height / 2), textCoord: CGPoint(x: 0, y: 1)),
-            Vertex(position: point.offsetedBy(x: -size.width / 2, y:  size.height / 2), textCoord: CGPoint(x: 0, y: 0)),
-            Vertex(position: point.offsetedBy(x:  size.width / 2, y: -size.height / 2), textCoord: CGPoint(x: 1, y: 1)),
-            Vertex(position: point.offsetedBy(x:  size.width / 2, y:  size.height / 2), textCoord: CGPoint(x: 1, y: 0)),
+            Vertex(position: CGPoint(x: 0 , y: 0), textCoord: CGPoint(x: 0, y: 0)),
+            Vertex(position: CGPoint(x: w , y: 0), textCoord: CGPoint(x: 1, y: 0)),
+            Vertex(position: CGPoint(x: 0 , y: h), textCoord: CGPoint(x: 0, y: 1)),
+            Vertex(position: CGPoint(x: w , y: h), textCoord: CGPoint(x: 1, y: 1)),
+//            Vertex(position: point.offsetedBy(x: -size.width / 2, y: -size.height / 2), textCoord: CGPoint(x: 0, y: 1)),
+//            Vertex(position: point.offsetedBy(x: -size.width / 2, y:  size.height / 2), textCoord: CGPoint(x: 0, y: 0)),
+//            Vertex(position: point.offsetedBy(x:  size.width / 2, y: -size.height / 2), textCoord: CGPoint(x: 1, y: 1)),
+//            Vertex(position: point.offsetedBy(x:  size.width / 2, y:  size.height / 2), textCoord: CGPoint(x: 1, y: 0)),
         ]
         vertex_buffer = device?.makeBuffer(bytes: vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: .cpuCacheModeWriteCombined)
 

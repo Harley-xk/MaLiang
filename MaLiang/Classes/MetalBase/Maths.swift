@@ -24,9 +24,9 @@ struct Point {
     var position: vector_float4
     var size: Float
     
-    init(x: Float, y: Float, size: Float) {
-        self.position = vector_float4(x, y, 0, 1)
-        self.size = size
+    init(x: CGFloat, y: CGFloat, size: CGFloat) {
+        self.position = vector_float4(Float(x), Float(y), 0, 1)
+        self.size = Float(size)
     }
 }
 

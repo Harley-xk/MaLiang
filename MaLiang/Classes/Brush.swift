@@ -51,12 +51,12 @@ open class Brush {
     }
     
     open func line(from: CGPoint, to: CGPoint) -> MLLine {
-        let color = self.color.mlcolorWith(opacity: opacity)
+        let color = self.color.toMLColor(opacity: opacity)
         return MLLine(begin: from, end: to, pointSize: pointSize, pointStep: pointStep, color: color)
     }
     
     open func pan(from: Pan, to: Pan) -> MLLine {
-        let color = self.color.mlcolorWith(opacity: opacity)
+        let color = self.color.toMLColor(opacity: opacity)
         var endForce = from.force * 0.95 + to.force * 0.05
         endForce = pow(endForce, forceSensitive)
         let line = MLLine(begin: from.point, end: to.point, pointSize: pointSize * endForce, pointStep: pointStep, color: color)

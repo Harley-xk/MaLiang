@@ -15,18 +15,13 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		B604919D209A71C000372B21 /* PaintingGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */; };
 		B6202B88209F50B900DC0C20 /* PaintingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6202B87209F50B900DC0C20 /* PaintingPreview.swift */; };
-		B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLTexture.swift */; };
 		B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669D208C6117005ED0E1 /* Canvas.swift */; };
 		B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669E208C6117005ED0E1 /* BezierGenerator.swift */; };
-		B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669F208C6117005ED0E1 /* ShaderUtil.swift */; };
 		B69E66AC208C6117005ED0E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66A0208C6117005ED0E1 /* Utils.swift */; };
 		B69E66AD208C6117005ED0E1 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66A1208C6117005ED0E1 /* MLColor.swift */; };
 		B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66A2208C6117005ED0E1 /* Brush.swift */; };
-		B69E66AF208C6117005ED0E1 /* point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A4208C6117005ED0E1 /* point.vsh */; };
 		B69E66B0208C6117005ED0E1 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A5208C6117005ED0E1 /* point.png */; };
-		B69E66B1208C6117005ED0E1 /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A6208C6117005ED0E1 /* point.fsh */; };
 		B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B2208C61C4005ED0E1 /* MLLine.swift */; };
-		B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B3208C61C4005ED0E1 /* MLView.swift */; };
 		B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */; };
 		B6C188BF2099AA6800A312B6 /* ScrollableSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */; };
 		B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F023B1208F2A4700D5CFA7 /* Document.swift */; };
@@ -37,6 +32,7 @@
 		C388DE572254FB6900CE19C6 /* Maths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C388DE562254FB6900CE19C6 /* Maths.swift */; };
 		C388DE5A22550F1200CE19C6 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = C388DE5822550F1200CE19C6 /* pen.png */; };
 		C388DE5B22550F1200CE19C6 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C388DE5922550F1200CE19C6 /* pencil.png */; };
+		C3E122562255CC6800114EBD /* MLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLTexture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,13 +51,10 @@
 		B69E669C208C6117005ED0E1 /* MLTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLTexture.swift; sourceTree = "<group>"; };
 		B69E669D208C6117005ED0E1 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		B69E669E208C6117005ED0E1 /* BezierGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierGenerator.swift; sourceTree = "<group>"; };
-		B69E669F208C6117005ED0E1 /* ShaderUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaderUtil.swift; sourceTree = "<group>"; };
 		B69E66A0208C6117005ED0E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B69E66A1208C6117005ED0E1 /* MLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLColor.swift; sourceTree = "<group>"; };
 		B69E66A2208C6117005ED0E1 /* Brush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brush.swift; sourceTree = "<group>"; };
-		B69E66A4208C6117005ED0E1 /* point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vsh; sourceTree = "<group>"; };
 		B69E66A5208C6117005ED0E1 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
-		B69E66A6208C6117005ED0E1 /* point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.fsh; sourceTree = "<group>"; };
 		B69E66B2208C61C4005ED0E1 /* MLLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLLine.swift; sourceTree = "<group>"; };
 		B69E66B3208C61C4005ED0E1 /* MLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLView.swift; sourceTree = "<group>"; };
 		B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableCanvas.swift; sourceTree = "<group>"; };
@@ -163,9 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				B69E669C208C6117005ED0E1 /* MLTexture.swift */,
-				B69E66B2208C61C4005ED0E1 /* MLLine.swift */,
 				B69E66B3208C61C4005ED0E1 /* MLView.swift */,
-				B69E66A1208C6117005ED0E1 /* MLColor.swift */,
 			);
 			path = MLBase;
 			sourceTree = "<group>";
@@ -196,9 +187,7 @@
 		B69E66A3208C6117005ED0E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B69E66A4208C6117005ED0E1 /* point.vsh */,
 				B69E66A5208C6117005ED0E1 /* point.png */,
-				B69E66A6208C6117005ED0E1 /* point.fsh */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -207,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				B69E66A0208C6117005ED0E1 /* Utils.swift */,
-				B69E669F208C6117005ED0E1 /* ShaderUtil.swift */,
 				B69E669E208C6117005ED0E1 /* BezierGenerator.swift */,
 				B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */,
 			);
@@ -217,6 +205,8 @@
 		C388DE512254F57800CE19C6 /* MetalBase */ = {
 			isa = PBXGroup;
 			children = (
+				B69E66B2208C61C4005ED0E1 /* MLLine.swift */,
+				B69E66A1208C6117005ED0E1 /* MLColor.swift */,
 				C388DE522254F5A400CE19C6 /* MetalView.swift */,
 				C388DE562254FB6900CE19C6 /* Maths.swift */,
 				C388DE542254F7CC00CE19C6 /* Shaders.metal */,
@@ -299,11 +289,9 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				B69E66B0208C6117005ED0E1 /* point.png in Resources */,
 				B6FFA543209CA31700936E58 /* brush.png in Resources */,
-				B69E66AF208C6117005ED0E1 /* point.vsh in Resources */,
 				C388DE5A22550F1200CE19C6 /* pen.png in Resources */,
 				C388DE5B22550F1200CE19C6 /* pencil.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				B69E66B1208C6117005ED0E1 /* point.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,13 +341,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E122562255CC6800114EBD /* MLTexture.swift in Sources */,
 				C388DE552254F7CC00CE19C6 /* Shaders.metal in Sources */,
 				B604919D209A71C000372B21 /* PaintingGestureRecognizer.swift in Sources */,
 				B69E66AD208C6117005ED0E1 /* MLColor.swift in Sources */,
 				C388DE572254FB6900CE19C6 /* Maths.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */,
-				B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */,
 				B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */,
 				C388DE532254F5A400CE19C6 /* MetalView.swift in Sources */,
 				B6FFA545209CAB9600936E58 /* RootViewController.swift in Sources */,
@@ -369,9 +357,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */,
 				B6202B88209F50B900DC0C20 /* PaintingPreview.swift in Sources */,
-				B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */,
 				B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */,
-				B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */,
 				B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

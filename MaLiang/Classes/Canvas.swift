@@ -67,7 +67,8 @@ open class Canvas: MetalView {
         super.setup()
         
         do {
-            let data = try FileUtil.readData(forResource: "point", withExtension: "png")
+            let path = Bundle.maliang.path(forResource: "point", ofType: "png")!
+            let data = try Data(contentsOf: URL(fileURLWithPath: path))
             try currentBrush = registerBrush(with: data)
         } catch {
             
@@ -171,7 +172,7 @@ open class Canvas: MetalView {
         let vertices = bezier.pushPoint(point)
         if vertices.count >= 2 {
             var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
-            let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / vertices.count.cgfloat
+            let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / CGFloat(vertices.count)
             for i in 1 ..< vertices.count {
                 let p = vertices[i]
                 let pointStep = currentBrush.pointStep / self.zoomScale
@@ -210,14 +211,14 @@ open class Canvas: MetalView {
         /// fix the opacity of color when there is only one point
         let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
         let opacity = brush.opacity + (1 - brush.opacity) * delta
-        line.color = brush.color.mlcolorWith(opacity: opacity)
+        line.color = brush.color.toMLColor(opacity: opacity)
         self.renderLine(line)
     }
     
     // MARK: - Gestures
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .recognized {
-            let location = gesture.gl_location(in: self)
+            let location = gesture.location(in: self)
             renderTap(at: location)
             document?.finishCurrentElement()
         }
@@ -225,7 +226,7 @@ open class Canvas: MetalView {
     
     @objc private func handlePaingtingGesture(_ gesture: PaintingGestureRecognizer) {
         
-        let location = gesture.gl_location(in: self)
+        let location = gesture.location(in: self)
         
         if gesture.state == .began {
             /// 取实际的手势起点作为笔迹的起点

@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         brush.color = color
         brush.use()
         strokeSizeLabel.text = "\(brush.pointSize)"
-        sizeSlider.value = brush.pointSize.float
+        sizeSlider.value = Float(brush.pointSize)
     }
     
     @IBAction func undoAction(_ sender: Any) {

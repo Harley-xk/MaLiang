@@ -55,9 +55,7 @@ open class PaintingGestureRecognizer: UIPanGestureRecognizer {
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         /// 修正 pan gesture 的延迟导致的第一个点不正确的问题，
         if let first = touches.first {
-            var location = first.location(in: targetView)
-            location.y = targetView.bounds.size.height - location.y
-            acturalBeginLocation = location
+            acturalBeginLocation = first.location(in: targetView)
         }
         updateForceFromTouches(touches)
         super.touchesBegan(touches, with: event)

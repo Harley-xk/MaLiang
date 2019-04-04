@@ -7,91 +7,14 @@
 
 import UIKit
 
-struct BundleUtil {
-    static var bundle: Bundle {
+extension Bundle {
+    static var maliang: Bundle {
         var bundle: Bundle = Bundle.main
-        let framework = Bundle(for: MLView.classForCoder())
+        let framework = Bundle(for: Canvas.classForCoder())
         if let resource = framework.path(forResource: "MaLiang", ofType: "bundle") {
             bundle = Bundle(path: resource) ?? Bundle.main
         }
         return bundle
-    }
-    
-    static func image(name: String) -> UIImage? {
-        return UIImage(named: name, in: BundleUtil.bundle, compatibleWith: nil)
-    }
-}
-
-struct FileUtil {
-    static func readData(forResource name: String, withExtension ext: String? = nil) throws -> Data {
-        let url = BundleUtil.bundle.url(forResource: name, withExtension: ext)!
-        return try Data(contentsOf: url)
-    }
-}
-
-// MARK: - Number Extensions
-
-extension Int32 {
-    var gluint: GLuint {
-        return GLuint(self)
-    }
-
-    var int: Int {
-        return Int(self)
-    }
-    
-    var float: Float {
-        return Float(self)
-    }
-    
-    var uint8: UInt8 {
-        return UInt8(self)
-    }
-}
-
-extension Int {
-    var float: Float {
-        return Float(self)
-    }
-    
-    var cgfloat: CGFloat {
-        return CGFloat(self)
-    }
-    
-    var int32: Int32 {
-        return Int32(self)
-    }
-}
-
-extension CGFloat {
-    var float: Float {
-        return Float(self)
-    }
-}
-
-// MARK: - Color Utils
-extension UIColor {
-    var mlcolor: MLColor {
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return MLColor(red: red, green: green, blue: blue, alpha: alpha)
-    }
-    
-    func mlcolorWith(opacity: CGFloat = 1) -> MLColor {
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        return MLColor(red: red * opacity, green: green * opacity, blue: blue * opacity, alpha: alpha * opacity)
-    }
-}
-
-extension UIGestureRecognizer {
-    func gl_location(in view: UIView?) -> CGPoint {
-        guard let view = view else {
-            return .zero
-        }
-        var location = self.location(in: view)
-        location.y = view.bounds.size.height - location.y
-        return location
     }
 }
 

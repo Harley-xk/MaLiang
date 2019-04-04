@@ -11,7 +11,7 @@ import OpenGLES
 
 open class MLTexture {
     
-    static let `default` = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
+//    static let `default` = MLTexture(image: BundleUtil.image(name: "point")!.cgImage!)
     
     public internal(set) var gl_id: GLuint = 0
     public private(set) var gl_width: size_t
@@ -25,13 +25,13 @@ open class MLTexture {
         // Get the width and height of the image
         gl_width = image.width
         gl_height = image.height
-        // Allocate  memory needed for the bitmap context
+//        // Allocate  memory needed for the bitmap context
         gl_data = [GLubyte](repeating: 0, count: gl_width * gl_height * 4)
-        // Use  the bitmatp creation function provided by the Core Graphics framework.
-        let bitmapInfo = CGImageAlphaInfo.premultipliedLast.rawValue
-        let brushContext = CGContext(data: &gl_data, width: gl_width, height: gl_height, bitsPerComponent: 8, bytesPerRow: gl_width * 4, space: image.colorSpace!, bitmapInfo: bitmapInfo)
-        // After you create the context, you can draw the  image to the context.
-        brushContext?.draw(image, in: CGRect(x: 0.0, y: 0.0, width: gl_width.cgfloat, height: gl_height.cgfloat))
+//        // Use  the bitmatp creation function provided by the Core Graphics framework.
+//        let bitmapInfo = CGImageAlphaInfo.premultipliedLast.rawValue
+//        let brushContext = CGContext(data: &gl_data, width: gl_width, height: gl_height, bitsPerComponent: 8, bytesPerRow: gl_width * 4, space: image.colorSpace!, bitmapInfo: bitmapInfo)
+//        // After you create the context, you can draw the  image to the context.
+//        brushContext?.draw(image, in: CGRect(x: 0.0, y: 0.0, width: gl_width.cgfloat, height: gl_height.cgfloat))
     }
     
     init(width: Int, height: Int, data: [GLubyte]) {
@@ -45,13 +45,13 @@ open class MLTexture {
         guard gl_id == 0 else {
             return
         }
-        glGenTextures(1, &gl_id)
-        // Bind the texture name.
-        glBindTexture(GL_TEXTURE_2D.gluint, gl_id)
-        // Set the texture parameters to use a minifying filter and a linear filer (weighted average)
-        glTexParameteri(GL_TEXTURE_2D.gluint, GL_TEXTURE_MIN_FILTER.gluint, GL_LINEAR)
-        // Specify a 2D texture image, providing the a pointer to the image data in memory
-        glTexImage2D(GL_TEXTURE_2D.gluint, 0, GL_RGBA, gl_width.int32, gl_height.int32, 0, GL_RGBA.gluint, GL_UNSIGNED_BYTE.gluint, gl_data)
+//        glGenTextures(1, &gl_id)
+//        // Bind the texture name.
+//        glBindTexture(GL_TEXTURE_2D.gluint, gl_id)
+//        // Set the texture parameters to use a minifying filter and a linear filer (weighted average)
+//        glTexParameteri(GL_TEXTURE_2D.gluint, GL_TEXTURE_MIN_FILTER.gluint, GL_LINEAR)
+//        // Specify a 2D texture image, providing the a pointer to the image data in memory
+//        glTexImage2D(GL_TEXTURE_2D.gluint, 0, GL_RGBA, gl_width.int32, gl_height.int32, 0, GL_RGBA.gluint, GL_UNSIGNED_BYTE.gluint, gl_data)
     }
     
     /// copy current texture, the copied obj will share the same texture data with this one

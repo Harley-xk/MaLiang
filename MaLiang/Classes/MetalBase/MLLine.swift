@@ -23,4 +23,9 @@ public struct MLLine: Codable {
         self.pointStep = pointStep
         self.color = color
     }
+    
+    var length: CGFloat {
+        return begin.distance(to: end)
+    }
 }
+
