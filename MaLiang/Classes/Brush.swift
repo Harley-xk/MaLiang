@@ -110,30 +110,25 @@ open class Brush {
         
         // Convert locations from Points to Pixels
         let scale = target.contentScaleFactor
-        var start = line.begin
-//        start.x *= scale
-//        start.y *= scale
-        var end = line.end
-//        end.x *= scale
-//        end.y *= scale
+        let start = line.begin
+        let end = line.end
         
         // Allocate vertex array buffer
-        var vertexBuffer: [Point] = []
-        
-        // Add points to the buffer so there are drawing points every X pixels
-        let count = max(Int(ceilf(sqrtf((end.x - start.x).float * (end.x - start.x).float + (end.y - start.y).float * (end.y - start.y).float) / (line.pointStep.float)) * target.zoomScale.float) + 1, 1)
+        var vertexes: [Point] = []
+        let count = max(line.length / line.pointStep, 1) * scale
 
-        for i in 0 ..< count {
-            let x = start.x.float + (end.x - start.x).float * (i.float / count.float)
-            let y = start.y.float + (end.y - start.y).float * (i.float / count.float)
-            vertexBuffer.append(Point(x: x, y: y, size: Float(line.pointSize * scale)))
+        for i in 0 ..< Int(count) {
+            let index = CGFloat(i)
+            let x = start.x + (end.x - start.x) * (index / count)
+            let y = start.y + (end.y - start.y) * (index / count)
+            vertexes.append(Point(x: x, y: y, size: line.pointSize * scale))
         }
         
-        if let vertex_buffer = device.makeBuffer(bytes: vertexBuffer, length: MemoryLayout<Point>.stride * count, options: .cpuCacheModeWriteCombined) {
+        if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
             commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
             commandEncoder?.setFragmentTexture(texture, index: 0)
-            commandEncoder?.drawPrimitives(type: .point, vertexStart: 0, vertexCount: 1)
+            commandEncoder?.drawPrimitives(type: .point, vertexStart: 0, vertexCount: vertexes.count)
         }
         
         commandEncoder?.endEncoding()
