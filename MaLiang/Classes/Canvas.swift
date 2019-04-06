@@ -210,10 +210,9 @@ open class Canvas: MetalView {
             /// 取实际的手势起点作为笔迹的起点
             let acturalBegin = gesture.acturalBeginLocation
             document.finishCurrentLineStrip()
-            lastRenderedPan = Pan(point: location, force: gesture.force)
-            bezierGenerator.begin(with: location)
             lastRenderedPan = Pan(point: acturalBegin, force: gesture.force)
             bezierGenerator.begin(with: acturalBegin)
+            pushPoint(location, to: bezierGenerator, force: gesture.force)
         }
         else if gesture.state == .changed {
             pushPoint(location, to: bezierGenerator, force: gesture.force)
