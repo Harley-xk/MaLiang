@@ -169,6 +169,7 @@ open class Canvas: MetalView {
     private var lastRenderedPan: Pan?
     
     private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator, force: CGFloat, isEnd: Bool = false) {
+        var lines: [MLLine] = []
         let vertices = bezier.pushPoint(point)
         if vertices.count >= 2 {
             var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
@@ -186,18 +187,18 @@ open class Canvas: MetalView {
                     let f = lastPan.force + deltaForce
                     let pan = Pan(point: p, force: f)
                     let line = currentBrush.pan(from: lastPan, to: pan)
-                    self.renderLine(line, display: false)
+                    lines.append(line)
                     lastPan = pan
                     lastRenderedPan = pan
                 }
             }
         }
-        presentRenderTarget()
+        render(lines: lines)
     }
     
     // MARK: - Rendering
-    open func renderLine(_ line: MLLine, display: Bool = true) {
-        currentBrush.renderLine(line)
+    open func render(lines: [MLLine], display: Bool = true) {
+        currentBrush.render(lines: lines)
         if display {
             presentRenderTarget()
         }
@@ -212,7 +213,7 @@ open class Canvas: MetalView {
         let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
         let opacity = brush.opacity + (1 - brush.opacity) * delta
         line.color = brush.color.toMLColor(opacity: opacity)
-        self.renderLine(line)
+        render(lines: [line])
     }
     
     // MARK: - Gestures

@@ -89,9 +89,9 @@ open class Brush {
         pipelineState = try! device.makeRenderPipelineState(descriptor: rpd)
     }
 
-    open func renderLine(_ line: MLLine) {
+    open func render(lines: [MLLine]) {
         
-        guard let target = target, let device = target.device else {
+        guard lines.count > 0, let target = target, let device = target.device else {
             return
         }
 
@@ -110,19 +110,21 @@ open class Brush {
         
         // Convert locations from Points to Pixels
         let scale = target.contentScaleFactor
-        let start = line.begin
-        let end = line.end
         
         // Allocate vertex array buffer
         var vertexes: [Point] = []
-        let count = max(line.length / line.pointStep, 1) * scale
-
-        for i in 0 ..< Int(count) {
-            let index = CGFloat(i)
-            let x = start.x + (end.x - start.x) * (index / count)
-            let y = start.y + (end.y - start.y) * (index / count)
-            vertexes.append(Point(x: x, y: y, color: line.color, size: line.pointSize * scale))
+        
+        lines.forEach { (line) in
+            let start = line.begin; let end = line.end
+            let count = max(line.length / line.pointStep, 1) * scale
+            for i in 0 ..< Int(count) {
+                let index = CGFloat(i)
+                let x = start.x + (end.x - start.x) * (index / count)
+                let y = start.y + (end.y - start.y) * (index / count)
+                vertexes.append(Point(x: x, y: y, color: line.color, size: line.pointSize * scale))
+            }
         }
+        
         
         if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
