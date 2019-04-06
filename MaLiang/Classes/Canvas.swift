@@ -130,49 +130,13 @@ open class Canvas: MetalView {
             }
             elementsToDraw.insert(element, at: 0)
         }
-        renderTarget = makeEmptyTexture()
 
+        renderTarget = makeEmptyTexture()
         for item in elementsToDraw {
             item.drawSelf(display: false)
         }
         presentRenderTarget()
     }
-//        if let doc = document {
-//
-//            super.clear(display: false)
-//
-//            /// find elements to draw, until last clear action
-//            let count = doc.actions.count
-//            var elementsToRedraw: [CanvasElement] = []
-//            for i in 0 ..< count {
-//                let index = count - i - 1
-//                let action = doc.actions[index]
-//                guard action.actionType != .clear, let element = action.element else {
-//                    break
-//                }
-//                elementsToRedraw.insert(element, at: 0)
-//            }
-//
-//            /// redraw with the order it does originaly
-//            for element in elementsToRedraw {
-//                if let texture = getCachedTexture(for: element) {
-//                    self.texture = texture
-//                }
-//                for line in element.lines {
-//                    super.renderLine(line, display: false)
-//                }
-//            }
-//            displayBuffer()
-//            texture = brush.texture
-//        }
-//    }
-//
-//    func getCachedTexture(for element: CanvasElement) -> MLTexture? {
-//        if let t = super.getCachedTexture(with: element.textureId) {
-//            return t
-//        }
-//        return document?.createTexture(for: element)
-//    }
     
     // MARK: - Bezier
     // optimize stroke with bezier path, defaults to true
@@ -216,9 +180,7 @@ open class Canvas: MetalView {
         if display {
             presentRenderTarget()
         }
-//        super.renderLine(line, display: display)
         document.appendLines(lines, with: currentBrush)
-//        document.appendLines([line], with: brush.texture)
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {

@@ -35,10 +35,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        let c = Canvas(frame: view.bounds)
-//        view.addSubview(c)
-//        view.sendSubviewToBack(c)
-//        canvas = view as? Canvas
+        canvas.backgroundColor = .clear
         
         let pen = registerBrush(with: "pen")
         pen.pointSize = 5

@@ -26,4 +26,13 @@ extension UIColor {
         getRed(&r, green: &g, blue: &b, alpha: &a)
         return vector_float4(Float(r), Float(g), Float(b), Float(a * opacity))
     }
+    
+    func toClearColor() -> MTLClearColor {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        return MTLClearColorMake(Double(r), Double(g), Double(b), Double(a))
+    }
 }

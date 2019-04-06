@@ -112,10 +112,14 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK1-D2-5F7" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
+                                <rect key="frame" x="15" y="85" width="994" height="668"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AID-gC-Kue">
                                 <rect key="frame" x="16" y="675" width="992" height="29"/>
                                 <segments>
@@ -313,8 +317,12 @@
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="leading" secondItem="y2M-JQ-hAq" secondAttribute="trailing" constant="8" id="Hnq-Yj-r3Y"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="y2M-JQ-hAq" secondAttribute="bottom" constant="20" id="J1c-NG-Rrz"/>
                             <constraint firstItem="F2e-tb-ZXo" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="J5t-G3-mG6"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="JK1-D2-5F7" secondAttribute="bottom" constant="15" id="Jpj-FS-Zd9"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="X7T-Is-9js" secondAttribute="bottom" constant="8" id="KcT-3X-OMO"/>
+                            <constraint firstItem="JK1-D2-5F7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="15" id="Nb1-bi-ud3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X7T-Is-9js" secondAttribute="trailing" constant="5" id="OvN-q6-WAK"/>
+                            <constraint firstItem="JK1-D2-5F7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="ULh-pR-Daa"/>
+                            <constraint firstAttribute="trailing" secondItem="JK1-D2-5F7" secondAttribute="trailing" constant="15" id="XBE-88-81q"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="arX-yu-Unn" secondAttribute="bottom" constant="12" id="b1P-JI-o0c"/>
                             <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IoO-2f-vXQ" secondAttribute="trailing" id="fam-Nf-FS9"/>
@@ -333,6 +341,7 @@
                         <outlet property="bl" destination="Nu8-A6-wuf" id="fuO-Fq-UPr"/>
                         <outlet property="blueSlider" destination="sTw-Ab-px5" id="W6K-w5-Luq"/>
                         <outlet property="brushSegement" destination="AID-gC-Kue" id="Yl2-Db-yy6"/>
+                        <outlet property="canvas" destination="JK1-D2-5F7" id="QHy-PX-ZRk"/>
                         <outlet property="colorSampleView" destination="4Rz-xR-sMg" id="dau-U0-bit"/>
                         <outlet property="gl" destination="go5-Cs-Qn4" id="N3Y-pb-HQK"/>
                         <outlet property="greenSlider" destination="2bk-oc-Dro" id="27g-0x-sYZ"/>
@@ -368,7 +377,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0077354029609999998" green="0.51773045490000003" blue="0.81304125920000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.38584423446332655" green="0.66318005090664123" blue="0.81304125920000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9ag-qD-mlj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="glj-zf-hW8" secondAttribute="bottom" constant="15" id="CuC-hO-v62"/>
                             <constraint firstItem="DVd-yH-Jkd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9ag-qD-mlj" secondAttribute="bottom" constant="15" id="Idc-dw-qPy"/>

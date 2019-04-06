@@ -50,10 +50,10 @@ open class MetalView: MTKView {
         
         let renderPassDescriptor = MTLRenderPassDescriptor()
         let attachment = renderPassDescriptor.colorAttachments[0]
-        attachment?.clearColor = MTLClearColorMake(0, 0, 0, 0)
+        attachment?.clearColor = clearColor
         attachment?.texture = drawable.texture
         attachment?.loadAction = .clear
-        attachment?.storeAction = .dontCare
+        attachment?.storeAction = .store
         
         let commandQueue = device?.makeCommandQueue()
         let commandBuffer = commandQueue?.makeCommandBuffer()
@@ -72,7 +72,12 @@ open class MetalView: MTKView {
         commandBuffer?.commit()
     }
     
-    
+    open override var backgroundColor: UIColor? {
+        didSet {
+            clearColor = (backgroundColor ?? .white).toClearColor()
+        }
+    }
+
     // MARK: - Setup
     
     override init(frame frameRect: CGRect, device: MTLDevice?) {
@@ -116,6 +121,13 @@ open class MetalView: MTKView {
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
         rpd.colorAttachments[0].pixelFormat = metalLayer.pixelFormat
+        rpd.colorAttachments[0].isBlendingEnabled = true
+        rpd.colorAttachments[0].alphaBlendOperation = .add
+        rpd.colorAttachments[0].rgbBlendOperation = .add
+        rpd.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+        rpd.colorAttachments[0].sourceAlphaBlendFactor = .one
+        rpd.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        rpd.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
         pipelineState = try device?.makeRenderPipelineState(descriptor: rpd)
     }
 
