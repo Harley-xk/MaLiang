@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var redoButton: UIButton!
     
-    weak var canvas: Canvas!
+    @IBOutlet weak var canvas: Canvas!
 
     var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
@@ -35,10 +35,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let c = Canvas(frame: view.bounds)
-        view.addSubview(c)
-        view.sendSubviewToBack(c)
-        canvas = c
+//        let c = Canvas(frame: view.bounds)
+//        view.addSubview(c)
+//        view.sendSubviewToBack(c)
+//        canvas = view as? Canvas
         
         let pen = registerBrush(with: "pen")
         pen.pointSize = 5
@@ -68,14 +68,6 @@ class ViewController: UIViewController {
         }
         brushSegement.selectedSegmentIndex = 0
         styleChanged(brushSegement)
-        
-        do {
-            try canvas.setupDocument()
-        } catch {
-            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
         
         canvas.document?.onElementBegin { doc in
             self.redoButton.isEnabled = false

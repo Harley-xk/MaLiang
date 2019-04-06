@@ -8,35 +8,38 @@
 import Foundation
 import CoreGraphics
 
-/// Element 由多个 MLLine 组成，MLLine 是画布绘制的基本单位
-open class CanvasElement: Codable {
-    /// 纹理文件名称，同一个 Element 只能使用同一个纹理
-    var textureName: String?
+/// Elements on the canvas
+public enum CanvasElement {
+    /// linestrip by pan gesture
+    case pan(MLLineStrip)
+    /// celar command
+    case clear
     
-    /// 纹理在 OPENGL 中的 id，0 表示纹理还未创建
-    var textureId: UInt32 = 0
-    
-    /// 保存纹理的尺寸，以便从缓存的纹理文件重新创建时能正确设置
-    var t_w: Int = 0
-    var t_h: Int = 0
-    
-    /// line 应该至少有一个，不包含 line 的 Element 会被丢弃
-    var lines: [MLLine] = []
-    
-    func pushLines(_ lines: [MLLine]) {
-        self.lines.append(contentsOf: lines)
+    func drawSelf(display: Bool) {
+        switch self {
+        case let .pan(lineStrip): lineStrip.drawSelf()
+        default: break
+        }
     }
 }
 
-public struct CanvasAction: Codable {
+///  一条线段，保存了轨迹信息和画笔信息
+open class MLLineStrip {
+
+    /// 绘制这条线段所使用的画笔
+    open var brush: Brush
     
-    enum ActionType: String, Codable {
-        case painting = "paint"
-        case clear = "clear"
+    /// 组成线段的直线
+    open var lines: [MLLine]
+    
+    init(lines: [MLLine], brush: Brush) {
+        self.lines = lines
+        self.brush = brush
     }
     
-    var actionType: ActionType = .painting
-    var element: CanvasElement?
+    internal func drawSelf(display: Bool = false) {
+        brush.render(lines: lines)
+    }
 }
 
 /// Document only manage the data in memory and temp file path
@@ -44,141 +47,85 @@ public struct CanvasAction: Codable {
 open class Document {
     
     /// all stored actions
-    open var actions: [CanvasAction] = []
+    open var elements: [CanvasElement] = []
     
-    /// current unfinished element, will be added into elements once finished
-    open var currentElement: CanvasElement?
-    
-    /// get the element id of element, create if not exists
-    @discardableResult
-    open func createTexture(for element: CanvasElement) -> MLTexture? {
-        guard let name = element.textureName else {
-            return nil
-        }
-        
-        let path = self.texturePath.appendingPathComponent(name)
-        if let data = try? Data(contentsOf: path) {
-            let bytes = data.withUnsafeBytes {
-                [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
-            }
-            let texture = MLTexture(width: element.t_w, height: element.t_w, data: bytes)
-            texture.createGLTexture()
-            element.textureId = texture.gl_id
-            return texture
-        }
-        return nil
-    }
-    
-    /// a path to place elements、textures and any other datas
-    public private(set) var tempPath: URL
-    public private(set) var texturePath: URL
-
-    /// create an empty document, Set up cache directory
-    init() throws {
-        let name = Date().timeIntervalSince1970
-        let url = URL(fileURLWithPath: NSTemporaryDirectory())
-        self.tempPath = url.appendingPathComponent(".ml.temp.\(name)")
-        self.texturePath = tempPath.appendingPathComponent("texture", isDirectory: true)
-        try FileManager.default.createDirectory(at: texturePath, withIntermediateDirectories: true, attributes: nil)
-    }
+    /// current unfinished line strip, will be added into elements once finished
+    open var currentLineStrip: MLLineStrip?
     
     /// Append a line to current element in document
     ///
     /// - Parameters:
     ///   - newElement: if sets to true, a new element will be created with this line.
     ///   - texture: texture of this line, if not same to the current element, new element will be created and ignore the value of newElement
-    open func appendLines(_ lines: [MLLine], with texture: MLTexture, newElement: Bool = false) {
+    open func appendLines(_ lines: [MLLine], with brush: Brush, isNewElement: Bool = false) {
         
         /// do noting with empty lines
         guard lines.count > 0 else {
             return
         }
         
-        let textureName = String(texture.gl_id)
-        if !newElement, let element = currentElement, textureName == element.textureName {
-            element.pushLines(lines)
+        if !isNewElement, let lineStrip = currentLineStrip, lineStrip.brush === brush {
+            lineStrip.lines.append(contentsOf: lines)
         } else {
-            createNewElementWith(lines: lines, texture: texture)
+            createNewLineStrip(with: lines, brush: brush)
         }
     }
     
-    open func finishCurrentElement() {
-        if let element = currentElement {
-            let action = CanvasAction(actionType: .painting, element: element)
-            actions.append(action)
-            currentElement = nil
+    open func finishCurrentLineStrip() {
+        if let lineStrip = currentLineStrip {
+            elements.append(.pan(lineStrip))
+            currentLineStrip = nil
             h_onElementFinish?(self)
         }
     }
     
-    private func createNewElementWith(lines: [MLLine], texture: MLTexture) {
-        if currentElement != nil {
-            finishCurrentElement()
+    private func createNewLineStrip(with lines: [MLLine], brush: Brush) {
+        if currentLineStrip != nil {
+            finishCurrentLineStrip()
         }
-
-        let name = String(texture.gl_id)
-        let element = CanvasElement()
-        element.textureId = texture.gl_id
-        element.textureName = name
-        element.t_w = texture.gl_width
-        element.t_h = texture.gl_height
-        element.pushLines(lines)
-        currentElement = element
         
-        save(texture: texture, name: name)
-        
-        undoActions.removeAll()
+        currentLineStrip = MLLineStrip(lines: lines, brush: brush)
+        undoArray.removeAll()
         h_onElementBegin?(self)
     }
     
-    /// saving texture in a background thread
-    private func save(texture: MLTexture, name: String) {
-        DispatchQueue.global().async {
-            let path = self.texturePath.appendingPathComponent(name)
-            let data = Data(bytes: texture.gl_data)
-            try? data.write(to: path)
-        }
-    }
-    
     open func appendClearAction() {
-        let action = CanvasAction(actionType: .clear, element: nil)
-        actions.append(action)
-        undoActions.removeAll()
+        finishCurrentLineStrip()
+        elements.append(.clear)
+        undoArray.removeAll()
+        h_onElementBegin?(self)
+        h_onElementFinish?(self)
     }
     
     // MARK: - Undo & Redo
     /// Notice: Do not call these two function directly, they will be called by Canvas
     public var canRedo: Bool {
-        return undoActions.count > 0
+        return undoArray.count > 0
     }
     
     public var canUndo: Bool {
-        return actions.count > 0
+        return elements.count > 0
     }
     
-    private(set) var undoActions: [CanvasAction] = []
-
-    func undo() -> Bool {
-        if let current = currentElement {
-            let action = CanvasAction(actionType: .painting, element: current)
-            undoActions.append(action)
-            currentElement = nil
-        } else if actions.count > 0 {
-            undoActions.append(actions.last!)
-            actions.removeLast()
-        } else {
+    private(set) var undoArray: [CanvasElement] = []
+    
+    internal func undo() -> Bool {
+        finishCurrentLineStrip()
+        guard let last = elements.last else {
             return false
         }
+        undoArray.append(last)
+        elements.removeLast()
         h_onUndo?(self)
         return true
     }
     
-    func redo() -> Bool {
-        guard currentElement == nil, undoActions.count > 0 else {
+    internal func redo() -> Bool {
+        guard currentLineStrip == nil, let last = undoArray.last else {
             return false
         }
-        actions.append(undoActions.last!)
-        undoActions.removeLast()
+        elements.append(last)
+        undoArray.removeLast()
         h_onRedo?(self)
         return true
     }

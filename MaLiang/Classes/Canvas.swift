@@ -65,7 +65,6 @@ open class Canvas: MetalView {
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
-        
         do {
             let path = Bundle.maliang.path(forResource: "point", ofType: "png")!
             let data = try Data(contentsOf: URL(fileURLWithPath: path))
@@ -73,7 +72,7 @@ open class Canvas: MetalView {
         } catch {
             
         }
-        
+        document = Document()
         setupGestureRecognizers()
     }
     
@@ -93,7 +92,7 @@ open class Canvas: MetalView {
         super.clear(display: display)
         
         if display {
-            document?.appendClearAction()
+            document.appendClearAction()
         }
     }
     
@@ -103,10 +102,7 @@ open class Canvas: MetalView {
     }
     
     // MARK: - Document
-    public private(set) var document: Document?
-    public func setupDocument() throws {
-        document = try Document()
-    }
+    public private(set) var document: Document!
     
     public func undo() {
         if let doc = document, doc.undo() {
@@ -122,6 +118,24 @@ open class Canvas: MetalView {
     
     /// redraw elemets in document
     private func redraw() {
+    
+        var elementsToDraw: [CanvasElement] = []
+        var elements = document.elements
+        while elements.count > 0 {
+            guard let element = elements.popLast() else {
+                break
+            }
+            if case CanvasElement.clear = element {
+                break
+            }
+            elementsToDraw.insert(element, at: 0)
+        }
+        renderTarget = makeEmptyTexture()
+
+        for item in elementsToDraw {
+            item.drawSelf(display: false)
+        }
+        presentRenderTarget()
     }
 //        if let doc = document {
 //
@@ -203,7 +217,8 @@ open class Canvas: MetalView {
             presentRenderTarget()
         }
 //        super.renderLine(line, display: display)
-//        document?.appendLines([line], with: brush.texture)
+        document.appendLines(lines, with: currentBrush)
+//        document.appendLines([line], with: brush.texture)
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
@@ -221,7 +236,7 @@ open class Canvas: MetalView {
         if gesture.state == .recognized {
             let location = gesture.location(in: self)
             renderTap(at: location)
-            document?.finishCurrentElement()
+            document.finishCurrentLineStrip()
         }
     }
     
@@ -232,7 +247,7 @@ open class Canvas: MetalView {
         if gesture.state == .began {
             /// 取实际的手势起点作为笔迹的起点
             let acturalBegin = gesture.acturalBeginLocation
-            document?.finishCurrentElement()
+            document.finishCurrentLineStrip()
             lastRenderedPan = Pan(point: location, force: gesture.force)
             bezierGenerator.begin(with: location)
             lastRenderedPan = Pan(point: acturalBegin, force: gesture.force)
@@ -250,7 +265,7 @@ open class Canvas: MetalView {
             }
             bezierGenerator.finish()
             lastRenderedPan = nil
-            document?.finishCurrentElement()
+            document.finishCurrentLineStrip()
         }
     }
 }

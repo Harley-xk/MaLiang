@@ -41,11 +41,10 @@ open class MetalView: MTKView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         updateBuffers()
-        presentRenderTarget()
     }
     
     internal func presentRenderTarget() {
-        guard let drawable = metalLayer.nextDrawable()else {
+        guard let drawable = metalLayer.nextDrawable(), let texture = renderTarget else {
             return
         }
         
@@ -65,7 +64,7 @@ open class MetalView: MTKView {
         
         commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
         commandEncoder?.setVertexBuffer(uniform_buffer, offset: 0, index: 1)
-        commandEncoder?.setFragmentTexture(renderTarget, index: 0)
+        commandEncoder?.setFragmentTexture(texture, index: 0)
         commandEncoder?.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
         
         commandEncoder?.endEncoding()
@@ -142,7 +141,7 @@ open class MetalView: MTKView {
     }
     
     // make empty testure
-    private func makeEmptyTexture() -> MTLTexture? {
+    internal func makeEmptyTexture() -> MTLTexture? {
         let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: metalLayer.pixelFormat,
                                                                          width: Int(drawableSize.width),
                                                                          height: Int(drawableSize.height),
