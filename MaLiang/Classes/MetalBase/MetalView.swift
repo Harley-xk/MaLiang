@@ -21,6 +21,11 @@ open class MetalView: MTKView {
         return try textureLoader.newTexture(data: data, options: [.SRGB : false])
     }
     
+    func makeTexture(with file: URL) throws -> MTLTexture {
+        let data = try Data(contentsOf: file)
+        return try makeTexture(with: data)
+    }
+    
     // MARK: - Render Target
     
     /// final render target, contents of this texture will be rendered into drawables

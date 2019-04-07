@@ -42,7 +42,7 @@ open class Brush {
     /// target to draw
     weak var target: Canvas?
     
-    init(texture: MTLTexture?, target: Canvas) {
+    init(texture: MTLTexture? = nil, target: Canvas) {
         self.texture = texture
         self.target = target
         self.updatePointPipeline()
@@ -148,27 +148,4 @@ open class Brush {
         commandBuffer?.commit()
     }
     
-}
-
-public final class Eraser: Brush {
-    
-    /// only a global eraser needed
-//    public static let global = Eraser()
-    
-//    private init() {
-//        super.init(texture: nil, target: nil)
-//        pointSize = 10
-//        opacity = 1
-//        forceSensitive = 0
-//    }
-    
-    // color of eraser can't be changed
-    override public var color: UIColor {
-        get {
-            return .clear
-        }
-        set {
-            // set color of eraser will do nothing
-        }
-    }
 }

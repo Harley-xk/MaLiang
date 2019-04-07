@@ -67,6 +67,9 @@ fragment float4 fragment_point_func_without_texture(Point point_data [[stage_in]
 {
     float dist = length(pointCoord - float2(0.5));
     float4 out_color = point_data.color;
-    out_color.a = 1.0 - smoothstep(0.3, 0.5, dist);
+    if (dist >= 0.5) {
+        out_color.a = 0;
+    }
+//    out_color.a = out_color.a * (1.0 - smoothstep(0.4, 0.5, dist));
     return float4(out_color);
 }

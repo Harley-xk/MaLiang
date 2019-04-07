@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         canvas.backgroundColor = .clear
         
         let pen = canvas.defaultBrush!
+        pen.opacity = 1
         pen.pointSize = 5
         pen.pointStep = 1
         pen.color = color
@@ -54,9 +55,15 @@ class ViewController: UIViewController {
         brush.forceSensitive = 0.6
         brush.color = color
 
-//        let eraser = Eraser.global
+        // make eraser with a texture for pencil
+//        let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
+//        let texture = try? canvas.makeTexture(with: URL(fileURLWithPath: path))
+//        let eraser = Eraser(texture: texture, target: canvas)
         
-        brushes = [pen, pencil, brush]
+        /// make eraser with default round point
+        let eraser = Eraser(target: canvas)
+
+        brushes = [pen, pencil, brush, eraser]
         
         brushSegement.removeAllSegments()
         for i in 0 ..< brushes.count {

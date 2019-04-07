@@ -33,6 +33,7 @@
 		C388DE5A22550F1200CE19C6 /* pen.png in Resources */ = {isa = PBXBuildFile; fileRef = C388DE5822550F1200CE19C6 /* pen.png */; };
 		C388DE5B22550F1200CE19C6 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C388DE5922550F1200CE19C6 /* pencil.png */; };
 		C3E122562255CC6800114EBD /* MLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLTexture.swift */; };
+		C3E7B55122599CB8001D45EC /* Eraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E7B55022599CB8001D45EC /* Eraser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		C388DE562254FB6900CE19C6 /* Maths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maths.swift; sourceTree = "<group>"; };
 		C388DE5822550F1200CE19C6 /* pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pen.png; sourceTree = "<group>"; };
 		C388DE5922550F1200CE19C6 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
+		C3E7B55022599CB8001D45EC /* Eraser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eraser.swift; sourceTree = "<group>"; };
 		E4F56C2627A50ADFF8265C8F /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F3CBFDC0B0167759FA9BD760 /* MaLiang.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MaLiang.podspec; path = ../MaLiang.podspec; sourceTree = "<group>"; };
 		F4B98B2F9C80C87DAC438AFA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				B69E669D208C6117005ED0E1 /* Canvas.swift */,
 				B69E66A2208C6117005ED0E1 /* Brush.swift */,
+				C3E7B55022599CB8001D45EC /* Eraser.swift */,
 				B6F023B1208F2A4700D5CFA7 /* Document.swift */,
 				B6F023B0208F1E9200D5CFA7 /* Utils */,
 				C388DE512254F57800CE19C6 /* MetalBase */,
@@ -341,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E7B55122599CB8001D45EC /* Eraser.swift in Sources */,
 				C3E122562255CC6800114EBD /* MLTexture.swift in Sources */,
 				C388DE552254F7CC00CE19C6 /* Shaders.metal in Sources */,
 				B604919D209A71C000372B21 /* PaintingGestureRecognizer.swift in Sources */,
