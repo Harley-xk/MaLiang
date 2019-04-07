@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Metal
 
 extension Bundle {
     static var maliang: Bundle {
@@ -15,6 +16,16 @@ extension Bundle {
             bundle = Bundle(path: resource) ?? Bundle.main
         }
         return bundle
+    }
+}
+
+extension MTLDevice {
+    func libraryForMaLiang() -> MTLLibrary? {
+        let framework = Bundle(for: Canvas.classForCoder())
+        guard let resource = framework.path(forResource: "default", ofType: "metallib") else {
+            return nil
+        }
+        return try? makeLibrary(filepath: resource)
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MaLiang
 
 class ScrollableSample: UIViewController {
 
@@ -39,9 +40,9 @@ class ScrollableSample: UIViewController {
     }
     
     @IBAction func snapshotAction(_ sender: Any) {
-        let preview = PaintingPreview.createFromStoryboard()
+        let preview = PaintingPreview.create(from: .main)
         preview.image = canvas.snapshot()
-        navigationController?.push(preview)
+        navigationController?.pushViewController(preview, animated: true)
     }
     
     /*

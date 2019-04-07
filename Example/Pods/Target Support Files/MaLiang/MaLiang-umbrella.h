@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double CometVersionNumber;
-FOUNDATION_EXPORT const unsigned char CometVersionString[];
+FOUNDATION_EXPORT double MaLiangVersionNumber;
+FOUNDATION_EXPORT const unsigned char MaLiangVersionString[];
 

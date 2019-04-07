@@ -119,7 +119,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="ZIH-iH-bgj">
                                 <rect key="frame" x="0.0" y="70" width="1024" height="698"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK1-D2-5F7" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK1-D2-5F7" customClass="Canvas" customModule="MaLiang">
                                 <rect key="frame" x="15" y="85" width="994" height="668"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -423,22 +423,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ag-qD-mlj">
-                                <rect key="frame" x="10" y="74" width="343" height="573"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ag-qD-mlj">
+                                <rect key="frame" x="0.0" y="70" width="1024" height="698"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="9ag-qD-mlj" secondAttribute="height" id="6qN-oy-ebh"/>
-                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.38584423446332655" green="0.66318005090664123" blue="0.81304125920000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9ag-qD-mlj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="glj-zf-hW8" secondAttribute="bottom" constant="15" id="CuC-hO-v62"/>
-                            <constraint firstItem="DVd-yH-Jkd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9ag-qD-mlj" secondAttribute="bottom" constant="15" id="Idc-dw-qPy"/>
-                            <constraint firstItem="9ag-qD-mlj" firstAttribute="centerY" secondItem="tWd-HY-QHR" secondAttribute="centerY" id="IsB-WA-KZD"/>
-                            <constraint firstItem="9ag-qD-mlj" firstAttribute="centerX" secondItem="tWd-HY-QHR" secondAttribute="centerX" id="QiL-QB-sbZ"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="9ag-qD-mlj" secondAttribute="trailing" id="X8a-Jk-ERB"/>
-                            <constraint firstItem="9ag-qD-mlj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tWd-HY-QHR" secondAttribute="leadingMargin" id="tPA-Jm-aUk"/>
+                            <constraint firstItem="DVd-yH-Jkd" firstAttribute="top" secondItem="9ag-qD-mlj" secondAttribute="bottom" id="Elq-AN-EYv"/>
+                            <constraint firstItem="9ag-qD-mlj" firstAttribute="top" secondItem="glj-zf-hW8" secondAttribute="bottom" id="FCH-zp-pGb"/>
+                            <constraint firstAttribute="trailing" secondItem="9ag-qD-mlj" secondAttribute="trailing" id="Wo2-QG-eJZ"/>
+                            <constraint firstItem="9ag-qD-mlj" firstAttribute="leading" secondItem="tWd-HY-QHR" secondAttribute="leading" id="yHB-il-eEg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Preview" id="2fJ-d8-wHv"/>
@@ -466,7 +461,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.5" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="bXU-Tk-Cyf" customClass="ScrollableCanvas" customModule="MaLiang_Example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ae7-3i-tGI" customClass="Canvas" customModule="MaLiang_Example" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ae7-3i-tGI" customClass="Canvas" customModule="MaLiang">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1024"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

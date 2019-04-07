@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  MaLiang
 //
-//  Created by harley-xk on 11/06/2017.
-//  Copyright (c) 2017 harley-xk. All rights reserved.
+//  Created by Harley-xk on 04/07/2019.
+//  Copyright (c) 2019 Harley-xk. All rights reserved.
 //
 
 import UIKit

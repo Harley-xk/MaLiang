@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 import MetalKit
 
 open class MetalView: MTKView {
@@ -119,7 +120,7 @@ open class MetalView: MTKView {
     private var pipelineState: MTLRenderPipelineState!
 
     private func setupPiplineState() throws {
-        let library = device?.makeDefaultLibrary()
+        let library = device?.libraryForMaLiang()
         let vertex_func = library?.makeFunction(name: "vertex_render_target")
         let fragment_func = library?.makeFunction(name: "fragment_render_target")
         let rpd = MTLRenderPipelineDescriptor()

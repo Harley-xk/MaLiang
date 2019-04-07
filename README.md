@@ -1,4 +1,4 @@
-# ![](icon-32.png) MaLiang
+# ![](Images/icon-32.png) MaLiang
 
 [![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/Harley-xk/MaLiang)
 [![Version](https://img.shields.io/cocoapods/v/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
@@ -11,7 +11,7 @@ MaLiang is a painting framework based on Metal. The name of "MaLiang" comes from
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
 
-<img src="sample.png" width=450></img>
+<img src="Images/sample.png" width=450></img>
 
 ## Requirements
 

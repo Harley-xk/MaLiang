@@ -2,15 +2,15 @@
 //  ViewController.swift
 //  MaLiang
 //
-//  Created by harley-xk on 11/06/2017.
-//  Copyright (c) 2017 harley-xk. All rights reserved.
+//  Created by Harley-xk on 04/07/2019.
+//  Copyright (c) 2019 Harley-xk. All rights reserved.
 //
 
 import UIKit
-import Comet
+import MaLiang
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var strokeSizeLabel: UILabel!
     @IBOutlet weak var brushSegement: UISegmentedControl!
     @IBOutlet weak var sizeSlider: UISlider!
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var redoButton: UIButton!
     
     @IBOutlet weak var canvas: Canvas!
-
+    
     var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
     
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         pen.pointSize = 5
         pen.pointStep = 1
         pen.color = color
-
+        
         let pencil = registerBrush(with: "pencil")
         pencil.pointSize = 3
         pencil.pointStep = 2
@@ -54,15 +54,15 @@ class ViewController: UIViewController {
         brush.pointStep = 2
         brush.forceSensitive = 0.6
         brush.color = color
-
+        
         // make eraser with a texture for pencil
-//        let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
-//        let texture = try? canvas.makeTexture(with: URL(fileURLWithPath: path))
-//        let eraser = Eraser(texture: texture, target: canvas)
+        //        let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
+        //        let texture = try? canvas.makeTexture(with: URL(fileURLWithPath: path))
+        //        let eraser = Eraser(texture: texture, target: canvas)
         
         /// make eraser with default round point
         let eraser = Eraser(target: canvas)
-
+        
         brushes = [pen, pencil, brush, eraser]
         
         brushSegement.removeAllSegments()
@@ -104,19 +104,19 @@ class ViewController: UIViewController {
     @IBAction func undoAction(_ sender: Any) {
         canvas.undo()
     }
-
+    
     @IBAction func redoAction(_ sender: Any) {
         canvas.redo()
     }
-
+    
     @IBAction func clearAction(_ sender: Any) {
-        canvas.clear()        
+        canvas.clear()
     }
     
     @IBAction func snapshotAction(_ sender: Any) {
-        let preview = PaintingPreview.createFromStoryboard()
+        let preview = PaintingPreview.create(from: .main)
         preview.image = canvas.snapshot()
-        navigationController?.push(preview)
+        navigationController?.pushViewController(preview, animated: true)
     }
     
     // MARK: - color
@@ -131,7 +131,7 @@ class ViewController: UIViewController {
     var r: CGFloat = 0
     var g: CGFloat = 0
     var b: CGFloat = 0
-
+    
     @IBAction func colorChanged(_ sender: UISlider) {
         let value = Int(sender.value)
         let colorv = CGFloat(value) / 255

@@ -42,7 +42,7 @@ open class Brush {
     /// target to draw
     weak var target: Canvas?
     
-    init(texture: MTLTexture? = nil, target: Canvas) {
+    public init(texture: MTLTexture? = nil, target: Canvas) {
         self.texture = texture
         self.target = target
         self.updatePointPipeline()
@@ -75,7 +75,7 @@ open class Brush {
             return
         }
         
-        let library = device.makeDefaultLibrary()
+        let library = device.libraryForMaLiang()
         let vertex_func = library?.makeFunction(name: "vertex_point_func")
         let fragment_func = library?.makeFunction(name: texture == nil ? "fragment_point_func_without_texture" : "fragment_point_func")
         let rpd = MTLRenderPipelineDescriptor()
