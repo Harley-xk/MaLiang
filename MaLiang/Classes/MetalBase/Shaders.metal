@@ -49,21 +49,24 @@ struct Point {
     float size [[point_size]];
 };
 
-vertex Point vertex_point_func(constant Point *points [[buffer(0)]],
-                               constant Uniforms &uniforms [[buffer(1)]],
-                               uint vid [[vertex_id]])
+vertex Point vertex_point_func(constant Point *points [[buffer(0)]], constant Uniforms &uniforms [[buffer(1)]], uint vid [[vertex_id]])
 {
     Point out = points[vid];
     out.position = uniforms.scaleMatrix * out.position;// * in.position;
     return out;
 };
 
-fragment float4 fragment_point_func(Point point_data [[stage_in]],
-                                    texture2d<float> tex2d [[texture(0)]],
-                                    float2 pointCoord  [[point_coord]])
+fragment float4 fragment_point_func(Point point_data [[stage_in]], texture2d<float> tex2d [[texture(0)]], float2 pointCoord  [[point_coord]])
 {
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
     float4 color = float4(tex2d.sample(textureSampler, pointCoord));
     return float4(point_data.color.rgb, color.a * point_data.color.a);
-//    return color;
 };
+
+fragment float4 fragment_point_func_without_texture(Point point_data [[stage_in]], float2 pointCoord  [[point_coord]])
+{
+    float dist = length(pointCoord - float2(0.5));
+    float4 out_color = point_data.color;
+    out_color.a = 1.0 - smoothstep(0.3, 0.5, dist);
+    return float4(out_color);
+}

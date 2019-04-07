@@ -12,6 +12,9 @@ open class Canvas: MetalView {
     
     // MARK: - Brushes
     
+    /// default round point brush, will not show in registeredBrushes
+    open var defaultBrush: Brush!
+    
     /// Register a brush with image data
     ///
     /// - Parameter texture: texture data of brush
@@ -19,6 +22,7 @@ open class Canvas: MetalView {
     @discardableResult open func registerBrush(with texture: Data) throws -> Brush {
         let texture = try makeTexture(with: texture)
         let brush = Brush(texture: texture, target: self)
+        brush.identifier = UUID()
         registeredBrushes.append(brush)
         return brush
     }
@@ -65,13 +69,10 @@ open class Canvas: MetalView {
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
-        do {
-            let path = Bundle.maliang.path(forResource: "point", ofType: "png")!
-            let data = try Data(contentsOf: URL(fileURLWithPath: path))
-            try currentBrush = registerBrush(with: data)
-        } catch {
-            
-        }
+        
+        defaultBrush = Brush(texture: nil, target: self)
+        currentBrush = defaultBrush
+        
         document = Document()
         setupGestureRecognizers()
     }

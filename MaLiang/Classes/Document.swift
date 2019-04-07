@@ -98,7 +98,6 @@ open class Document {
     }
     
     // MARK: - Undo & Redo
-    /// Notice: Do not call these two function directly, they will be called by Canvas
     public var canRedo: Bool {
         return undoArray.count > 0
     }

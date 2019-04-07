@@ -19,8 +19,8 @@ class ScrollableSample: UIViewController {
         
         DispatchQueue.main.async {
             
-            let asset = NSDataAsset(name: "pencil")!
-            let pencil = try! self.canvas.registerBrush(with: asset.data)
+            let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
+            let pencil = try! self.canvas.registerBrush(with: URL(fileURLWithPath: path))
             pencil.pointSize = 5
             pencil.pointStep = 2
             pencil.opacity = 0.6

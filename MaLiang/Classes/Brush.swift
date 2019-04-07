@@ -15,6 +15,9 @@ public struct Pan {
 }
 
 open class Brush {
+    
+    // automatically set by canvas after being registered to
+    public internal(set) var identifier: UUID?
         
     // opacity of texture, affects the darkness of stroke
     // set opacity to 1 may cause heavy aliasing
@@ -74,19 +77,25 @@ open class Brush {
         
         let library = device.makeDefaultLibrary()
         let vertex_func = library?.makeFunction(name: "vertex_point_func")
-        let fragment_func = library?.makeFunction(name: "fragment_point_func")
+        let fragment_func = library?.makeFunction(name: texture == nil ? "fragment_point_func_without_texture" : "fragment_point_func")
         let rpd = MTLRenderPipelineDescriptor()
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
         rpd.colorAttachments[0].pixelFormat = target.metalLayer.pixelFormat
-        rpd.colorAttachments[0].isBlendingEnabled = true
-        rpd.colorAttachments[0].alphaBlendOperation = .add
-        rpd.colorAttachments[0].rgbBlendOperation = .add
-        rpd.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-        rpd.colorAttachments[0].sourceAlphaBlendFactor = .one
-        rpd.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
-        rpd.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
+        setupBlendOptions(for: rpd.colorAttachments[0]!)
         pipelineState = try! device.makeRenderPipelineState(descriptor: rpd)
+    }
+    
+    
+    /// Blending options for this brush, override to implement your own blending options
+    open func setupBlendOptions(for attachment: MTLRenderPipelineColorAttachmentDescriptor) {
+        attachment.isBlendingEnabled = true
+        attachment.alphaBlendOperation = .add
+        attachment.rgbBlendOperation = .add
+        attachment.sourceRGBBlendFactor = .sourceAlpha
+        attachment.sourceAlphaBlendFactor = .one
+        attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
+        attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
     }
 
     open func render(lines: [MLLine]) {
@@ -129,7 +138,9 @@ open class Brush {
         if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
             commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
-            commandEncoder?.setFragmentTexture(texture, index: 0)
+            if let texture = texture {
+                commandEncoder?.setFragmentTexture(texture, index: 0)
+            }
             commandEncoder?.drawPrimitives(type: .point, vertexStart: 0, vertexCount: vertexes.count)
         }
         

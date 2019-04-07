@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         
         canvas.backgroundColor = .clear
         
-        let pen = registerBrush(with: "pen")
+        let pen = canvas.defaultBrush!
         pen.pointSize = 5
         pen.pointStep = 1
         pen.color = color
