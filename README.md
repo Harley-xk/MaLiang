@@ -5,9 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 [![Platform](https://img.shields.io/cocoapods/p/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 
-🚧🚧🚧🚧🚧🚧 **MaLiang is porting to Metal, comming soon...** 🚧🚧🚧🚧🚧🚧
+🎉 MaLiang is on Metal now!
 
-MaLiang is a painting framework based on ~~OpenGL ES~~. The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
+MaLiang is a painting framework based on Metal. The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
 
@@ -15,9 +15,9 @@ MaLiang is a painting framework based on ~~OpenGL ES~~. The name of "MaLiang" co
 
 ## Requirements
 
-iOS 9.0+, Swift 4.1+ </br>
+iOS 9.0+, Swift 4.2+ </br>
 
-The core painting module is based on OpenGL ES 3.0</br>
+The core painting module is based on Metal</br>
 
 You can simply make it compatible with lower version of iOS and swift by changing only serval lines of code.
 
@@ -28,6 +28,12 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'MaLiang'
+```
+
+To use the old OpenGL ES verion:
+
+```ruby
+pod 'MaLiang', '~> 1.1'
 ```
 
 ## Usage
@@ -44,7 +50,7 @@ open class Canvas: MLView
 ```
 
 A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
-`Canvas` extends from `MLView`, whitch extends from `UIView`. `MLView` handles all the logic with OpenGL and hides them from you.
+`Canvas` extends from `MetalView`, whitch extends from `MTKView`. `MetalView` handles all the logic with MetalKit and hides them from you.
 
 `Canvas` can be simply created with xib or code.
 
@@ -63,12 +69,12 @@ With all things done, you can do more with `Brush`!
 
 `Brush` is the key feature to `MaLiang`. It holds textures and colors, whitch makes it possiable to paint amazing things.
 
-`Brush` can be created with a image:
+Register a `Brush` with image data or file to Canvas and paint with it:
 
 ```swift
-let image = UIImage(named: "pencil.png")
-let pencil = Brush(texture: image)
-canvas.brush = pencil
+let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
+let pencil = try? canvas.registerBrush(with: URL(fileURLWithPath: path))
+pencil?.use()
 ```
 
 `Brush` have serval properties for you to custmize:
@@ -102,31 +108,16 @@ MaLiang supports automatically adjustment of stroke size with painting force. 3D
 
 ### Document
 
-`Document` is not required. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
+'Document' is now configured by default. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
 And you can implement your own **saving logic** with the data holds by `Document`.
-
-To enable the `Document` for `Canvas`, there needs only one line of code:
-
-```swift
-canvas.setupDocument()
-```
-
-The operation above may be failed if there's not enough disk rooms. Because we need rooms to keep textures and painting datas on disk.</br>
-Use `do-catch` to process the error when it appears:
-
-```swift
-do {
-    try canvas.setupDocument()
-} catch {
-    // do somthing when error occurs
-}
-```
 
 ## TODO
 
-- [ ] Port to Metal
+- [x] Port to Metal
 - [x] Undo & Redo
 - [x] Export to image
+- [ ] Optimize for scale
+- [ ] Optimize for saving logic
 - [ ] Text element
 - [ ] Image element
 - [ ] Texture rotation
