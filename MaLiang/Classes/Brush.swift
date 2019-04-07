@@ -81,7 +81,7 @@ open class Brush {
         let rpd = MTLRenderPipelineDescriptor()
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
-        rpd.colorAttachments[0].pixelFormat = target.metalLayer.pixelFormat
+        rpd.colorAttachments[0].pixelFormat = target.colorPixelFormat
         setupBlendOptions(for: rpd.colorAttachments[0]!)
         pipelineState = try! device.makeRenderPipelineState(descriptor: rpd)
     }

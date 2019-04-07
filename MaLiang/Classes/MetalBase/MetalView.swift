@@ -50,6 +50,9 @@ open class MetalView: MTKView {
     }
     
     internal func presentRenderTarget() {
+        
+        #if !targetEnvironment(simulator)
+
         guard let drawable = metalLayer.nextDrawable(), let texture = renderTarget else {
             return
         }
@@ -76,6 +79,8 @@ open class MetalView: MTKView {
         commandEncoder?.endEncoding()
         commandBuffer?.present(drawable)
         commandBuffer?.commit()
+
+        #endif
     }
     
     open override var backgroundColor: UIColor? {
@@ -96,12 +101,14 @@ open class MetalView: MTKView {
         setup()
     }
     
+    #if !targetEnvironment(simulator)
     var metalLayer: CAMetalLayer {
         guard let layer = layer as? CAMetalLayer else {
             fatalError("Metal initialize failed!")
         }
         return layer
     }
+    #endif
     
     open func setup() {
         device = MTLCreateSystemDefaultDevice()
@@ -126,7 +133,7 @@ open class MetalView: MTKView {
         let rpd = MTLRenderPipelineDescriptor()
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
-        rpd.colorAttachments[0].pixelFormat = metalLayer.pixelFormat
+        rpd.colorAttachments[0].pixelFormat = colorPixelFormat
         rpd.colorAttachments[0].isBlendingEnabled = true
         rpd.colorAttachments[0].alphaBlendOperation = .add
         rpd.colorAttachments[0].rgbBlendOperation = .add
@@ -160,7 +167,7 @@ open class MetalView: MTKView {
     
     // make empty testure
     internal func makeEmptyTexture() -> MTLTexture? {
-        let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: metalLayer.pixelFormat,
+        let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: colorPixelFormat,
                                                                          width: Int(drawableSize.width),
                                                                          height: Int(drawableSize.height),
                                                                          mipmapped: false)

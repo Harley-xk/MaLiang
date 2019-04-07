@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
   
   s.name             = 'MaLiang'
-  s.version          = '2.0.1-alpha'
+  s.version          = '2.0.0-beta'
   s.summary          = 'MaLiang is a painting Framework based on Metal.'
   s.description      = 'The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.'
 
