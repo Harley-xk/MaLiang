@@ -134,7 +134,6 @@ open class Brush {
             }
         }
         
-        
         if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
             commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)

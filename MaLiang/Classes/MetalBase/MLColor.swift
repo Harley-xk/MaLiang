@@ -9,12 +9,18 @@ import Foundation
 import simd
 import UIKit
 
-typealias MLColor = vector_float4
-
-/// Color to render on MLView
-extension MLColor {
-    static var black = MLColor(0, 0, 0, 1)
-    static var white = MLColor(1, 1, 1, 1)
+struct MLColor: Codable {
+    var red: Float
+    var green: Float
+    var blue: Float
+    var alpha: Float
+    
+    static var black = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
+    static var white = MLColor(red: 1, green: 1, blue: 1, alpha: 1)
+    
+    func toFloat4() -> vector_float4 {
+        return vector_float4(red, green, blue, alpha)
+    }
 }
 
 extension UIColor {
@@ -24,7 +30,7 @@ extension UIColor {
         var b: CGFloat = 0
         var a: CGFloat = 0
         getRed(&r, green: &g, blue: &b, alpha: &a)
-        return vector_float4(Float(r), Float(g), Float(b), Float(a * opacity))
+        return MLColor(red: Float(r), green: Float(g), blue: Float(b), alpha: Float(a * opacity))
     }
     
     func toClearColor() -> MTLClearColor {

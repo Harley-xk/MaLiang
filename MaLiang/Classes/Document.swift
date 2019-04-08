@@ -47,17 +47,17 @@ open class MLLineStrip {
 open class Document {
     
     /// all stored actions
-    open var elements: [CanvasElement] = []
+    open internal(set) var elements: [CanvasElement] = []
     
     /// current unfinished line strip, will be added into elements once finished
-    open var currentLineStrip: MLLineStrip?
+    open internal(set) var currentLineStrip: MLLineStrip?
     
     /// Append a line to current element in document
     ///
     /// - Parameters:
     ///   - newElement: if sets to true, a new element will be created with this line.
     ///   - texture: texture of this line, if not same to the current element, new element will be created and ignore the value of newElement
-    open func appendLines(_ lines: [MLLine], with brush: Brush, isNewElement: Bool = false) {
+    internal func appendLines(_ lines: [MLLine], with brush: Brush, isNewElement: Bool = false) {
         
         /// do noting with empty lines
         guard lines.count > 0 else {
@@ -71,7 +71,7 @@ open class Document {
         }
     }
     
-    open func finishCurrentLineStrip() {
+    internal func finishCurrentLineStrip() {
         if let lineStrip = currentLineStrip {
             elements.append(.pan(lineStrip))
             currentLineStrip = nil
@@ -79,7 +79,7 @@ open class Document {
         }
     }
     
-    private func createNewLineStrip(with lines: [MLLine], brush: Brush) {
+    internal func createNewLineStrip(with lines: [MLLine], brush: Brush) {
         if currentLineStrip != nil {
             finishCurrentLineStrip()
         }
@@ -89,7 +89,7 @@ open class Document {
         h_onElementBegin?(self)
     }
     
-    open func appendClearAction() {
+    internal func appendClearAction() {
         finishCurrentLineStrip()
         elements.append(.clear)
         undoArray.removeAll()
