@@ -458,32 +458,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.5" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="bXU-Tk-Cyf" customClass="ScrollableCanvas" customModule="MaLiang_Example" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ae7-3i-tGI" customClass="Canvas" customModule="MaLiang">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1024"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1024" id="GuL-4R-f3d"/>
-                                            <constraint firstAttribute="width" constant="1024" id="Xeh-R4-Ylg"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Ae7-3i-tGI" firstAttribute="top" secondItem="bXU-Tk-Cyf" secondAttribute="top" id="6tI-9P-d0O"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ae7-3i-tGI" secondAttribute="trailing" id="9Ah-eu-yKo"/>
-                                    <constraint firstItem="Ae7-3i-tGI" firstAttribute="leading" secondItem="bXU-Tk-Cyf" secondAttribute="leading" id="LKV-td-O6Y"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ae7-3i-tGI" secondAttribute="bottom" id="vY3-H6-n8w"/>
-                                </constraints>
-                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snQ-Ei-YrR" customClass="ScrollableCanvas" customModule="MaLiang">
+                                <rect key="frame" x="0.0" y="70" width="1024" height="698"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Qkn-qG-5cl" firstAttribute="top" secondItem="bXU-Tk-Cyf" secondAttribute="bottom" id="Pi4-iE-jZw"/>
-                            <constraint firstItem="bXU-Tk-Cyf" firstAttribute="top" secondItem="egp-KQ-7Do" secondAttribute="top" id="Rlm-en-0aq"/>
-                            <constraint firstAttribute="trailing" secondItem="bXU-Tk-Cyf" secondAttribute="trailing" id="kcc-5I-VjK"/>
-                            <constraint firstItem="bXU-Tk-Cyf" firstAttribute="leading" secondItem="egp-KQ-7Do" secondAttribute="leading" id="lgE-Uy-QyM"/>
+                            <constraint firstItem="snQ-Ei-YrR" firstAttribute="leading" secondItem="egp-KQ-7Do" secondAttribute="leading" id="H7r-hQ-zrU"/>
+                            <constraint firstItem="Qkn-qG-5cl" firstAttribute="top" secondItem="snQ-Ei-YrR" secondAttribute="bottom" id="UH5-n7-zmp"/>
+                            <constraint firstAttribute="trailing" secondItem="snQ-Ei-YrR" secondAttribute="trailing" id="WZS-g7-xT3"/>
+                            <constraint firstItem="snQ-Ei-YrR" firstAttribute="top" secondItem="RQf-4R-sVZ" secondAttribute="bottom" id="nJI-uV-NKW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scrollable" id="YKu-JO-61c">
@@ -494,13 +479,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="canvas" destination="Ae7-3i-tGI" id="TxG-Vp-rGt"/>
-                        <outlet property="scrollView" destination="bXU-Tk-Cyf" id="3LD-Sj-wEq"/>
+                        <outlet property="scrollView" destination="snQ-Ei-YrR" id="WBf-T5-mgZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SlJ-FD-3kA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="-342"/>
+            <point key="canvasLocation" x="243.74999999999997" y="-342.1875"/>
         </scene>
     </scenes>
     <resources>

@@ -167,6 +167,9 @@ open class MetalView: MTKView {
     
     // make empty testure
     internal func makeEmptyTexture() -> MTLTexture? {
+        guard drawableSize.width * drawableSize.height > 0 else {
+            return nil
+        }
         let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: colorPixelFormat,
                                                                          width: Int(drawableSize.width),
                                                                          height: Int(drawableSize.height),

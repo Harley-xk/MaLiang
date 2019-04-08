@@ -12,11 +12,12 @@ import MaLiang
 class ScrollableSample: UIViewController {
 
     @IBOutlet weak var scrollView: ScrollableCanvas!
-    @IBOutlet weak var canvas: Canvas!
+    var canvas: Canvas! {
+        return scrollView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.canvas = canvas
         
         DispatchQueue.main.async {
             

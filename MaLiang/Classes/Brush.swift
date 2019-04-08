@@ -54,15 +54,20 @@ open class Brush {
     }
     
     open func line(from: CGPoint, to: CGPoint) -> MLLine {
-        let color = self.color.toMLColor(opacity: opacity)
-        return MLLine(begin: from, end: to, pointSize: pointSize, pointStep: pointStep, color: color)
+        let color = self.color.toMLColor(opacity: opacity)        
+        let line = MLLine(begin: from, end: to, pointSize: pointSize,
+                          pointStep: pointStep, color: color,
+                          scaleFactor: target?.zoomScale ?? 1)
+        return line
     }
     
     open func pan(from: Pan, to: Pan) -> MLLine {
         let color = self.color.toMLColor(opacity: opacity)
         var endForce = from.force * 0.95 + to.force * 0.05
         endForce = pow(endForce, forceSensitive)
-        let line = MLLine(begin: from.point, end: to.point, pointSize: pointSize * endForce, pointStep: pointStep, color: color)
+        let line = MLLine(begin: from.point, end: to.point,
+                          pointSize: pointSize * endForce, pointStep: pointStep, color: color,
+                          scaleFactor: target?.zoomScale ?? 1)
         return line
     }
     
@@ -118,14 +123,14 @@ open class Brush {
         commandEncoder?.setRenderPipelineState(pipelineState)
         
         // Convert locations from Points to Pixels
-        let scale = target.contentScaleFactor
+        let scale = target.contentScaleFactor * target.zoomScale
         
         // Allocate vertex array buffer
         var vertexes: [Point] = []
         
         lines.forEach { (line) in
-            let start = line.begin; let end = line.end
-            let count = max(line.length / line.pointStep, 1) * scale
+            let start = line.begin * target.zoomScale; let end = line.end * target.zoomScale
+            let count = max(line.length / (line.pointStep), 1) * target.contentScaleFactor
             for i in 0 ..< Int(count) {
                 let index = CGFloat(i)
                 let x = start.x + (end.x - start.x) * (index / count)

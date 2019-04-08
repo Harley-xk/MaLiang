@@ -118,7 +118,7 @@ open class Canvas: MetalView {
     }
     
     /// redraw elemets in document
-    private func redraw() {
+    open func redraw() {
     
         var elementsToDraw: [CanvasElement] = []
         var elements = document.elements
