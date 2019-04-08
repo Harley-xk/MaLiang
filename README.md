@@ -27,7 +27,8 @@ MaLiang is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'MaLiang'
+# 2.0.0 is currently in beta testing
+pod 'MaLiang', '~> 2.0.0-beta'
 ```
 
 To use the old OpenGL ES verion:
@@ -108,7 +109,7 @@ MaLiang supports automatically adjustment of stroke size with painting force. 3D
 
 ### Document
 
-'Document' is now configured by default. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
+`Document` is now configured by default. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
 And you can implement your own **saving logic** with the data holds by `Document`.
 
 ## TODO
