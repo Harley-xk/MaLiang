@@ -133,10 +133,30 @@ open class Canvas: MetalView {
         }
 
         renderTarget = makeEmptyTexture()
+        
+        /// combine all linestrips with same brush and then draw
+        var pendingDrawingQueue: [MLLineStrip] = []
         for item in elementsToDraw {
-            item.drawSelf(display: false)
+            guard case let .pan(lineStrip) = item else {
+                item.drawSelf(display: false)
+                continue
+            }
+            if let last = pendingDrawingQueue.last, last.brush.identifier != lineStrip.brush.identifier {
+                drawLineStrips(pendingDrawingQueue)
+                pendingDrawingQueue.removeAll()
+            }
+            pendingDrawingQueue.append(lineStrip)
         }
+        drawLineStrips(pendingDrawingQueue)
         presentRenderTarget()
+    }
+    
+    internal func drawLineStrips(_ strips: [MLLineStrip]) {
+        guard strips.count > 0 else {
+            return
+        }
+        let lines = strips.flatMap { $0.lines }
+        strips.last?.brush.render(lines: lines)
     }
     
     // MARK: - Bezier
