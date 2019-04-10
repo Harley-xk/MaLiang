@@ -75,14 +75,14 @@ class ViewController: UIViewController {
         brushSegement.selectedSegmentIndex = 0
         styleChanged(brushSegement)
         
-        canvas.document?.onElementBegin { doc in
+        canvas.document?.onElementBegin { [unowned self] doc in
             self.redoButton.isEnabled = false
-            }.onElementFinish { doc in
+            }.onElementFinish { [unowned self] doc in
                 self.undoButton.isEnabled = true
-            }.onRedo { doc in
+            }.onRedo { [unowned self] doc in
                 self.undoButton.isEnabled = true
                 self.redoButton.isEnabled = doc.canRedo
-            }.onUndo { doc in
+            }.onUndo { [unowned self] doc in
                 self.redoButton.isEnabled = true
                 self.undoButton.isEnabled = doc.canUndo
         }
