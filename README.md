@@ -11,7 +11,7 @@ MaLiang is a painting framework based on Metal. The name of "MaLiang" comes from
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
 
-<img src="Images/sample.png" width=450></img>
+<img src="Images/sample.jpg" width=400></img>
 
 ## Requirements
 
