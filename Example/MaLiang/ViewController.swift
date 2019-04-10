@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var sizeSlider: UISlider!
     @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var redoButton: UIButton!
+    @IBOutlet weak var backgroundSwitchButton: UIButton!
+    @IBOutlet weak var backgroundView: UIImageView!
     
     @IBOutlet weak var canvas: Canvas!
     
@@ -84,6 +86,11 @@ class ViewController: UIViewController {
                 self.redoButton.isEnabled = true
                 self.undoButton.isEnabled = doc.canUndo
         }
+    }
+    
+    @IBAction func switchBackground(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        backgroundView.isHidden = !sender.isSelected
     }
     
     @IBAction func changeSizeAction(_ sender: UISlider) {
