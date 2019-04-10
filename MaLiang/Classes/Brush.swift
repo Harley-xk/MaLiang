@@ -108,17 +108,12 @@ open class Brush {
         guard lines.count > 0, let target = target, let device = target.device else {
             return
         }
-
-        let renderPassDescriptor = MTLRenderPassDescriptor()
-        let attachment = renderPassDescriptor.colorAttachments[0]
-        attachment?.texture = target.renderTarget
-        attachment?.loadAction = .load
-        attachment?.storeAction = .store
         
-        let commandQueue = device.makeCommandQueue()
-        let commandBuffer = commandQueue?.makeCommandBuffer()
+        /// make sure reauable command buffer is ready
+        target.prepareForDraw()
         
-        let commandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
+        /// get commandEncoder form resuable command buffer
+        let commandEncoder = target.makeTargetCommandEncoder()
         
         commandEncoder?.setRenderPipelineState(pipelineState)
         
@@ -149,7 +144,5 @@ open class Brush {
         }
         
         commandEncoder?.endEncoding()
-        commandBuffer?.commit()
     }
-    
 }

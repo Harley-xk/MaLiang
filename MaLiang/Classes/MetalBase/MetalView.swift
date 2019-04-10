@@ -30,7 +30,11 @@ open class MetalView: MTKView {
     // MARK: - Render Target
     
     /// final render target, contents of this texture will be rendered into drawables
-    internal var renderTarget: MTLTexture?
+    internal var renderTarget: MTLTexture? {
+        didSet {
+            targetRenderPassDescriptor?.colorAttachments[0].texture = renderTarget
+        }
+    }
     
     // MARK: - Functions
     // Erases the screen, redisplay the buffer if display sets to true
@@ -49,7 +53,30 @@ open class MetalView: MTKView {
         updateBuffers()
     }
     
+    internal var targetRenderPassDescriptor: MTLRenderPassDescriptor?
+    internal var targetCommandBuffer: MTLCommandBuffer?
+    
+    /// make resuable command buffer
+    internal func prepareForDraw() {
+        if targetCommandBuffer == nil {
+            let commandQueue = device?.makeCommandQueue()
+            targetCommandBuffer = commandQueue?.makeCommandBuffer()
+        }
+    }
+    
+    /// create command encoder form resuable command buffer
+    internal func makeTargetCommandEncoder() -> MTLRenderCommandEncoder? {
+        guard let commandBuffer = targetCommandBuffer, let rpd = targetRenderPassDescriptor else {
+            return nil
+        }
+        return commandBuffer.makeRenderCommandEncoder(descriptor: rpd)
+    }
+    
     internal func presentRenderTarget() {
+        
+        /// commit target commands before drawing
+        targetCommandBuffer?.commit()
+        targetCommandBuffer = nil
         
         #if !targetEnvironment(simulator)
 
@@ -113,8 +140,16 @@ open class MetalView: MTKView {
     open func setup() {
         device = MTLCreateSystemDefaultDevice()
         isOpaque = false
+
+        targetRenderPassDescriptor = MTLRenderPassDescriptor()
+        let attachment = targetRenderPassDescriptor?.colorAttachments[0]
+        attachment?.loadAction = .load
+        attachment?.storeAction = .store
+
         renderTarget = makeEmptyTexture()
+
         updateBuffers()
+
         do {
             try setupPiplineState()
         } catch {
