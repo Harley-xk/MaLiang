@@ -119,6 +119,7 @@ And you can implement your own **saving logic** with the data holds by `Document
 - [x] Export to image
 - [ ] Optimize for scale
 - [ ] Optimize for saving logic
+- [ ] Glow style line
 - [ ] Text element
 - [ ] Image element
 - [ ] Texture rotation
