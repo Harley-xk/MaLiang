@@ -494,7 +494,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snQ-Ei-YrR" customClass="ScrollableCanvas" customModule="MaLiang">
                                 <rect key="frame" x="0.0" y="70" width="1024" height="698"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -513,7 +513,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="scrollView" destination="snQ-Ei-YrR" id="WBf-T5-mgZ"/>
+                        <outlet property="canvas" destination="snQ-Ei-YrR" id="g8r-9J-pKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SlJ-FD-3kA" userLabel="First Responder" sceneMemberID="firstResponder"/>

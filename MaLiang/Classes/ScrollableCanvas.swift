@@ -23,34 +23,43 @@ open class ScrollableCanvas: Canvas {
         moveGesture.minimumNumberOfTouches = 2
         addGestureRecognizer(moveGesture)
     }
-
+    
+    /// the max zoomScale of canvas, will cause redraw if the new value is less than current
+    open var maxScale: CGFloat = 3 {
+        didSet {
+            if maxScale < zoom {
+                self.zoom = maxScale
+                self.scale = maxScale
+                self.redraw()
+            }
+        }
+    }
+    
     private var currentZoomScale: CGFloat = 1
     private var offsetAnchor: CGPoint = .zero
+    private var beginLocation: CGPoint = .zero
     
     @objc private func handlePinchGestureRecognizer(_ gesture: UIPinchGestureRecognizer) {
         let location = gesture.location(in: self)
         switch gesture.state {
         case .began:
-            beginMove(from: location)
-            fallthrough
+            beginLocation = location
+            offsetAnchor = location + contentOffset
         case .changed:
             guard gesture.numberOfTouches >= 2 else {
                 return
             }
             var scale = currentZoomScale * gesture.scale * gesture.scale
-            scale = max(scale, 1)
-            scale = min(scale, 20)
+            scale = scale.between(min: 1, max: maxScale)
             self.zoom = scale
             self.scale = zoom
-            didMove(to: location)
+            let offset = offsetAnchor * (scale / currentZoomScale) - location
+            contentOffset = offset.between(min: .zero, max: maxOffset)
             redraw()
         case .ended: fallthrough
         case .cancelled: fallthrough
         case .failed:
-//            self.scale = zoom
-//            didMove(to: location)
             currentZoomScale = zoom
-//            redraw()
         default: break
         }
     }
@@ -59,30 +68,18 @@ open class ScrollableCanvas: Canvas {
         let location = gesture.location(in: self)
         switch gesture.state {
         case .began:
-            beginMove(from: location)
-            fallthrough
+            offsetAnchor = location + contentOffset
         case .changed:
             guard gesture.numberOfTouches >= 2 else {
                 return
             }
-            didMove(to: location)
+            contentOffset = (offsetAnchor - location).between(min: .zero, max: maxOffset)
             redraw()
-//        case .ended: fallthrough
-//        case .cancelled: fallthrough
-//        case .failed:
-//            didMove(to: location)
-//            redraw()
         default: break
         }
     }
     
-    private func beginMove(from location: CGPoint) {
-        offsetAnchor = location + contentOffset
-        print("Move from: \(location)")
-    }
-    
-    private func didMove(to location: CGPoint) {
-        self.contentOffset = offsetAnchor - location
-        print("Move to: \(location)")
+    private var maxOffset: CGPoint {
+        return CGPoint(x: bounds.width * (zoom - 1), y: bounds.height * (zoom - 1))
     }
 }

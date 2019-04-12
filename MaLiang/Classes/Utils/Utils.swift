@@ -55,6 +55,11 @@ extension CGPoint {
         point.y += y
         return point
     }
+    
+    func between(min: CGPoint, max: CGPoint) -> CGPoint {
+        return CGPoint(x: x.between(min: min.x, max: max.x),
+                       y: y.between(min: min.y, max: max.y))
+    }
 }
 
 func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
@@ -81,3 +86,13 @@ func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
     return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
 }
 
+extension Comparable {
+    func between(min: Self, max: Self) -> Self {
+        if self > max {
+            return max
+        } else if self < min {
+            return min
+        }
+        return self
+    }
+}

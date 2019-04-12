@@ -11,13 +11,12 @@ import MaLiang
 
 class ScrollableSample: UIViewController {
 
-    @IBOutlet weak var scrollView: ScrollableCanvas!
-    var canvas: Canvas! {
-        return scrollView
-    }
+    @IBOutlet weak var canvas: ScrollableCanvas!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        canvas.backgroundColor = .clear
         
         DispatchQueue.main.async {
             
