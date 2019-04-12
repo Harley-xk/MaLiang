@@ -37,6 +37,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
         canvas.backgroundColor = .clear
         
         let pen = canvas.defaultBrush!

@@ -12,8 +12,14 @@ import MetalKit
 
 open class MetalView: MTKView {
 
-    /// the scale level of view
-    open var zoomScale: CGFloat = 1
+    /// the scale level of view, all things scales
+    open var scale: CGFloat = 1
+    
+    /// the zoom level of render target, only scale render target
+    open var zoom: CGFloat = 1
+    
+    /// the offset of render target with zoomed size
+    open var contentOffset: CGPoint = .zero
     
     // MARK: - Brush Textures
     
@@ -180,12 +186,24 @@ open class MetalView: MTKView {
     }
 
     // Uniform buffers
-    internal var uniform_buffer: MTLBuffer!
+    private var uniform_buffer: MTLBuffer!
+    internal var target_uniform_buffer: MTLBuffer!
     private var vertex_buffer: MTLBuffer!
     
     private func updateBuffers() {
         let size = bounds.size
-        let w = size.width, h = size.height
+
+        let metrix = Matrix.identity
+        metrix.scaling(x: 2 / Float(size.width), y: -2 / Float(size.height), z: 1)
+        metrix.translation(x: -1, y: 1, z: 0)
+        target_uniform_buffer = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
+        
+        updateZoomUniform()
+    }
+    
+    func updateZoomUniform() {
+        let size = bounds.size
+        let w = size.width * (zoom / scale ), h = size.height * (zoom / scale)
         let vertices = [
             Vertex(position: CGPoint(x: 0 , y: 0), textCoord: CGPoint(x: 0, y: 0)),
             Vertex(position: CGPoint(x: w , y: 0), textCoord: CGPoint(x: 1, y: 0)),
@@ -193,7 +211,7 @@ open class MetalView: MTKView {
             Vertex(position: CGPoint(x: w , y: h), textCoord: CGPoint(x: 1, y: 1)),
         ]
         vertex_buffer = device?.makeBuffer(bytes: vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: .cpuCacheModeWriteCombined)
-
+        
         let metrix = Matrix.identity
         metrix.scaling(x: 2 / Float(size.width), y: -2 / Float(size.height), z: 1)
         metrix.translation(x: -1, y: 1, z: 0)

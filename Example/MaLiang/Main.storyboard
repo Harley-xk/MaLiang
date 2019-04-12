@@ -120,7 +120,7 @@
                                 <rect key="frame" x="0.0" y="70" width="1024" height="698"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK1-D2-5F7" customClass="Canvas" customModule="MaLiang">
-                                <rect key="frame" x="15" y="85" width="994" height="668"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFV-Mf-5bf">
@@ -398,13 +398,13 @@
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="leading" secondItem="y2M-JQ-hAq" secondAttribute="trailing" constant="8" id="Hnq-Yj-r3Y"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="y2M-JQ-hAq" secondAttribute="bottom" constant="20" id="J1c-NG-Rrz"/>
                             <constraint firstItem="GFV-Mf-5bf" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="15" id="J2f-lc-sGo"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="JK1-D2-5F7" secondAttribute="bottom" constant="15" id="Jpj-FS-Zd9"/>
+                            <constraint firstAttribute="bottom" secondItem="JK1-D2-5F7" secondAttribute="bottom" id="Jpj-FS-Zd9"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="X7T-Is-9js" secondAttribute="bottom" constant="8" id="KcT-3X-OMO"/>
                             <constraint firstItem="X7T-Is-9js" firstAttribute="leading" secondItem="fMu-Jd-al0" secondAttribute="trailing" constant="20" id="LH6-VB-5te"/>
-                            <constraint firstItem="JK1-D2-5F7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="15" id="Nb1-bi-ud3"/>
+                            <constraint firstItem="JK1-D2-5F7" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Nb1-bi-ud3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X7T-Is-9js" secondAttribute="trailing" constant="5" id="OvN-q6-WAK"/>
-                            <constraint firstItem="JK1-D2-5F7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="ULh-pR-Daa"/>
-                            <constraint firstAttribute="trailing" secondItem="JK1-D2-5F7" secondAttribute="trailing" constant="15" id="XBE-88-81q"/>
+                            <constraint firstItem="JK1-D2-5F7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ULh-pR-Daa"/>
+                            <constraint firstAttribute="trailing" secondItem="JK1-D2-5F7" secondAttribute="trailing" id="XBE-88-81q"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="arX-yu-Unn" secondAttribute="bottom" constant="12" id="b1P-JI-o0c"/>
                             <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
                             <constraint firstItem="ZIH-iH-bgj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ezN-wy-Ety"/>

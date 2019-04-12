@@ -98,29 +98,3 @@ class Matrix {
         return self
     }
 }
-
-extension CGPoint {
-    
-    func toFloat4(z: CGFloat = 0, w: CGFloat = 1) -> vector_float4 {
-        return [Float(x), Float(y), Float(z) ,Float(w)]
-    }
-    
-    func toFloat2() -> vector_float2 {
-        return [Float(x), Float(y)]
-    }
-
-    func offsetedBy(x: CGFloat = 0, y: CGFloat = 0) -> CGPoint {
-        var point = self
-        point.x += x
-        point.y += y
-        return point
-    }
-}
-
-func *(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
-    return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
-}
-
-func /(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
-    return CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
-}

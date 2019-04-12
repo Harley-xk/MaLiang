@@ -7,6 +7,7 @@
 
 import UIKit
 import Metal
+import simd
 
 extension Bundle {
     static var maliang: Bundle {
@@ -39,7 +40,44 @@ extension CGPoint {
         let p = pow(x - other.x, 2) + pow(y - other.y, 2)
         return sqrt(p)
     }
+    
+    func toFloat4(z: CGFloat = 0, w: CGFloat = 1) -> vector_float4 {
+        return [Float(x), Float(y), Float(z) ,Float(w)]
+    }
+    
+    func toFloat2() -> vector_float2 {
+        return [Float(x), Float(y)]
+    }
+    
+    func offsetedBy(x: CGFloat = 0, y: CGFloat = 0) -> CGPoint {
+        var point = self
+        point.x += x
+        point.y += y
+        return point
+    }
 }
 
+func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+    return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+}
 
+func +=(lhs: inout CGPoint, rhs: CGPoint) {
+    lhs = lhs + rhs
+}
+
+func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+    return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+}
+
+func *(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+    return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
+}
+
+func /(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+    return CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
+}
+
+func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
+    return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
+}
 

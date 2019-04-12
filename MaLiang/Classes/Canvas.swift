@@ -131,7 +131,8 @@ open class Canvas: MetalView {
             }
             elementsToDraw.insert(element, at: 0)
         }
-
+        
+        updateZoomUniform()
         renderTarget = makeEmptyTexture()
         
         /// combine all linestrips with same brush and then draw
@@ -175,7 +176,7 @@ open class Canvas: MetalView {
             let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / CGFloat(vertices.count)
             for i in 1 ..< vertices.count {
                 let p = vertices[i]
-                let pointStep = currentBrush.pointStep / self.zoomScale
+                let pointStep = currentBrush.pointStep
                 if  // end point of line
                     (isEnd && i == vertices.count - 1) ||
                         // ignore step

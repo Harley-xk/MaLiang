@@ -57,7 +57,8 @@ open class Brush {
         let color = self.color.toMLColor(opacity: opacity)        
         let line = MLLine(begin: from, end: to, pointSize: pointSize,
                           pointStep: pointStep, color: color,
-                          scaleFactor: target?.zoomScale ?? 1)
+                          scaleFactor: target?.scale ?? 1,
+                          offset: target?.contentOffset ?? .zero)
         return line
     }
     
@@ -67,7 +68,8 @@ open class Brush {
         endForce = pow(endForce, forceSensitive)
         let line = MLLine(begin: from.point, end: to.point,
                           pointSize: pointSize * endForce, pointStep: pointStep, color: color,
-                          scaleFactor: target?.zoomScale ?? 1)
+                          scaleFactor: target?.scale ?? 1,
+                          offset: target?.contentOffset ?? .zero)
         return line
     }
     
@@ -118,14 +120,14 @@ open class Brush {
         commandEncoder?.setRenderPipelineState(pipelineState)
         
         // Convert locations from Points to Pixels
-        let scale = target.contentScaleFactor * target.zoomScale
+        let scale = target.contentScaleFactor * target.scale
         
         // Allocate vertex array buffer
         var vertexes: [Point] = []
         
         lines.forEach { (line) in
-            let start = line.begin * target.zoomScale; let end = line.end * target.zoomScale
-            let count = max(line.length / (line.pointStep), 1) * target.contentScaleFactor
+            let start = line.begin * target.scale - target.contentOffset; let end = line.end * target.scale - target.contentOffset
+            let count = max(line.length / (line.pointStep * target.scale), 1) * target.contentScaleFactor
             for i in 0 ..< Int(count) {
                 let index = CGFloat(i)
                 let x = start.x + (end.x - start.x) * (index / count)
@@ -136,7 +138,7 @@ open class Brush {
         
         if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
-            commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
+            commandEncoder?.setVertexBuffer(target.target_uniform_buffer, offset: 0, index: 1)
             if let texture = texture {
                 commandEncoder?.setFragmentTexture(texture, index: 0)
             }
