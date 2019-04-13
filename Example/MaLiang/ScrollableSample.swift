@@ -17,6 +17,7 @@ class ScrollableSample: UIViewController {
         super.viewDidLoad()
         
         canvas.backgroundColor = .clear
+        canvas.contentSize = CGSize(width: 1024, height: 1024)
         
         DispatchQueue.main.async {
             

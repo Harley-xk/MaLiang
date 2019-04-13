@@ -16,6 +16,8 @@ open class ScrollableCanvas: Canvas {
     open override func setup() {
         super.setup()
         
+        contentSize = bounds.size
+        
         pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGestureRecognizer(_:)))
         addGestureRecognizer(pinchGesture)
         
@@ -34,6 +36,10 @@ open class ScrollableCanvas: Canvas {
             }
         }
     }
+    
+    /// the actural drawable size of canvas, may larger than current bounds
+    /// contentSize must between bounds size and 5120x5120
+    open var contentSize: CGSize = .zero
     
     private var currentZoomScale: CGFloat = 1
     private var offsetAnchor: CGPoint = .zero
@@ -80,6 +86,6 @@ open class ScrollableCanvas: Canvas {
     }
     
     private var maxOffset: CGPoint {
-        return CGPoint(x: bounds.width * (zoom - 1), y: bounds.height * (zoom - 1))
+        return CGPoint(x: contentSize.width * zoom - bounds.width, y: contentSize.height * zoom - bounds.height)
     }
 }
