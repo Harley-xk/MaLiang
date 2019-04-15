@@ -11,15 +11,6 @@ import QuartzCore
 import MetalKit
 
 open class MetalView: MTKView {
-
-    /// the scale level of view, all things scales
-    open var scale: CGFloat = 1
-    
-    /// the zoom level of render target, only scale render target
-    open var zoom: CGFloat = 1
-    
-    /// the offset of render target with zoomed size
-    open var contentOffset: CGPoint = .zero
     
     // MARK: - Brush Textures
     
@@ -33,20 +24,10 @@ open class MetalView: MTKView {
         return try makeTexture(with: data)
     }
     
-    // MARK: - Render Target
-    
-    /// final render target, contents of this texture will be rendered into drawables
-    internal var renderTarget: MTLTexture? {
-        didSet {
-            targetRenderPassDescriptor?.colorAttachments[0].texture = renderTarget
-        }
-    }
-    
     // MARK: - Functions
     // Erases the screen, redisplay the buffer if display sets to true
     open func clear(display: Bool = true) {
-        renderTarget = makeEmptyTexture()
-        
+        screenTarget.clear()
         if display {
             presentRenderTarget()
         }
@@ -58,64 +39,8 @@ open class MetalView: MTKView {
         super.layoutSubviews()
         updateBuffers()
     }
-    
-    internal var targetRenderPassDescriptor: MTLRenderPassDescriptor?
-    internal var targetCommandBuffer: MTLCommandBuffer?
-    
-    /// make resuable command buffer
-    internal func prepareForDraw() {
-        if targetCommandBuffer == nil {
-            let commandQueue = device?.makeCommandQueue()
-            targetCommandBuffer = commandQueue?.makeCommandBuffer()
-        }
-    }
-    
-    /// create command encoder form resuable command buffer
-    internal func makeTargetCommandEncoder() -> MTLRenderCommandEncoder? {
-        guard let commandBuffer = targetCommandBuffer, let rpd = targetRenderPassDescriptor else {
-            return nil
-        }
-        return commandBuffer.makeRenderCommandEncoder(descriptor: rpd)
-    }
-    
-    internal func presentRenderTarget() {
-        
-        /// commit target commands before drawing
-        targetCommandBuffer?.commit()
-        targetCommandBuffer = nil
-        
-        #if !targetEnvironment(simulator)
 
-        guard let drawable = metalLayer.nextDrawable(), let texture = renderTarget else {
-            return
-        }
-        
-        let renderPassDescriptor = MTLRenderPassDescriptor()
-        let attachment = renderPassDescriptor.colorAttachments[0]
-        attachment?.clearColor = clearColor
-        attachment?.texture = drawable.texture
-        attachment?.loadAction = .clear
-        attachment?.storeAction = .store
-        
-        let commandQueue = device?.makeCommandQueue()
-        let commandBuffer = commandQueue?.makeCommandBuffer()
-        
-        let commandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
-        
-        commandEncoder?.setRenderPipelineState(pipelineState)
-        
-        commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
-        commandEncoder?.setVertexBuffer(uniform_buffer, offset: 0, index: 1)
-        commandEncoder?.setFragmentTexture(texture, index: 0)
-        commandEncoder?.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
-        
-        commandEncoder?.endEncoding()
-        commandBuffer?.present(drawable)
-        commandBuffer?.commit()
 
-        #endif
-    }
-    
     open override var backgroundColor: UIColor? {
         didSet {
             clearColor = (backgroundColor ?? .white).toClearColor()
@@ -147,13 +72,8 @@ open class MetalView: MTKView {
         device = MTLCreateSystemDefaultDevice()
         isOpaque = false
 
-        targetRenderPassDescriptor = MTLRenderPassDescriptor()
-        let attachment = targetRenderPassDescriptor?.colorAttachments[0]
-        attachment?.loadAction = .load
-        attachment?.storeAction = .store
-
-        renderTarget = makeEmptyTexture()
-
+        screenTarget = RenderTarget(size: drawableSize, device: device)
+        
         updateBuffers()
 
         do {
@@ -185,49 +105,69 @@ open class MetalView: MTKView {
         pipelineState = try device?.makeRenderPipelineState(descriptor: rpd)
     }
 
-    // Uniform buffers
-    private var uniform_buffer: MTLBuffer!
-    internal var target_uniform_buffer: MTLBuffer!
-    private var vertex_buffer: MTLBuffer!
-    
-    private func updateBuffers() {
-        let size = bounds.size
+    // render target for rendering contents to screen
+    internal var screenTarget: RenderTarget!
 
-        let metrix = Matrix.identity
-        metrix.scaling(x: 2 / Float(size.width), y: -2 / Float(size.height), z: 1)
-        metrix.translation(x: -1, y: 1, z: 0)
-        target_uniform_buffer = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
-        
+    // Uniform buffers
+    private var render_target_vertex: MTLBuffer!
+    private var render_target_uniform: MTLBuffer!
+
+    private func updateBuffers() {
+        screenTarget.updateBuffer(with: drawableSize)
         updateZoomUniform()
     }
     
     func updateZoomUniform() {
-        let size = bounds.size
-        let w = size.width * (zoom / scale ), h = size.height * (zoom / scale)
+        let size = drawableSize
+        let w = size.width * (screenTarget.zoom / screenTarget.scale ), h = size.height * (screenTarget.zoom / screenTarget.scale)
         let vertices = [
             Vertex(position: CGPoint(x: 0 , y: 0), textCoord: CGPoint(x: 0, y: 0)),
             Vertex(position: CGPoint(x: w , y: 0), textCoord: CGPoint(x: 1, y: 0)),
             Vertex(position: CGPoint(x: 0 , y: h), textCoord: CGPoint(x: 0, y: 1)),
             Vertex(position: CGPoint(x: w , y: h), textCoord: CGPoint(x: 1, y: 1)),
         ]
-        vertex_buffer = device?.makeBuffer(bytes: vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: .cpuCacheModeWriteCombined)
+        render_target_vertex = device?.makeBuffer(bytes: vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: .cpuCacheModeWriteCombined)
         
         let metrix = Matrix.identity
         metrix.scaling(x: 2 / Float(size.width), y: -2 / Float(size.height), z: 1)
         metrix.translation(x: -1, y: 1, z: 0)
-        uniform_buffer = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
+        render_target_uniform = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
     }
     
-    // make empty testure
-    internal func makeEmptyTexture() -> MTLTexture? {
-        guard drawableSize.width * drawableSize.height > 0 else {
-            return nil
+    internal func presentRenderTarget() {
+        
+        /// commit target commands before drawing
+        screenTarget.commitCommands()
+        
+        #if !targetEnvironment(simulator)
+        
+        guard let drawable = metalLayer.nextDrawable(), let texture = screenTarget.texture else {
+            return
         }
-        let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: colorPixelFormat,
-                                                                         width: Int(drawableSize.width),
-                                                                         height: Int(drawableSize.height),
-                                                                         mipmapped: false)
-        textureDescriptor.usage = [.renderTarget, .shaderRead]
-        return device?.makeTexture(descriptor: textureDescriptor)
+        
+        let renderPassDescriptor = MTLRenderPassDescriptor()
+        let attachment = renderPassDescriptor.colorAttachments[0]
+        attachment?.clearColor = clearColor
+        attachment?.texture = drawable.texture
+        attachment?.loadAction = .clear
+        attachment?.storeAction = .store
+        
+        let commandQueue = device?.makeCommandQueue()
+        let commandBuffer = commandQueue?.makeCommandBuffer()
+        
+        let commandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
+        
+        commandEncoder?.setRenderPipelineState(pipelineState)
+        
+        commandEncoder?.setVertexBuffer(render_target_vertex, offset: 0, index: 0)
+        commandEncoder?.setVertexBuffer(render_target_uniform, offset: 0, index: 1)
+        commandEncoder?.setFragmentTexture(texture, index: 0)
+        commandEncoder?.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
+        
+        commandEncoder?.endEncoding()
+        commandBuffer?.present(drawable)
+        commandBuffer?.commit()
+        
+        #endif
     }
 }

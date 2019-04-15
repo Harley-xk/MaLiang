@@ -9,7 +9,36 @@ import UIKit
 
 open class Canvas: MetalView {
     
+    /// the scale level of view, all things scales
+    open var scale: CGFloat {
+        get {
+            return screenTarget.scale
+        }
+        set {
+            screenTarget.scale = newValue
+        }
+    }
     
+    /// the zoom level of render target, only scale render target
+    open var zoom: CGFloat {
+        get {
+            return screenTarget.zoom
+        }
+        set {
+            screenTarget.zoom = newValue
+        }
+    }
+    
+    /// the offset of render target with zoomed size
+    open var contentOffset: CGPoint {
+        get {
+            return screenTarget.contentOffset
+        }
+        set {
+            screenTarget.contentOffset = newValue
+        }
+    }
+
     // MARK: - Brushes
     
     /// default round point brush, will not show in registeredBrushes
@@ -133,7 +162,7 @@ open class Canvas: MetalView {
         }
         
         updateZoomUniform()
-        renderTarget = makeEmptyTexture()
+        screenTarget.clear()
         
         /// combine all linestrips with same brush and then draw
         var pendingDrawingQueue: [MLLineStrip] = []

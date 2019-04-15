@@ -10,9 +10,6 @@ import UIKit
 
 open class ScrollableCanvas: Canvas {
     
-    private var pinchGesture: UIPinchGestureRecognizer!
-    private var moveGesture: UIPanGestureRecognizer!
-    
     open override func setup() {
         super.setup()
         
@@ -40,6 +37,16 @@ open class ScrollableCanvas: Canvas {
     /// the actural drawable size of canvas, may larger than current bounds
     /// contentSize must between bounds size and 5120x5120
     open var contentSize: CGSize = .zero
+    
+    /// get snapthot image for the same size to content
+//    open override func snapshot() -> UIImage? {
+        /// draw content in texture of the same size to content
+        
+
+//    }
+    
+    private var pinchGesture: UIPinchGestureRecognizer!
+    private var moveGesture: UIPanGestureRecognizer!
     
     private var currentZoomScale: CGFloat = 1
     private var offsetAnchor: CGPoint = .zero

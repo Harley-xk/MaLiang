@@ -57,8 +57,8 @@ open class Brush {
         let color = self.color.toMLColor(opacity: opacity)        
         let line = MLLine(begin: from, end: to, pointSize: pointSize,
                           pointStep: pointStep, color: color,
-                          scaleFactor: target?.scale ?? 1,
-                          offset: target?.contentOffset ?? .zero)
+                          scaleFactor: target?.screenTarget.scale ?? 1,
+                          offset: target?.screenTarget.contentOffset ?? .zero)
         return line
     }
     
@@ -68,8 +68,8 @@ open class Brush {
         endForce = pow(endForce, forceSensitive)
         let line = MLLine(begin: from.point, end: to.point,
                           pointSize: pointSize * endForce, pointStep: pointStep, color: color,
-                          scaleFactor: target?.scale ?? 1,
-                          offset: target?.contentOffset ?? .zero)
+                          scaleFactor: target?.screenTarget.scale ?? 1,
+                          offset: target?.screenTarget.contentOffset ?? .zero)
         return line
     }
     
@@ -88,7 +88,7 @@ open class Brush {
         let rpd = MTLRenderPipelineDescriptor()
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
-        rpd.colorAttachments[0].pixelFormat = target.colorPixelFormat
+        rpd.colorAttachments[0].pixelFormat = .rgba8Unorm
         setupBlendOptions(for: rpd.colorAttachments[0]!)
         pipelineState = try! device.makeRenderPipelineState(descriptor: rpd)
     }
@@ -105,9 +105,11 @@ open class Brush {
         attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
     }
 
-    open func render(lines: [MLLine]) {
+    open func render(lines: [MLLine], on renderTarget: RenderTarget? = nil) {
         
-        guard lines.count > 0, let target = target, let device = target.device else {
+        let renderTarget = renderTarget ?? target?.screenTarget
+        
+        guard lines.count > 0, let target = renderTarget, let device = target.device else {
             return
         }
         
@@ -115,30 +117,34 @@ open class Brush {
         target.prepareForDraw()
         
         /// get commandEncoder form resuable command buffer
-        let commandEncoder = target.makeTargetCommandEncoder()
+        let commandEncoder = target.makeCommandEncoder()
         
         commandEncoder?.setRenderPipelineState(pipelineState)
         
         // Convert locations from Points to Pixels
-        let scale = target.contentScaleFactor * target.scale
+        let scaleFactor = UIScreen.main.scale
+        let scale = scaleFactor * target.scale
         
         // Allocate vertex array buffer
         var vertexes: [Point] = []
         
         lines.forEach { (line) in
-            let start = line.begin * target.scale - target.contentOffset; let end = line.end * target.scale - target.contentOffset
-            let count = max(line.length / (line.pointStep * target.scale), 1) * target.contentScaleFactor
+            
+            var line = line
+            line.begin = line.begin * scale - target.contentOffset * scaleFactor
+            line.end = line.end * scale - target.contentOffset * scaleFactor
+            let count = max(line.length / (line.pointStep * scale), 1) * scaleFactor
             for i in 0 ..< Int(count) {
                 let index = CGFloat(i)
-                let x = start.x + (end.x - start.x) * (index / count)
-                let y = start.y + (end.y - start.y) * (index / count)
+                let x = line.begin.x + (line.end.x - line.begin.x) * (index / count)
+                let y = line.begin.y + (line.end.y - line.begin.y) * (index / count)
                 vertexes.append(Point(x: x, y: y, color: line.color, size: line.pointSize * scale))
             }
         }
         
         if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
-            commandEncoder?.setVertexBuffer(target.target_uniform_buffer, offset: 0, index: 1)
+            commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
             if let texture = texture {
                 commandEncoder?.setFragmentTexture(texture, index: 0)
             }
