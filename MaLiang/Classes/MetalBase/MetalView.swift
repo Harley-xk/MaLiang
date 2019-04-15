@@ -29,7 +29,7 @@ open class MetalView: MTKView {
     open func clear(display: Bool = true) {
         screenTarget.clear()
         if display {
-            presentRenderTarget()
+            setNeedsDisplay()
         }
     }
 
@@ -73,7 +73,8 @@ open class MetalView: MTKView {
         isOpaque = false
 
         screenTarget = RenderTarget(size: drawableSize, device: device)
-        
+        commandQueue = device?.makeCommandQueue()
+
         updateBuffers()
 
         do {
@@ -107,6 +108,8 @@ open class MetalView: MTKView {
 
     // render target for rendering contents to screen
     internal var screenTarget: RenderTarget!
+    
+    private var commandQueue: MTLCommandQueue?
 
     // Uniform buffers
     private var render_target_vertex: MTLBuffer!
@@ -134,25 +137,26 @@ open class MetalView: MTKView {
         render_target_uniform = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
     }
     
-    internal func presentRenderTarget() {
+    
+    open override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         /// commit target commands before drawing
         screenTarget.commitCommands()
         
         #if !targetEnvironment(simulator)
         
-        guard let drawable = metalLayer.nextDrawable(), let texture = screenTarget.texture else {
+        guard let texture = screenTarget.texture else {
             return
         }
         
         let renderPassDescriptor = MTLRenderPassDescriptor()
         let attachment = renderPassDescriptor.colorAttachments[0]
         attachment?.clearColor = clearColor
-        attachment?.texture = drawable.texture
+        attachment?.texture = currentDrawable?.texture
         attachment?.loadAction = .clear
         attachment?.storeAction = .store
         
-        let commandQueue = device?.makeCommandQueue()
         let commandBuffer = commandQueue?.makeCommandBuffer()
         
         let commandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
@@ -165,7 +169,9 @@ open class MetalView: MTKView {
         commandEncoder?.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
         
         commandEncoder?.endEncoding()
+        if let drawable = currentDrawable {
         commandBuffer?.present(drawable)
+        }
         commandBuffer?.commit()
         
         #endif

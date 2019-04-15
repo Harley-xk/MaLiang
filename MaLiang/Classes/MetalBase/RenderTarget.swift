@@ -29,6 +29,7 @@ open class RenderTarget {
         self.drawableSize = size
         self.device = device
         self.texture = makeEmptyTexture()
+        self.commandQueue = device?.makeCommandQueue()
 
         renderPassDescriptor = MTLRenderPassDescriptor()
         let attachment = renderPassDescriptor?.colorAttachments[0]
@@ -47,6 +48,7 @@ open class RenderTarget {
     internal var uniform_buffer: MTLBuffer!
     internal var renderPassDescriptor: MTLRenderPassDescriptor?
     internal var commandBuffer: MTLCommandBuffer?
+    internal var commandQueue: MTLCommandQueue?
     internal var device: MTLDevice?
     
     internal func updateBuffer(with size: CGSize) {
@@ -59,7 +61,6 @@ open class RenderTarget {
     
     internal func prepareForDraw() {
         if commandBuffer == nil {
-            let commandQueue = device?.makeCommandQueue()
             commandBuffer = commandQueue?.makeCommandBuffer()
         }
     }

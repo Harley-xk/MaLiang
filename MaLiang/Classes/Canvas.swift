@@ -178,7 +178,7 @@ open class Canvas: MetalView {
             pendingDrawingQueue.append(lineStrip)
         }
         drawLineStrips(pendingDrawingQueue)
-        presentRenderTarget()
+        setNeedsDisplay()
     }
     
     internal func drawLineStrips(_ strips: [MLLineStrip]) {
@@ -229,7 +229,7 @@ open class Canvas: MetalView {
     open func render(lines: [MLLine], display: Bool = true) {
         currentBrush.render(lines: lines)
         if display {
-            presentRenderTarget()
+            setNeedsDisplay()
         }
         document.appendLines(lines, with: currentBrush)
     }
