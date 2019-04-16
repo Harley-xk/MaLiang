@@ -27,8 +27,7 @@ MaLiang is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-# 2.0.0 is currently in beta testing
-pod 'MaLiang', '~> 2.0.0-beta'
+pod 'MaLiang'
 ```
 
 To use the old OpenGL ES verion:
