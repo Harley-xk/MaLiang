@@ -15,9 +15,9 @@ public enum CanvasElement {
     /// celar command
     case clear
     
-    func drawSelf(display: Bool) {
+    func drawSelf(on target: RenderTarget) {
         switch self {
-        case let .pan(lineStrip): lineStrip.drawSelf()
+        case let .pan(lineStrip): lineStrip.drawSelf(on: target)
         default: break
         }
     }
@@ -37,8 +37,8 @@ open class MLLineStrip {
         self.brush = brush
     }
     
-    internal func drawSelf(display: Bool = false) {
-        brush.render(lines: lines)
+    internal func drawSelf(on target: RenderTarget) {
+        brush.render(lines: lines, on: target)
     }
 }
 

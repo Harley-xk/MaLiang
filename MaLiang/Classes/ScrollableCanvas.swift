@@ -39,11 +39,20 @@ open class ScrollableCanvas: Canvas {
     open var contentSize: CGSize = .zero
     
     /// get snapthot image for the same size to content
-//    open override func snapshot() -> UIImage? {
+    open override func snapshot() -> UIImage? {
         /// draw content in texture of the same size to content
+        if contentSize == bounds.size {
+            return super.snapshot()
+        }
         
-
-//    }
+        let snapshotTarget = RenderTarget(size: contentSize * contentScaleFactor, device: device)
+        redraw(on: snapshotTarget, display: false)
+        snapshotTarget.commitCommands()
+        if let texture = snapshotTarget.texture, let ciimage = CIImage(mtlTexture: texture, options: nil) {
+            return UIImage(ciImage: ciimage.oriented(forExifOrientation: 4))
+        }
+        return nil
+    }
     
     private var pinchGesture: UIPinchGestureRecognizer!
     private var moveGesture: UIPanGestureRecognizer!

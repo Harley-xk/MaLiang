@@ -147,8 +147,10 @@ open class Canvas: MetalView {
     }
     
     /// redraw elemets in document
-    open func redraw() {
+    open func redraw(on target: RenderTarget? = nil, display: Bool = true) {
     
+        let target = target ?? screenTarget!
+        
         var elementsToDraw: [CanvasElement] = []
         var elements = document.elements
         while elements.count > 0 {
@@ -162,31 +164,34 @@ open class Canvas: MetalView {
         }
         
         updateZoomUniform()
-        screenTarget.clear()
+        target.clear()
         
         /// combine all linestrips with same brush and then draw
         var pendingDrawingQueue: [MLLineStrip] = []
         for item in elementsToDraw {
             guard case let .pan(lineStrip) = item else {
-                item.drawSelf(display: false)
+                item.drawSelf(on: target)
                 continue
             }
             if let last = pendingDrawingQueue.last, last.brush.identifier != lineStrip.brush.identifier {
-                drawLineStrips(pendingDrawingQueue)
+                drawLineStrips(pendingDrawingQueue, on: target)
                 pendingDrawingQueue.removeAll()
             }
             pendingDrawingQueue.append(lineStrip)
         }
-        drawLineStrips(pendingDrawingQueue)
-        setNeedsDisplay()
+        drawLineStrips(pendingDrawingQueue, on: target)
+        
+        if display {
+            setNeedsDisplay()
+        }
     }
     
-    internal func drawLineStrips(_ strips: [MLLineStrip]) {
+    internal func drawLineStrips(_ strips: [MLLineStrip], on target: RenderTarget) {
         guard strips.count > 0 else {
             return
         }
         let lines = strips.flatMap { $0.lines }
-        strips.last?.brush.render(lines: lines)
+        strips.last?.brush.render(lines: lines, on: target)
     }
     
     // MARK: - Bezier

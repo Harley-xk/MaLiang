@@ -36,6 +36,8 @@ open class RenderTarget {
         attachment?.texture = texture
         attachment?.loadAction = .load
         attachment?.storeAction = .store
+        
+        updateBuffer(with: size)
     }
     
     /// clear the contents of texture
