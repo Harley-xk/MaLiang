@@ -46,12 +46,17 @@ open class ScrollableCanvas: Canvas {
         }
         
         /// create a new render target with same size to the content, for snapshoting
-        let snapshotTarget = RenderTarget(size: contentSize * contentScaleFactor, device: device)
+        let imageSize = contentSize * contentScaleFactor
+        let snapshotTarget = RenderTarget(size: imageSize, device: device)
         redraw(on: snapshotTarget, display: false)
         snapshotTarget.commitCommands()
         if let texture = snapshotTarget.texture, let ciimage = CIImage(mtlTexture: texture, options: nil) {
-            /// ciimage is downMirrored
-            return UIImage(ciImage: ciimage.oriented(forExifOrientation: 4))
+            let context = CIContext() // Prepare for create CGImage
+            let rect = CGRect(origin: .zero, size: imageSize)
+            /// create cgimage that is savable, ciimage is downMirrored
+            if let cgimg = context.createCGImage(ciimage.oriented(forExifOrientation: 4), from: rect) {
+                return UIImage(cgImage: cgimg)
+            }
         }
         return nil
     }
