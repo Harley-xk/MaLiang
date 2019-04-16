@@ -27,7 +27,8 @@ MaLiang is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'MaLiang'
+# 2.0.0 is currently in beta testing
+pod 'MaLiang', '~> 2.0.0-beta-2'
 ```
 
 To use the old OpenGL ES verion:
@@ -116,7 +117,7 @@ And you can implement your own **saving logic** with the data holds by `Document
 - [x] Port to Metal
 - [x] Undo & Redo
 - [x] Export to image
-- [ ] Optimize for scale
+- [x] Optimize for scale
 - [ ] Optimize for saving logic
 - [ ] Glow style line
 - [ ] Text element
