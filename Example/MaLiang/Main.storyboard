@@ -470,7 +470,13 @@
                             <constraint firstItem="9ag-qD-mlj" firstAttribute="leading" secondItem="tWd-HY-QHR" secondAttribute="leading" id="yHB-il-eEg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Preview" id="2fJ-d8-wHv"/>
+                    <navigationItem key="navigationItem" title="Preview" id="2fJ-d8-wHv">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="Y3J-9m-gS6">
+                            <connections>
+                                <action selector="savingAction:" destination="mJZ-YC-gTn" id="UCc-6V-Wav"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="imageView" destination="9ag-qD-mlj" id="kdT-iA-mPh"/>
