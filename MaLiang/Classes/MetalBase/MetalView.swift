@@ -16,12 +16,13 @@ open class MetalView: MTKView {
     
     // MARK: - Brush Textures
     
-    func makeTexture(with data: Data) throws -> MTLTexture {
+    func makeTexture(with data: Data) throws -> MLTexture {
         let textureLoader = MTKTextureLoader(device: device!)
-        return try textureLoader.newTexture(data: data, options: [.SRGB : false])
+        let texture = try textureLoader.newTexture(data: data, options: [.SRGB : false])
+        return MLTexture(id: UUID(), texture: texture)
     }
     
-    func makeTexture(with file: URL) throws -> MTLTexture {
+    func makeTexture(with file: URL) throws -> MLTexture {
         let data = try Data(contentsOf: file)
         return try makeTexture(with: data)
     }
@@ -165,7 +166,7 @@ open class MetalView: MTKView {
         
         commandEncoder?.endEncoding()
         if let drawable = currentDrawable {
-        commandBuffer?.present(drawable)
+            commandBuffer?.present(drawable)
         }
         commandBuffer?.commit()
         

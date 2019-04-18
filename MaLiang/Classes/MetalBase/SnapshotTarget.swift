@@ -48,29 +48,3 @@ open class SnapshotTarget: RenderTarget {
         commitCommands()
     }
 }
-
-public extension MTLTexture {
-
-    /// get CIImage from this texture
-    func toCIImage() -> CIImage? {
-        return CIImage(mtlTexture: self, options: nil)?.oriented(forExifOrientation: 4)
-    }
-    
-    /// get CGImage from this texture
-    func toCGImage() -> CGImage? {
-        guard let ciimage = toCIImage() else {
-            return nil
-        }
-        let context = CIContext() // Prepare for create CGImage
-        let rect = CGRect(origin: .zero, size: ciimage.extent.size)
-        return context.createCGImage(ciimage, from: rect)
-    }
-    
-    /// get UIImage from this texture
-    func toUIImage() -> UIImage? {
-        guard let cgimage = toCGImage() else {
-            return nil
-        }
-        return UIImage(cgImage: cgimage)
-    }
-}

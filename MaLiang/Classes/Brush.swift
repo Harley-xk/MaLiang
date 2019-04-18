@@ -16,9 +16,9 @@ public struct Pan {
 
 open class Brush {
     
-    // automatically set by canvas after being registered to
-    public internal(set) var identifier: UUID?
-        
+    // unique identifier, automatically set
+    public internal(set) var id: UUID
+
     // opacity of texture, affects the darkness of stroke
     // set opacity to 1 may cause heavy aliasing
     open var opacity: CGFloat = 0.3
@@ -37,14 +37,19 @@ open class Brush {
     open var color: UIColor = .black
     
     /// interal texture
-    var texture: MTLTexture?
+    open private(set) var textureID: UUID?
 
     /// target to draw
     weak var target: Canvas?
     
-    public init(texture: MTLTexture? = nil, target: Canvas) {
-        self.texture = texture
+    /// create new brush with registered textureid in target
+    public init(textureID: UUID? = nil, target: Canvas) {
+        id = UUID()
         self.target = target
+        self.textureID = textureID
+        if let id = textureID {
+            texture = target.findTexture(by: id)?.texture
+        }
         self.updatePointPipeline()
     }
     
@@ -74,6 +79,9 @@ open class Brush {
     }
     
     // MARK: - Render Actions
+    
+    private weak var texture: MTLTexture?
+    
     private var pipelineState: MTLRenderPipelineState!
     
     private func updatePointPipeline() {

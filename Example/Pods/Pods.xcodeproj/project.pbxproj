@@ -22,6 +22,7 @@
 		C33F75B0226800510094F9E2 /* SnapshotTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F75AF226800510094F9E2 /* SnapshotTarget.swift */; };
 		C36C93332264B2580078891A /* RenderTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C93322264B2580078891A /* RenderTarget.swift */; };
 		C3CB0162225AE54600050F35 /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CB0161225AE54600050F35 /* ScrollableCanvas.swift */; };
+		C3D0644C2268B39700DD6632 /* MLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0644B2268B39700DD6632 /* MLTexture.swift */; };
 		D32DD0F0604E5B0D418134C5317146D5 /* Eraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B04847C924BADC799314D252D0E641 /* Eraser.swift */; };
 		DBD435EA4A26B8AFFE25E31BD9F6AF91 /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2FE70143593EFB608DD461EC5D1F33 /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD2778E8419C9F80AA43E7BBC8B04538 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FB217DF4214928BB4D523C8BE2D257 /* MetalView.swift */; };
@@ -69,6 +70,7 @@
 		C33F75AF226800510094F9E2 /* SnapshotTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTarget.swift; sourceTree = "<group>"; };
 		C36C93322264B2580078891A /* RenderTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderTarget.swift; sourceTree = "<group>"; };
 		C3CB0161225AE54600050F35 /* ScrollableCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollableCanvas.swift; path = MaLiang/Classes/ScrollableCanvas.swift; sourceTree = "<group>"; };
+		C3D0644B2268B39700DD6632 /* MLTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLTexture.swift; sourceTree = "<group>"; };
 		C85DE9EC11730157DC0CD2C6A5AAF188 /* Pods-MaLiang_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MaLiang_Example.modulemap"; sourceTree = "<group>"; };
 		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D116D1221F25567031566CC0AEAA9A9C /* MLColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MLColor.swift; sourceTree = "<group>"; };
@@ -103,10 +105,10 @@
 		37604089B5313DFDB6E691687732F5A0 /* MaLiang */ = {
 			isa = PBXGroup;
 			children = (
-				322B733AEF7C1F0003845BD6CF89EC1D /* Brush.swift */,
 				F8119C5E7EC6F48E3FC9B945379CB756 /* Canvas.swift */,
 				C3CB0161225AE54600050F35 /* ScrollableCanvas.swift */,
 				4643F7223184733FAD15725E65A8D087 /* Document.swift */,
+				322B733AEF7C1F0003845BD6CF89EC1D /* Brush.swift */,
 				B7B04847C924BADC799314D252D0E641 /* Eraser.swift */,
 				B077CEF0F2DA640DB02183966C69D3A5 /* MetalBase */,
 				C258A0B478C9675BBFE27331786EC303 /* Utils */,
@@ -175,6 +177,7 @@
 				C33F75AF226800510094F9E2 /* SnapshotTarget.swift */,
 				D116D1221F25567031566CC0AEAA9A9C /* MLColor.swift */,
 				62E1723CEFE9F0FFFAAE0E43E222CDA5 /* MLLine.swift */,
+				C3D0644B2268B39700DD6632 /* MLTexture.swift */,
 				B38896433BDAAA59843BFFCD22B0C90E /* Shaders.metal */,
 			);
 			name = MetalBase;
@@ -353,6 +356,7 @@
 				469A125C55FFAE5F3998CA48A765E633 /* BezierGenerator.swift in Sources */,
 				C36C93332264B2580078891A /* RenderTarget.swift in Sources */,
 				91FE5CF0ADBD82EF339A5220AF3C0DB3 /* Brush.swift in Sources */,
+				C3D0644C2268B39700DD6632 /* MLTexture.swift in Sources */,
 				40A37BC8EF74C8054A24397E6A28BB72 /* Canvas.swift in Sources */,
 				839A736D2BE428C7633F8C5790A99D3C /* Document.swift in Sources */,
 				D32DD0F0604E5B0D418134C5317146D5 /* Eraser.swift in Sources */,

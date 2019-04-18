@@ -31,10 +31,10 @@ public struct MLLine: Codable {
     }
 }
 
-///  一条线段，保存了轨迹信息和画笔信息
+/// a line strip with lines and brush info
 open class MLLineStrip {
     
-    /// 绘制这条线段所使用的画笔
+    /// brush used to render this line strip
     open var brush: Brush
     
     /// 组成线段的直线
