@@ -23,25 +23,6 @@ public enum CanvasElement {
     }
 }
 
-///  一条线段，保存了轨迹信息和画笔信息
-open class MLLineStrip {
-
-    /// 绘制这条线段所使用的画笔
-    open var brush: Brush
-    
-    /// 组成线段的直线
-    open var lines: [MLLine]
-    
-    init(lines: [MLLine], brush: Brush) {
-        self.lines = lines
-        self.brush = brush
-    }
-    
-    internal func drawSelf(on target: RenderTarget) {
-        brush.render(lines: lines, on: target)
-    }
-}
-
 /// Document only manage the data in memory and temp file path
 /// Save the data and read it with your onwn logic
 open class Document {
@@ -65,7 +46,7 @@ open class Document {
         }
         
         if !isNewElement, let lineStrip = currentLineStrip, lineStrip.brush === brush {
-            lineStrip.lines.append(contentsOf: lines)
+            lineStrip.append(lines: lines)
         } else {
             createNewLineStrip(with: lines, brush: brush)
         }

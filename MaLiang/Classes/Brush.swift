@@ -105,11 +105,11 @@ open class Brush {
         attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
     }
 
-    open func render(lines: [MLLine], on renderTarget: RenderTarget? = nil) {
+    internal func render(lineStrip: MLLineStrip, on renderTarget: RenderTarget? = nil) {
         
         let renderTarget = renderTarget ?? target?.screenTarget
         
-        guard lines.count > 0, let target = renderTarget, let device = target.device else {
+        guard lineStrip.lines.count > 0, let target = renderTarget else {
             return
         }
         
@@ -121,35 +121,14 @@ open class Brush {
         
         commandEncoder?.setRenderPipelineState(pipelineState)
         
-        // Convert locations from Points to Pixels
-        let scaleFactor: CGFloat = 1
-        let scale = UIScreen.main.scale
-        
-        // Allocate vertex array buffer
-        var vertexes: [Point] = []
-        
-        lines.forEach { (line) in
-            
-            var line = line
-            line.begin = line.begin * scale
-            line.end = line.end * scale
-            let count = max(line.length / line.pointStep, 1) * scaleFactor
-            for i in 0 ..< Int(count) {
-                let index = CGFloat(i)
-                let x = line.begin.x + (line.end.x - line.begin.x) * (index / count)
-                let y = line.begin.y + (line.end.y - line.begin.y) * (index / count)
-                vertexes.append(Point(x: x, y: y, color: line.color, size: line.pointSize * scale))
-            }
-        }
-        
-        if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
+        if let vertex_buffer = lineStrip.retrieveBuffers() {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
             commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
             commandEncoder?.setVertexBuffer(target.transform_buffer, offset: 0, index: 2)
             if let texture = texture {
                 commandEncoder?.setFragmentTexture(texture, index: 0)
             }
-            commandEncoder?.drawPrimitives(type: .point, vertexStart: 0, vertexCount: vertexes.count)
+            commandEncoder?.drawPrimitives(type: .point, vertexStart: 0, vertexCount: lineStrip.vertexCount)
         }
         
         commandEncoder?.endEncoding()

@@ -166,23 +166,25 @@ open class Canvas: MetalView {
         target.updateBuffer(with: drawableSize)
         target.clear()
         
-        /// combine all linestrips with same brush and then draw
-        var pendingDrawingQueue: [MLLineStrip] = []
-        for item in elementsToDraw {
-            guard case let .pan(lineStrip) = item else {
-                item.drawSelf(on: target)
-                continue
-            }
-            if let last = pendingDrawingQueue.last, last.brush.identifier != lineStrip.brush.identifier {
-                drawLineStrips(pendingDrawingQueue, on: target)
-                pendingDrawingQueue.removeAll()
-            }
-            pendingDrawingQueue.append(lineStrip)
-        }
-        drawLineStrips(pendingDrawingQueue, on: target)
+        elementsToDraw.forEach { $0.drawSelf(on: target) }
+//
+//        /// combine all linestrips with same brush and then draw
+//        var pendingDrawingQueue: [MLLineStrip] = []
+//        for item in elementsToDraw {
+//            guard case let .pan(lineStrip) = item else {
+//                item.drawSelf(on: target)
+//                continue
+//            }
+//            if let last = pendingDrawingQueue.last, last.brush.identifier != lineStrip.brush.identifier {
+//                drawLineStrips(pendingDrawingQueue, on: target)
+//                pendingDrawingQueue.removeAll()
+//            }
+//            pendingDrawingQueue.append(lineStrip)
+//        }
+//        drawLineStrips(pendingDrawingQueue, on: target)
         
         if display {
-            setNeedsDisplay()
+//            setNeedsDisplay()
         }
     }
     
@@ -190,8 +192,7 @@ open class Canvas: MetalView {
         guard strips.count > 0 else {
             return
         }
-        let lines = strips.flatMap { $0.lines }
-        strips.last?.brush.render(lines: lines, on: target)
+        strips.forEach { $0.drawSelf(on: target) }
     }
     
     // MARK: - Bezier
@@ -232,11 +233,15 @@ open class Canvas: MetalView {
     
     // MARK: - Rendering
     open func render(lines: [MLLine], display: Bool = true) {
-        currentBrush.render(lines: lines)
-        if display {
-            setNeedsDisplay()
-        }
         document.appendLines(lines, with: currentBrush)
+
+        let linStrip = MLLineStrip(lines: lines, brush: currentBrush)
+        linStrip.drawSelf(on: screenTarget)
+        
+//        currentBrush.render(lines: lines)
+        if display {
+//            setNeedsDisplay()
+        }
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {

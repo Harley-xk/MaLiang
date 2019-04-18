@@ -140,6 +140,8 @@ open class ScrollableCanvas: Canvas {
         verticalScrollIndicator.clipsToBounds = true
         addSubview(verticalScrollIndicator)
         self.verticalScrollIndicator = verticalScrollIndicator
+        
+        hidesScrollIndicators()
     }
     
     private func updateScrollIndicators() {

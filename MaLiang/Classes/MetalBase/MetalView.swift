@@ -10,6 +10,8 @@ import UIKit
 import QuartzCore
 import MetalKit
 
+internal let sharedDevice = MTLCreateSystemDefaultDevice()
+
 open class MetalView: MTKView {
     
     // MARK: - Brush Textures
@@ -37,9 +39,8 @@ open class MetalView: MTKView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        updateBuffers()
+        screenTarget.updateBuffer(with: drawableSize)
     }
-
 
     open override var backgroundColor: UIColor? {
         didSet {
@@ -69,13 +70,13 @@ open class MetalView: MTKView {
     #endif
     
     open func setup() {
-        device = MTLCreateSystemDefaultDevice()
+        device = sharedDevice
         isOpaque = false
 
         screenTarget = RenderTarget(size: drawableSize, device: device)
         commandQueue = device?.makeCommandQueue()
 
-        updateBuffers()
+        setupTargetUniforms()
 
         do {
             try setupPiplineState()
@@ -114,13 +115,8 @@ open class MetalView: MTKView {
     // Uniform buffers
     private var render_target_vertex: MTLBuffer!
     private var render_target_uniform: MTLBuffer!
-
-    private func updateBuffers() {
-        screenTarget.updateBuffer(with: drawableSize)
-        updateZoomUniform()
-    }
     
-    func updateZoomUniform() {
+    func setupTargetUniforms() {
         let size = drawableSize
         let w = size.width, h = size.height
         let vertices = [
@@ -136,7 +132,6 @@ open class MetalView: MTKView {
         metrix.translation(x: -1, y: 1, z: 0)
         render_target_uniform = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
     }
-    
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
