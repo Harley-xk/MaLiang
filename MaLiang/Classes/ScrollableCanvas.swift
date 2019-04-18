@@ -52,19 +52,8 @@ open class ScrollableCanvas: Canvas {
         }
         
         /// create a new render target with same size to the content, for snapshoting
-        let imageSize = contentSize * contentScaleFactor
-        let snapshotTarget = RenderTarget(size: imageSize, device: device)
-        redraw(on: snapshotTarget, display: false)
-        snapshotTarget.commitCommands()
-        if let texture = snapshotTarget.texture, let ciimage = CIImage(mtlTexture: texture, options: nil) {
-            let context = CIContext() // Prepare for create CGImage
-            let rect = CGRect(origin: .zero, size: imageSize)
-            /// create cgimage that is savable, ciimage is downMirrored
-            if let cgimg = context.createCGImage(ciimage.oriented(forExifOrientation: 4), from: rect) {
-                return UIImage(cgImage: cgimg)
-            }
-        }
-        return nil
+        let target = SnapshotTarget(canvas: self)
+        return target.getImage()
     }
     
     private var pinchGesture: UIPinchGestureRecognizer!
