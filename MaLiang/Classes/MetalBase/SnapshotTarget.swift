@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Snapshoting Target, used for snapshot
 open class SnapshotTarget: RenderTarget {
@@ -26,29 +27,50 @@ open class SnapshotTarget: RenderTarget {
     ///
     /// - Returns: UIImage, nil if failed
     open func getImage() -> UIImage? {
-        guard let cgimage = getCGImage() else {
-            return nil
-        }
-        return UIImage(cgImage: cgimage)
+        syncContent()
+        return texture?.toUIImage()
     }
     
     /// get CIImage from canvas content
     open func getCIImage() -> CIImage? {
-        canvas?.redraw(on: self, display: false)
-        commitCommands()
-        if let texture = texture, let ciimage = CIImage(mtlTexture: texture, options: nil) {
-            return ciimage.oriented(forExifOrientation: 4)
-        }
-        return nil
+        syncContent()
+        return texture?.toCIImage()
     }
     
     /// get CGImage from canvas content
     open func getCGImage() -> CGImage? {
-        guard let ciimage = getCIImage() else {
+        syncContent()
+        return texture?.toCGImage()
+    }
+    
+    private func syncContent() {
+        canvas?.redraw(on: self, display: false)
+        commitCommands()
+    }
+}
+
+public extension MTLTexture {
+
+    /// get CIImage from this texture
+    func toCIImage() -> CIImage? {
+        return CIImage(mtlTexture: self, options: nil)?.oriented(forExifOrientation: 4)
+    }
+    
+    /// get CGImage from this texture
+    func toCGImage() -> CGImage? {
+        guard let ciimage = toCIImage() else {
             return nil
         }
         let context = CIContext() // Prepare for create CGImage
-        let rect = CGRect(origin: .zero, size: drawableSize)
+        let rect = CGRect(origin: .zero, size: ciimage.extent.size)
         return context.createCGImage(ciimage, from: rect)
+    }
+    
+    /// get UIImage from this texture
+    func toUIImage() -> UIImage? {
+        guard let cgimage = toCGImage() else {
+            return nil
+        }
+        return UIImage(cgImage: cgimage)
     }
 }
