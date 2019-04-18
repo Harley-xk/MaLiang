@@ -122,7 +122,7 @@ open class MetalView: MTKView {
     
     func updateZoomUniform() {
         let size = drawableSize
-        let w = size.width * (screenTarget.zoom / screenTarget.scale ), h = size.height * (screenTarget.zoom / screenTarget.scale)
+        let w = size.width, h = size.height
         let vertices = [
             Vertex(position: CGPoint(x: 0 , y: 0), textCoord: CGPoint(x: 0, y: 0)),
             Vertex(position: CGPoint(x: w , y: 0), textCoord: CGPoint(x: 1, y: 0)),

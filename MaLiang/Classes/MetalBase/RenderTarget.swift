@@ -56,7 +56,8 @@ open class RenderTarget {
     internal func updateBuffer(with size: CGSize) {
         self.drawableSize = size
         let metrix = Matrix.identity
-        metrix.scaling(x: 2 / Float(size.width), y: -2 / Float(size.height), z: 1)
+        let zoomUniform = 2 * Float(zoom / scale )
+        metrix.scaling(x: zoomUniform  / Float(size.width), y: -zoomUniform / Float(size.height), z: 1)
         metrix.translation(x: -1, y: 1, z: 0)
         uniform_buffer = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
     }

@@ -163,7 +163,7 @@ open class Canvas: MetalView {
             elementsToDraw.insert(element, at: 0)
         }
         
-        updateZoomUniform()
+        target.updateBuffer(with: drawableSize)
         target.clear()
         
         /// combine all linestrips with same brush and then draw

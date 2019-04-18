@@ -26,7 +26,7 @@ open class ScrollableCanvas: Canvas {
     }
     
     /// the max zoomScale of canvas, will cause redraw if the new value is less than current
-    open var maxScale: CGFloat = 3 {
+    open var maxScale: CGFloat = 5 {
         didSet {
             if maxScale < zoom {
                 self.zoom = maxScale
@@ -75,7 +75,7 @@ open class ScrollableCanvas: Canvas {
                 return
             }
             var scale = currentZoomScale * gesture.scale * gesture.scale
-            scale = scale.between(min: 1, max: maxScale)
+            scale = scale.between(min: 0.5, max: maxScale)
             self.zoom = scale
             self.scale = zoom
             let offset = offsetAnchor * (scale / currentZoomScale) - location
