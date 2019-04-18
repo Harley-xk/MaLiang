@@ -32,6 +32,16 @@ struct Point {
     }
 }
 
+struct ScrollingTransform {
+    var offset: vector_float2
+    var scale: Float
+    
+    init(offset: CGPoint, scale: CGFloat) {
+        self.offset = vector_float2(Float(offset.x), Float(offset.y))
+        self.scale = Float(scale)
+    }
+}
+
 struct Uniforms {
     var scaleMatrix: [Float]
 //    var rotationMatrix: [Float]

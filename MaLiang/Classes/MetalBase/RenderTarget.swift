@@ -7,6 +7,7 @@
 
 import Foundation
 import Metal
+import simd
 
 /// a target for any thing that can be render on
 open class RenderTarget {
@@ -15,13 +16,21 @@ open class RenderTarget {
     public private(set) var texture: MTLTexture?
     
     /// the scale level of view, all things scales
-    open var scale: CGFloat = 1
+    open var scale: CGFloat = 1 {
+        didSet {
+            updateTransformBuffer()
+        }
+    }
     
     /// the zoom level of render target, only scale render target
     open var zoom: CGFloat = 1
 
     /// the offset of render target with zoomed size
-    open var contentOffset: CGPoint = .zero
+    open var contentOffset: CGPoint = .zero {
+        didSet {
+            updateTransformBuffer()
+        }
+    }
     
     /// create with texture an device
     public init(size: CGSize, device: MTLDevice?) {
@@ -48,6 +57,7 @@ open class RenderTarget {
     
     internal var drawableSize: CGSize
     internal var uniform_buffer: MTLBuffer!
+    internal var transform_buffer: MTLBuffer!
     internal var renderPassDescriptor: MTLRenderPassDescriptor?
     internal var commandBuffer: MTLCommandBuffer?
     internal var commandQueue: MTLCommandQueue?
@@ -60,6 +70,14 @@ open class RenderTarget {
         metrix.scaling(x: zoomUniform  / Float(size.width), y: -zoomUniform / Float(size.height), z: 1)
         metrix.translation(x: -1, y: 1, z: 0)
         uniform_buffer = device?.makeBuffer(bytes: metrix.m, length: MemoryLayout<Float>.size * 16, options: [])
+        
+        updateTransformBuffer()
+    }
+    
+    internal func updateTransformBuffer() {
+        let scaleFactor = UIScreen.main.scale
+        var transform = ScrollingTransform(offset: contentOffset * scaleFactor, scale: scale)
+        transform_buffer = device?.makeBuffer(bytes: &transform, length: MemoryLayout<ScrollingTransform>.stride, options: [])
     }
     
     internal func prepareForDraw() {

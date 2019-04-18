@@ -75,7 +75,7 @@ open class ScrollableCanvas: Canvas {
                 return
             }
             var scale = currentZoomScale * gesture.scale * gesture.scale
-            scale = scale.between(min: 0.5, max: maxScale)
+            scale = scale.between(min: 1, max: maxScale)
             self.zoom = scale
             self.scale = zoom
             let offset = offsetAnchor * (scale / currentZoomScale) - location

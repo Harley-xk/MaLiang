@@ -122,8 +122,8 @@ open class Brush {
         commandEncoder?.setRenderPipelineState(pipelineState)
         
         // Convert locations from Points to Pixels
-        let scaleFactor = UIScreen.main.scale
-        let scale = scaleFactor * target.scale
+        let scaleFactor: CGFloat = 1
+        let scale = UIScreen.main.scale
         
         // Allocate vertex array buffer
         var vertexes: [Point] = []
@@ -131,9 +131,9 @@ open class Brush {
         lines.forEach { (line) in
             
             var line = line
-            line.begin = line.begin * scale - target.contentOffset * scaleFactor
-            line.end = line.end * scale - target.contentOffset * scaleFactor
-            let count = max(line.length / (line.pointStep * scale), 1) * scaleFactor
+            line.begin = line.begin * scale
+            line.end = line.end * scale
+            let count = max(line.length / line.pointStep, 1) * scaleFactor
             for i in 0 ..< Int(count) {
                 let index = CGFloat(i)
                 let x = line.begin.x + (line.end.x - line.begin.x) * (index / count)
@@ -145,6 +145,7 @@ open class Brush {
         if let vertex_buffer = device.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexes.count, options: .cpuCacheModeWriteCombined) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
             commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
+            commandEncoder?.setVertexBuffer(target.transform_buffer, offset: 0, index: 2)
             if let texture = texture {
                 commandEncoder?.setFragmentTexture(texture, index: 0)
             }
