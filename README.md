@@ -47,7 +47,7 @@ MaLiang is simple to use.
 ### Canvas
 
 ```swift
-open class Canvas: MLView
+open class Canvas: MetalView
 ```
 
 A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
