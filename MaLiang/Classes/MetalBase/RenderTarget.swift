@@ -34,13 +34,14 @@ open class RenderTarget {
     }
     
     /// create with texture an device
-    public init(size: CGSize, device: MTLDevice?) {
+    public init(size: CGSize, pixelFormat: MTLPixelFormat, device: MTLDevice?) {
         
         self.drawableSize = size
         self.device = device
         self.texture = makeEmptyTexture()
         self.commandQueue = device?.makeCommandQueue()
-
+        self.pixelFormat = pixelFormat
+        
         renderPassDescriptor = MTLRenderPassDescriptor()
         let attachment = renderPassDescriptor?.colorAttachments[0]
         attachment?.texture = texture
@@ -56,6 +57,7 @@ open class RenderTarget {
         renderPassDescriptor?.colorAttachments[0].texture = texture
     }
     
+    internal var pixelFormat: MTLPixelFormat = .bgra8Unorm
     internal var drawableSize: CGSize
     internal var uniform_buffer: MTLBuffer!
     internal var transform_buffer: MTLBuffer!
@@ -104,7 +106,7 @@ open class RenderTarget {
         guard drawableSize.width * drawableSize.height > 0 else {
             return nil
         }
-        let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba8Unorm,
+        let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat,
                                                                          width: Int(drawableSize.width),
                                                                          height: Int(drawableSize.height),
                                                                          mipmapped: false)

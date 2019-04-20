@@ -92,11 +92,19 @@ open class Brush {
         
         let library = device.libraryForMaLiang()
         let vertex_func = library?.makeFunction(name: "vertex_point_func")
-        let fragment_func = library?.makeFunction(name: texture == nil ? "fragment_point_func_without_texture" : "fragment_point_func")
+        
+        var fragment_func_name = "fragment_point_func"
+        if texture == nil {
+            fragment_func_name = "fragment_point_func_without_texture"
+        } else if renderType == .original {
+            fragment_func_name = "fragment_point_func_original"
+        }
+        
+        let fragment_func = library?.makeFunction(name: fragment_func_name)
         let rpd = MTLRenderPipelineDescriptor()
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
-        rpd.colorAttachments[0].pixelFormat = .rgba8Unorm
+        rpd.colorAttachments[0].pixelFormat = target.colorPixelFormat
         setupBlendOptions(for: rpd.colorAttachments[0]!)
         pipelineState = try! device.makeRenderPipelineState(descriptor: rpd)
     }
@@ -105,12 +113,14 @@ open class Brush {
     /// Blending options for this brush, override to implement your own blending options
     open func setupBlendOptions(for attachment: MTLRenderPipelineColorAttachmentDescriptor) {
         attachment.isBlendingEnabled = true
-        attachment.alphaBlendOperation = .add
+
         attachment.rgbBlendOperation = .add
         attachment.sourceRGBBlendFactor = .sourceAlpha
-        attachment.sourceAlphaBlendFactor = .one
         attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
-        attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
+        
+        attachment.alphaBlendOperation = .add
+        attachment.sourceAlphaBlendFactor = .oneMinusDestinationAlpha
+        attachment.destinationAlphaBlendFactor = .one
     }
 
     internal func render(lineStrip: MLLineStrip, on renderTarget: RenderTarget? = nil) {

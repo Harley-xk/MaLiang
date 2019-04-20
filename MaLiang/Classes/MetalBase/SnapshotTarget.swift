@@ -20,7 +20,7 @@ open class SnapshotTarget: RenderTarget {
         if let scrollable = canvas as? ScrollableCanvas {
             size = scrollable.contentSize * scrollable.contentScaleFactor
         }
-        super.init(size: size, device: canvas.device)
+        super.init(size: size, pixelFormat: canvas.colorPixelFormat, device: canvas.device)
     }
     
     /// get UIImage from canvas content

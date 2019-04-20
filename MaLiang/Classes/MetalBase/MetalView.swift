@@ -74,7 +74,7 @@ open class MetalView: MTKView {
         device = sharedDevice
         isOpaque = false
 
-        screenTarget = RenderTarget(size: drawableSize, device: device)
+        screenTarget = RenderTarget(size: drawableSize, pixelFormat: colorPixelFormat, device: device)
         commandQueue = device?.makeCommandQueue()
 
         setupTargetUniforms()
@@ -98,13 +98,13 @@ open class MetalView: MTKView {
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
         rpd.colorAttachments[0].pixelFormat = colorPixelFormat
-        rpd.colorAttachments[0].isBlendingEnabled = true
-        rpd.colorAttachments[0].alphaBlendOperation = .add
-        rpd.colorAttachments[0].rgbBlendOperation = .add
-        rpd.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-        rpd.colorAttachments[0].sourceAlphaBlendFactor = .one
-        rpd.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
-        rpd.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
+//        rpd.colorAttachments[0].isBlendingEnabled = true
+//        rpd.colorAttachments[0].alphaBlendOperation = .add
+//        rpd.colorAttachments[0].rgbBlendOperation = .add
+//        rpd.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+//        rpd.colorAttachments[0].sourceAlphaBlendFactor = .one
+//        rpd.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+//        rpd.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
         pipelineState = try device?.makeRenderPipelineState(descriptor: rpd)
     }
 
