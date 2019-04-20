@@ -40,7 +40,7 @@ open class Brush {
     open private(set) var textureID: UUID?
 
     /// target to draw
-    weak var target: Canvas?
+    open private(set) weak var target: Canvas?
     
     /// create new brush with registered textureid in target
     public init(textureID: UUID? = nil, target: Canvas) {
@@ -50,7 +50,7 @@ open class Brush {
         if let id = textureID {
             texture = target.findTexture(by: id)?.texture
         }
-        self.updatePointPipeline()
+        updatePointPipeline()
     }
     
     /// use this brush to draw
@@ -80,11 +80,11 @@ open class Brush {
     
     // MARK: - Render Actions
     
-    private weak var texture: MTLTexture?
+    open private(set) weak var texture: MTLTexture?
     
-    private var pipelineState: MTLRenderPipelineState!
+    open private(set) var pipelineState: MTLRenderPipelineState!
     
-    private func updatePointPipeline() {
+    open func updatePointPipeline() {
         
         guard let target = target, let device = target.device else {
             return
@@ -96,8 +96,6 @@ open class Brush {
         var fragment_func_name = "fragment_point_func"
         if texture == nil {
             fragment_func_name = "fragment_point_func_without_texture"
-        } else if renderType == .original {
-            fragment_func_name = "fragment_point_func_original"
         }
         
         let fragment_func = library?.makeFunction(name: fragment_func_name)
@@ -123,7 +121,7 @@ open class Brush {
         attachment.destinationAlphaBlendFactor = .one
     }
 
-    internal func render(lineStrip: MLLineStrip, on renderTarget: RenderTarget? = nil) {
+    open func render(lineStrip: MLLineStrip, on renderTarget: RenderTarget? = nil) {
         
         let renderTarget = renderTarget ?? target?.screenTarget
         
