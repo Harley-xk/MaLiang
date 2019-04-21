@@ -9,6 +9,79 @@ import UIKit
 
 open class Canvas: MetalView {
     
+    // MARK: - Brushes
+    
+    /// default round point brush, will not show in registeredBrushes
+    open var defaultBrush: Brush!
+    
+    /// Register a brush with image data
+    ///
+    /// - Parameter texture: texture data of brush
+    /// - Returns: registered brush
+    @discardableResult open func registerBrush<T: Brush>(with identifier: String? = nil, from data: Data) throws -> T {
+        let texture = try makeTexture(with: data)
+        let brush = T(identifier: identifier, textureID: texture.id, target: self)
+        registeredBrushes.append(brush)
+        return brush
+    }
+    
+    /// Register a brush with image data
+    ///
+    /// - Parameter file: texture file of brush
+    /// - Returns: registered brush
+    @discardableResult open func registerBrush<T: Brush>(with identifier: String? = nil, from file: URL) throws -> T {
+        let data = try Data(contentsOf: file)
+        return try registerBrush(from: data)
+    }
+    
+    /// Register a new brush with texture already registered on this canvas
+    ///
+    /// - Parameter textureID: id of a texture, default round texture will be used if sets to nil or texture id not found
+    open func registerBrush<T: Brush>(with identifier: String? = nil, textureID: UUID? = nil) throws -> T {
+        let brush = T(identifier: identifier, textureID: textureID, target: self)
+        registeredBrushes.append(brush)
+        return brush
+    }
+    
+    /// current brush used to draw
+    /// only registered brushed can be set to current
+    /// get a brush from registeredBrushes and call it's use() method to make it current
+    open internal(set) var currentBrush: Brush!
+    
+    /// All registered brushes
+    open private(set) var registeredBrushes: [Brush] = []
+    
+    /// find a brush by identifier
+    open func findBrush(by identifier: String) -> Brush? {
+        return registeredBrushes.first { $0.identifier == identifier }
+    }
+    
+    /// All textures created by this canvas
+    open private(set) var textures: [MLTexture] = []
+    
+    /// make texture and cache it with ID
+    override open func makeTexture(with data: Data) throws -> MLTexture {
+        let texture = try super.makeTexture(with: data)
+        textures.append(texture)
+        return texture
+    }
+    
+    /// find texture by textureID
+    open func findTexture(by id: UUID) -> MLTexture? {
+        return textures.first { $0.id == id }
+    }
+    
+    /// enable force
+    open var forceEnabled: Bool {
+        get {
+            return paintingGesture?.forceEnabled ?? false
+        }
+        set {
+            paintingGesture?.forceEnabled = newValue
+        }
+    }
+    
+    // MARK: - Zoom and scale
     /// the scale level of view, all things scales
     open var scale: CGFloat {
         get {
@@ -39,81 +112,6 @@ open class Canvas: MetalView {
         }
     }
 
-    // MARK: - Brushes
-    
-    /// default round point brush, will not show in registeredBrushes
-    open var defaultBrush: Brush!
-    
-    /// Register a brush with image data
-    ///
-    /// - Parameter texture: texture data of brush
-    /// - Returns: registered brush
-    @discardableResult open func registerBrush(with texture: Data) throws -> Brush {
-        let texture = try makeTexture(with: texture)
-        let brush = Brush(textureID: texture.id, target: self)
-        registeredBrushes.append(brush)
-        return brush
-    }
-    
-    /// Register a brush with image data
-    ///
-    /// - Parameter file: texture file of brush
-    /// - Returns: registered brush
-    @discardableResult open func registerBrush(with file: URL) throws -> Brush {
-        let data = try Data(contentsOf: file)
-        return try registerBrush(with: data)
-    }
-    
-    
-    /// Register a brush with specified texture id
-    ///
-    /// - Parameter textureID: id of a texture, must already be registered
-    open func registerBrush(with textureID: UUID) throws -> Brush {
-        guard let texture = findTexture(by: textureID) else {
-            throw NSError(domain: "MaLiang", code: -1, userInfo: [NSLocalizedDescriptionKey: "Texture with id: \(textureID.uuidString) not registered!"])
-        }
-        let brush = Brush(textureID: texture.id, target: self)
-        registeredBrushes.append(brush)
-        return brush
-    }
-    
-    /// current brush used to draw
-    /// only registered brushed can be set to current
-    /// get a brush from registeredBrushes and call it's use() method to make it current
-    open internal(set) var currentBrush: Brush!
-    
-    /// All registered brushes
-    open private(set) var registeredBrushes: [Brush] = []
-    
-    open func findBrush(by id: UUID) -> Brush? {
-        return registeredBrushes.first { $0.id == id }
-    }
-    
-    /// All textures created by this canvas
-    open private(set) var textures: [MLTexture] = []
-    
-    /// make texture and cache it with ID
-    override open func makeTexture(with data: Data) throws -> MLTexture {
-        let texture = try super.makeTexture(with: data)
-        textures.append(texture)
-        return texture
-    }
-    
-    /// find texture by textureID
-    open func findTexture(by id: UUID) -> MLTexture? {
-        return textures.first { $0.id == id }
-    }
-    
-    /// enable force
-    open var forceEnabled: Bool {
-        get {
-            return paintingGesture?.forceEnabled ?? false
-        }
-        set {
-            paintingGesture?.forceEnabled = newValue
-        }
-    }
-    
     // setup gestures
     open var paintingGesture: PaintingGestureRecognizer?
     
@@ -129,7 +127,7 @@ open class Canvas: MetalView {
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
-        defaultBrush = Brush(textureID: nil, target: self)
+        defaultBrush = Brush(identifier: "com.maliang.brush.default", textureID: nil, target: self)
         currentBrush = defaultBrush
         
         document = Document()

@@ -30,7 +30,7 @@ class ScrollingViewController: UIViewController {
     
     private func registerBrush(with imageName: String) -> Brush {
         let path = Bundle.main.path(forResource: imageName, ofType: "png")!
-        return try! canvas.registerBrush(with: URL(fileURLWithPath: path))
+        return try! canvas.registerBrush(from: URL(fileURLWithPath: path))
     }
     /*
     // MARK: - Navigation

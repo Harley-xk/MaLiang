@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     
     private func registerBrush(with imageName: String) -> Brush {
         let path = Bundle.main.path(forResource: imageName, ofType: "png")!
-        return try! canvas.registerBrush(with: URL(fileURLWithPath: path))
+        return try! canvas.registerBrush(from: URL(fileURLWithPath: path))
     }
     
     override func viewDidLoad() {
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         //        let eraser = Eraser(texture: texture, target: canvas)
         
         /// make eraser with default round point
-        let eraser = Eraser(target: canvas)
+        let eraser = try! canvas.registerBrush() as Eraser
         
         brushes = [pen, pencil, brush, eraser]
         

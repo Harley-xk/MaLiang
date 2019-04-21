@@ -16,8 +16,15 @@ public struct Pan {
 
 open class Brush {
     
-    // unique identifier, automatically set
-    public internal(set) var id: UUID
+    // unique identifier for a specifyed brush, should not be changed over all your apps
+    // make this value uniform when saving or reading canvas content from a file
+    open internal(set) var identifier: String
+    
+    /// interal texture
+    open private(set) var textureID: UUID?
+    
+    /// target to draw
+    open private(set) weak var target: Canvas?
 
     // opacity of texture, affects the darkness of stroke
     // set opacity to 1 may cause heavy aliasing
@@ -36,15 +43,10 @@ open class Brush {
     /// color of stroke
     open var color: UIColor = .black
     
-    /// interal texture
-    open private(set) var textureID: UUID?
-
-    /// target to draw
-    open private(set) weak var target: Canvas?
-    
-    /// create new brush with registered textureid in target
-    public init(textureID: UUID? = nil, target: Canvas) {
-        id = UUID()
+    // designed initializer, will be called by target when reigster called
+    // identifier is not necessary if you won't save the content of your canvas to file
+    required public init(identifier: String?, textureID: UUID?, target: Canvas) {
+        self.identifier = identifier ?? UUID().uuidString
         self.target = target
         self.textureID = textureID
         if let id = textureID {
@@ -58,6 +60,7 @@ open class Brush {
         target?.currentBrush = self
     }
     
+    /// get a line with specified begin and end location
     open func line(from: CGPoint, to: CGPoint) -> MLLine {
         let color = self.color.toMLColor(opacity: opacity)        
         let line = MLLine(begin: from, end: to, pointSize: pointSize,
@@ -67,6 +70,7 @@ open class Brush {
         return line
     }
     
+    /// get a line with specified begin and end location with force info
     open func pan(from: Pan, to: Pan) -> MLLine {
         let color = self.color.toMLColor(opacity: opacity)
         var endForce = from.force * 0.95 + to.force * 0.05
@@ -78,35 +82,32 @@ open class Brush {
         return line
     }
     
-    // MARK: - Render Actions
-    
+    // MARK: - Render tools
+    /// texture for this brush, readonly
     open private(set) weak var texture: MTLTexture?
     
+    /// pipeline state for this brush
     open private(set) var pipelineState: MTLRenderPipelineState!
     
-    open func updatePointPipeline() {
-        
-        guard let target = target, let device = target.device else {
-            return
-        }
-        
-        let library = device.libraryForMaLiang()
-        let vertex_func = library?.makeFunction(name: "vertex_point_func")
-        
-        var fragment_func_name = "fragment_point_func"
-        if texture == nil {
-            fragment_func_name = "fragment_point_func_without_texture"
-        }
-        
-        let fragment_func = library?.makeFunction(name: fragment_func_name)
-        let rpd = MTLRenderPipelineDescriptor()
-        rpd.vertexFunction = vertex_func
-        rpd.fragmentFunction = fragment_func
-        rpd.colorAttachments[0].pixelFormat = target.colorPixelFormat
-        setupBlendOptions(for: rpd.colorAttachments[0]!)
-        pipelineState = try! device.makeRenderPipelineState(descriptor: rpd)
+    /// make shader library for this brush, overrides to provide your own shader library
+    open func makeShaderLibrary(from device: MTLDevice) -> MTLLibrary? {
+        return device.libraryForMaLiang()
     }
     
+    /// make shader vertex function from the library made by makeShaderLibrary()
+    /// overrides to provide your own vertex function
+    open func makeShaderVertexFunction(from library: MTLLibrary) -> MTLFunction? {
+        return library.makeFunction(name: "vertex_point_func")
+    }
+    
+    /// make shader fragment function from the library made by makeShaderLibrary()
+    /// overrides to provide your own fragment function
+    open func makeShaderFragmentFunction(from library: MTLLibrary) -> MTLFunction? {
+        if texture == nil {
+            return library.makeFunction(name: "fragment_point_func_without_texture")
+        }
+        return library.makeFunction(name: "fragment_point_func")
+    }
     
     /// Blending options for this brush, override to implement your own blending options
     open func setupBlendOptions(for attachment: MTLRenderPipelineColorAttachmentDescriptor) {
@@ -120,8 +121,31 @@ open class Brush {
         attachment.sourceAlphaBlendFactor = .oneMinusDestinationAlpha
         attachment.destinationAlphaBlendFactor = .one
     }
+    
+    // MARK: - Render Actions
 
-    open func render(lineStrip: MLLineStrip, on renderTarget: RenderTarget? = nil) {
+    private func updatePointPipeline() {
+        
+        guard let target = target, let device = target.device, let library = makeShaderLibrary(from: device) else {
+            return
+        }
+        
+        let rpd = MTLRenderPipelineDescriptor()
+        
+        if let vertex_func = makeShaderVertexFunction(from: library) {
+            rpd.vertexFunction = vertex_func
+        }
+        if let fragment_func = makeShaderFragmentFunction(from: library) {
+            rpd.fragmentFunction = fragment_func
+        }
+        
+        rpd.colorAttachments[0].pixelFormat = target.colorPixelFormat
+        setupBlendOptions(for: rpd.colorAttachments[0]!)
+        pipelineState = try! device.makeRenderPipelineState(descriptor: rpd)
+    }
+
+    /// render a specifyed line strip by this brush
+    internal func render(lineStrip: MLLineStrip, on renderTarget: RenderTarget? = nil) {
         
         let renderTarget = renderTarget ?? target?.screenTarget
         
