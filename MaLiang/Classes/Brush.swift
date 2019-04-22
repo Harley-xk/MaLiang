@@ -145,7 +145,7 @@ open class Brush {
     }
 
     /// render a specifyed line strip by this brush
-    internal func render(lineStrip: MLLineStrip, on renderTarget: RenderTarget? = nil) {
+    internal func render(lineStrip: LineStrip, on renderTarget: RenderTarget? = nil) {
         
         let renderTarget = renderTarget ?? target?.screenTarget
         

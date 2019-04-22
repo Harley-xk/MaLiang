@@ -32,23 +32,38 @@ public struct MLLine: Codable {
 }
 
 /// a line strip with lines and brush info
-open class MLLineStrip {
+open class LineStrip: CanvasElement {
+    
+    /// element index
+    public var index: Int = 0
+    
+    /// identifier of bursh used to render this line strip
+    public var brushIdentifier: String?
+    
+    /// line units of this line strip
+    open private(set) var lines: [MLLine] = []
     
     /// brush used to render this line strip
-    open var brush: Brush
-    
-    /// 组成线段的直线
-    open private(set) var lines: [MLLine]
+    open internal(set) weak var brush: Brush? {
+        didSet {
+            brushIdentifier = brush?.identifier
+        }
+    }
     
     init(lines: [MLLine], brush: Brush) {
         self.lines = lines
         self.brush = brush
+        self.brushIdentifier = brush.identifier
         remakBuffer()
     }
     
     open func append(lines: [MLLine]) {
         self.lines.append(contentsOf: lines)
         vertex_buffer = nil
+    }
+    
+    public func drawSelf(on target: RenderTarget) {
+        brush?.render(lineStrip: self, on: target)
     }
     
     /// get vertex buffer for this line strip, remake if not exists
@@ -90,7 +105,25 @@ open class MLLineStrip {
         vertex_buffer = sharedDevice?.makeBuffer(bytes: vertexes, length: MemoryLayout<Point>.stride * vertexCount, options: .cpuCacheModeWriteCombined)
     }
     
-    internal func drawSelf(on target: RenderTarget) {
-        brush.render(lineStrip: self, on: target)
+    // MARK: - Coding
+
+    enum CodingKeys: String, CodingKey {
+        case index
+        case brushIdentifier
+        case lines
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        index = try container.decode(Int.self, forKey: .index)
+        brushIdentifier = try container.decode(String.self, forKey: .brushIdentifier)
+        lines = try container.decode([MLLine].self, forKey: .lines)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(index, forKey: .index)
+        try container.encode(brushIdentifier, forKey: .brushIdentifier)
+        try container.encode(lines, forKey: .lines)
     }
 }

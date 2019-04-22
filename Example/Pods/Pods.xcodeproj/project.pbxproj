@@ -19,6 +19,7 @@
 		8F84849E59D1FA7E120E145559306CB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
 		91FE5CF0ADBD82EF339A5220AF3C0DB3 /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322B733AEF7C1F0003845BD6CF89EC1D /* Brush.swift */; };
 		B8DB3EAD435BBB018B1F5B224D8C7985 /* Pods-MaLiang_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE51796C8438EEB9458264890D426B58 /* Pods-MaLiang_Example-dummy.m */; };
+		C32C5392226D5E40002426E9 /* CanvasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C5391226D5E40002426E9 /* CanvasData.swift */; };
 		C33F75B0226800510094F9E2 /* SnapshotTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33F75AF226800510094F9E2 /* SnapshotTarget.swift */; };
 		C3647BCF226C4CBB007448D1 /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3647BCE226C4CBB007448D1 /* ScrollableCanvas.swift */; };
 		C36C93332264B2580078891A /* RenderTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C93322264B2580078891A /* RenderTarget.swift */; };
@@ -67,6 +68,7 @@
 		B38896433BDAAA59843BFFCD22B0C90E /* Shaders.metal */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		B7B04847C924BADC799314D252D0E641 /* Eraser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Eraser.swift; path = MaLiang/Classes/Eraser.swift; sourceTree = "<group>"; };
 		C2EE5BEE09519DF5F3A7EB859EBBF36E /* MaLiang-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MaLiang-dummy.m"; sourceTree = "<group>"; };
+		C32C5391226D5E40002426E9 /* CanvasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasData.swift; sourceTree = "<group>"; };
 		C33F75AF226800510094F9E2 /* SnapshotTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTarget.swift; sourceTree = "<group>"; };
 		C3647BCE226C4CBB007448D1 /* ScrollableCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollableCanvas.swift; path = MaLiang/Classes/ScrollableCanvas.swift; sourceTree = "<group>"; };
 		C36C93322264B2580078891A /* RenderTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderTarget.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				F8119C5E7EC6F48E3FC9B945379CB756 /* Canvas.swift */,
 				322B733AEF7C1F0003845BD6CF89EC1D /* Brush.swift */,
 				B7B04847C924BADC799314D252D0E641 /* Eraser.swift */,
+				C32C5391226D5E40002426E9 /* CanvasData.swift */,
 				4643F7223184733FAD15725E65A8D087 /* Document.swift */,
 				C3647BCE226C4CBB007448D1 /* ScrollableCanvas.swift */,
 				B077CEF0F2DA640DB02183966C69D3A5 /* MetalBase */,
@@ -360,6 +363,7 @@
 				40A37BC8EF74C8054A24397E6A28BB72 /* Canvas.swift in Sources */,
 				839A736D2BE428C7633F8C5790A99D3C /* Document.swift in Sources */,
 				C3647BCF226C4CBB007448D1 /* ScrollableCanvas.swift in Sources */,
+				C32C5392226D5E40002426E9 /* CanvasData.swift in Sources */,
 				D32DD0F0604E5B0D418134C5317146D5 /* Eraser.swift in Sources */,
 				C33F75B0226800510094F9E2 /* SnapshotTarget.swift in Sources */,
 				58317789735E6A732D640DDBA983F235 /* MaLiang-dummy.m in Sources */,

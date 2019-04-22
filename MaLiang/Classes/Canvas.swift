@@ -130,7 +130,7 @@ open class Canvas: MetalView {
         defaultBrush = Brush(identifier: "com.maliang.brush.default", textureID: nil, target: self)
         currentBrush = defaultBrush
         
-        document = Document()
+        data = CanvasData()
         setupGestureRecognizers()
     }
     
@@ -150,7 +150,7 @@ open class Canvas: MetalView {
         super.clear(display: display)
         
         if display {
-            document.appendClearAction()
+            data.appendClearAction()
         }
     }
     
@@ -160,16 +160,16 @@ open class Canvas: MetalView {
     }
     
     // MARK: - Document
-    public private(set) var document: Document!
+    public private(set) var data: CanvasData!
     
     public func undo() {
-        if let doc = document, doc.undo() {
+        if let data = data, data.undo() {
             redraw()
         }
     }
     
     public func redo() {
-        if let doc = document, doc.redo() {
+        if let data = data, data.redo() {
             redraw()
         }
     }
@@ -179,48 +179,12 @@ open class Canvas: MetalView {
     
         let target = target ?? screenTarget!
         
-        var elementsToDraw: [CanvasElement] = []
-        var elements = document.elements
-        while elements.count > 0 {
-            guard let element = elements.popLast() else {
-                break
-            }
-            if case CanvasElement.clear = element {
-                break
-            }
-            elementsToDraw.insert(element, at: 0)
-        }
+        data.finishCurrentElement()
         
         target.updateBuffer(with: drawableSize)
         target.clear()
         
-        elementsToDraw.forEach { $0.drawSelf(on: target) }
-//
-//        /// combine all linestrips with same brush and then draw
-//        var pendingDrawingQueue: [MLLineStrip] = []
-//        for item in elementsToDraw {
-//            guard case let .pan(lineStrip) = item else {
-//                item.drawSelf(on: target)
-//                continue
-//            }
-//            if let last = pendingDrawingQueue.last, last.brush.identifier != lineStrip.brush.identifier {
-//                drawLineStrips(pendingDrawingQueue, on: target)
-//                pendingDrawingQueue.removeAll()
-//            }
-//            pendingDrawingQueue.append(lineStrip)
-//        }
-//        drawLineStrips(pendingDrawingQueue, on: target)
-        
-        if display {
-//            setNeedsDisplay()
-        }
-    }
-    
-    internal func drawLineStrips(_ strips: [MLLineStrip], on target: RenderTarget) {
-        guard strips.count > 0 else {
-            return
-        }
-        strips.forEach { $0.drawSelf(on: target) }
+        data.elements.forEach { $0.drawSelf(on: target) }
     }
     
     // MARK: - Bezier
@@ -234,42 +198,37 @@ open class Canvas: MetalView {
     private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator, force: CGFloat, isEnd: Bool = false) {
         var lines: [MLLine] = []
         let vertices = bezier.pushPoint(point)
-        if vertices.count >= 2 {
-            var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
-            let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / CGFloat(vertices.count)
-            for i in 1 ..< vertices.count {
-                let p = vertices[i]
-                let pointStep = currentBrush.pointStep
-                if  // end point of line
-                    (isEnd && i == vertices.count - 1) ||
-                        // ignore step
-                        pointStep <= 1 ||
-                        // distance larger than step
-                        (pointStep > 1 && lastPan.point.distance(to: p) >= pointStep)
-                {
-                    let f = lastPan.force + deltaForce
-                    let pan = Pan(point: p, force: f)
-                    let line = currentBrush.pan(from: lastPan, to: pan)
-                    lines.append(line)
-                    lastPan = pan
-                    lastRenderedPan = pan
-                }
+        guard vertices.count >= 2 else {
+            return
+        }
+        var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
+        let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / CGFloat(vertices.count)
+        for i in 1 ..< vertices.count {
+            let p = vertices[i]
+            let pointStep = currentBrush.pointStep
+            if  // end point of line
+                (isEnd && i == vertices.count - 1) ||
+                    // ignore step
+                    pointStep <= 1 ||
+                    // distance larger than step
+                    (pointStep > 1 && lastPan.point.distance(to: p) >= pointStep)
+            {
+                let f = lastPan.force + deltaForce
+                let pan = Pan(point: p, force: f)
+                let line = currentBrush.pan(from: lastPan, to: pan)
+                lines.append(line)
+                lastPan = pan
+                lastRenderedPan = pan
             }
         }
         render(lines: lines)
     }
     
     // MARK: - Rendering
-    open func render(lines: [MLLine], display: Bool = true) {
-        document.appendLines(lines, with: currentBrush)
-
-        let linStrip = MLLineStrip(lines: lines, brush: currentBrush)
-        linStrip.drawSelf(on: screenTarget)
-        
-//        currentBrush.render(lines: lines)
-        if display {
-//            setNeedsDisplay()
-        }
+    open func render(lines: [MLLine]) {
+        data.append(lines: lines, with: currentBrush)
+        // create a temporary line strip and draw it on canvas
+        LineStrip(lines: lines, brush: currentBrush).drawSelf(on: screenTarget)
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
@@ -287,7 +246,7 @@ open class Canvas: MetalView {
         if gesture.state == .recognized {
             let location = gesture.location(in: self)
             renderTap(at: location)
-            document.finishCurrentLineStrip()
+            data.finishCurrentElement()
         }
     }
     
@@ -298,7 +257,7 @@ open class Canvas: MetalView {
         if gesture.state == .began {
             /// 取实际的手势起点作为笔迹的起点
             let acturalBegin = gesture.acturalBeginLocation
-            document.finishCurrentLineStrip()
+            data.finishCurrentElement()
             lastRenderedPan = Pan(point: acturalBegin, force: gesture.force)
             bezierGenerator.begin(with: acturalBegin)
             pushPoint(location, to: bezierGenerator, force: gesture.force)
@@ -315,7 +274,7 @@ open class Canvas: MetalView {
             }
             bezierGenerator.finish()
             lastRenderedPan = nil
-            document.finishCurrentLineStrip()
+            data.finishCurrentElement()
         }
     }
 }
