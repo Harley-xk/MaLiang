@@ -16,6 +16,8 @@ open class Chartlet: CanvasElement {
     
     public var size: CGSize
     
+//    public var texture: MLTexture
+    
     public func drawSelf(on target: RenderTarget) {
         
     }

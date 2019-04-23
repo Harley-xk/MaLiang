@@ -18,7 +18,7 @@ open class Brush {
     
     // unique identifier for a specifyed brush, should not be changed over all your apps
     // make this value uniform when saving or reading canvas content from a file
-    open internal(set) var identifier: String
+    open internal(set) var name: String
     
     /// interal texture
     open private(set) var textureID: UUID?
@@ -45,8 +45,8 @@ open class Brush {
     
     // designed initializer, will be called by target when reigster called
     // identifier is not necessary if you won't save the content of your canvas to file
-    required public init(identifier: String?, textureID: UUID?, target: Canvas) {
-        self.identifier = identifier ?? UUID().uuidString
+    required public init(name: String?, textureID: UUID?, target: Canvas) {
+        self.name = name ?? UUID().uuidString
         self.target = target
         self.textureID = textureID
         if let id = textureID {

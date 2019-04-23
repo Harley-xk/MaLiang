@@ -10,12 +10,20 @@ import Metal
 import UIKit
 
 /// texture with UUID
-open class MLTexture {
+open class MLTexture: Hashable {
     var id: UUID
     var texture: MTLTexture
     init(id: UUID, texture: MTLTexture) {
         self.id = id
         self.texture = texture
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    public static func == (lhs: MLTexture, rhs: MLTexture) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 

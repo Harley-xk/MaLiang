@@ -18,9 +18,9 @@ open class Canvas: MetalView {
     ///
     /// - Parameter texture: texture data of brush
     /// - Returns: registered brush
-    @discardableResult open func registerBrush<T: Brush>(with identifier: String? = nil, from data: Data) throws -> T {
+    @discardableResult open func registerBrush<T: Brush>(name: String? = nil, from data: Data) throws -> T {
         let texture = try makeTexture(with: data)
-        let brush = T(identifier: identifier, textureID: texture.id, target: self)
+        let brush = T(name: name, textureID: texture.id, target: self)
         registeredBrushes.append(brush)
         return brush
     }
@@ -29,16 +29,16 @@ open class Canvas: MetalView {
     ///
     /// - Parameter file: texture file of brush
     /// - Returns: registered brush
-    @discardableResult open func registerBrush<T: Brush>(with identifier: String? = nil, from file: URL) throws -> T {
+    @discardableResult open func registerBrush<T: Brush>(name: String? = nil, from file: URL) throws -> T {
         let data = try Data(contentsOf: file)
-        return try registerBrush(from: data)
+        return try registerBrush(name: name, from: data)
     }
     
     /// Register a new brush with texture already registered on this canvas
     ///
     /// - Parameter textureID: id of a texture, default round texture will be used if sets to nil or texture id not found
-    open func registerBrush<T: Brush>(with identifier: String? = nil, textureID: UUID? = nil) throws -> T {
-        let brush = T(identifier: identifier, textureID: textureID, target: self)
+    open func registerBrush<T: Brush>(name: String? = nil, textureID: UUID? = nil) throws -> T {
+        let brush = T(name: name, textureID: textureID, target: self)
         registeredBrushes.append(brush)
         return brush
     }
@@ -51,17 +51,18 @@ open class Canvas: MetalView {
     /// All registered brushes
     open private(set) var registeredBrushes: [Brush] = []
     
-    /// find a brush by identifier
-    open func findBrush(by identifier: String) -> Brush? {
-        return registeredBrushes.first { $0.identifier == identifier }
+    /// find a brush by name
+    /// default brush will retured if brush of name provided not exists
+    open func findBrushBy(name: String?) -> Brush? {
+        return registeredBrushes.first { $0.name == name } ?? defaultBrush
     }
     
     /// All textures created by this canvas
     open private(set) var textures: [MLTexture] = []
     
     /// make texture and cache it with ID
-    override open func makeTexture(with data: Data) throws -> MLTexture {
-        let texture = try super.makeTexture(with: data)
+    override open func makeTexture(with data: Data, id: UUID? = nil) throws -> MLTexture {
+        let texture = try super.makeTexture(with: data, id: id)
         textures.append(texture)
         return texture
     }
@@ -127,7 +128,7 @@ open class Canvas: MetalView {
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
-        defaultBrush = Brush(identifier: "com.maliang.brush.default", textureID: nil, target: self)
+        defaultBrush = Brush(name: "maliang.default", textureID: nil, target: self)
         currentBrush = defaultBrush
         
         data = CanvasData()

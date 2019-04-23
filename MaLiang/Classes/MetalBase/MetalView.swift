@@ -16,15 +16,15 @@ open class MetalView: MTKView {
     
     // MARK: - Brush Textures
     
-    func makeTexture(with data: Data) throws -> MLTexture {
+    func makeTexture(with data: Data, id: UUID? = nil) throws -> MLTexture {
         let textureLoader = MTKTextureLoader(device: device!)
         let texture = try textureLoader.newTexture(data: data, options: [.SRGB : false])
-        return MLTexture(id: UUID(), texture: texture)
+        return MLTexture(id: id ?? UUID(), texture: texture)
     }
     
-    func makeTexture(with file: URL) throws -> MLTexture {
+    func makeTexture(with file: URL, id: UUID? = nil) throws -> MLTexture {
         let data = try Data(contentsOf: file)
-        return try makeTexture(with: data)
+        return try makeTexture(with: data, id: id)
     }
     
     // MARK: - Functions

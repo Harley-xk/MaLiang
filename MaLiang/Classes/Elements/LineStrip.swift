@@ -38,7 +38,7 @@ open class LineStrip: CanvasElement {
     public var index: Int = 0
     
     /// identifier of bursh used to render this line strip
-    public var brushIdentifier: String?
+    public var brushName: String?
     
     /// line units of this line strip
     open private(set) var lines: [MLLine] = []
@@ -46,14 +46,14 @@ open class LineStrip: CanvasElement {
     /// brush used to render this line strip
     open internal(set) weak var brush: Brush? {
         didSet {
-            brushIdentifier = brush?.identifier
+            brushName = brush?.name
         }
     }
     
     init(lines: [MLLine], brush: Brush) {
         self.lines = lines
         self.brush = brush
-        self.brushIdentifier = brush.identifier
+        self.brushName = brush.name
         remakBuffer()
     }
     
@@ -109,21 +109,21 @@ open class LineStrip: CanvasElement {
 
     enum CodingKeys: String, CodingKey {
         case index
-        case brushIdentifier
+        case brushName = "brush"
         case lines
     }
 
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         index = try container.decode(Int.self, forKey: .index)
-        brushIdentifier = try container.decode(String.self, forKey: .brushIdentifier)
+        brushName = try container.decode(String.self, forKey: .brushName)
         lines = try container.decode([MLLine].self, forKey: .lines)
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(index, forKey: .index)
-        try container.encode(brushIdentifier, forKey: .brushIdentifier)
+        try container.encode(brushName, forKey: .brushName)
         try container.encode(lines, forKey: .lines)
     }
 }

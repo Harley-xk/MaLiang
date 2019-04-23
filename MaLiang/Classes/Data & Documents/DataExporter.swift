@@ -78,13 +78,16 @@ open class DataExporter {
         reportProgress(0.1, on: progress)
 
         /// save textures to folder
-        for i in 0 ..< textures.count {
-            let mlTexture = textures[i]
-            try mlTexture.texture.toData()?.write(to: directory.appendingPathComponent(mlTexture.id.uuidString))
-            
-            // move on progress to 0.1 when contents file saved
-            reportProgress(base: 0.1, unit: i, total: textures.count, on: progress)
-        }
+        // only chartlet textures will be saved
+//        let texturesForChartlets = content.chartlets.map { $0.texture }
+//        let set = Set<MLTexture>(texturesForChartlets)        
+//        for i in 0 ..< textures.count {
+//            let mlTexture = textures[i]
+//            try mlTexture.texture.toData()?.write(to: directory.appendingPathComponent(mlTexture.id.uuidString))
+//            
+//            // move on progress to 0.1 when contents file saved
+//            reportProgress(base: 0.1, unit: i, total: textures.count, on: progress)
+//        }
     }
     
     // MARK: - Progress reporting

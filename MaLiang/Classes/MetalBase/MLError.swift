@@ -12,6 +12,9 @@ enum MLError: Error {
     /// the requested file does not exists
     case fileNotExists(String)
     
+    /// file is damaged
+    case fileDamaged
+    
     /// directory for saving must not have any ohter contents
     case directoryNotEmpty(URL)
 }
