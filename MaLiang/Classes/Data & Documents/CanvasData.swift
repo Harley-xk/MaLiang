@@ -50,7 +50,7 @@ open class CanvasData {
             return
         }
         // append lines to current line strip
-        if let lineStrip = currentElement as? LineStrip, lineStrip.brushIdentifier == brush.identifier {
+        if let lineStrip = currentElement as? LineStrip, lineStrip.brush === brush {
             lineStrip.append(lines: lines)
         } else {
             finishCurrentElement()
@@ -62,10 +62,15 @@ open class CanvasData {
         }
     }
     
+    /// index for latest element
+    private var elementIndex: Int = 0
+    
     open func finishCurrentElement() {
-        guard let element = currentElement else {
+        guard var element = currentElement else {
             return
         }
+        element.index = elementIndex
+        elementIndex += 1
         elements.append(element)
         currentElement = nil
         h_onElementFinish?(self)
@@ -132,24 +137,28 @@ open class CanvasData {
     private var h_onRedo: EventHandler?
     private var h_onUndo: EventHandler?
     
+    /// this closure will be called when a continuously elements begins
     @discardableResult
     public func onElementBegin(_ h: @escaping EventHandler) -> Self {
         h_onElementBegin = h
         return self
     }
     
+    /// this closure will be called when an element finished
     @discardableResult
     public func onElementFinish(_ h: @escaping EventHandler) -> Self {
         h_onElementFinish = h
         return self
     }
     
+    /// this closure will be called when a redo command is performed
     @discardableResult
     public func onRedo(_ h: @escaping EventHandler) -> Self {
         h_onRedo = h
         return self
     }
     
+    /// this closure will be called when an undo command is performed
     @discardableResult
     public func onUndo(_ h: @escaping EventHandler) -> Self {
         h_onUndo = h
