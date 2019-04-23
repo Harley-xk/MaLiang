@@ -5,5 +5,6 @@ target 'MaLiang_Example' do
 
   pod 'Comet'
   pod 'Chrysan'
+  pod 'Zip'
   
 end

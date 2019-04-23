@@ -8,6 +8,9 @@
 
 import UIKit
 import MaLiang
+import Comet
+import Chrysan
+import Zip
 
 class ViewController: UIViewController {
     
@@ -21,6 +24,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var canvas: Canvas!
     
+    var filePath: String?
+    
     var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
     
@@ -30,7 +35,7 @@ class ViewController: UIViewController {
     
     private func registerBrush(with imageName: String) -> Brush {
         let path = Bundle.main.path(forResource: imageName, ofType: "png")!
-        return try! canvas.registerBrush(from: URL(fileURLWithPath: path))
+        return try! canvas.registerBrush(name: imageName, from: URL(fileURLWithPath: path))
     }
     
     override func viewDidLoad() {
@@ -65,7 +70,7 @@ class ViewController: UIViewController {
         //        let eraser = Eraser(texture: texture, target: canvas)
         
         /// make eraser with default round point
-        let eraser = try! canvas.registerBrush() as Eraser
+        let eraser = try! canvas.registerBrush(name: "maliang.eraser") as Eraser
         
         brushes = [pen, pencil, brush, eraser]
         
@@ -88,6 +93,8 @@ class ViewController: UIViewController {
                 self.redoButton.isEnabled = true
                 self.undoButton.isEnabled = doc.canUndo
         }
+        
+        readDataIfNeeds()
     }
     
     @IBAction func switchBackground(_ sender: UIButton) {
@@ -123,9 +130,73 @@ class ViewController: UIViewController {
     }
     
     @IBAction func snapshotAction(_ sender: Any) {
+        
+        saveData()
+        return
         let preview = PaintingPreview.create(from: .main)
         preview.image = canvas.snapshot()
         navigationController?.pushViewController(preview, animated: true)
+    }
+    
+    func saveData() {
+        let exporter = DataExporter(canvas: canvas)
+        
+        let path = Path.temp().resource(Date().string())
+        path.createDirectory()
+        exporter.save(to: path.url, progress: { (progress) in
+            self.chrysan.show(progress: progress, message: "Saving...")
+        }) { (result) in
+            if case let .failure(error) = result {
+                self.chrysan.hide()
+                let alert = UIAlertController(title: "Saving Failed", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(title: "OK", style: .cancel)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let filename = "\(Date().string(format: "yyyyMMddHHmmss")).maliang"
+                
+                let contents = try! FileManager.default.contentsOfDirectory(at: path.url, includingPropertiesForKeys: [], options: .init(rawValue: 0))
+                try? Zip.zipFiles(paths: contents, zipFilePath: Path.documents().resource(filename).url, password: nil, progress: nil)
+                try? FileManager.default.removeItem(at: path.url)
+                self.chrysan.show(.succeed, message: "Saving Succeed!", hideDelay: 1)
+            }
+        }
+    }
+    
+    func readDataIfNeeds() {
+        guard let file = filePath else {
+            return
+        }
+        chrysan.showMessage("Reading...")
+
+        let path = Path(file)
+        let temp = Path.temp().resource("temp.zip")
+        let contents = Path.temp().resource("contents")
+
+        do {
+            try FileManager.default.removeItem(at: temp.url)
+            try FileManager.default.copyItem(at: path.url, to: temp.url)
+            try Zip.unzipFile(temp.url, destination: contents.url, overwrite: true, password: nil)
+        } catch {
+            let alert = UIAlertController(title: "unzip failed", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(title: "OK", style: .cancel)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        
+        DataImporter.importData(from: contents.url, to: canvas, progress: { (progress) in
+            
+        }) { (result) in
+            if case let .failure(error) = result {
+                self.chrysan.hide()
+                let alert = UIAlertController(title: "Reading Failed", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(title: "OK", style: .cancel)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.chrysan.show(.succeed, message: "Reading Succeed!", hideDelay: 1)
+            }
+
+        }
     }
     
     // MARK: - color

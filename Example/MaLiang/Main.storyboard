@@ -119,6 +119,33 @@ may have performance issue on old devices</string>
                                             <segue destination="yPV-H1-Ktr" kind="show" id="puL-4O-9N7"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7VH-wD-rmz" detailTextLabel="38u-w8-jHO" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="JSb-lO-wrc">
+                                        <rect key="frame" x="0.0" y="180" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JSb-lO-wrc" id="IU4-e4-jdD">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Data Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VH-wD-rmz">
+                                                    <rect key="frame" x="16" y="9.9999999999999982" width="101" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="load data from saved files and redraw" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="38u-w8-jHO">
+                                                    <rect key="frame" x="16" y="33.333333333333329" width="212.33333333333334" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vII-0e-fze" kind="show" id="VR5-eX-8Tw"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -185,7 +212,7 @@ may have performance issue on old devices</string>
         <!--Single View-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -408,7 +435,7 @@ may have performance issue on old devices</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoO-2f-vXQ">
-                                <rect key="frame" x="351.33333333333326" y="733" width="7.6666666666666856" height="20.333333333333371"/>
+                                <rect key="frame" x="351.33333333333331" y="733" width="7.6666666666666856" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -603,6 +630,62 @@ may have performance issue on old devices</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SlJ-FD-3kA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="243.74999999999997" y="-342.1875"/>
+        </scene>
+        <!--Saved Files View Controller-->
+        <scene sceneID="oXH-Ba-hyT">
+            <objects>
+                <viewController id="vII-0e-fze" customClass="SavedFilesViewController" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kuY-9P-yE4"/>
+                        <viewControllerLayoutGuide type="bottom" id="cJp-NJ-lbL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="78f-rs-9p5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tEZ-Vs-ZzD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileListCell" textLabel="fyU-kg-Hv3" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Swj-GV-4rj">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Swj-GV-4rj" id="E7X-tr-dyg">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fyU-kg-Hv3">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="49.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vII-0e-fze" id="ev4-qo-Ua5"/>
+                                    <outlet property="delegate" destination="vII-0e-fze" id="2Nx-uh-EW6"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tEZ-Vs-ZzD" firstAttribute="leading" secondItem="78f-rs-9p5" secondAttribute="leading" id="Qea-I1-Cti"/>
+                            <constraint firstAttribute="trailing" secondItem="tEZ-Vs-ZzD" secondAttribute="trailing" id="T6p-nS-r9q"/>
+                            <constraint firstAttribute="bottom" secondItem="tEZ-Vs-ZzD" secondAttribute="bottom" id="ahb-TE-Bpg"/>
+                            <constraint firstItem="tEZ-Vs-ZzD" firstAttribute="top" secondItem="78f-rs-9p5" secondAttribute="top" id="uxA-cu-1h7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="tEZ-Vs-ZzD" id="iP3-zs-LGx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LeX-QP-MmC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1085.5999999999999" y="-343.5960591133005"/>
         </scene>
     </scenes>
     <resources>
