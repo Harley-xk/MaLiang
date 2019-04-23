@@ -16,15 +16,15 @@ public struct DocumentInfo: Codable {
     /// format version of this document, equal to the library version
     let version: String
     
+    /// the app whitch uses MaLiang to generate this file
+    let app: BundleInfo?
+
     /// library info of MaLiang used in current app
     let library: BundleInfo?
     
-    /// the app whitch uses MaLiang to generate this file
-    let appInfo: BundleInfo?
-    
     init() {
-        library = try? Bundle.maliang.readInfo()
-        appInfo = try? Bundle.main.readInfo()
+        library = try? Bundle(for: Canvas.classForCoder()).readInfo()
+        app = try? Bundle.main.readInfo()
         version = library?.version ?? "unknown"
     }
 }
@@ -49,8 +49,8 @@ public struct BundleInfo: Codable {
 public extension Bundle {
     /// read base infomation from info.plist
     func readInfo() throws -> BundleInfo {
-        guard let file = url(forResource: "info", withExtension: "plist") else {
-            throw MLError.fileNotExists("info.plist")
+        guard let file = url(forResource: "Info", withExtension: "plist") else {
+            throw MLError.fileNotExists("Info.plist")
         }
         let data = try Data(contentsOf: file)
         let info = try PropertyListDecoder().decode(__Info.self, from: data)
