@@ -4,5 +4,6 @@ target 'MaLiang_Example' do
   pod 'MaLiang', :path => '../'
 
   pod 'Comet'
+  pod 'Chrysan'
   
 end

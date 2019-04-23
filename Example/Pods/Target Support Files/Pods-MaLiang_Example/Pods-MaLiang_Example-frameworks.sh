@@ -153,10 +153,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Chrysan/Chrysan.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Comet/Comet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MaLiang/MaLiang.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Chrysan/Chrysan.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Comet/Comet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MaLiang/MaLiang.framework"
 fi

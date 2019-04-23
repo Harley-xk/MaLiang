@@ -1,0 +1,6 @@
+framework module Chrysan {
+  umbrella header "Chrysan-umbrella.h"
+
+  export *
+  module * { export * }
+}

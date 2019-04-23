@@ -239,6 +239,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Chrysan/Chrysan.framework",
 				"${BUILT_PRODUCTS_DIR}/Comet/Comet.framework",
 				"${BUILT_PRODUCTS_DIR}/MaLiang/MaLiang.framework",
 			);
@@ -246,6 +247,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chrysan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Comet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaLiang.framework",
 			);

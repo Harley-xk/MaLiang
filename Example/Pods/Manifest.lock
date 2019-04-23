@@ -1,13 +1,16 @@
 PODS:
+  - Chrysan (1.4.0)
   - Comet (1.6.0)
   - MaLiang (2.0.0-beta-2)
 
 DEPENDENCIES:
+  - Chrysan
   - Comet
   - MaLiang (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Chrysan
     - Comet
 
 EXTERNAL SOURCES:
@@ -15,9 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Chrysan: 14c23bd647d5adaef5e3cd796dd5c51d2f7b451f
   Comet: 733f05d16314a1155de99e9343cc984b01097725
   MaLiang: 5ad7121dbb1b82f9c385ac82fecda3973404f4c6
 
-PODFILE CHECKSUM: 0b32958128915013b7781a5a791c89ae3a11f08c
+PODFILE CHECKSUM: cad34db629d8f1a6f3d1b09c592b1de03839f8ba
 
 COCOAPODS: 1.6.1
