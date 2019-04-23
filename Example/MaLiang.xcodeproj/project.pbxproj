@@ -239,12 +239,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Comet/Comet.framework",
 				"${BUILT_PRODUCTS_DIR}/MaLiang/MaLiang.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Comet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaLiang.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

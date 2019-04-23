@@ -1,6 +1,6 @@
 {
   "name": "MaLiang",
-  "version": "2.0.1-alpha",
+  "version": "2.0.0-beta-2",
   "summary": "MaLiang is a painting Framework based on Metal.",
   "description": "The name of \"MaLiang\" comes from a boy who had a magical brush in Chinese ancient fairy story.",
   "homepage": "https://github.com/Harley-xk/MaLiang",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/Harley-xk/MaLiang.git",
-    "tag": "2.0.1-alpha"
+    "tag": "2.0.0-beta-2"
   },
   "platforms": {
     "ios": "9.0"

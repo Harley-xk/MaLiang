@@ -3,4 +3,6 @@ use_frameworks!
 target 'MaLiang_Example' do
   pod 'MaLiang', :path => '../'
 
+  pod 'Comet'
+  
 end

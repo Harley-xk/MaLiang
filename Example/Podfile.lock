@@ -1,16 +1,23 @@
 PODS:
-  - MaLiang (2.0.1-alpha)
+  - Comet (1.6.0)
+  - MaLiang (2.0.0-beta-2)
 
 DEPENDENCIES:
+  - Comet
   - MaLiang (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Comet
 
 EXTERNAL SOURCES:
   MaLiang:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MaLiang: 069ef9b7324d021e1a44f288c813609b59fcee7d
+  Comet: 733f05d16314a1155de99e9343cc984b01097725
+  MaLiang: 5ad7121dbb1b82f9c385ac82fecda3973404f4c6
 
-PODFILE CHECKSUM: 651e10759947fac0dd56db150d7f48149edb684c
+PODFILE CHECKSUM: 0b32958128915013b7781a5a791c89ae3a11f08c
 
 COCOAPODS: 1.6.1
