@@ -137,6 +137,7 @@ class ViewController: UIViewController {
         actionSheet.addAction(title: "Save", style: .default) { [unowned self] (_) in
             self.saveData()
         }
+        actionSheet.addAction(title: "Cancel", style: .cancel)
         present(actionSheet, animated: true, completion: nil)
     }
     
