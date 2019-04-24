@@ -522,9 +522,9 @@ may have performance issue on old devices</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Single View" id="6of-dD-zPZ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="KqJ-DL-lvb">
+                        <barButtonItem key="rightBarButtonItem" image="more" id="KqJ-DL-lvb">
                             <connections>
-                                <action selector="snapshotAction:" destination="vXZ-lx-hvc" id="6nA-qu-GFS"/>
+                                <action selector="moreAction:" destination="vXZ-lx-hvc" id="twt-wX-F2z"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -647,15 +647,15 @@ may have performance issue on old devices</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileListCell" textLabel="fyU-kg-Hv3" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Swj-GV-4rj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="FileListCell" textLabel="fyU-kg-Hv3" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Swj-GV-4rj">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Swj-GV-4rj" id="E7X-tr-dyg">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="49.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fyU-kg-Hv3">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="49.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="293" height="49.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -690,5 +690,6 @@ may have performance issue on old devices</string>
     </scenes>
     <resources>
         <image name="image" width="1280" height="720"/>
+        <image name="more" width="21.333333969116211" height="21.333333969116211"/>
     </resources>
 </document>

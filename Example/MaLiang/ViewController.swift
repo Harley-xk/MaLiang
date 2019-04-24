@@ -129,18 +129,26 @@ class ViewController: UIViewController {
         canvas.clear()
     }
     
-    @IBAction func snapshotAction(_ sender: Any) {
-        
-        saveData()
-        return
+    @IBAction func moreAction(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "Choose Actions", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(title: "Snapshot", style: .default) { [unowned self] (_) in
+            self.snapshotAction(sender)
+        }
+        actionSheet.addAction(title: "Save", style: .default) { [unowned self] (_) in
+            self.saveData()
+        }
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func snapshotAction(_ sender: Any) {
         let preview = PaintingPreview.create(from: .main)
         preview.image = canvas.snapshot()
         navigationController?.pushViewController(preview, animated: true)
     }
     
     func saveData() {
+        self.chrysan.showMessage("Saving...")
         let exporter = DataExporter(canvas: canvas)
-        
         let path = Path.temp().resource(Date().string())
         path.createDirectory()
         exporter.save(to: path.url, progress: { (progress) in

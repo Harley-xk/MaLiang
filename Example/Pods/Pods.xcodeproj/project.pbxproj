@@ -65,6 +65,7 @@
 		B0E08D12EBB40BB7ABF154ECC5739F34 /* Pods-MaLiang_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE51796C8438EEB9458264890D426B58 /* Pods-MaLiang_Example-dummy.m */; };
 		B34D709806AB21A27E923424FD8606C4 /* String+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7EF8FE28768C44B2F05E9F9ADEDC0 /* String+Comet.swift */; };
 		C30B2D38226F4B0800E3429A /* DataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B2D36226F4ACF00E3429A /* DataImporter.swift */; };
+		C35A03AB227007E600164C80 /* MLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A03A8227007D200164C80 /* MLLine.swift */; };
 		CA91D1CB31DACF8CB0A4C07C91CE83C6 /* MaLiang-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBE8B8614756D756EDD0F9C6EE93B6 /* MaLiang-dummy.m */; };
 		CDCA165825A039F22EF82B62817778F6 /* Chrysan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8AC618D3CB99DC77C170E38648707F /* Chrysan.xib */; };
 		CF27E8941305994E440E0C04B059011C /* chrysan_cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC72B262DFD77A1B316A55E499A5AAF /* chrysan_cross@2x.png */; };
@@ -210,6 +211,7 @@
 		B50E20B2E284F79EDBC95333CAE09FCD /* MaLiang-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MaLiang-umbrella.h"; sourceTree = "<group>"; };
 		C0E9E4794BD05C1ED91584F35B956BDE /* Chartlet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Chartlet.swift; sourceTree = "<group>"; };
 		C30B2D36226F4ACF00E3429A /* DataImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporter.swift; sourceTree = "<group>"; };
+		C35A03A8227007D200164C80 /* MLLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLLine.swift; sourceTree = "<group>"; };
 		C5023D90FF30029EF2F1BBAC5FB2E1FF /* Eraser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Eraser.swift; sourceTree = "<group>"; };
 		C7397134CB2B2A7B98820049A8C968BC /* Numbers+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Numbers+Comet.swift"; path = "Comet/Extensions/Numbers+Comet.swift"; sourceTree = "<group>"; };
 		C7B987BFDD5E7A93BA9C4741EE1B48C5 /* Text+Localize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Text+Localize.swift"; path = "Comet/Extensions/Text+Localize.swift"; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				D7F8A446142C6ACDB09E644882E82BA8 /* MetalView.swift */,
+				C35A03A8227007D200164C80 /* MLLine.swift */,
 				19B102021E93E3348D51F1E2147D7ACF /* MLColor.swift */,
 				54E219FC8FE121A0649CF5C702D598B9 /* MLError.swift */,
 				A30547C0449B8530F63140EE076C58D3 /* MLTexture.swift */,
@@ -587,8 +590,8 @@
 		F2012702067E484BD32D7A2610687E2F /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				C0E9E4794BD05C1ED91584F35B956BDE /* Chartlet.swift */,
 				706992119AAD199D476DEA22610D408F /* LineStrip.swift */,
+				C0E9E4794BD05C1ED91584F35B956BDE /* Chartlet.swift */,
 			);
 			name = Elements;
 			path = MaLiang/Classes/Elements;
@@ -774,15 +777,15 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 343CF71796D48434F16A0C06BEEBAFE6 /* Products */;
@@ -939,6 +942,7 @@
 				93812EF80E3D0E875A0137CE55C6B24B /* Chartlet.swift in Sources */,
 				AB49B838A028E430BC428106B8801FC1 /* DataExporter.swift in Sources */,
 				A3B6AC2F7A3840555DEEC9451C0B1C99 /* Document.swift in Sources */,
+				C35A03AB227007E600164C80 /* MLLine.swift in Sources */,
 				538E20813B0368F5BE96B3B898476F48 /* Eraser.swift in Sources */,
 				718BAC82ECF223ECD205A6DC3FE644A4 /* LineStrip.swift in Sources */,
 				CA91D1CB31DACF8CB0A4C07C91CE83C6 /* MaLiang-dummy.m in Sources */,
@@ -996,6 +1000,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1300,6 +1305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
