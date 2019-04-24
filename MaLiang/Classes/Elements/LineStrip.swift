@@ -71,7 +71,7 @@ open class LineStrip: CanvasElement {
         var vertexes: [Point] = []
         
         lines.forEach { (line) in
-            let scale = UIScreen.main.scale
+            let scale = brush?.target?.contentScaleFactor ?? UIScreen.main.scale
             var line = line
             line.begin = line.begin * scale
             line.end = line.end * scale
