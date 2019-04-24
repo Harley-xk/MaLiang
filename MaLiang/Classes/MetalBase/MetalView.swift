@@ -136,10 +136,7 @@ open class MetalView: MTKView {
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-        /// commit target commands before drawing
-        screenTarget.commitCommands()
-        
+                
         #if !targetEnvironment(simulator)
         
         guard let texture = screenTarget.texture else {

@@ -186,6 +186,9 @@ open class Canvas: MetalView {
         target.clear()
         
         data.elements.forEach { $0.drawSelf(on: target) }
+        
+        /// submit commands
+        target.commitCommands()
     }
     
     // MARK: - Bezier
@@ -230,6 +233,8 @@ open class Canvas: MetalView {
         data.append(lines: lines, with: currentBrush)
         // create a temporary line strip and draw it on canvas
         LineStrip(lines: lines, brush: currentBrush).drawSelf(on: screenTarget)
+        /// submit commands
+        screenTarget.commitCommands()
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
