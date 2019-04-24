@@ -2,10 +2,13 @@
 
 [![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/Harley-xk/MaLiang)
 [![Version](https://img.shields.io/cocoapods/v/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
-[![Language](https://img.shields.io/badge/language-Swift%204-orange.svg)](https://swift.org)
+[![Language](https://img.shields.io/badge/language-Swift%205-orange.svg)](https://swift.org)
 [![codebeat badge](https://codebeat.co/badges/438159fd-b5f9-43d4-a1d5-b07ba5e6cf03)](https://codebeat.co/projects/github-com-harley-xk-maliang-metal)
 [![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
 [![Platform](https://img.shields.io/cocoapods/p/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
+[![twitter](https://img.shields.io/badge/twitter-Harley--xk-blue.svg)](https://twitter.com/Harley86589)
+[![weibo](https://img.shields.io/badge/weibo-%E7%BE%A4%E6%98%9F%E9%99%A8%E8%90%BD-orange.svg)](https://weibo.com/u/1161848005)
+
 
 🎉 MaLiang is on Metal now!
 
@@ -15,9 +18,22 @@ MaLiang is a painting framework based on Metal. The name of "MaLiang" comes from
 
 <img src="Images/sample.jpg" width=400></img>
 
+## Features
+
+- [x] Lines with **Bezier Curve**
+- [x] Adjust stroke size with **Force**
+- [x] **3D Touch** Support
+- [x] Port to **Metal**
+- [x] **Undo** & **Redo**
+- [x] **Zoom** & **Scale**
+- [x] **Export** to image
+- [x] **Save** vector contents to disk
+- [ ] Chartlet element (for text and image elements)
+- [ ] Texture rotation
+
 ## Requirements
 
-iOS 9.0+, Swift 4.2+ </br>
+iOS 9.0, Swift 5 </br>
 
 The core painting module is based on Metal</br>
 
@@ -29,8 +45,7 @@ MaLiang is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-# 2.0.0 is currently in beta testing
-pod 'MaLiang', '~> 2.0.0-beta-2'
+pod 'MaLiang'
 ```
 
 To use the old OpenGL ES verion:
@@ -109,22 +124,38 @@ MaLiang supports automatically adjustment of stroke size with painting force. 3D
 
 `forceSensitive` is the property that force affects the storke size. It should be set between `0` to `1`. the smaller the value is, the less sensitive will be. if sets to `0`, then force will not affects the stroke size.
 
-### Document
+### CanvasData
 
-`Document` is now configured by default. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
-And you can implement your own **saving logic** with the data holds by `Document`.
+`CanvasData` is now configured by default. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
+And you can implement your own **saving logic** with the data holds by `CanvasData`.
 
-## TODO
+### Saving
 
-- [x] Port to Metal
-- [x] Undo & Redo
-- [x] Export to image
-- [x] Optimize for scale
-- [ ] Optimize for saving logic
-- [ ] Glow style line
-- [ ] Text element
-- [ ] Image element
-- [ ] Texture rotation
+🎉 You can save your paintings to disk now.
+
+```swift
+// 1. create an instance of `DataExporter` with your canvas:
+let exporter = DataExporter(canvas: canvas)
+// 2. save to empty folders on disk:
+exporter.save(to: localPath, progress: progressHandler, result: resultHandler)
+
+// also you can use another synchronous method to do de work Synchronously
+exporter.saveSynchronously(to: locakPath, progress: progressHandler)
+```
+
+Then, contents of canvas and some document infomations will be saved to files in the directory you provided.
+
+**`MaLiang` does not implement the archive logic for files, so you can implement your own archive Logics**
+
+### Reading
+
+Use `DataImporter` to read data saved by `MaLiang` to your canvas:
+
+```Swift
+DataImporter.importData(from: localPath, to: canvas, progress: progressHandler, result: resultHandler)
+```
+
+Also, the localPath passed into DataImporter must be a folder where your contents files place. If you are using your own archive logic, unzip the contents first by your own.
 
 ## License
 
