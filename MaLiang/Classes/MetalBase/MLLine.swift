@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 /// a shot line with serveral points, base unit of line strip
 public struct MLLine: Codable {

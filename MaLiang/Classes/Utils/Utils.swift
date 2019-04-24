@@ -63,7 +63,7 @@ extension CGPoint {
     
     // MARK: - Codable utils
     static func make(from ints: [Int]) -> CGPoint {
-        return CGPoint(x: (ints.first ?? 0) / 10, y: (ints.last ?? 0) / 10)
+        return CGPoint(x: CGFloat(ints.first ?? 0) / 10, y: CGFloat(ints.last ?? 0) / 10)
     }
     
     func encodeToInts() -> [Int] {
