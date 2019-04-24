@@ -60,6 +60,15 @@ extension CGPoint {
         return CGPoint(x: x.between(min: min.x, max: max.x),
                        y: y.between(min: min.y, max: max.y))
     }
+    
+    // MARK: - Codable utils
+    static func make(from ints: [Int]) -> CGPoint {
+        return CGPoint(x: (ints.first ?? 0) / 10, y: (ints.last ?? 0) / 10)
+    }
+    
+    func encodeToInts() -> [Int] {
+        return [Int(x * 10), Int(y * 10)]
+    }
 }
 
 func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {

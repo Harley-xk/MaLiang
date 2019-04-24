@@ -6,30 +6,8 @@
 //
 
 import Foundation
+import Metal
 import CoreGraphics
-
-/// a shot line with serveral points, base unit of line strip
-public struct MLLine: Codable {
-    var begin: CGPoint
-    var end: CGPoint
-    
-    var pointSize: CGFloat
-    var pointStep: CGFloat
-    var color: MLColor
-
-    init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor,
-         scaleFactor: CGFloat = 1, offset: CGPoint) {
-        self.begin = (begin + offset) / scaleFactor
-        self.end = (end + offset) / scaleFactor
-        self.pointSize = pointSize / scaleFactor
-        self.pointStep = pointStep / (scaleFactor)
-        self.color = color
-    }
-    
-    var length: CGFloat {
-        return begin.distance(to: end)
-    }
-}
 
 /// a line strip with lines and brush info
 open class LineStrip: CanvasElement {
@@ -39,6 +17,10 @@ open class LineStrip: CanvasElement {
     
     /// identifier of bursh used to render this line strip
     public var brushName: String?
+    
+    /// default color
+    // this color will be used when line's color not set
+    var color: MLColor
     
     /// line units of this line strip
     open private(set) var lines: [MLLine] = []
@@ -54,6 +36,7 @@ open class LineStrip: CanvasElement {
         self.lines = lines
         self.brush = brush
         self.brushName = brush.name
+        self.color = brush.color.toMLColor()
         remakBuffer()
     }
     
@@ -97,7 +80,7 @@ open class LineStrip: CanvasElement {
                 let index = CGFloat(i)
                 let x = line.begin.x + (line.end.x - line.begin.x) * (index / count)
                 let y = line.begin.y + (line.end.y - line.begin.y) * (index / count)
-                vertexes.append(Point(x: x, y: y, color: line.color, size: line.pointSize * scale))
+                vertexes.append(Point(x: x, y: y, color: line.color ?? color, size: line.pointSize * scale))
             }
         }
         
@@ -111,6 +94,7 @@ open class LineStrip: CanvasElement {
         case index
         case brushName = "brush"
         case lines
+        case color
     }
 
     public required init(from decoder: Decoder) throws {
@@ -118,6 +102,7 @@ open class LineStrip: CanvasElement {
         index = try container.decode(Int.self, forKey: .index)
         brushName = try container.decode(String.self, forKey: .brushName)
         lines = try container.decode([MLLine].self, forKey: .lines)
+        color = try container.decode(MLColor.self, forKey: .color)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -125,5 +110,6 @@ open class LineStrip: CanvasElement {
         try container.encode(index, forKey: .index)
         try container.encode(brushName, forKey: .brushName)
         try container.encode(lines, forKey: .lines)
+        try container.encode(color, forKey: .color)
     }
 }

@@ -15,11 +15,43 @@ struct MLColor: Codable {
     var blue: Float
     var alpha: Float
     
-    static var black = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
-    static var white = MLColor(red: 1, green: 1, blue: 1, alpha: 1)
+    static var black = UIColor.black.toMLColor()
+    static var white = UIColor.white.toMLColor()
     
     func toFloat4() -> vector_float4 {
         return vector_float4(red, green, blue, alpha)
+    }
+    
+    init(red: Float, green: Float, blue: Float, alpha: Float) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.alpha = alpha
+    }
+    
+    // MARK: - Single value codable for MLColor
+    
+    // hex string must be saved as format of: ffffffff
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let hexString = try container.decode(String.self)
+        var int = UInt32()
+        Scanner(string: hexString).scanHexInt32(&int)
+        let a, r, g, b: UInt32
+        (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        (alpha, red, green, blue) = (Float(a) / 255.0, Float(r) / 255.0, Float(g) / 255.0, Float(b) / 255.0)
+    }
+    
+    // hex string must be saved as format of: ffffffff
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        let aInt = Int(alpha * 255) << 24
+        let rInt = Int(red * 255) << 16
+        let gInt = Int(green * 255) << 8
+        let bInt = Int(blue * 255)
+        let argb = aInt | rInt | gInt | bInt
+        let hex = String(format:"%08x", argb)
+        try container.encode(hex)
     }
 }
 
