@@ -182,7 +182,7 @@ class ViewController: UIViewController {
         let contents = Path.temp().resource("contents")
 
         do {
-            try FileManager.default.removeItem(at: temp.url)
+            try? FileManager.default.removeItem(at: temp.url)
             try FileManager.default.copyItem(at: path.url, to: temp.url)
             try Zip.unzipFile(temp.url, destination: contents.url, overwrite: true, password: nil)
         } catch {
