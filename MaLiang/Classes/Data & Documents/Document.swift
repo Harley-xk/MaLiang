@@ -22,6 +22,15 @@ public struct DocumentInfo: Codable {
     /// library info of MaLiang used in current app
     let library: BundleInfo?
     
+    /// number of lines in document
+    var lines: Int = 0
+    
+    /// number of chartlets in document
+    var chartlets: Int = 0
+    
+    /// number of custom textures used for chartlets and so on
+    var textures: Int = 0
+    
     init() {
         library = try? Bundle(for: Canvas.classForCoder()).readInfo()
         app = try? Bundle.main.readInfo()

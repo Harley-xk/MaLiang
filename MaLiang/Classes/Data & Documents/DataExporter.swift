@@ -63,7 +63,9 @@ open class DataExporter {
         let encoder = JSONEncoder()
         
         /// save document info
-        let info = DocumentInfo.default
+        var info = DocumentInfo.default
+        info.lines = content.lineStrips.count
+        info.chartlets = content.chartlets.count
         let infoData = try encoder.encode(info)
         try infoData.write(to: directory.appendingPathComponent("info"))
         
