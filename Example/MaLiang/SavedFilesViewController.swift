@@ -20,7 +20,7 @@ class SavedFilesViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let path = Path.documents()
-        let contents = try? FileManager.default.contentsOfDirectory(atPath: path.string)
+        let contents = try? FileManager.default.contentsOfDirectory(atPath: path.string).sorted().reversed()
         files = contents?.map { path.resource($0) } ?? []
         tableView.reloadData()
     }
@@ -53,13 +53,25 @@ extension SavedFilesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//         let quicklook = QLPreviewController()
-//        quicklook.dataSource = self
-//        quicklook.currentPreviewItemIndex = indexPath.row
-//        present(quicklook, animated: true, completion: nil)
         let vc = ViewController.createFromStoryboard()
         vc.filePath = files[indexPath.row].string
         navigationController?.push(vc)
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let quicklook = QLPreviewController()
+        quicklook.dataSource = self
+        quicklook.currentPreviewItemIndex = indexPath.row
+        present(quicklook, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "delete") { [unowned self] (_, indexPath) in
+            try? FileManager.default.removeItem(at: self.files[indexPath.row].url)
+            self.files.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+        }
+        return [delete]
     }
 }
 
