@@ -1,4 +1,4 @@
-# ![](Images/icon-32.png) MaLiang
+# ![Banner](Images/banner.png)
 
 [![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/Harley-xk/MaLiang)
 [![Version](https://img.shields.io/cocoapods/v/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
@@ -9,14 +9,10 @@
 [![twitter](https://img.shields.io/badge/twitter-Harley--xk-blue.svg)](https://twitter.com/Harley86589)
 [![weibo](https://img.shields.io/badge/weibo-%E7%BE%A4%E6%98%9F%E9%99%A8%E8%90%BD-orange.svg)](https://weibo.com/u/1161848005)
 
-
-🎉 MaLiang is on Metal now!
-
-MaLiang is a painting framework based on Metal. The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
+![icon](Images/icon-32.png) **MaLiang** is a painting framework based on Metal. It supports drawing and handwriting with customized textures.
+The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
-
-<img src="Images/sample.jpg" width=400></img>
 
 ## Features
 
