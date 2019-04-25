@@ -71,6 +71,17 @@ extension CGPoint {
     }
 }
 
+extension CGSize {
+    // MARK: - Codable utils
+    static func make(from ints: [Int]) -> CGSize {
+        return CGSize(width: CGFloat(ints.first ?? 0) / 10, height: CGFloat(ints.last ?? 0) / 10)
+    }
+    
+    func encodeToInts() -> [Int] {
+        return [Int(width * 10), Int(width * 10)]
+    }
+}
+
 func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
     return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
 }
@@ -104,4 +115,24 @@ extension Comparable {
         }
         return self
     }
+}
+
+/// called when saving or reading finished
+public typealias ResultHandler = (Result<Void, Error>) -> ()
+
+/// called when saving or reading progress changed
+public typealias ProgressHandler = (CGFloat) -> ()
+
+
+// MARK: - Progress reporting
+/// report progress via progresshander on main queue
+internal func reportProgress(_ progress: CGFloat, on handler: ProgressHandler?) {
+    DispatchQueue.main.async {
+        handler?(progress)
+    }
+}
+
+internal func reportProgress(base: CGFloat, unit: Int, total: Int, on handler: ProgressHandler?) {
+    let progress = CGFloat(unit) / CGFloat(total) * (1 - base) + base
+    reportProgress(progress, on: handler)
 }

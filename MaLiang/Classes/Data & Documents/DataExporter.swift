@@ -8,12 +8,6 @@
 import Foundation
 import CoreGraphics
 
-/// called when saving or reading finished
-public typealias ResultHandler = (Result<Void, Error>) -> ()
-
-/// called when saving or reading progress changed
-public typealias ProgressHandler = (CGFloat) -> ()
-
 /// class to export canvas data to disk
 open class DataExporter {
     
@@ -81,27 +75,17 @@ open class DataExporter {
 
         /// save textures to folder
         // only chartlet textures will be saved
-//        let texturesForChartlets = content.chartlets.map { $0.texture }
-//        let set = Set<MLTexture>(texturesForChartlets)        
-//        for i in 0 ..< textures.count {
-//            let mlTexture = textures[i]
-//            try mlTexture.texture.toData()?.write(to: directory.appendingPathComponent(mlTexture.id.uuidString))
-//            
-//            // move on progress to 0.1 when contents file saved
-//            reportProgress(base: 0.1, unit: i, total: textures.count, on: progress)
-//        }
-    }
-    
-    // MARK: - Progress reporting
-    /// report progress via progresshander on main queue
-    private func reportProgress(_ progress: CGFloat, on handler: ProgressHandler?) {
-        DispatchQueue.main.async {
-            handler?(progress)
+        let chartletTextureIDs = content.chartlets.map { $0.textureID }
+        let idSet = Set<String>(chartletTextureIDs)
+        let pendingTextures = textures.compactMap { idSet.contains($0.id.uuidString) ? $0 : nil }
+        
+        for i in 0 ..< pendingTextures.count {
+            let mlTexture = textures[i]
+            try mlTexture.texture.toData()?.write(to: directory.appendingPathComponent("textures").appendingPathComponent(mlTexture.id.uuidString))
+            // move on progress to 0.1 when contents file saved
+            reportProgress(base: 0.1, unit: i, total: textures.count, on: progress)
         }
-    }
-    
-    private func reportProgress(base: CGFloat, unit: Int, total: Int, on handler: ProgressHandler?) {
-        let progress = CGFloat(unit) / CGFloat(total) * (1 - base) + base
-        reportProgress(progress, on: handler)
+        
+        reportProgress(1, on: progress)
     }
 }

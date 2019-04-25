@@ -42,18 +42,38 @@ open class DataImporter {
         guard info.library != nil else {
             throw MLError.fileDamaged
         }
-        
+        reportProgress(0.02, on: progress)
+
         /// read contents
         let contentData = try Data(contentsOf: directory.appendingPathComponent("content"))
         let content = try decoder.decode(CanvasContent.self, from: contentData)
-        
-        /// read chartlet textures
+        reportProgress(0.1, on: progress)
+
+        do {
+            /// read chartlet textures
+            let texturePaths = try FileManager.default.contentsOfDirectory(at: directory.appendingPathComponent("textures"), includingPropertiesForKeys: [], options: [])
+            reportProgress(0.15, on: progress)
+            for i in 0 ..< texturePaths.count {
+                let path = texturePaths[i]
+                let data = try Data(contentsOf: path)
+                try canvas.makeTexture(with: data, id: UUID(uuidString: path.lastPathComponent))
+                reportProgress(base: 0.15, unit: i, total: texturePaths.count, on: progress)
+            }
+        } catch {
+            // no textures found
+            if info.chartlets > 0 {
+                throw MLError.fileDamaged
+            }
+        }
         
         /// import elements to canvas
         content.lineStrips.forEach { $0.brush = canvas.findBrushBy(name: $0.brushName) }
         canvas.data.elements = (content.lineStrips + content.chartlets).sorted(by: { $0.index < $1.index})
         
+        reportProgress(1, on: progress)
+
         DispatchQueue.main.async {
+            /// redraw must be call on main thread
             canvas.redraw()
         }
     }

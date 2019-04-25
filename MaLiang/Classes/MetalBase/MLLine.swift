@@ -37,8 +37,8 @@ public struct MLLine: Codable {
     enum CodingKeys: String, CodingKey {
         case begin
         case end
-        case pointSize = "size"
-        case pointStep = "step"
+        case size
+        case step
     }
     
     public init(from decoder: Decoder) throws {
@@ -47,9 +47,9 @@ public struct MLLine: Codable {
         let endInts = try container.decode([Int].self, forKey: .end)
         begin = CGPoint.make(from: beginInts)
         end = CGPoint.make(from: endInts)
-        let intSize = try container.decode(Int.self, forKey: .pointSize)
+        let intSize = try container.decode(Int.self, forKey: .size)
         pointSize = CGFloat(intSize) / 10
-        let intStep = try container.decode(Int.self, forKey: .pointStep)
+        let intStep = try container.decode(Int.self, forKey: .step)
         pointStep = CGFloat(intStep) / 10
     }
     
@@ -57,7 +57,7 @@ public struct MLLine: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(begin.encodeToInts(), forKey: .begin)
         try container.encode(end.encodeToInts(), forKey: .end)
-        try container.encode(Int(pointSize * 10), forKey: .pointSize)
-        try container.encode(Int(pointStep * 10), forKey: .pointStep)
+        try container.encode(Int(pointSize * 10), forKey: .size)
+        try container.encode(Int(pointStep * 10), forKey: .step)
     }
 }

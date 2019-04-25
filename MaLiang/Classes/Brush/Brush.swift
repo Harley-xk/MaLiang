@@ -109,7 +109,7 @@ open class Brush {
         return library.makeFunction(name: "fragment_point_func")
     }
     
-    /// Blending options for this brush, override to implement your own blending options
+    /// Blending options for this brush, overrides to implement your own blending options
     open func setupBlendOptions(for attachment: MTLRenderPipelineColorAttachmentDescriptor) {
         attachment.isBlendingEnabled = true
 
@@ -153,7 +153,7 @@ open class Brush {
             return
         }
         
-        /// make sure reauable command buffer is ready
+        /// make sure reusable command buffer is ready
         target.prepareForDraw()
         
         /// get commandEncoder form resuable command buffer

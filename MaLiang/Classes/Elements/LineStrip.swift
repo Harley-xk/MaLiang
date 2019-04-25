@@ -92,7 +92,7 @@ open class LineStrip: CanvasElement {
 
     enum CodingKeys: String, CodingKey {
         case index
-        case brushName = "brush"
+        case brush
         case lines
         case color
     }
@@ -100,7 +100,7 @@ open class LineStrip: CanvasElement {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         index = try container.decode(Int.self, forKey: .index)
-        brushName = try container.decode(String.self, forKey: .brushName)
+        brushName = try container.decode(String.self, forKey: .brush)
         lines = try container.decode([MLLine].self, forKey: .lines)
         color = try container.decode(MLColor.self, forKey: .color)
     }
@@ -108,7 +108,7 @@ open class LineStrip: CanvasElement {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(index, forKey: .index)
-        try container.encode(brushName, forKey: .brushName)
+        try container.encode(brushName, forKey: .brush)
         try container.encode(lines, forKey: .lines)
         try container.encode(color, forKey: .color)
     }

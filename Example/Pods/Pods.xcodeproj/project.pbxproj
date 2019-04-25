@@ -66,6 +66,7 @@
 		B34D709806AB21A27E923424FD8606C4 /* String+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7EF8FE28768C44B2F05E9F9ADEDC0 /* String+Comet.swift */; };
 		C30B2D38226F4B0800E3429A /* DataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B2D36226F4ACF00E3429A /* DataImporter.swift */; };
 		C35A03AB227007E600164C80 /* MLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A03A8227007D200164C80 /* MLLine.swift */; };
+		C3F3749522718BEE00F34376 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3749422718BEE00F34376 /* Printer.swift */; };
 		CA91D1CB31DACF8CB0A4C07C91CE83C6 /* MaLiang-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBE8B8614756D756EDD0F9C6EE93B6 /* MaLiang-dummy.m */; };
 		CDCA165825A039F22EF82B62817778F6 /* Chrysan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8AC618D3CB99DC77C170E38648707F /* Chrysan.xib */; };
 		CF27E8941305994E440E0C04B059011C /* chrysan_cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC72B262DFD77A1B316A55E499A5AAF /* chrysan_cross@2x.png */; };
@@ -212,6 +213,7 @@
 		C0E9E4794BD05C1ED91584F35B956BDE /* Chartlet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Chartlet.swift; sourceTree = "<group>"; };
 		C30B2D36226F4ACF00E3429A /* DataImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporter.swift; sourceTree = "<group>"; };
 		C35A03A8227007D200164C80 /* MLLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLLine.swift; sourceTree = "<group>"; };
+		C3F3749422718BEE00F34376 /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
 		C5023D90FF30029EF2F1BBAC5FB2E1FF /* Eraser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Eraser.swift; sourceTree = "<group>"; };
 		C7397134CB2B2A7B98820049A8C968BC /* Numbers+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Numbers+Comet.swift"; path = "Comet/Extensions/Numbers+Comet.swift"; sourceTree = "<group>"; };
 		C7B987BFDD5E7A93BA9C4741EE1B48C5 /* Text+Localize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Text+Localize.swift"; path = "Comet/Extensions/Text+Localize.swift"; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				A8D65300AFFAD5879AE44F3078E5FB56 /* Brush.swift */,
+				C3F3749422718BEE00F34376 /* Printer.swift */,
 				C5023D90FF30029EF2F1BBAC5FB2E1FF /* Eraser.swift */,
 			);
 			name = Brush;
@@ -946,6 +949,7 @@
 				538E20813B0368F5BE96B3B898476F48 /* Eraser.swift in Sources */,
 				718BAC82ECF223ECD205A6DC3FE644A4 /* LineStrip.swift in Sources */,
 				CA91D1CB31DACF8CB0A4C07C91CE83C6 /* MaLiang-dummy.m in Sources */,
+				C3F3749522718BEE00F34376 /* Printer.swift in Sources */,
 				F337C87BCEBC8E83FBF281A4EE49228D /* Maths.swift in Sources */,
 				47E9EE197126404BE58D6E8724053A61 /* MetalView.swift in Sources */,
 				6329060D015E71E0078A8802E17F1682 /* MLColor.swift in Sources */,

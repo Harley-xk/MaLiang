@@ -14,6 +14,9 @@ open class Canvas: MetalView {
     /// default round point brush, will not show in registeredBrushes
     open var defaultBrush: Brush!
     
+    /// printer to print image textures on canvas
+    open private(set) var printer: Printer!
+    
     /// Register a brush with image data
     ///
     /// - Parameter texture: texture data of brush
@@ -61,6 +64,7 @@ open class Canvas: MetalView {
     open private(set) var textures: [MLTexture] = []
     
     /// make texture and cache it with ID
+    @discardableResult
     override open func makeTexture(with data: Data, id: UUID? = nil) throws -> MLTexture {
         let texture = try super.makeTexture(with: data, id: id)
         textures.append(texture)
@@ -128,8 +132,13 @@ open class Canvas: MetalView {
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
+        
+        /// initialize default brush
         defaultBrush = Brush(name: "maliang.default", textureID: nil, target: self)
         currentBrush = defaultBrush
+        
+        /// initialize printer
+        printer = Printer(name: "maliang.printer", textureID: nil, target: self)
         
         data = CanvasData()
         setupGestureRecognizers()
@@ -176,6 +185,7 @@ open class Canvas: MetalView {
     }
     
     /// redraw elemets in document
+    /// - Attention: thie method must be called on main thread
     open func redraw(on target: RenderTarget? = nil, display: Bool = true) {
     
         let target = target ?? screenTarget!
