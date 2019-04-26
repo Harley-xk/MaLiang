@@ -1,7 +1,7 @@
 # ![Banner](Images/banner.png)
 
-[![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/Harley-xk/MaLiang)
-[![Version](https://img.shields.io/cocoapods/v/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
+[![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg)](https://travis-ci.org/Harley-xk/MaLiang)
+[![Version](https://img.shields.io/cocoapods/v/MaLiang.svg)](http://cocoapods.org/pods/MaLiang)
 [![Language](https://img.shields.io/badge/language-Swift%205-orange.svg)](https://swift.org)
 [![codebeat badge](https://codebeat.co/badges/438159fd-b5f9-43d4-a1d5-b07ba5e6cf03)](https://codebeat.co/projects/github-com-harley-xk-maliang-metal)
 [![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
@@ -9,7 +9,7 @@
 [![twitter](https://img.shields.io/badge/twitter-Harley--xk-blue.svg)](https://twitter.com/Harley86589)
 [![weibo](https://img.shields.io/badge/weibo-%E7%BE%A4%E6%98%9F%E9%99%A8%E8%90%BD-orange.svg)](https://weibo.com/u/1161848005)
 
-![icon](Images/icon-32.png) **MaLiang** is a painting framework based on Metal. It supports drawing and handwriting with customized textures.
+![icon](Images/icon-32.png) **MaLiang** is a painting framework based on [**Metal**](https://developer.apple.com/metal/). It supports drawing and handwriting with customized textures.
 The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
@@ -17,14 +17,13 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
 ## Features
 
 - [x] Lines with **Bezier Curve**
+- [x] **Chartlet** element (for image and any other content from an UIView snapshot)
 - [x] Adjust stroke size with **Force**
 - [x] **3D Touch** Support
-- [x] Port to **Metal**
 - [x] **Undo** & **Redo**
 - [x] **Zoom** & **Scale**
 - [x] **Export** to image
 - [x] **Save** vector contents to disk
-- [x] **Chartlet** element (for **text** and **image** elements)
 - [ ] Texture rotation
 
 ## Requirements
@@ -119,6 +118,21 @@ With all these properties, you can create you own brush as your imagination.
 MaLiang supports automatically adjustment of stroke size with painting force. 3D Touch is supported by default, and simulated force will be setup on devices those are not supporting this.
 
 `forceSensitive` is the property that force affects the storke size. It should be set between `0` to `1`. the smaller the value is, the less sensitive will be. if sets to `0`, then force will not affects the stroke size.
+
+### Chartlet
+
+Chartlet elements are supported from 2.1.0. A chartlet must be registered to canvas with its' texture data. You can simply get image data from its' `pngData()` method.
+
+#### Text
+
+Text element can be rendered to canvas by the Chartlet feature. MaLiang leaves the work of text layout and styles to your self.
+
+- Firtst, put your text content to a label, a text view or any other customized views
+- Second, make it properly styled and layouted
+- Then Third, take a snapshot from that view.
+- Finally, now you shoud have an image to your text content, render this image to canvas using the Chartlet apis.
+
+Refer to the samples for more details.
 
 ### CanvasData
 
