@@ -33,7 +33,7 @@ open class RenderTarget {
         }
     }
     
-    /// create with texture an device
+    /// create with texture and device
     public init(size: CGSize, pixelFormat: MTLPixelFormat, device: MTLDevice?) {
         
         self.drawableSize = size

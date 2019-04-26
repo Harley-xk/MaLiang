@@ -56,7 +56,7 @@ open class DataImporter {
             for i in 0 ..< texturePaths.count {
                 let path = texturePaths[i]
                 let data = try Data(contentsOf: path)
-                try canvas.makeTexture(with: data, id: UUID(uuidString: path.lastPathComponent))
+                try canvas.registerChartlet(with: data, id: UUID(uuidString: path.lastPathComponent))
                 reportProgress(base: 0.15, unit: i, total: texturePaths.count, on: progress)
             }
         } catch {

@@ -26,9 +26,9 @@ class TextureElementSamples: UIViewController {
 
         // Do any additional setup after loading the view.
         chartlets = [
-            try! canvas.makeTexture(with: UIImage(named: "chartlet-1")!.pngData()!),
-            try! canvas.makeTexture(with: UIImage(named: "chartlet-2")!.pngData()!),
-            try! canvas.makeTexture(with: UIImage(named: "chartlet-3")!.pngData()!),
+            try! canvas.registerChartlet(with: UIImage(named: "chartlet-1")!.pngData()!),
+            try! canvas.registerChartlet(with: UIImage(named: "chartlet-2")!.pngData()!),
+            try! canvas.registerChartlet(with: UIImage(named: "chartlet-3")!.pngData()!),
         ]
         
         canvas.defaultBrush.pointSize = 20

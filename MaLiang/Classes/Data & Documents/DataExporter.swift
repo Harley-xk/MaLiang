@@ -18,11 +18,11 @@ open class DataExporter {
         let data = canvas.data
         content = CanvasContent(lineStrips: data?.elements.compactMap { $0 as? LineStrip } ?? [],
                                  chartlets: [])
-        textures = canvas.textures
+        chartletTextures = canvas.chartletTextures
     }
     
     private var content: CanvasContent
-    private var textures: [MLTexture]
+    private var chartletTextures: [MLTexture]
 
     /// Save contents to disk
     ///
@@ -75,15 +75,11 @@ open class DataExporter {
 
         /// save textures to folder
         // only chartlet textures will be saved
-        let chartletTextureIDs = content.chartlets.map { $0.textureID }
-        let idSet = Set<UUID>(chartletTextureIDs)
-        let pendingTextures = textures.compactMap { idSet.contains($0.id) ? $0 : nil }
-        
-        for i in 0 ..< pendingTextures.count {
-            let mlTexture = textures[i]
+        for i in 0 ..< chartletTextures.count {
+            let mlTexture = chartletTextures[i]
             try mlTexture.texture.toData()?.write(to: directory.appendingPathComponent("textures").appendingPathComponent(mlTexture.id.uuidString))
             // move on progress to 0.1 when contents file saved
-            reportProgress(base: 0.1, unit: i, total: textures.count, on: progress)
+            reportProgress(base: 0.1, unit: i, total: chartletTextures.count, on: progress)
         }
         
         reportProgress(1, on: progress)
