@@ -11,13 +11,24 @@ import UIKit
 
 /// texture with UUID
 open class MLTexture: Hashable {
-    var id: UUID
-    var texture: MTLTexture
+    
+    open private(set) var id: UUID
+    
+    open private(set) var texture: MTLTexture
+    
     init(id: UUID, texture: MTLTexture) {
         self.id = id
         self.texture = texture
     }
     
+    open var width: CGFloat {
+        return CGFloat(texture.width)
+    }
+    
+    open var height: CGFloat {
+        return CGFloat(texture.height)
+    }
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

@@ -76,8 +76,8 @@ open class DataExporter {
         /// save textures to folder
         // only chartlet textures will be saved
         let chartletTextureIDs = content.chartlets.map { $0.textureID }
-        let idSet = Set<String>(chartletTextureIDs)
-        let pendingTextures = textures.compactMap { idSet.contains($0.id.uuidString) ? $0 : nil }
+        let idSet = Set<UUID>(chartletTextureIDs)
+        let pendingTextures = textures.compactMap { idSet.contains($0.id) ? $0 : nil }
         
         for i in 0 ..< pendingTextures.count {
             let mlTexture = textures[i]

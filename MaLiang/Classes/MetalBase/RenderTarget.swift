@@ -78,7 +78,7 @@ open class RenderTarget {
     }
     
     internal func updateTransformBuffer() {
-        let scaleFactor = UIScreen.main.scale
+        let scaleFactor = UIScreen.main.nativeScale
         var transform = ScrollingTransform(offset: contentOffset * scaleFactor, scale: scale)
         transform_buffer = device?.makeBuffer(bytes: &transform, length: MemoryLayout<ScrollingTransform>.stride, options: [])
     }

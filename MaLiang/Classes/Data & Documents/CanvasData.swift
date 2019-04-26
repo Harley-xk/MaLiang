@@ -62,6 +62,16 @@ open class CanvasData {
         }
     }
     
+    /// add a chartlet to elements
+    open func append(chartlet: Chartlet) {
+        finishCurrentElement()
+        chartlet.index = elementIndex
+        elementIndex += 1
+        elements.append(chartlet)
+        undoArray.removeAll()
+        h_onElementFinish?(self)
+    }
+    
     /// index for latest element
     private var elementIndex: Int = 0
     

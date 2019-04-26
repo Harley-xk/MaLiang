@@ -119,13 +119,15 @@ open class Canvas: MetalView {
 
     // setup gestures
     open var paintingGesture: PaintingGestureRecognizer?
-    
+    open var tapGesture: UITapGestureRecognizer?
+
     open func setupGestureRecognizers() {
         /// gesture to render line
         paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
         /// gesture to render dot
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         addGestureRecognizer(tapGesture)
+        self.tapGesture = tapGesture
     }
     
     
@@ -255,6 +257,21 @@ open class Canvas: MetalView {
         let opacity = brush.opacity + (1 - brush.opacity) * delta
         line.color = brush.color.toMLColor(opacity: opacity)
         render(lines: [line])
+    }
+    
+    /// draw a chartlet to canvas
+    ///
+    /// - Parameters:
+    ///   - point: location where to draw the chartlet
+    ///   - size: size of texture
+    ///   - textureID: id of texture for drawing
+    open func renderChartlet(at point: CGPoint, size: CGSize, textureID: UUID) {
+        let chartlet = Chartlet(center: point, size: size, textureID: textureID)
+        chartlet.canvas = self
+        data.append(chartlet: chartlet)
+        chartlet.drawSelf(on: screenTarget)
+        screenTarget.commitCommands()
+        setNeedsDisplay()
     }
     
     // MARK: - Gestures

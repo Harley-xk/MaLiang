@@ -22,6 +22,17 @@ struct Uniforms {
     float4x4 scaleMatrix;
 };
 
+struct Point {
+    float4 position [[position]];
+    float4 color;
+    float size [[point_size]];
+};
+
+struct Transform {
+    float2 offset;
+    float scale;
+};
+
 vertex Vertex vertex_render_target(constant Vertex *vertexes [[ buffer(0) ]],
                                    constant Uniforms &uniforms [[ buffer(1) ]],
                                    uint vid [[vertex_id]])
@@ -40,20 +51,24 @@ fragment float4 fragment_render_target(Vertex vertex_data [[ stage_in ]],
 };
 
 //======================================
+// Printer Shaders
+//======================================
+vertex Vertex vertex_printer_func(constant Vertex *vertexes [[ buffer(0) ]],
+                                  constant Uniforms &uniforms [[ buffer(1) ]],
+                                  constant Transform &transform [[ buffer(2) ]],
+                                  uint vid [[ vertex_id ]])
+{
+    Vertex out = vertexes[vid];
+    float scale = transform.scale;
+    float2 offset = transform.offset;
+    float2 pos = float2(out.position.x * scale - offset.x, out.position.y * scale - offset.y);
+    out.position = uniforms.scaleMatrix * float4(pos, 0, 1);// * in.position;
+    return out;
+};
+
+//======================================
 // Point Shaders
 //======================================
-
-struct Point {
-    float4 position [[position]];
-    float4 color;
-    float size [[point_size]];
-};
-
-struct Transform {
-    float2 offset;
-    float scale;
-};
-
 vertex Point vertex_point_func(constant Point *points [[ buffer(0) ]],
                                constant Uniforms &uniforms [[ buffer(1) ]],
                                constant Transform &transform [[ buffer(2) ]],
