@@ -12,7 +12,7 @@ import simd
 extension Bundle {
     static var maliang: Bundle {
         var bundle: Bundle = Bundle.main
-        let framework = Bundle(for: Canvas.classForCoder())
+        let framework = Bundle(for: Canvas.self)
         if let resource = framework.path(forResource: "MaLiang", ofType: "bundle") {
             bundle = Bundle(path: resource) ?? Bundle.main
         }
@@ -22,7 +22,7 @@ extension Bundle {
 
 extension MTLDevice {
     func libraryForMaLiang() -> MTLLibrary? {
-        let framework = Bundle(for: Canvas.classForCoder())
+        let framework = Bundle(for: Canvas.self)
         guard let resource = framework.path(forResource: "default", ofType: "metallib") else {
             return nil
         }
