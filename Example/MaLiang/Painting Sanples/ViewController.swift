@@ -34,8 +34,13 @@ class ViewController: UIViewController {
     }
     
     private func registerBrush(with imageName: String) -> Brush {
-        let path = Bundle.main.path(forResource: imageName, ofType: "png")!
-        return try! canvas.registerBrush(name: imageName, from: URL(fileURLWithPath: path))
+        do {
+            let texture = try canvas.makeTexture(with: UIImage(named: imageName)!.pngData()!)
+            return try canvas.registerBrush(name: imageName, textureID: texture.id)
+//            return try canvas.registerBrush(name: imageName, from: UIImage(named: imageName)!)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
     
     override func viewDidLoad() {
