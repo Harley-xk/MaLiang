@@ -119,8 +119,35 @@ may have performance issue on old devices</string>
                                             <segue destination="yPV-H1-Ktr" kind="show" id="puL-4O-9N7"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7VH-wD-rmz" detailTextLabel="38u-w8-jHO" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="JSb-lO-wrc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="AyR-DD-kEG" detailTextLabel="d8C-cw-CmX" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="VSO-7t-rDH">
                                         <rect key="frame" x="0.0" y="180" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VSO-7t-rDH" id="Hh1-Jo-zXe">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Image Elements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AyR-DD-kEG">
+                                                    <rect key="frame" x="16.000000000000007" y="9.9999999999999982" width="121.66666666666667" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="add image to canvas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d8C-cw-CmX">
+                                                    <rect key="frame" x="16.000000000000007" y="33.333333333333329" width="116.66666666666667" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="8Sd-me-TAn" kind="show" id="c2y-EG-mR8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7VH-wD-rmz" detailTextLabel="38u-w8-jHO" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="JSb-lO-wrc">
+                                        <rect key="frame" x="0.0" y="240" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JSb-lO-wrc" id="IU4-e4-jdD">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
@@ -550,6 +577,71 @@ may have performance issue on old devices</string>
             </objects>
             <point key="canvasLocation" x="243.74999999999997" y="373.4375"/>
         </scene>
+        <!--Texture Element Samples-->
+        <scene sceneID="njU-Xa-j4e">
+            <objects>
+                <viewController id="8Sd-me-TAn" customClass="TextureElementSamples" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x0c-Do-lHs"/>
+                        <viewControllerLayoutGuide type="bottom" id="BCG-y9-C6A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zb8-2J-P1C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9I-J6-IzH" customClass="Canvas" customModule="MaLiang">
+                                <rect key="frame" x="15" y="221" width="345" height="542"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ogn-6x-A5V">
+                                <rect key="frame" x="15" y="178" width="345" height="29"/>
+                                <segments>
+                                    <segment title="Texture-1"/>
+                                    <segment title="Texture-2"/>
+                                    <segment title="Texture-3"/>
+                                </segments>
+                            </segmentedControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-3G-Sy3">
+                                <rect key="frame" x="16" y="103" width="343" height="60"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chartlet-1" translatesAutoresizingMaskIntoConstraints="NO" id="vOG-Au-OzK">
+                                        <rect key="frame" x="0.0" y="0.0" width="114.33333333333333" height="60"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chartlet-2" translatesAutoresizingMaskIntoConstraints="NO" id="flA-RR-CeN">
+                                        <rect key="frame" x="114.33333333333334" y="0.0" width="114.33333333333334" height="60"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chartlet-3" translatesAutoresizingMaskIntoConstraints="NO" id="vWm-tu-VK6">
+                                        <rect key="frame" x="228.66666666666666" y="0.0" width="114.33333333333334" height="60"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Jk2-ex-r6H"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ogn-6x-A5V" firstAttribute="leading" secondItem="Zb8-2J-P1C" secondAttribute="leading" constant="15" id="8QY-gB-f7s"/>
+                            <constraint firstAttribute="trailing" secondItem="E9I-J6-IzH" secondAttribute="trailing" constant="15" id="GJ8-ca-R2b"/>
+                            <constraint firstItem="ogn-6x-A5V" firstAttribute="top" secondItem="l0V-3G-Sy3" secondAttribute="bottom" constant="15" id="M3V-7F-vXH"/>
+                            <constraint firstItem="l0V-3G-Sy3" firstAttribute="leading" secondItem="Zb8-2J-P1C" secondAttribute="leading" constant="16" id="Ori-vT-GVY"/>
+                            <constraint firstItem="E9I-J6-IzH" firstAttribute="leading" secondItem="Zb8-2J-P1C" secondAttribute="leading" constant="15" id="dkM-ah-I9g"/>
+                            <constraint firstItem="BCG-y9-C6A" firstAttribute="top" secondItem="E9I-J6-IzH" secondAttribute="bottom" constant="15" id="nlQ-rV-Aqy"/>
+                            <constraint firstItem="l0V-3G-Sy3" firstAttribute="top" secondItem="x0c-Do-lHs" secondAttribute="bottom" constant="15" id="uD0-Lu-Etf"/>
+                            <constraint firstAttribute="trailing" secondItem="l0V-3G-Sy3" secondAttribute="trailing" constant="16" id="v8B-rJ-SAm"/>
+                            <constraint firstAttribute="trailing" secondItem="ogn-6x-A5V" secondAttribute="trailing" constant="15" id="vld-By-CcF"/>
+                            <constraint firstItem="E9I-J6-IzH" firstAttribute="top" secondItem="ogn-6x-A5V" secondAttribute="bottom" constant="15" id="ywe-2E-n8z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="canvas" destination="E9I-J6-IzH" id="r5Z-cf-dKK"/>
+                        <outlet property="segement" destination="ogn-6x-A5V" id="rUs-cy-VSr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SpM-xZ-aIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1085.5999999999999" y="372.41379310344831"/>
+        </scene>
         <!--Preview-->
         <scene sceneID="xiY-6e-ocn">
             <objects>
@@ -589,7 +681,7 @@ may have performance issue on old devices</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dso-5L-amq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085.5999999999999" y="373.76311844077964"/>
+            <point key="canvasLocation" x="1926" y="-344"/>
         </scene>
         <!--Scrollable-->
         <scene sceneID="V0u-An-6vP">
@@ -689,6 +781,9 @@ may have performance issue on old devices</string>
         </scene>
     </scenes>
     <resources>
+        <image name="chartlet-1" width="135.5" height="149"/>
+        <image name="chartlet-2" width="112.5" height="90"/>
+        <image name="chartlet-3" width="100" height="100"/>
         <image name="image" width="1280" height="720"/>
         <image name="more" width="21.333333969116211" height="21.333333969116211"/>
     </resources>

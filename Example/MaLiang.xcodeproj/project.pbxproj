@@ -20,6 +20,7 @@
 		C39C35C2225A035E00DA0519 /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = C39C35C0225A035E00DA0519 /* brush.png */; };
 		C3CB0166225B164900050F35 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CB0165225B164900050F35 /* pencil.png */; };
 		C3D0644A22685FCF00DD6632 /* ScrollingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0644922685FCF00DD6632 /* ScrollingViewController.swift */; };
+		C3F3749722729A2E00F34376 /* TextureElementSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3749622729A2E00F34376 /* TextureElementSamples.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		C39C35C0225A035E00DA0519 /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
 		C3CB0165225B164900050F35 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		C3D0644922685FCF00DD6632 /* ScrollingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingViewController.swift; sourceTree = "<group>"; };
+		C3F3749622729A2E00F34376 /* TextureElementSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureElementSamples.swift; sourceTree = "<group>"; };
 		C6F28C17C7927FA0ED972567 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C847720412563A4B8BD1C035 /* Pods_MaLiang_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76EE9D69205D147C25FBFCA /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.debug.xcconfig"; path = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				C39C35A62259FBCB00DA0519 /* RootViewController.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				C3F3749622729A2E00F34376 /* TextureElementSamples.swift */,
 				C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */,
 				C39C35AA2259FBD100DA0519 /* ScrollableSample.swift */,
 				C3D0644922685FCF00DD6632 /* ScrollingViewController.swift */,
@@ -274,6 +277,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C30B2D35226F06B400E3429A /* SavedFilesViewController.swift in Sources */,
 				C3D0644A22685FCF00DD6632 /* ScrollingViewController.swift in Sources */,
+				C3F3749722729A2E00F34376 /* TextureElementSamples.swift in Sources */,
 				C39C35A72259FBCB00DA0519 /* RootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

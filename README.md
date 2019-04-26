@@ -24,7 +24,7 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
 - [x] **Zoom** & **Scale**
 - [x] **Export** to image
 - [x] **Save** vector contents to disk
-- [ ] Chartlet element (for text and image elements)
+- [x] **Chartlet** element (for **text** and **image** elements)
 - [ ] Texture rotation
 
 ## Requirements
