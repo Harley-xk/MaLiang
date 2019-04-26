@@ -10,8 +10,8 @@ click this link to pay: <https://www.paypal.me/harley491078160>
 
 ## Alipay
 
-<img src="images/code-alipay.jpg" width="300">
+<img src="Images/code-alipay.jpg" width="300">
 
 ## Wechat
 
-<img src="images/code-wechat.jpg" width="300">
+<img src="Images/code-wechat.jpg" width="300">
