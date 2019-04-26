@@ -114,12 +114,12 @@ open class Brush {
         attachment.isBlendingEnabled = true
 
         attachment.rgbBlendOperation = .add
-        attachment.sourceRGBBlendFactor = .sourceAlpha
+        attachment.sourceRGBBlendFactor = .one
         attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
         
         attachment.alphaBlendOperation = .add
-        attachment.sourceAlphaBlendFactor = .oneMinusDestinationAlpha
-        attachment.destinationAlphaBlendFactor = .one
+        attachment.sourceAlphaBlendFactor = .one
+        attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
     }
     
     // MARK: - Render Actions

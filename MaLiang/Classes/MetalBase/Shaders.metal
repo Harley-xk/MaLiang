@@ -74,7 +74,7 @@ fragment float4 fragment_point_func(Point point_data [[ stage_in ]],
 {
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
     float4 color = float4(tex2d.sample(textureSampler, pointCoord));
-    return float4(point_data.color.rgb, color.a * point_data.color.a);
+    return float4(point_data.color.rgb * color.a, color.a * point_data.color.a);
 };
 
 // franment shader that applys original color of the texture
@@ -91,9 +91,8 @@ fragment float4 fragment_point_func_without_texture(Point point_data [[ stage_in
                                                     float2 pointCoord  [[ point_coord ]])
 {
     float dist = length(pointCoord - float2(0.5));
-    float4 out_color = point_data.color;
     if (dist >= 0.5) {
-        out_color.a = 0;
+        return float4(0);
     }
-    return float4(out_color);
+    return point_data.color;
 }
