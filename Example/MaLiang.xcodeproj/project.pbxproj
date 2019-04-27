@@ -15,6 +15,10 @@
 		C30B2D35226F06B400E3429A /* SavedFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */; };
 		C3617DB72272EB2400E5DC7C /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = C3617DB52272EB2400E5DC7C /* brush.png */; };
 		C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C3617DB82272EC5C00E5DC7C /* pencil.png */; };
+		C3617DC022733FB300E5DC7C /* ChartletPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */; };
+		C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */; };
+		C3617DC42273FFDB00E5DC7C /* ChartletEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DC32273FFDB00E5DC7C /* ChartletEditable.swift */; };
+		C3617DC6227407FC00E5DC7C /* ChartletImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */; };
 		C39C35A72259FBCB00DA0519 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35A62259FBCB00DA0519 /* RootViewController.swift */; };
 		C39C35AB2259FBD100DA0519 /* PaintingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35A82259FBD100DA0519 /* PaintingPreview.swift */; };
 		C39C35AD2259FBD100DA0519 /* ScrollableSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35AA2259FBD100DA0519 /* ScrollableSample.swift */; };
@@ -36,6 +40,10 @@
 		C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFilesViewController.swift; sourceTree = "<group>"; };
 		C3617DB52272EB2400E5DC7C /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
 		C3617DB82272EC5C00E5DC7C /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
+		C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletPicker.swift; sourceTree = "<group>"; };
+		C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartletPicker.storyboard; sourceTree = "<group>"; };
+		C3617DC32273FFDB00E5DC7C /* ChartletEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletEditable.swift; sourceTree = "<group>"; };
+		C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletImageCache.swift; sourceTree = "<group>"; };
 		C39C35A62259FBCB00DA0519 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		C39C35A82259FBD100DA0519 /* PaintingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingPreview.swift; sourceTree = "<group>"; };
 		C39C35AA2259FBD100DA0519 /* ScrollableSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSample.swift; sourceTree = "<group>"; };
@@ -101,6 +109,7 @@
 				C3617DAA2272CD8E00E5DC7C /* Painting Sanples */,
 				C3617DAB2272CDA700E5DC7C /* Scroll Samples */,
 				C3617DAC2272CDBB00E5DC7C /* File Samples */,
+				C3617DBF22733EFB00E5DC7C /* Components */,
 				C3617DAD2272EA8E00E5DC7C /* Textures */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -173,6 +182,17 @@
 			path = Textures;
 			sourceTree = "<group>";
 		};
+		C3617DBF22733EFB00E5DC7C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */,
+				C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */,
+				C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */,
+				C3617DC32273FFDB00E5DC7C /* ChartletEditable.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,6 +258,7 @@
 				C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */,
 				C3617DB72272EB2400E5DC7C /* brush.png in Resources */,
 				C39C35BF2259FD7A00DA0519 /* Main.storyboard in Resources */,
+				C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -280,6 +301,7 @@
 				"${BUILT_PRODUCTS_DIR}/Chrysan/Chrysan.framework",
 				"${BUILT_PRODUCTS_DIR}/Comet/Comet.framework",
 				"${BUILT_PRODUCTS_DIR}/MaLiang/MaLiang.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -289,6 +311,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chrysan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Comet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaLiang.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,12 +328,15 @@
 			files = (
 				C39C35AD2259FBD100DA0519 /* ScrollableSample.swift in Sources */,
 				C39C35AB2259FBD100DA0519 /* PaintingPreview.swift in Sources */,
+				C3617DC42273FFDB00E5DC7C /* ChartletEditable.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C30B2D35226F06B400E3429A /* SavedFilesViewController.swift in Sources */,
 				C3D0644A22685FCF00DD6632 /* ScrollingViewController.swift in Sources */,
+				C3617DC6227407FC00E5DC7C /* ChartletImageCache.swift in Sources */,
 				C3F3749722729A2E00F34376 /* TextureElementSamples.swift in Sources */,
 				C39C35A72259FBCB00DA0519 /* RootViewController.swift in Sources */,
+				C3617DC022733FB300E5DC7C /* ChartletPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

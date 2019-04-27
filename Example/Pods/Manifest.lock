@@ -1,19 +1,22 @@
 PODS:
   - Chrysan (1.4.0)
   - Comet (1.6.0)
-  - MaLiang (2.0.0-beta-2)
+  - MaLiang (2.1.0)
+  - SnapKit (4.2.0)
   - Zip (1.1.0)
 
 DEPENDENCIES:
   - Chrysan
   - Comet
   - MaLiang (from `../`)
+  - SnapKit
   - Zip
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Chrysan
     - Comet
+    - SnapKit
     - Zip
 
 EXTERNAL SOURCES:
@@ -23,9 +26,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Chrysan: 14c23bd647d5adaef5e3cd796dd5c51d2f7b451f
   Comet: 733f05d16314a1155de99e9343cc984b01097725
-  MaLiang: 5ad7121dbb1b82f9c385ac82fecda3973404f4c6
+  MaLiang: fb7188552e62c85f0dc99f78035909a719788a1f
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
-PODFILE CHECKSUM: aaa29ab998bba3fb66375aa676d115056ddd4ef8
+PODFILE CHECKSUM: 77ae9a2986c71405a97fcabef728238fc68a3113
 
 COCOAPODS: 1.6.1

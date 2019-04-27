@@ -125,6 +125,11 @@ MaLiang supports automatically adjustment of stroke size with painting force. 3D
 
 Chartlet elements are supported from 2.1.0. A chartlet must be registered to canvas with its' texture data. You can simply get image data from its' `pngData()` method.
 
+```swift
+let data = UIImage(named: "chartlet").pngData()
+try canvas.registerChartlet(with: data)
+```
+
 #### Text
 
 Text element can be rendered to canvas by the Chartlet feature. MaLiang leaves the work of text layout and styles to your self.
