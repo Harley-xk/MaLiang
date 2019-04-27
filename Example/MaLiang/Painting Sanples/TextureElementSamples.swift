@@ -26,9 +26,9 @@ class TextureElementSamples: UIViewController {
 
         // Do any additional setup after loading the view.
         chartlets = [
-            try! canvas.registerChartlet(with: UIImage(named: "chartlet-1")!.pngData()!),
-            try! canvas.registerChartlet(with: UIImage(named: "chartlet-2")!.pngData()!),
-            try! canvas.registerChartlet(with: UIImage(named: "chartlet-3")!.pngData()!),
+            try! canvas.makeTexture(with: UIImage(named: "chartlet-1")!.pngData()!),
+            try! canvas.makeTexture(with: UIImage(named: "chartlet-2")!.pngData()!),
+            try! canvas.makeTexture(with: UIImage(named: "chartlet-3")!.pngData()!),
         ]
         
         canvas.defaultBrush.pointSize = 20
@@ -46,11 +46,9 @@ class TextureElementSamples: UIViewController {
         }
         
         let chartlet = chartlets[segement.selectedSegmentIndex]
-        
-        let size = CGSize(width: chartlet.width / 5, height: chartlet.height / 5)
-        
+                
         let location = gesture.location(in: canvas)
-        canvas.renderChartlet(at: location, size: size, textureID: chartlet.id)
+        canvas.renderChartlet(at: location, size: chartlet.size, textureID: chartlet.id)
     }
     
     /*

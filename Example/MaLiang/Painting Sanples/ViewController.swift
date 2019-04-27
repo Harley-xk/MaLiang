@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     
     var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
+    var chartlets: [MLTexture] = []
     
     var color: UIColor {
         return UIColor(red: r, green: g, blue: b, alpha: 1)
@@ -48,6 +49,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+        chartlets = [
+            try! canvas.makeTexture(with: UIImage(named: "chartlet-1")!.pngData()!),
+            try! canvas.makeTexture(with: UIImage(named: "chartlet-2")!.pngData()!),
+            try! canvas.makeTexture(with: UIImage(named: "chartlet-3")!.pngData()!),
+        ]
         
         canvas.backgroundColor = .clear
         
@@ -136,6 +143,9 @@ class ViewController: UIViewController {
     
     @IBAction func moreAction(_ sender: Any) {
         let actionSheet = UIAlertController(title: "Choose Actions", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(title: "Add Chartlet", style: .default) { [unowned self] (_) in
+            self.addChartletAction()
+        }
         actionSheet.addAction(title: "Snapshot", style: .default) { [unowned self] (_) in
             self.snapshotAction(sender)
         }
@@ -144,6 +154,19 @@ class ViewController: UIViewController {
         }
         actionSheet.addAction(title: "Cancel", style: .cancel)
         present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func addChartletAction() {
+        ChartletPicker.present(from: self, textures: chartlets) { [unowned self] (texture) in
+            self.showEditor(for: texture)
+//            let x = CGFloat.random(in: 0 ..< self.canvas.bounds.width)
+//            let y = CGFloat.random(in: 0 ..< self.canvas.bounds.height)
+//            self.canvas.renderChartlet(at: CGPoint(x: x, y: y), size: texture.size, textureID: texture.id)
+        }
+    }
+    
+    func showEditor(for texture: MLTexture) {
+        ChartletEditor.present(from: self, for: texture)
     }
     
     func snapshotAction(_ sender: Any) {

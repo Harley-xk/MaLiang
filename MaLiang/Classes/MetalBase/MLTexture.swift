@@ -20,18 +20,12 @@ open class MLTexture: Hashable {
         self.id = id
         self.texture = texture
     }
-    
-    open var width: CGFloat {
-        return CGFloat(texture.width)
-    }
-    
-    open var height: CGFloat {
-        return CGFloat(texture.height)
-    }
-    
-    open var size: CGSize {
-        return CGSize(width: width, height: height)
-    }
+
+    // size of texture in points
+    open lazy var size: CGSize = {
+        let scaleFactor = UIScreen.main.nativeScale
+        return CGSize(width: CGFloat(texture.width) / scaleFactor, height: CGFloat(texture.height) / scaleFactor)
+    }()
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
