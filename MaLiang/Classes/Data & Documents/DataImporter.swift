@@ -56,7 +56,7 @@ open class DataImporter {
             for i in 0 ..< texturePaths.count {
                 let path = texturePaths[i]
                 let data = try Data(contentsOf: path)
-                try canvas.registerChartlet(with: data, id: UUID(uuidString: path.lastPathComponent))
+                try canvas.makeTexture(with: data, id: UUID(uuidString: path.lastPathComponent))
                 reportProgress(base: 0.15, unit: i, total: texturePaths.count, on: progress)
             }
         } catch {
@@ -68,8 +68,8 @@ open class DataImporter {
         
         /// import elements to canvas
         content.lineStrips.forEach { $0.brush = canvas.findBrushBy(name: $0.brushName) }
+        content.chartlets.forEach { $0.canvas = canvas }
         canvas.data.elements = (content.lineStrips + content.chartlets).sorted(by: { $0.index < $1.index})
-        
         reportProgress(1, on: progress)
 
         DispatchQueue.main.async {

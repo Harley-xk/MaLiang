@@ -60,18 +60,8 @@ open class Canvas: MetalView {
         return registeredBrushes.first { $0.name == name } ?? defaultBrush
     }
     
-    /// All textures for brushes created by this canvas
+    /// All textures created by this canvas
     open private(set) var textures: [MLTexture] = []
-    
-    /// Textures for chartlets
-    open private(set) var chartletTextures: [MLTexture] = []
-    
-    /// register a texture using for chartlet, all chartlet textures will be placed in chartletTextures
-    @discardableResult open func registerChartlet(with data: Data, id: UUID? = nil) throws -> MLTexture {
-        let texture = try makeTexture(with: data, id: id)
-        chartletTextures.append(texture)
-        return texture
-    }
     
     /// make texture and cache it with ID
     @discardableResult

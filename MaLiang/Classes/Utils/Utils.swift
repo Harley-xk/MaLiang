@@ -78,7 +78,7 @@ extension CGSize {
     }
     
     func encodeToInts() -> [Int] {
-        return [Int(width * 10), Int(width * 10)]
+        return [Int(width * 10), Int(height * 10)]
     }
 }
 

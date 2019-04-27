@@ -28,6 +28,10 @@ open class MLTexture: Hashable {
     open var height: CGFloat {
         return CGFloat(texture.height)
     }
+    
+    open var size: CGSize {
+        return CGSize(width: width, height: height)
+    }
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
