@@ -18,7 +18,7 @@ open class Eraser: Brush {
         attachment.rgbBlendOperation = .reverseSubtract
         attachment.sourceRGBBlendFactor = .zero
         attachment.sourceAlphaBlendFactor = .one
-        attachment.destinationRGBBlendFactor = .one
+        attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
         attachment.destinationAlphaBlendFactor = .one
     }
 }
