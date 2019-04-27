@@ -46,7 +46,8 @@ public extension MTLTexture {
     
     /// get CIImage from this texture
     func toCIImage() -> CIImage? {
-        return CIImage(mtlTexture: self, options: nil)?.oriented(forExifOrientation: 4)
+        let image = CIImage(mtlTexture: self, options: [.colorSpace: CGColorSpaceCreateDeviceRGB()])
+        return image?.oriented(forExifOrientation: 4)
     }
     
     /// get CGImage from this texture
