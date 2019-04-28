@@ -28,7 +28,11 @@ open class Brush {
 
     // opacity of texture, affects the darkness of stroke
     // set opacity to 1 may cause heavy aliasing
-    open var opacity: CGFloat = 0.3
+    open var opacity: CGFloat = 0.3 {
+        didSet {
+            updateRenderingColor()
+        }
+    }
     
     // width of stroke line in points
     open var pointSize: CGFloat = 4
@@ -41,7 +45,19 @@ open class Brush {
     open var forceSensitive: CGFloat = 0
     
     /// color of stroke
-    open var color: UIColor = .black
+    open var color: UIColor = .black {
+        didSet {
+            updateRenderingColor()
+        }
+    }
+    
+    // randering color, same color to the color property with alpha reseted to alpha * opacity
+    internal var renderingColor: MLColor = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
+    
+    // called when color or opacity changed
+    private func updateRenderingColor() {
+        renderingColor = color.toMLColor(opacity: opacity)
+    }
     
     // designed initializer, will be called by target when reigster called
     // identifier is not necessary if you won't save the content of your canvas to file
@@ -62,9 +78,11 @@ open class Brush {
     
     /// get a line with specified begin and end location
     open func line(from: CGPoint, to: CGPoint) -> MLLine {
-        let color = self.color.toMLColor(opacity: opacity)        
-        let line = MLLine(begin: from, end: to, pointSize: pointSize,
-                          pointStep: pointStep, color: color,
+        let line = MLLine(begin: from,
+                          end: to,
+                          pointSize: pointSize,
+                          pointStep: pointStep,
+                          color: renderingColor,
                           scaleFactor: target?.screenTarget.scale ?? 1,
                           offset: target?.screenTarget.contentOffset ?? .zero)
         return line
@@ -72,11 +90,13 @@ open class Brush {
     
     /// get a line with specified begin and end location with force info
     open func pan(from: Pan, to: Pan) -> MLLine {
-        let color = self.color.toMLColor(opacity: opacity)
         var endForce = from.force * 0.95 + to.force * 0.05
         endForce = pow(endForce, forceSensitive)
-        let line = MLLine(begin: from.point, end: to.point,
-                          pointSize: pointSize * endForce, pointStep: pointStep, color: color,
+        let line = MLLine(begin: from.point,
+                          end: to.point,
+                          pointSize: pointSize * endForce,
+                          pointStep: pointStep,
+                          color: renderingColor,
                           scaleFactor: target?.screenTarget.scale ?? 1,
                           offset: target?.screenTarget.contentOffset ?? .zero)
         return line

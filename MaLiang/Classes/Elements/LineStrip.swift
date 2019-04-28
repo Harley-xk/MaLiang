@@ -36,7 +36,7 @@ open class LineStrip: CanvasElement {
         self.lines = lines
         self.brush = brush
         self.brushName = brush.name
-        self.color = brush.color.toMLColor()
+        self.color = brush.renderingColor
         remakBuffer()
     }
     
