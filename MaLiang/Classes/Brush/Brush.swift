@@ -44,6 +44,10 @@ open class Brush {
     // sensitive of pointsize changed from force, from 0 - 1
     open var forceSensitive: CGFloat = 0
     
+    // indicate if the stroke size in visual will be scaled along with the Canvas
+    // defaults to false, the stroke size in visual will stay with the original value
+    open var scaleWithCanvas = false
+    
     /// color of stroke
     open var color: UIColor = .black {
         didSet {
@@ -76,30 +80,30 @@ open class Brush {
         target?.currentBrush = self
     }
     
-    /// get a line with specified begin and end location
-    open func line(from: CGPoint, to: CGPoint) -> MLLine {
-        let line = MLLine(begin: from,
-                          end: to,
-                          pointSize: pointSize,
-                          pointStep: pointStep,
-                          color: renderingColor,
-                          scaleFactor: target?.screenTarget.scale ?? 1,
-                          offset: target?.screenTarget.contentOffset ?? .zero)
-        return line
-    }
-    
     /// get a line with specified begin and end location with force info
     open func pan(from: Pan, to: Pan) -> MLLine {
         var endForce = from.force * 0.95 + to.force * 0.05
         endForce = pow(endForce, forceSensitive)
-        let line = MLLine(begin: from.point,
-                          end: to.point,
-                          pointSize: pointSize * endForce,
-                          pointStep: pointStep,
-                          color: renderingColor,
-                          scaleFactor: target?.screenTarget.scale ?? 1,
-                          offset: target?.screenTarget.contentOffset ?? .zero)
+        return line(from: from.point, to: to.point, force: endForce)
+    }
+    
+    /// get a line with specified begin and end location
+    open func line(from: CGPoint, to: CGPoint, force: CGFloat = 1) -> MLLine {
+        let scale = scaleWithCanvas ? 1 : canvasScale
+        let line = MLLine(begin: (from + canvasOffset) / canvasScale,
+                          end: (to + canvasOffset) / canvasScale,
+                          pointSize: pointSize * force / scale,
+                          pointStep: pointStep / scale,
+                          color: renderingColor)
         return line
+    }
+
+    private var canvasScale: CGFloat {
+        return target?.screenTarget.scale ?? 1
+    }
+    
+    private var canvasOffset: CGPoint {
+        return target?.screenTarget.contentOffset ?? .zero
     }
     
     // MARK: - Render tools

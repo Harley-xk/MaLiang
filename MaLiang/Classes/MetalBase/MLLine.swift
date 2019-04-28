@@ -19,12 +19,11 @@ public struct MLLine: Codable {
     // optional color, color of line strip will be used if this sets to nil
     var color: MLColor?
     
-    init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor?,
-         scaleFactor: CGFloat = 1, offset: CGPoint) {
-        self.begin = (begin + offset) / scaleFactor
-        self.end = (end + offset) / scaleFactor
-        self.pointSize = pointSize / scaleFactor
-        self.pointStep = pointStep / (scaleFactor)
+    init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor?) {
+        self.begin = begin
+        self.end = end
+        self.pointSize = pointSize
+        self.pointStep = pointStep
         self.color = color
     }
     
