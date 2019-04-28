@@ -81,14 +81,14 @@ open class Brush {
     }
     
     /// get a line with specified begin and end location with force info
-    open func pan(from: Pan, to: Pan) -> MLLine {
+    open func makeLine(from: Pan, to: Pan) -> MLLine {
         var endForce = from.force * 0.95 + to.force * 0.05
         endForce = pow(endForce, forceSensitive)
-        return line(from: from.point, to: to.point, force: endForce)
+        return makeLine(from: from.point, to: to.point, force: endForce)
     }
-    
+
     /// get a line with specified begin and end location
-    open func line(from: CGPoint, to: CGPoint, force: CGFloat = 1) -> MLLine {
+    open func makeLine(from: CGPoint, to: CGPoint, force: CGFloat = 1) -> MLLine {
         let scale = scaleWithCanvas ? 1 : canvasScale
         let line = MLLine(begin: (from + canvasOffset) / canvasScale,
                           end: (to + canvasOffset) / canvasScale,
@@ -196,5 +196,18 @@ open class Brush {
         }
         
         commandEncoder?.endEncoding()
+    }
+}
+
+// MARK: - Deprecated
+extension Brush {
+    @available(*, deprecated, message: "", renamed: "makeLine(from:to:)")
+    open func pan(from: Pan, to: Pan) -> MLLine {
+        return makeLine(from: from, to: to)
+    }
+    
+    @available(*, deprecated, message: "", renamed: "makeLine(from:to:force:)")
+    open func line(from: CGPoint, to: CGPoint, force: CGFloat = 1) -> MLLine {
+        return makeLine(from: from, to: to, force: force)
     }
 }
