@@ -111,6 +111,10 @@ open var forceSensitive: CGFloat = 0
 
 /// color of stroke
 open var color: UIColor = .black
+
+// indicate if the stroke size in visual will be scaled along with the Canvas
+// defaults to false, the stroke size in visual will stay with the original value
+open var scaleWithCanvas = false
 ```
 
 With all these properties, you can create you own brush as your imagination.
