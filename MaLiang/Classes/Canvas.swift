@@ -64,8 +64,17 @@ open class Canvas: MetalView {
     open private(set) var textures: [MLTexture] = []
     
     /// make texture and cache it with ID
+    ///
+    /// - Parameters:
+    ///   - data: image data of texture
+    ///   - id: id of texture, will be generated if not provided
+    /// - Returns: created texture, if the id provided is already exists, the existing texture will be returend
     @discardableResult
     override open func makeTexture(with data: Data, id: UUID? = nil) throws -> MLTexture {
+        // if id is set, make sure this id is not already exists
+        if let id = id, let exists = findTexture(by: id) {
+            return exists
+        }
         let texture = try super.makeTexture(with: data, id: id)
         textures.append(texture)
         return texture
