@@ -57,8 +57,8 @@ extension CGPoint {
     }
     
     func between(min: CGPoint, max: CGPoint) -> CGPoint {
-        return CGPoint(x: x.between(min: min.x, max: max.x),
-                       y: y.between(min: min.y, max: max.y))
+        return CGPoint(x: x.valueBetween(min: min.x, max: max.x),
+                       y: y.valueBetween(min: min.y, max: max.y))
     }
     
     // MARK: - Codable utils
@@ -82,38 +82,9 @@ extension CGSize {
     }
 }
 
-func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-    return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
-}
-
-func +=(lhs: inout CGPoint, rhs: CGPoint) {
-    lhs = lhs + rhs
-}
-
-func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-    return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
-}
-
-func *(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
-    return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
-}
-
-func /(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
-    return CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
-}
-
-func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
-    return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
-}
-
-extension Comparable {
-    func between(min: Self, max: Self) -> Self {
-        if self > max {
-            return max
-        } else if self < min {
-            return min
-        }
-        return self
+public extension CGRect {
+    var center: CGPoint {
+        return CGPoint(x: origin.x + width / 2, y: origin.y + height / 2)
     }
 }
 

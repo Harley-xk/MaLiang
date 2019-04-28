@@ -42,7 +42,7 @@ struct MLColor: Codable {
         (alpha, red, green, blue) = (Float(a) / 255.0, Float(r) / 255.0, Float(g) / 255.0, Float(b) / 255.0)
     }
     
-    // hex string must be saved as format of: ffffffff
+    // hex string must be saved as format of: AARRGGBB
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         let aInt = Int(alpha * 255) << 24
