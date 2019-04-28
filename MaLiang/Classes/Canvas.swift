@@ -266,8 +266,7 @@ open class Canvas: MetalView {
     ///   - size: size of texture
     ///   - textureID: id of texture for drawing
     open func renderChartlet(at point: CGPoint, size: CGSize, textureID: UUID) {
-        let chartlet = Chartlet(center: point, size: size, textureID: textureID)
-        chartlet.canvas = self
+        let chartlet = Chartlet(center: point, size: size, textureID: textureID, canvas: self)
         data.append(chartlet: chartlet)
         chartlet.drawSelf(on: screenTarget)
         screenTarget.commitCommands()

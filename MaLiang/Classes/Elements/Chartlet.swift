@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import Metal
 
 /// not implemented yet
 open class Chartlet: CanvasElement {
@@ -23,9 +24,12 @@ open class Chartlet: CanvasElement {
     /// a weak refreance to canvas
     weak var canvas: Canvas?
     
-    init(center: CGPoint, size: CGSize, textureID: UUID) {
-        self.center = center
-        self.size = size
+    init(center: CGPoint, size: CGSize, textureID: UUID, canvas: Canvas) {
+        let offset = canvas.contentOffset
+        let scale = canvas.scale
+        self.canvas = canvas
+        self.center = (center + offset) / scale
+        self.size = size / scale
         self.textureID = textureID
     }
     
