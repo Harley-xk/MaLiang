@@ -92,5 +92,126 @@
             </objects>
             <point key="canvasLocation" x="-46.376811594202906" y="98.4375"/>
         </scene>
+        <!--Chartlet Editor-->
+        <scene sceneID="gOC-Kt-8wH">
+            <objects>
+                <viewController storyboardIdentifier="ChartletEditor" id="rl2-1D-bMY" customClass="ChartletEditor" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7S8-I9-Lbj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOz-iT-DCp">
+                                <rect key="frame" x="87" y="231" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pmt-hj-QG9">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.24575966282894737" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQB-Hg-lg6">
+                                <rect key="frame" x="334" y="782" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.60472347861842102" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="czz-Zr-vaR"/>
+                                    <constraint firstAttribute="height" constant="60" id="jU1-PO-wPK"/>
+                                </constraints>
+                                <state key="normal" image="editor-confirm"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="confirmAction:" destination="rl2-1D-bMY" eventType="touchUpInside" id="v9C-wQ-lV5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbw-xc-VOE">
+                                <rect key="frame" x="20" y="782" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.60472347859999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EoC-2V-J04"/>
+                                    <constraint firstAttribute="width" constant="60" id="Vnt-aN-Gov"/>
+                                </constraints>
+                                <state key="normal" image="editor-cancel"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelAction:" destination="rl2-1D-bMY" eventType="touchUpInside" id="TTl-oe-MmM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BS-oG-IVF">
+                                <rect key="frame" x="20" y="712" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.60472347859999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="05N-CV-TbK"/>
+                                    <constraint firstAttribute="width" constant="40" id="rpd-ow-sYb"/>
+                                </constraints>
+                                <state key="normal" image="editor-smaller"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="zoomInAction:" destination="rl2-1D-bMY" eventType="touchUpInside" id="aC4-cC-H41"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7G-UM-aA1">
+                                <rect key="frame" x="20" y="660" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.60472347859999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="1a5-5k-Sls"/>
+                                    <constraint firstAttribute="height" constant="40" id="8Eg-j2-cfV"/>
+                                </constraints>
+                                <state key="normal" image="editor-larger"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="zoomOutAction:" destination="rl2-1D-bMY" eventType="touchUpInside" id="3A2-O4-K8Z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6BS-oG-IVF" firstAttribute="leading" secondItem="kbw-xc-VOE" secondAttribute="leading" id="GLJ-46-dSN"/>
+                            <constraint firstItem="kbw-xc-VOE" firstAttribute="top" secondItem="6BS-oG-IVF" secondAttribute="bottom" constant="30" id="ULY-Rx-EOg"/>
+                            <constraint firstItem="6BS-oG-IVF" firstAttribute="top" secondItem="G7G-UM-aA1" secondAttribute="bottom" constant="12" id="cAV-WE-x2X"/>
+                            <constraint firstItem="kbw-xc-VOE" firstAttribute="leading" secondItem="ZIR-fI-7Hp" secondAttribute="leading" constant="20" id="con-Fh-jTX"/>
+                            <constraint firstItem="ZIR-fI-7Hp" firstAttribute="bottom" secondItem="kbw-xc-VOE" secondAttribute="bottom" constant="20" id="eUK-pE-XS1"/>
+                            <constraint firstItem="G7G-UM-aA1" firstAttribute="centerX" secondItem="6BS-oG-IVF" secondAttribute="centerX" id="pix-Z7-pgg"/>
+                            <constraint firstItem="ZIR-fI-7Hp" firstAttribute="trailing" secondItem="aQB-Hg-lg6" secondAttribute="trailing" constant="20" id="uD0-sV-waZ"/>
+                            <constraint firstItem="ZIR-fI-7Hp" firstAttribute="bottom" secondItem="aQB-Hg-lg6" secondAttribute="bottom" constant="20" id="uFz-wX-m97"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZIR-fI-7Hp"/>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="BOz-iT-DCp" id="okv-5a-Hc4"/>
+                        <outlet property="imageView" destination="Pmt-hj-QG9" id="qC5-ab-VnX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ced-0g-L36" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.59420289855075" y="97.767857142857139"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="editor-cancel" width="42.5" height="42.5"/>
+        <image name="editor-confirm" width="32" height="22.5"/>
+        <image name="editor-larger" width="21" height="21"/>
+        <image name="editor-smaller" width="21" height="21"/>
+    </resources>
 </document>

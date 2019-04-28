@@ -1,4 +1,8 @@
 {
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
   "images" : [
     {
       "idiom" : "universal",
@@ -6,16 +10,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "chartlet-1.png",
+      "filename" : "chartlet-1@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
       "scale" : "3x"
     }
-  ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
-  }
+  ]
 }

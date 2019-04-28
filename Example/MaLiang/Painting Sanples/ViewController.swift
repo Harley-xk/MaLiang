@@ -158,15 +158,18 @@ class ViewController: UIViewController {
     
     func addChartletAction() {
         ChartletPicker.present(from: self, textures: chartlets) { [unowned self] (texture) in
-//            self.showEditor(for: texture)
-            let x = CGFloat.random(in: 0 ..< self.canvas.bounds.width)
-            let y = CGFloat.random(in: 0 ..< self.canvas.bounds.height)
-            self.canvas.renderChartlet(at: CGPoint(x: x, y: y), size: texture.size, textureID: texture.id)
+            self.showEditor(for: texture)
+//            let x = CGFloat.random(in: 0 ..< self.canvas.bounds.width)
+//            let y = CGFloat.random(in: 0 ..< self.canvas.bounds.height)
+//            self.canvas.renderChartlet(at: CGPoint(x: x, y: y), size: texture.size, textureID: texture.id)
         }
     }
     
     func showEditor(for texture: MLTexture) {
-        ChartletEditor.present(from: self, for: texture)
+        ChartletEditor.present(from: self, for: texture) { [unowned self] (editor) in
+            let result = editor.convertCoordinate(to: self.canvas)
+            self.canvas.renderChartlet(at: result.center, size: result.size, textureID: texture.id)
+        }
     }
     
     func snapshotAction(_ sender: Any) {

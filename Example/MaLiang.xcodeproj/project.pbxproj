@@ -17,7 +17,7 @@
 		C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C3617DB82272EC5C00E5DC7C /* pencil.png */; };
 		C3617DC022733FB300E5DC7C /* ChartletPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */; };
 		C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */; };
-		C3617DC42273FFDB00E5DC7C /* ChartletEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DC32273FFDB00E5DC7C /* ChartletEditable.swift */; };
+		C3617DC42273FFDB00E5DC7C /* ChartletEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DC32273FFDB00E5DC7C /* ChartletEditor.swift */; };
 		C3617DC6227407FC00E5DC7C /* ChartletImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */; };
 		C39C35A72259FBCB00DA0519 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35A62259FBCB00DA0519 /* RootViewController.swift */; };
 		C39C35AB2259FBD100DA0519 /* PaintingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35A82259FBD100DA0519 /* PaintingPreview.swift */; };
@@ -42,7 +42,7 @@
 		C3617DB82272EC5C00E5DC7C /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletPicker.swift; sourceTree = "<group>"; };
 		C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartletPicker.storyboard; sourceTree = "<group>"; };
-		C3617DC32273FFDB00E5DC7C /* ChartletEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletEditable.swift; sourceTree = "<group>"; };
+		C3617DC32273FFDB00E5DC7C /* ChartletEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletEditor.swift; sourceTree = "<group>"; };
 		C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletImageCache.swift; sourceTree = "<group>"; };
 		C39C35A62259FBCB00DA0519 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		C39C35A82259FBD100DA0519 /* PaintingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingPreview.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 				C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */,
 				C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */,
 				C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */,
-				C3617DC32273FFDB00E5DC7C /* ChartletEditable.swift */,
+				C3617DC32273FFDB00E5DC7C /* ChartletEditor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 			files = (
 				C39C35AD2259FBD100DA0519 /* ScrollableSample.swift in Sources */,
 				C39C35AB2259FBD100DA0519 /* PaintingPreview.swift in Sources */,
-				C3617DC42273FFDB00E5DC7C /* ChartletEditable.swift in Sources */,
+				C3617DC42273FFDB00E5DC7C /* ChartletEditor.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				C30B2D35226F06B400E3429A /* SavedFilesViewController.swift in Sources */,
