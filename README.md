@@ -27,7 +27,7 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
 - [x] **Save** vector contents to disk
 - [ ] Texture rotation
 
-[Buy me a cup of coffee](DONATE.md) if I saved your time.
+[Buy me a cup of coffee](DONATE.md) if I have saved your time.
 
 ## Requirements
 
@@ -63,6 +63,7 @@ github "Harley-xk/MaLiang"
 ```
 
 Run `carthage update` to build the framework and drag the built `MaLiang.framework` into your Xcode project.
+
 **Make sure to add `MaLiang.framework` to your target's `Embedded Binaries`**
 
 ## Usage
