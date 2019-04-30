@@ -23,6 +23,19 @@ public final class Printer: Brush {
         return library.makeFunction(name: "fragment_render_target")
     }
     
+    /// Blending options for this brush, overrides to implement your own blending options
+    public override func setupBlendOptions(for attachment: MTLRenderPipelineColorAttachmentDescriptor) {
+        attachment.isBlendingEnabled = true
+        
+        attachment.rgbBlendOperation = .add
+        attachment.sourceRGBBlendFactor = .one
+        attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
+        
+        attachment.alphaBlendOperation = .add
+        attachment.sourceAlphaBlendFactor = .one
+        attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
+    }
+
     internal func render(chartlet: Chartlet, on renderTarget: RenderTarget? = nil) {
         
         guard let target = renderTarget ?? self.target?.screenTarget else {

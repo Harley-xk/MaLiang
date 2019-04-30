@@ -138,7 +138,7 @@ open class Brush {
         attachment.isBlendingEnabled = true
 
         attachment.rgbBlendOperation = .add
-        attachment.sourceRGBBlendFactor = .one
+        attachment.sourceRGBBlendFactor = .sourceAlpha
         attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
         
         attachment.alphaBlendOperation = .add
