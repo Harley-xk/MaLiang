@@ -5,9 +5,11 @@
 
 [![CI Status](http://img.shields.io/travis/Harley-xk/Chrysan.svg?style=flat)](https://travis-ci.org/Harley-xk/Chrysan)
 [![Version](https://img.shields.io/cocoapods/v/Chrysan.svg?style=flat)](http://cocoapods.org/pods/Chrysan)
+[![Language](https://img.shields.io/badge/language-Swift%205-orange.svg)](https://swift.org)
 [![License](https://img.shields.io/cocoapods/l/Chrysan.svg?style=flat)](http://cocoapods.org/pods/Chrysan)
 [![Platform](https://img.shields.io/cocoapods/p/Chrysan.svg?style=flat)](http://cocoapods.org/pods/Chrysan)
-
+[![twitter](https://img.shields.io/badge/twitter-Harley--xk-blue.svg)](https://twitter.com/Harley86589)
+[![weibo](https://img.shields.io/badge/weibo-%E7%BE%A4%E6%98%9F%E9%99%A8%E8%90%BD-orange.svg)](https://weibo.com/u/1161848005)
 > Chrysan 是一个简单易用的 HUD 库，基于我较早之前写的 HKProgressHUD，使用 Swift 进行了重构和优化。使用 iOS 自带的 UIBlurEffect 毛玻璃特效。
 
 <img src="Images/sample_2.png" height=350></img>
@@ -17,9 +19,11 @@
 <img src="Images/sample_0.gif" height=350></img>
 
 ### 适配
-Chrysan 最新版支持 iOS 9.0+，已针对 Swift 4.2 以及 iOS 12 适配。
+
+Chrysan 最新版支持 iOS 9.0+，已针对 Swift 5 以及 iOS 12 适配。
 
 ### 安装
+
 通过 CocoaPods 安装：
 
 ```ruby
@@ -29,7 +33,10 @@ pod 'Chrysan'
 pod 'Chrysan', :git => 'https://github.com/Harley-xk/Chrysan.git, :tag=>1.3.0'
 ```
 
+**_Swift 5 请使用 1.5.0 及以上版本_**
+
 ### 使用
+
 每个 View 都有一个 chrysan 属性，可以获取当前 View 的独立的菊花。只有当第一次访问 chrysan 属性时才会真实地创建 ChrysanView 实例，避免不必要的开销和内存占用。
 
 通过访问 ViewController 的 chrysan 属性，可以访问 ViewController 的根 View 的菊花并自动创建。~~通过 ViewController 创建的菊花会自动设置向上 64 个 pt 的距离位移，以优化视觉效果。~~

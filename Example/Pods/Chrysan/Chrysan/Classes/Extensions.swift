@@ -14,7 +14,7 @@ public extension UIView {
         static var chrysanViewKey = "Chrysan.ChrysanKey"
     }
     
-    public var chrysan: ChrysanView {
+    var chrysan: ChrysanView {
         get {
             var hud = objc_getAssociatedObject(self, &AssociatedKeys.chrysanViewKey) as? ChrysanView
             if hud == nil {
@@ -32,7 +32,7 @@ public extension UIView {
 
 public extension UIViewController {
     
-    public var chrysan: ChrysanView {
+    var chrysan: ChrysanView {
         get {
             return view.chrysan
         }

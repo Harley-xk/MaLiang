@@ -176,7 +176,7 @@ public class ChrysanView: UIView {
     }
     
     private func pinToParent(withEdge edge: NSLayoutConstraint.Attribute) -> NSLayoutConstraint {
-        return NSLayoutConstraint(item: parent, attribute: edge, relatedBy: .equal, toItem: self, attribute: edge, multiplier: 1, constant: 0)
+        return NSLayoutConstraint(item: parent!, attribute: edge, relatedBy: .equal, toItem: self, attribute: edge, multiplier: 1, constant: 0)
     }
     
     private func updateAndShow() {

@@ -6,6 +6,6 @@ target 'MaLiang_Example' do
   pod 'Comet'
   pod 'Chrysan'
   pod 'Zip'
-  pod 'SnapKit', :inhibit_warnings => true
+  pod 'SnapKit'
   
 end
