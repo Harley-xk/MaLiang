@@ -2,6 +2,7 @@
 
 [![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg)](https://travis-ci.org/Harley-xk/MaLiang)
 [![Version](https://img.shields.io/cocoapods/v/MaLiang.svg)](http://cocoapods.org/pods/MaLiang)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Language](https://img.shields.io/badge/language-Swift%205-orange.svg)](https://swift.org)
 [![codebeat badge](https://codebeat.co/badges/438159fd-b5f9-43d4-a1d5-b07ba5e6cf03)](https://codebeat.co/projects/github-com-harley-xk-maliang-metal)
 [![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
@@ -38,8 +39,10 @@ You can simply make it compatible with lower version of iOS and swift by changin
 
 ## Installation
 
+### CocoaPods
+
 MaLiang is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+it, simply add the following line to your `Podfile`:
 
 ```ruby
 pod 'MaLiang'
@@ -50,6 +53,17 @@ To use the old OpenGL ES verion:
 ```ruby
 pod 'MaLiang', '~> 1.1'
 ```
+
+### Carthage
+
+To integrate MaLiang into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
+
+```ruby
+github "Harley-xk/MaLiang"
+```
+
+Run `carthage update` to build the framework and drag the built `MaLiang.framework` into your Xcode project.
+**Make sure to add `MaLiang.framework` to your target's `Embedded Binaries`**
 
 ## Usage
 
