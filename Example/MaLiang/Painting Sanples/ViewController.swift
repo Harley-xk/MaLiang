@@ -77,6 +77,7 @@ class ViewController: UIViewController {
         brush.pointStep = 2
         brush.forceSensitive = 0.6
         brush.color = color
+        brush.forceOnTap = 0.1
         
         let claw = registerBrush(with: "claw")
         claw.rotation = .ahead
