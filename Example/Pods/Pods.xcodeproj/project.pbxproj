@@ -525,6 +525,39 @@
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
+		70A78D2D359B5EF52DBC169C387AD3AF /* MetalBase */ = {
+			isa = PBXGroup;
+			children = (
+				AC522385888B617DE92E9E7B14BD3ADF /* MetalView.swift */,
+				B41A5E16C0EB72FC86772046844747FF /* MLColor.swift */,
+				FC53146BE835E47F8679A94F65433B64 /* MLError.swift */,
+				DC74CA96719B2CFA04B45715FDD907CA /* MLLine.swift */,
+				27A4B8E6717468F5D00C0F3704752298 /* MLTexture.swift */,
+				E0D60C6495E76BA97E128E6F23E35BE1 /* RenderTarget.swift */,
+				45FB5224CE4DBE77BA06637A2735B0BE /* Shaders.metal */,
+				35A1B2733E418F723D5C70C4BC231F76 /* SnapshotTarget.swift */,
+			);
+			name = MetalBase;
+			path = MaLiang/Classes/MetalBase;
+			sourceTree = "<group>";
+		};
+		7247428B7442E877FF77F39C362D275A /* MaLiang */ = {
+			isa = PBXGroup;
+			children = (
+				0FA6790F409137C2C0455F389BEA3375 /* Canvas.swift */,
+				8D23FA5BAA2D75B059904AF7EEE7F506 /* ScrollableCanvas.swift */,
+				C63B998E31434205CF7F89A8538DF716 /* Brush */,
+				0B5AF29F6C15D2600B7E4C94E5CE8532 /* Data & Documents */,
+				1B32F180CFD28A1E1700225D8E6D7437 /* Elements */,
+				70A78D2D359B5EF52DBC169C387AD3AF /* MetalBase */,
+				C274F4B0A4B80473CE0ACA6A8A59DCB6 /* Utils */,
+				39467EB32C8B360AA423D96D5E015391 /* Pod */,
+				9311F609FDE4911812BDD00661F895FD /* Support Files */,
+			);
+			name = MaLiang;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		7F6B7E75030CEEBEC7170D9DC64AD1A2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (

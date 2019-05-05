@@ -22,11 +22,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var backgroundSwitchButton: UIButton!
     @IBOutlet weak var backgroundView: UIImageView!
     
-    @IBOutlet weak var canvas: Canvas!
+    @IBOutlet weak var canvas: ScrollableCanvas!
     
     var filePath: String?
     
-    var brushNames = ["Pen", "Pencil", "Brush", "Eraser"]
     var brushes: [Brush] = []
     var chartlets: [MLTexture] = []
     
@@ -59,22 +58,33 @@ class ViewController: UIViewController {
         canvas.backgroundColor = .clear
         
         let pen = canvas.defaultBrush!
-        pen.opacity = 1
+        pen.name = "Pen"
+        pen.opacity = 0.1
         pen.pointSize = 5
         pen.pointStep = 1
         pen.color = color
         
         let pencil = registerBrush(with: "pencil")
+        pencil.rotation = .random
         pencil.pointSize = 3
         pencil.pointStep = 2
         pencil.forceSensitive = 0.3
-        pencil.opacity = 0.6
+        pencil.opacity = 1
         
         let brush = registerBrush(with: "brush")
-        brush.pointSize = 30
+        brush.rotation = .ahead
+        brush.pointSize = 15
         brush.pointStep = 2
         brush.forceSensitive = 0.6
         brush.color = color
+        
+        let claw = registerBrush(with: "claw")
+        claw.rotation = .ahead
+        claw.pointSize = 30
+        claw.pointStep = 5
+        claw.forceSensitive = 0.1
+        claw.color = color
+
         
         // make eraser with a texture for pencil
         //        let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
@@ -82,13 +92,13 @@ class ViewController: UIViewController {
         //        let eraser = Eraser(texture: texture, target: canvas)
         
         /// make eraser with default round point
-        let eraser = try! canvas.registerBrush(name: "maliang.eraser") as Eraser
+        let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
         
-        brushes = [pen, pencil, brush, eraser]
+        brushes = [pen, pencil, brush, claw, eraser]
         
         brushSegement.removeAllSegments()
         for i in 0 ..< brushes.count {
-            let name = brushNames[i]
+            let name = brushes[i].name
             brushSegement.insertSegment(withTitle: name, at: i, animated: false)
         }
         brushSegement.selectedSegmentIndex = 0

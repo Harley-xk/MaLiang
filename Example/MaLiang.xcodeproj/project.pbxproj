@@ -13,6 +13,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		C30B2D35226F06B400E3429A /* SavedFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */; };
+		C35E4454227E887B005C612D /* claw.png in Resources */ = {isa = PBXBuildFile; fileRef = C35E4453227E887B005C612D /* claw.png */; };
 		C3617DB72272EB2400E5DC7C /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = C3617DB52272EB2400E5DC7C /* brush.png */; };
 		C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C3617DB82272EC5C00E5DC7C /* pencil.png */; };
 		C3617DC022733FB300E5DC7C /* ChartletPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */; };
@@ -38,6 +39,7 @@
 		BC1D418F740B155E4322B525 /* Pods-MaLiang_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Tests.release.xcconfig"; path = "Target Support Files/Pods-MaLiang_Tests/Pods-MaLiang_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C052AA7056E3CAE35CF9E23A /* Pods-MaLiang_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.release.xcconfig"; path = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFilesViewController.swift; sourceTree = "<group>"; };
+		C35E4453227E887B005C612D /* claw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = claw.png; sourceTree = "<group>"; };
 		C3617DB52272EB2400E5DC7C /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
 		C3617DB82272EC5C00E5DC7C /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletPicker.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				C3617DB52272EB2400E5DC7C /* brush.png */,
 				C3617DB82272EC5C00E5DC7C /* pencil.png */,
+				C35E4453227E887B005C612D /* claw.png */,
 			);
 			path = Textures;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			files = (
 				C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */,
 				C3617DB72272EB2400E5DC7C /* brush.png in Resources */,
+				C35E4454227E887B005C612D /* claw.png in Resources */,
 				C39C35BF2259FD7A00DA0519 /* Main.storyboard in Resources */,
 				C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
