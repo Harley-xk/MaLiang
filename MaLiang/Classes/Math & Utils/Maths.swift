@@ -95,24 +95,10 @@ class Matrix {
         m[10] = z
         return self
     }
-    
-    @discardableResult
-    func rotation(x: Float, y: Float, z: Float)  -> Matrix {
-        m[0] = cos(y) * cos(z)
-        m[4] = cos(z) * sin(x) * sin(y) - cos(x) * sin(z)
-        m[8] = cos(x) * cos(z) * sin(y) + sin(x) * sin(z)
-        m[1] = cos(y) * sin(z)
-        m[5] = cos(x) * cos(z) + sin(x) * sin(y) * sin(z)
-        m[9] = -cos(z) * sin(x) + cos(x) * sin(y) * sin(z)
-        m[2] = -sin(y)
-        m[6] = cos(y) * sin(x)
-        m[10] = cos(x) * cos(y)
-        return self
-    }
 }
 
 // MARK: - Point Utils
-extension CGPoint {
+public extension CGPoint {
     
     static func middle(p1: CGPoint, p2: CGPoint) -> CGPoint {
         return CGPoint(x: (p1.x + p2.x) * 0.5, y: (p1.y + p2.y) * 0.5)
@@ -144,6 +130,16 @@ extension CGPoint {
         point.x += x
         point.y += y
         return point
+    }
+    
+    func rotatedBy(_ angle: CGFloat, anchor: CGPoint) -> CGPoint {
+        let point = self - anchor
+        let a = Double(-angle)
+        let x = Double(point.x)
+        let y = Double(point.y)
+        let x_ = x * cos(a) - y * sin(a);
+        let y_ = x * sin(a) + y * cos(a);
+        return CGPoint(x: CGFloat(x_), y: CGFloat(y_)) + anchor
     }
 }
 
@@ -178,6 +174,23 @@ public func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
 public func /(lhs: CGSize, rhs: CGFloat) -> CGSize {
     return CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
 }
+
+public func +(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+    return CGPoint(x: lhs.x + rhs.width, y: lhs.y + rhs.height)
+}
+
+public func -(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+    return CGPoint(x: lhs.x - rhs.width, y: lhs.y - rhs.height)
+}
+
+public func *(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+    return CGPoint(x: lhs.x * rhs.width, y: lhs.y * rhs.height)
+}
+
+public func /(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+    return CGPoint(x: lhs.x / rhs.width, y: lhs.y / rhs.height)
+}
+
 
 public extension Comparable {
     func valueBetween(min: Self, max: Self) -> Self {

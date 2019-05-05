@@ -19,18 +19,20 @@ open class Chartlet: CanvasElement {
     public var size: CGSize
     
     public var textureID: UUID
-//    public var texture: MLTexture
+    
+    public var angle: CGFloat?
     
     /// a weak refreance to canvas
     weak var canvas: Canvas?
     
-    init(center: CGPoint, size: CGSize, textureID: UUID, canvas: Canvas) {
+    init(center: CGPoint, size: CGSize, textureID: UUID, angle: CGFloat, canvas: Canvas) {
         let offset = canvas.contentOffset
         let scale = canvas.scale
         self.canvas = canvas
         self.center = (center + offset) / scale
         self.size = size / scale
         self.textureID = textureID
+        self.angle = angle
     }
     
     /// draw self with printer of canvas
@@ -38,31 +40,24 @@ open class Chartlet: CanvasElement {
         canvas?.printer.render(chartlet: self, on: target)
     }
     
-    /// get vertex buffer for this line strip, remake if not exists
-    open func retrieveBuffers() -> MTLBuffer? {
-        if vertex_buffer == nil {
-            remakBuffer()
-        }
-        return vertex_buffer
-    }
-    
-    private var vertex_buffer: MTLBuffer?
-    
-    private func remakBuffer() {
-        
+    lazy var vertex_buffer: MTLBuffer? = {
         let scale = canvas?.printer.target?.contentScaleFactor ?? UIScreen.main.nativeScale
-
+        
         let center = self.center * scale
         let halfSize = self.size * scale * 0.5
-        
+        let angle = self.angle ?? 0
         let vertexes = [
-            Vertex(position: CGPoint(x: center.x - halfSize.width, y: center.y - halfSize.height), textCoord: CGPoint(x: 0, y: 0)),
-            Vertex(position: CGPoint(x: center.x + halfSize.width , y: center.y - halfSize.height), textCoord: CGPoint(x: 1, y: 0)),
-            Vertex(position: CGPoint(x: center.x - halfSize.width , y: center.y + halfSize.height), textCoord: CGPoint(x: 0, y: 1)),
-            Vertex(position: CGPoint(x: center.x + halfSize.width , y: center.y + halfSize.height), textCoord: CGPoint(x: 1, y: 1)),
+            Vertex(position: CGPoint(x: center.x - halfSize.width, y: center.y - halfSize.height).rotatedBy(angle, anchor: center),
+                   textCoord: CGPoint(x: 0, y: 0)),
+            Vertex(position: CGPoint(x: center.x + halfSize.width , y: center.y - halfSize.height).rotatedBy(angle, anchor: center),
+                   textCoord: CGPoint(x: 1, y: 0)),
+            Vertex(position: CGPoint(x: center.x - halfSize.width , y: center.y + halfSize.height).rotatedBy(angle, anchor: center),
+                   textCoord: CGPoint(x: 0, y: 1)),
+            Vertex(position: CGPoint(x: center.x + halfSize.width , y: center.y + halfSize.height).rotatedBy(angle, anchor: center),
+                   textCoord: CGPoint(x: 1, y: 1)),
         ]
-        vertex_buffer = sharedDevice?.makeBuffer(bytes: vertexes, length: MemoryLayout<Vertex>.stride * 4, options: .cpuCacheModeWriteCombined)
-    }
+        return sharedDevice?.makeBuffer(bytes: vertexes, length: MemoryLayout<Vertex>.stride * 4, options: .cpuCacheModeWriteCombined)
+    }()
     
     // MARK: - Codable
     
@@ -71,6 +66,7 @@ open class Chartlet: CanvasElement {
         case center
         case size
         case texture
+        case angle
     }
     
     public required init(from decoder: Decoder) throws {
@@ -81,6 +77,7 @@ open class Chartlet: CanvasElement {
         let sizeInts = try container.decode([Int].self, forKey: .size)
         size = CGSize.make(from: sizeInts)
         textureID = try container.decode(UUID.self, forKey: .texture)
+        angle = try? container.decode(CGFloat.self, forKey: .angle)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -89,5 +86,6 @@ open class Chartlet: CanvasElement {
         try container.encode(center.encodeToInts(), forKey: .center)
         try container.encode(size.encodeToInts(), forKey: .size)
         try container.encode(textureID, forKey: .texture)
+        try container.encode(angle, forKey: .angle)
     }
 }

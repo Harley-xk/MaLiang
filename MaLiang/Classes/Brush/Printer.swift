@@ -50,7 +50,7 @@ public final class Printer: Brush {
         
         commandEncoder?.setRenderPipelineState(pipelineState)
         
-        if let vertex_buffer = chartlet.retrieveBuffers(), let texture = self.target?.findTexture(by: chartlet.textureID)?.texture {
+        if let vertex_buffer = chartlet.vertex_buffer, let texture = self.target?.findTexture(by: chartlet.textureID)?.texture {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
             commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
             commandEncoder?.setVertexBuffer(target.transform_buffer, offset: 0, index: 2)

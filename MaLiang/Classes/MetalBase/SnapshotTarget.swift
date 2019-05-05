@@ -44,7 +44,7 @@ open class SnapshotTarget: RenderTarget {
     }
     
     private func syncContent() {
-        canvas?.redraw(on: self, display: false)
+        canvas?.redraw(on: self)
         commitCommands()
     }
 }

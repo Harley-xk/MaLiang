@@ -197,7 +197,7 @@ open class Canvas: MetalView {
     
     /// redraw elemets in document
     /// - Attention: thie method must be called on main thread
-    open func redraw(on target: RenderTarget? = nil, display: Bool = true) {
+    open func redraw(on target: RenderTarget? = nil) {
     
         let target = target ?? screenTarget!
         
@@ -274,8 +274,9 @@ open class Canvas: MetalView {
     ///   - point: location where to draw the chartlet
     ///   - size: size of texture
     ///   - textureID: id of texture for drawing
-    open func renderChartlet(at point: CGPoint, size: CGSize, textureID: UUID) {
-        let chartlet = Chartlet(center: point, size: size, textureID: textureID, canvas: self)
+    ///   - rotation: rotation angle of texture for drawing
+    open func renderChartlet(at point: CGPoint, size: CGSize, textureID: UUID, rotation: CGFloat = 0) {
+        let chartlet = Chartlet(center: point, size: size, textureID: textureID, angle: rotation, canvas: self)
         data.append(chartlet: chartlet)
         chartlet.drawSelf(on: screenTarget)
         screenTarget.commitCommands()

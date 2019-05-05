@@ -51,11 +51,11 @@ fragment float4 fragment_render_target(Vertex vertex_data [[ stage_in ]],
     return color;
 };
 
-float2 transformPointCoord(float2 pointCoord, float a) {
-    float2 point20 = pointCoord - float2(0.5);
+float2 transformPointCoord(float2 pointCoord, float a, float2 anchor) {
+    float2 point20 = pointCoord - anchor;
     float x = point20.x * cos(a) - point20.y * sin(a);
     float y = point20.x * sin(a) + point20.y * cos(a);
-    return float2(x, y) + float2(0.5);
+    return float2(x, y) + anchor;
 }
 
 //======================================
@@ -96,8 +96,8 @@ fragment float4 fragment_point_func(Point point_data [[ stage_in ]],
                                     float2 pointCoord  [[ point_coord ]])
 {
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
-    float2 coor = transformPointCoord(pointCoord, point_data.angle);
-    float4 color = float4(tex2d.sample(textureSampler, coor));
+    float2 text_coord = transformPointCoord(pointCoord, point_data.angle, float2(0.5));
+    float4 color = float4(tex2d.sample(textureSampler, text_coord));
     return float4(point_data.color.rgb, color.a * point_data.color.a);
 };
 
