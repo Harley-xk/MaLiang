@@ -100,21 +100,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOz-iT-DCp">
-                                <rect key="frame" x="87" y="231" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BOz-iT-DCp">
+                                <rect key="frame" x="87" y="231" width="240" height="307"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pmt-hj-QG9">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vtg-aO-5da">
+                                        <rect key="frame" x="19" y="95" width="203" height="116"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pmt-hj-QG9">
+                                                <rect key="frame" x="20" y="20" width="163" height="76"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.24794407894736842" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Pmt-hj-QG9" firstAttribute="top" secondItem="Vtg-aO-5da" secondAttribute="top" constant="5" id="4TU-xl-yUu"/>
+                                            <constraint firstItem="Pmt-hj-QG9" firstAttribute="leading" secondItem="Vtg-aO-5da" secondAttribute="leading" constant="5" id="hKp-7g-fbr"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pmt-hj-QG9" secondAttribute="trailing" constant="5" id="sQe-C8-bGN"/>
+                                            <constraint firstAttribute="bottom" secondItem="Pmt-hj-QG9" secondAttribute="bottom" constant="5" id="xFt-c5-zUN"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="editor-rotate" translatesAutoresizingMaskIntoConstraints="NO" id="HKE-ZH-lE1">
+                                        <rect key="frame" x="103" y="12" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Mb7-OO-zbp"/>
+                                            <constraint firstAttribute="height" constant="30" id="Ndr-1n-eRk"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.24575966282894737" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <color key="backgroundColor" red="0.36500796061536944" green="1" blue="0.2113698703104413" alpha="0.10027754934210527" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Vtg-aO-5da" secondAttribute="trailing" constant="20" id="BxE-Rc-A0p"/>
+                                    <constraint firstItem="Vtg-aO-5da" firstAttribute="top" secondItem="BOz-iT-DCp" secondAttribute="top" constant="50" id="SeD-kE-SX9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vtg-aO-5da" secondAttribute="bottom" constant="20" id="YTc-m8-Umy"/>
+                                    <constraint firstItem="Vtg-aO-5da" firstAttribute="top" secondItem="HKE-ZH-lE1" secondAttribute="bottom" constant="8" id="bZl-NW-nG9"/>
+                                    <constraint firstItem="HKE-ZH-lE1" firstAttribute="centerX" secondItem="Vtg-aO-5da" secondAttribute="centerX" id="fuI-FT-dmd"/>
+                                    <constraint firstItem="Vtg-aO-5da" firstAttribute="leading" secondItem="BOz-iT-DCp" secondAttribute="leading" constant="20" id="vOj-xL-ZJF"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQB-Hg-lg6">
                                 <rect key="frame" x="334" y="782" width="60" height="60"/>
@@ -201,6 +226,7 @@
                     <connections>
                         <outlet property="container" destination="BOz-iT-DCp" id="okv-5a-Hc4"/>
                         <outlet property="imageView" destination="Pmt-hj-QG9" id="qC5-ab-VnX"/>
+                        <outlet property="rotationAnchor" destination="HKE-ZH-lE1" id="aXk-i5-oYt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ced-0g-L36" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -212,6 +238,7 @@
         <image name="editor-cancel" width="42.5" height="42.5"/>
         <image name="editor-confirm" width="32" height="22.5"/>
         <image name="editor-larger" width="21" height="21"/>
+        <image name="editor-rotate" width="42.5" height="42.5"/>
         <image name="editor-smaller" width="21" height="21"/>
     </resources>
 </document>

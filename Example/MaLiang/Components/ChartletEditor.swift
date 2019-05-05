@@ -16,6 +16,7 @@ class ChartletEditor: UIViewController {
     struct Result {
         var center: CGPoint
         var size: CGSize
+        var angle: CGFloat
     }
     
     typealias ResultHandler = (_ editor: ChartletEditor) -> ()
@@ -29,8 +30,8 @@ class ChartletEditor: UIViewController {
     }
     
     func convertCoordinate(to view: UIView) -> Result {
-        let center = view.convert(container.center, to: view)
-        return Result(center: center, size: imageView.bounds.size)
+        let center = imageView.superview!.convert(imageView.center, to: view)
+        return Result(center: center, size: imageView.bounds.size, angle: currentAngle)
     }
     
     private var texture: MLTexture!
@@ -38,12 +39,27 @@ class ChartletEditor: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var rotationAnchor: UIImageView!
+    
+    var imageCenterY: NSLayoutConstraint!
+    var imageCenterX: NSLayoutConstraint!
+    var imageWidth: NSLayoutConstraint!
+    var imageHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        container.isUserInteractionEnabled = true
+        container.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
         imageView.image = texture.texture.toUIImage()
-        container.frame = .zero
+        
+        imageView.snp.makeConstraints {
+            $0.centerX.equalTo(self.view.snp.left)
+            $0.centerY.equalTo(self.view.snp.top)
+            $0.size.equalTo(60)
+        }
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         container.addGestureRecognizer(pan)
@@ -51,13 +67,14 @@ class ChartletEditor: UIViewController {
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
         container.addGestureRecognizer(pinch)
         
-        container.isUserInteractionEnabled = true
+        let rotate = UIPanGestureRecognizer(target: self, action: #selector(handleRotationGesture(_:)))
+        rotationAnchor.addGestureRecognizer(rotate)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scaleContent(to: 1)
-        container.center = view.center
+        moveContent(to: view.center)
     }
 
     
@@ -86,11 +103,12 @@ class ChartletEditor: UIViewController {
     
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let location = gesture.location(in: view)
+        
         if gesture.state == .began {
             panOffset = gesture.location(in: container)
         }
         if gesture.state == .changed {
-            container.frame.origin = location - panOffset
+            moveContent(to: location - panOffset + imageView.superview!.center)
         }
     }
     
@@ -98,8 +116,6 @@ class ChartletEditor: UIViewController {
     
     @objc private func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
         let scale = currentScale * gesture.scale * gesture.scale
-        if gesture.state == .began {
-        }
         if gesture.state == .ended {
             scaleContent(to: scale)
             currentScale = scale
@@ -109,13 +125,34 @@ class ChartletEditor: UIViewController {
         }
     }
     
+    private var currentAngle: CGFloat = 0
+    
+    @objc private func handleRotationGesture(_ gesture: UIPinchGestureRecognizer) {
+        let location = gesture.location(in: view)
+        let imageCenter = imageView.superview!.convert(imageView.center, to: view)
+        currentAngle =  location.angel(to: imageCenter) - CGFloat.pi / 2
+        rotateContent(to: currentAngle)
+    }
+    
+    private func moveContent(to location: CGPoint) {
+        imageView.snp.updateConstraints {
+            $0.centerX.equalTo(self.view.snp.left).offset(location.x)
+            $0.centerY.equalTo(self.view.snp.top).offset(location.y)
+        }
+    }
+    
     private func scaleContent(to scale: CGFloat) {
         let scale = scale.valueBetween(min: 0.2, max: 5)
-        let center = container.center
         let newSize = texture.size * scale
-        container.frame.size = newSize + CGSize(width: 10, height: 10)
-        container.center = center
-        imageView.frame = CGRect(x: 5, y: 5, width: newSize.width, height: newSize.height)
+        imageView.snp.updateConstraints {
+            $0.width.equalTo(newSize.width)
+            $0.height.equalTo(newSize.height)
+        }
+    }
+    
+    private func rotateContent(to angle: CGFloat) {
+        container.layer.anchorPoint = imageView.superview!.center / container.bounds.size
+        container.transform = CGAffineTransform(rotationAngle: -angle)
     }
     
 }

@@ -179,7 +179,7 @@ class ViewController: UIViewController {
     func showEditor(for texture: MLTexture) {
         ChartletEditor.present(from: self, for: texture) { [unowned self] (editor) in
             let result = editor.convertCoordinate(to: self.canvas)
-            self.canvas.renderChartlet(at: result.center, size: result.size, textureID: texture.id)
+            self.canvas.renderChartlet(at: result.center, size: result.size, textureID: texture.id, rotation: result.angle)
         }
     }
     
