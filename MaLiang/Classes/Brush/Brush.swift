@@ -47,6 +47,9 @@ open class Brush {
     // defaults to false, the stroke size in visual will stay with the original value
     open var scaleWithCanvas = false
     
+    // force used when tap the canvas, defaults to 0.1
+    open var forceOnTap: CGFloat = 1
+    
     /// color of stroke
     open var color: UIColor = .black {
         didSet {
@@ -100,7 +103,8 @@ open class Brush {
     }
 
     /// get a line with specified begin and end location
-    open func makeLine(from: CGPoint, to: CGPoint, force: CGFloat = 1) -> MLLine {
+    open func makeLine(from: CGPoint, to: CGPoint, force: CGFloat? = nil) -> MLLine {
+        let force = force ?? forceOnTap
         let scale = scaleWithCanvas ? 1 : canvasScale
         let line = MLLine(begin: (from + canvasOffset) / canvasScale,
                           end: (to + canvasOffset) / canvasScale,
