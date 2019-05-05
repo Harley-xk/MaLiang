@@ -7,7 +7,7 @@
 
 import Foundation
 import Metal
-import CoreGraphics
+import UIKit
 
 /// a line strip with lines and brush info
 open class LineStrip: CanvasElement {
@@ -37,7 +37,7 @@ open class LineStrip: CanvasElement {
         self.brush = brush
         self.brushName = brush.name
         self.color = brush.renderingColor
-        remakBuffer()
+        remakBuffer(rotation: brush.rotation)
     }
     
     open func append(lines: [MLLine]) {
@@ -50,9 +50,9 @@ open class LineStrip: CanvasElement {
     }
     
     /// get vertex buffer for this line strip, remake if not exists
-    open func retrieveBuffers() -> MTLBuffer? {
+    open func retrieveBuffers(rotation: Brush.Rotation) -> MTLBuffer? {
         if vertex_buffer == nil {
-            remakBuffer()
+            remakBuffer(rotation: rotation)
         }
         return vertex_buffer
     }
@@ -62,7 +62,7 @@ open class LineStrip: CanvasElement {
     
     private var vertex_buffer: MTLBuffer?
     
-    private func remakBuffer() {
+    private func remakBuffer(rotation: Brush.Rotation) {
         
         guard lines.count > 0 else {
             return
@@ -76,11 +76,20 @@ open class LineStrip: CanvasElement {
             line.begin = line.begin * scale
             line.end = line.end * scale
             let count = max(line.length / line.pointStep, 1)
+            
             for i in 0 ..< Int(count) {
                 let index = CGFloat(i)
                 let x = line.begin.x + (line.end.x - line.begin.x) * (index / count)
                 let y = line.begin.y + (line.end.y - line.begin.y) * (index / count)
-                vertexes.append(Point(x: x, y: y, color: line.color ?? color, size: line.pointSize * scale))
+                
+                var angle: CGFloat = 0
+                switch rotation {
+                case let .fixed(a): angle = a
+                case .random: angle = CGFloat.random(in: -CGFloat.pi ... CGFloat.pi)
+                case .ahead: angle = line.angle
+                }
+                
+                vertexes.append(Point(x: x, y: y, color: line.color ?? color, size: line.pointSize * scale, angle: angle))
             }
         }
         

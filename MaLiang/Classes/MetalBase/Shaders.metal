@@ -25,6 +25,7 @@ struct Uniforms {
 struct Point {
     float4 position [[position]];
     float4 color;
+    float angle;
     float size [[point_size]];
 };
 
@@ -49,6 +50,13 @@ fragment float4 fragment_render_target(Vertex vertex_data [[ stage_in ]],
     float4 color = float4(tex2d.sample(textureSampler, vertex_data.text_coord));
     return color;
 };
+
+float2 transformPointCoord(float2 pointCoord, float a) {
+    float2 point20 = pointCoord - float2(0.5);
+    float x = point20.x * cos(a) - point20.y * sin(a);
+    float y = point20.x * sin(a) + point20.y * cos(a);
+    return float2(x, y) + float2(0.5);
+}
 
 //======================================
 // Printer Shaders
@@ -88,14 +96,15 @@ fragment float4 fragment_point_func(Point point_data [[ stage_in ]],
                                     float2 pointCoord  [[ point_coord ]])
 {
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
-    float4 color = float4(tex2d.sample(textureSampler, pointCoord));
+    float2 coor = transformPointCoord(pointCoord, point_data.angle);
+    float4 color = float4(tex2d.sample(textureSampler, coor));
     return float4(point_data.color.rgb, color.a * point_data.color.a);
 };
 
 // franment shader that applys original color of the texture
 fragment half4 fragment_point_func_original(Point point_data [[ stage_in ]],
-                                    texture2d<float> tex2d [[ texture(0) ]],
-                                    float2 pointCoord  [[ point_coord ]])
+                                            texture2d<float> tex2d [[ texture(0) ]],
+                                            float2 pointCoord  [[ point_coord ]])
 {
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
     half4 color = half4(tex2d.sample(textureSampler, pointCoord));

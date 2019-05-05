@@ -10,16 +10,16 @@ import CoreGraphics
 
 /// a shot line with serveral points, base unit of line strip
 public struct MLLine: Codable {
-    var begin: CGPoint
-    var end: CGPoint
+    public internal(set) var begin: CGPoint
+    public internal(set) var end: CGPoint
     
-    var pointSize: CGFloat
-    var pointStep: CGFloat
+    public internal(set) var pointSize: CGFloat
+    public internal(set) var pointStep: CGFloat
     
     // optional color, color of line strip will be used if this sets to nil
-    var color: MLColor?
+    public internal(set) var color: MLColor?
     
-    init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor?) {
+    public init(begin: CGPoint, end: CGPoint, pointSize: CGFloat, pointStep: CGFloat, color: MLColor?) {
         self.begin = begin
         self.end = end
         self.pointSize = pointSize
@@ -27,8 +27,12 @@ public struct MLLine: Codable {
         self.color = color
     }
     
-    var length: CGFloat {
+    public var length: CGFloat {
         return begin.distance(to: end)
+    }
+    
+    public var angle: CGFloat {
+        return end.angel(to: begin)
     }
     
     // MARK: - Codable

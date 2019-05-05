@@ -18,7 +18,7 @@ open class Brush {
     
     // unique identifier for a specifyed brush, should not be changed over all your apps
     // make this value uniform when saving or reading canvas content from a file
-    open internal(set) var name: String
+    open var name: String
     
     /// interal texture
     open private(set) var textureID: UUID?
@@ -27,7 +27,6 @@ open class Brush {
     open private(set) weak var target: Canvas?
 
     // opacity of texture, affects the darkness of stroke
-    // set opacity to 1 may cause heavy aliasing
     open var opacity: CGFloat = 0.3 {
         didSet {
             updateRenderingColor()
@@ -54,6 +53,19 @@ open class Brush {
             updateRenderingColor()
         }
     }
+    
+    /// texture rotation for this brush
+    public enum Rotation {
+        /// angele is fixed to specified value
+        case fixed(CGFloat)
+        /// angle of texture is random
+        case random
+        /// angle of texture is ahead with the line direction
+        case ahead
+    }
+    
+    /// texture rotation for this brush, defaults to .fixed(0)
+    open var rotation = Rotation.fixed(0)
     
     // randering color, same color to the color property with alpha reseted to alpha * opacity
     internal var renderingColor: MLColor = MLColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -185,7 +197,7 @@ open class Brush {
         
         commandEncoder?.setRenderPipelineState(pipelineState)
         
-        if let vertex_buffer = lineStrip.retrieveBuffers() {
+        if let vertex_buffer = lineStrip.retrieveBuffers(rotation: rotation) {
             commandEncoder?.setVertexBuffer(vertex_buffer, offset: 0, index: 0)
             commandEncoder?.setVertexBuffer(target.uniform_buffer, offset: 0, index: 1)
             commandEncoder?.setVertexBuffer(target.transform_buffer, offset: 0, index: 2)

@@ -46,11 +46,6 @@ open class ScrollableCanvas: Canvas {
     
     /// get snapthot image for the same size to content
     open override func snapshot() -> UIImage? {
-        /// draw content in texture of the same size to content
-        if contentSize == bounds.size {
-            return super.snapshot()
-        }
-        
         /// create a new render target with same size to the content, for snapshoting
         let target = SnapshotTarget(canvas: self)
         return target.getImage()

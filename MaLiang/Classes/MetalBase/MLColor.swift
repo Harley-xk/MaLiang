@@ -9,20 +9,20 @@ import Foundation
 import simd
 import UIKit
 
-struct MLColor: Codable {
-    var red: Float
-    var green: Float
-    var blue: Float
-    var alpha: Float
+public struct MLColor: Codable {
+    public internal(set) var red: Float
+    public internal(set) var green: Float
+    public internal(set) var blue: Float
+    public internal(set) var alpha: Float
     
-    static var black = UIColor.black.toMLColor()
-    static var white = UIColor.white.toMLColor()
+    public static var black = UIColor.black.toMLColor()
+    public static var white = UIColor.white.toMLColor()
     
-    func toFloat4() -> vector_float4 {
+    public func toFloat4() -> vector_float4 {
         return vector_float4(red, green, blue, alpha)
     }
     
-    init(red: Float, green: Float, blue: Float, alpha: Float) {
+    public init(red: Float, green: Float, blue: Float, alpha: Float) {
         self.red = red
         self.green = green
         self.blue = blue
@@ -32,7 +32,7 @@ struct MLColor: Codable {
     // MARK: - Single value codable for MLColor
     
     // hex string must be saved as format of: ffffffff
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let hexString = try container.decode(String.self)
         var int = UInt32()
@@ -43,7 +43,7 @@ struct MLColor: Codable {
     }
     
     // hex string must be saved as format of: AARRGGBB
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         let aInt = Int(alpha * 255) << 24
         let rInt = Int(red * 255) << 16
