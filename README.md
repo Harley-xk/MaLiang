@@ -150,6 +150,12 @@ let data = UIImage(named: "chartlet").pngData()
 try canvas.registerChartlet(with: data)
 ```
 
+You can apply **rotation** to chartlet by passing a counter clockwise angle in radius when adding it to the canvas:
+
+```swift
+canvas.renderChartlet(at: location, size: chartletSize, textureID: texture.id, rotation: angle)
+```
+
 #### Text
 
 Text element can be rendered to canvas by the Chartlet feature. MaLiang leaves the work of text layout and styles to your self.
