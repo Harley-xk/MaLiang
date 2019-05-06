@@ -101,6 +101,21 @@ fragment float4 fragment_point_func(Point point_data [[ stage_in ]],
     return float4(point_data.color.rgb, color.a * point_data.color.a);
 };
 
+// franment shader for glowing lines
+fragment float4 fragment_point_func_glowing(Point point_data [[ stage_in ]],
+                                            texture2d<float> tex2d [[ texture(0) ]],
+                                            float2 pointCoord  [[ point_coord ]])
+{
+    constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
+    float4 color = float4(tex2d.sample(textureSampler, pointCoord));
+    if (color.a >= 1) {
+        return float4(1, 1, 1, color.a);
+    } else if (color.a <= 0) {
+        return float4(0);
+    }
+    return float4(point_data.color.rgb, color.a * point_data.color.a);
+};
+
 // franment shader that applys original color of the texture
 fragment half4 fragment_point_func_original(Point point_data [[ stage_in ]],
                                             texture2d<float> tex2d [[ texture(0) ]],

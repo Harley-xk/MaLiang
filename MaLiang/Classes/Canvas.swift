@@ -241,7 +241,7 @@ open class Canvas: MetalView {
                 let f = lastPan.force + deltaForce
                 let pan = Pan(point: p, force: f)
                 let line = currentBrush.makeLine(from: lastPan, to: pan)
-                lines.append(line)
+                lines.append(contentsOf: line)
                 lastPan = pan
                 lastRenderedPan = pan
             }
@@ -260,12 +260,8 @@ open class Canvas: MetalView {
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
         let brush = currentBrush!
-        var line = brush.makeLine(from: point, to: to ?? point)
-        /// fix the opacity of color when there is only one point
-        let delta = max((brush.pointSize - brush.pointStep), 0) / brush.pointSize
-        let opacity = brush.opacity + (1 - brush.opacity) * delta
-        line.color = brush.color.toMLColor(opacity: opacity)
-        render(lines: [line])
+        let lines = brush.makeLine(from: point, to: to ?? point)
+        render(lines: lines)
     }
     
     /// draw a chartlet to canvas
@@ -316,6 +312,10 @@ open class Canvas: MetalView {
             }
             bezierGenerator.finish()
             lastRenderedPan = nil
+            let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: location, force: gesture.force))
+            if unfishedLines.count > 0 {
+                render(lines: unfishedLines)
+            }
             data.finishCurrentElement()
         }
     }

@@ -96,22 +96,34 @@ open class Brush {
     }
     
     /// get a line with specified begin and end location with force info
-    open func makeLine(from: Pan, to: Pan) -> MLLine {
+    open func makeLine(from: Pan, to: Pan) -> [MLLine] {
         var endForce = from.force * 0.95 + to.force * 0.05
         endForce = pow(endForce, forceSensitive)
         return makeLine(from: from.point, to: to.point, force: endForce)
     }
 
     /// get a line with specified begin and end location
-    open func makeLine(from: CGPoint, to: CGPoint, force: CGFloat? = nil) -> MLLine {
+    open func makeLine(from: CGPoint, to: CGPoint, force: CGFloat? = nil) -> [MLLine] {
         let force = force ?? forceOnTap
         let scale = scaleWithCanvas ? 1 : canvasScale
+        var color = renderingColor
+        /// fix the opacity of color when there is only one point
+        if from == to {
+            let delta = max((pointSize - pointStep), 0) / pointSize
+            let opacity = self.opacity + (1 - self.opacity) * delta
+            color = self.color.toMLColor(opacity: opacity)
+        }
         let line = MLLine(begin: (from + canvasOffset) / canvasScale,
                           end: (to + canvasOffset) / canvasScale,
                           pointSize: pointSize * force / scale,
                           pointStep: pointStep / scale,
-                          color: renderingColor)
-        return line
+                          color: color)
+        return [line]
+    }
+    
+    /// some brush may have cached unfinished lines, return them here
+    open func finishLineStrip(at end: Pan) -> [MLLine] {
+        return []
     }
 
     private var canvasScale: CGFloat {
@@ -219,11 +231,11 @@ open class Brush {
 extension Brush {
     @available(*, deprecated, message: "", renamed: "makeLine(from:to:)")
     open func pan(from: Pan, to: Pan) -> MLLine {
-        return makeLine(from: from, to: to)
+        return makeLine(from: from, to: to).first!
     }
     
     @available(*, deprecated, message: "", renamed: "makeLine(from:to:force:)")
     open func line(from: CGPoint, to: CGPoint, force: CGFloat = 1) -> MLLine {
-        return makeLine(from: from, to: to, force: force)
+        return makeLine(from: from, to: to, force: force).first!
     }
 }
