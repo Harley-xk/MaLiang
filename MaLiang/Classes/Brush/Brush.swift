@@ -101,23 +101,23 @@ open class Brush {
         endForce = pow(endForce, forceSensitive)
         return makeLine(from: from.point, to: to.point, force: endForce)
     }
-
-    /// get a line with specified begin and end location
-    open func makeLine(from: CGPoint, to: CGPoint, force: CGFloat? = nil) -> [MLLine] {
+    
+    /// make lines to render with specified begin and end location
+    ///
+    /// - Parameters:
+    ///   - from: begin location
+    ///   - to: end location
+    ///   - force: force that effects the line width
+    ///   - uniqueColor: these lines will use current color as unique color if sets to true, defaults to false
+    /// - Returns: lines to render
+    open func makeLine(from: CGPoint, to: CGPoint, force: CGFloat? = nil, uniqueColor: Bool = false) -> [MLLine] {
         let force = force ?? forceOnTap
         let scale = scaleWithCanvas ? 1 : canvasScale
-        var color = renderingColor
-        /// fix the opacity of color when there is only one point
-        if from == to {
-            let delta = max((pointSize - pointStep), 0) / pointSize
-            let opacity = self.opacity + (1 - self.opacity) * delta
-            color = self.color.toMLColor(opacity: opacity)
-        }
         let line = MLLine(begin: (from + canvasOffset) / canvasScale,
                           end: (to + canvasOffset) / canvasScale,
                           pointSize: pointSize * force / scale,
                           pointStep: pointStep / scale,
-                          color: color)
+                          color: uniqueColor ? renderingColor : nil)
         return [line]
     }
     

@@ -42,6 +42,7 @@ public struct MLLine: Codable {
         case end
         case size
         case step
+        case color
     }
     
     public init(from decoder: Decoder) throws {
@@ -54,6 +55,7 @@ public struct MLLine: Codable {
         pointSize = CGFloat(intSize) / 10
         let intStep = try container.decode(Int.self, forKey: .step)
         pointStep = CGFloat(intStep) / 10
+        color = try? container.decode(MLColor.self, forKey: .color)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -62,5 +64,6 @@ public struct MLLine: Codable {
         try container.encode(end.encodeToInts(), forKey: .end)
         try container.encode(Int(pointSize * 10), forKey: .size)
         try container.encode(Int(pointStep * 10), forKey: .step)
+        try container.encode(color, forKey: .color)
     }
 }
