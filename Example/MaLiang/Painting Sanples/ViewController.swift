@@ -79,6 +79,13 @@ class ViewController: UIViewController {
         brush.color = color
         brush.forceOnTap = 0.1
         
+        let texture = try! canvas.makeTexture(with: UIImage(named: "glow")!.pngData()!)
+        let glow: GlowingBrush = try! canvas.registerBrush(name: "glow", textureID: texture.id)
+        glow.opacity = 0.05
+        glow.coreProportion = 0.2
+        glow.pointSize = 20
+        glow.rotation = .ahead
+        
         let claw = registerBrush(with: "claw")
         claw.rotation = .ahead
         claw.pointSize = 30
@@ -95,7 +102,7 @@ class ViewController: UIViewController {
         /// make eraser with default round point
         let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
         
-        brushes = [pen, pencil, brush, claw, eraser]
+        brushes = [pen, pencil, brush, glow, claw, eraser]
         
         brushSegement.removeAllSegments()
         for i in 0 ..< brushes.count {

@@ -101,6 +101,7 @@
 		BD6A7D08726C8AEEC5A7C1C1B80E8015 /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008DBC184DE1334C7AE52B031FF85603 /* ConstraintLayoutGuide+Extensions.swift */; };
 		BFF4C0573389F918A050E3A5F5D83DB8 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE75EB0FD24C065EE66E7FCDADF0991 /* ConstraintPriority.swift */; };
 		C0D180DF9F6F5F7C864856D1891C3545 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079C86CCA158AC637D074379695086F /* ConstraintConfig.swift */; };
+		C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E4455227F1956005C612D /* GlowingBrush.swift */; };
 		C77AF6C7F63460B2CB44337D607EC6B0 /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2FE70143593EFB608DD461EC5D1F33 /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9A8C4B589BDF642458D303D379359BF /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B389EC5617E46CABBFEEA981F425FA1 /* ioapi.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CC09E97A0B0E7700D9C1D5472EE99AF8 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63D55E805A6BC4356D18ED047E480F7 /* MLColor.swift */; };
@@ -287,6 +288,7 @@
 		C037476C501D22CD2F7F79CE0EBA8267 /* UINavigationController+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+Comet.swift"; path = "Comet/Extensions/UINavigationController+Comet.swift"; sourceTree = "<group>"; };
 		C037841EADE5FFE16C2C078C88AE1A56 /* Chrysan-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Chrysan-dummy.m"; sourceTree = "<group>"; };
 		C2B941F3398F0B599A954007437F05BB /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
+		C35E4455227F1956005C612D /* GlowingBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowingBrush.swift; sourceTree = "<group>"; };
 		C5AB3E5A561E14FE9BE369D84E02585C /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		C7DA178F55AC8F709C1182AEA157F017 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		C81C13CE5C2DB427FECAADE17A9677EE /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				D9232808684395280A8B945C1341A3E1 /* Brush.swift */,
 				FEB7E2F0E75637663EDDC2FE8A6E3458 /* Eraser.swift */,
 				701EC10C2F99E97477806181F7276A81 /* Printer.swift */,
+				C35E4455227F1956005C612D /* GlowingBrush.swift */,
 			);
 			name = Brush;
 			path = MaLiang/Classes/Brush;
@@ -523,39 +526,6 @@
 				314FAC025B825CB3B10DDA7B19EE65AB /* Support Files */,
 			);
 			path = SnapKit;
-			sourceTree = "<group>";
-		};
-		70A78D2D359B5EF52DBC169C387AD3AF /* MetalBase */ = {
-			isa = PBXGroup;
-			children = (
-				AC522385888B617DE92E9E7B14BD3ADF /* MetalView.swift */,
-				B41A5E16C0EB72FC86772046844747FF /* MLColor.swift */,
-				FC53146BE835E47F8679A94F65433B64 /* MLError.swift */,
-				DC74CA96719B2CFA04B45715FDD907CA /* MLLine.swift */,
-				27A4B8E6717468F5D00C0F3704752298 /* MLTexture.swift */,
-				E0D60C6495E76BA97E128E6F23E35BE1 /* RenderTarget.swift */,
-				45FB5224CE4DBE77BA06637A2735B0BE /* Shaders.metal */,
-				35A1B2733E418F723D5C70C4BC231F76 /* SnapshotTarget.swift */,
-			);
-			name = MetalBase;
-			path = MaLiang/Classes/MetalBase;
-			sourceTree = "<group>";
-		};
-		7247428B7442E877FF77F39C362D275A /* MaLiang */ = {
-			isa = PBXGroup;
-			children = (
-				0FA6790F409137C2C0455F389BEA3375 /* Canvas.swift */,
-				8D23FA5BAA2D75B059904AF7EEE7F506 /* ScrollableCanvas.swift */,
-				C63B998E31434205CF7F89A8538DF716 /* Brush */,
-				0B5AF29F6C15D2600B7E4C94E5CE8532 /* Data & Documents */,
-				1B32F180CFD28A1E1700225D8E6D7437 /* Elements */,
-				70A78D2D359B5EF52DBC169C387AD3AF /* MetalBase */,
-				C274F4B0A4B80473CE0ACA6A8A59DCB6 /* Utils */,
-				39467EB32C8B360AA423D96D5E015391 /* Pod */,
-				9311F609FDE4911812BDD00661F895FD /* Support Files */,
-			);
-			name = MaLiang;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		7F6B7E75030CEEBEC7170D9DC64AD1A2 /* Pods */ = {
@@ -1083,6 +1053,7 @@
 				4C0BF2F5EA3C3B01D06A7E3C623CAD08 /* BezierGenerator.swift in Sources */,
 				32855B0C96D3E2227B91BA11E42CD6DF /* Brush.swift in Sources */,
 				F831C975F71BD94EB55B62527A3FCFD8 /* Canvas.swift in Sources */,
+				C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */,
 				EF1A0F18BC980F217803E40628F633E5 /* CanvasData.swift in Sources */,
 				18F21CCEC540ECB07A48260BD6CAE415 /* Chartlet.swift in Sources */,
 				1206FA07FAC2062C4786B71B6499A5E1 /* DataExporter.swift in Sources */,
