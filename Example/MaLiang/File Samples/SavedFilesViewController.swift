@@ -18,13 +18,15 @@ class SavedFilesViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let path = Path.documents()
         let contents = try? FileManager.default.contentsOfDirectory(atPath: path.string).sorted().reversed()
         files = contents?.map { path.resource($0) } ?? []
         tableView.reloadData()
     }
-    
     
     private var files: [Path] = []
 
