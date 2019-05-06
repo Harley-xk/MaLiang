@@ -97,9 +97,13 @@ open class Brush {
     
     /// get a line with specified begin and end location with force info
     open func makeLine(from: Pan, to: Pan) -> [MLLine] {
-        var endForce = from.force * 0.95 + to.force * 0.05
-        endForce = pow(endForce, forceSensitive)
-        return makeLine(from: from.point, to: to.point, force: endForce)
+        // skip over sized lines
+        if from.force > 0, to.force >= from.force * 5 {
+            return []
+        }
+        let endForce = from.force * 0.95 + to.force * 0.05
+        let forceRate = pow(endForce, forceSensitive)
+        return makeLine(from: from.point, to: to.point, force: forceRate)
     }
     
     /// make lines to render with specified begin and end location

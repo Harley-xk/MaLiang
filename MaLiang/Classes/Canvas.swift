@@ -227,7 +227,7 @@ open class Canvas: MetalView {
             return
         }
         var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
-        let deltaForce = (force - (lastRenderedPan?.force ?? 0)) / CGFloat(vertices.count)
+        let deltaForce = (force - (lastRenderedPan?.force ?? force)) / CGFloat(vertices.count)
         for i in 1 ..< vertices.count {
             let p = vertices[i]
             let pointStep = currentBrush.pointStep
