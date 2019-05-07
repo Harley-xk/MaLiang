@@ -1,4 +1,4 @@
-# ![Banner](Images/banner.png)
+# ![Banner](Images/signboard.png)
 
 [![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg)](https://travis-ci.org/Harley-xk/MaLiang)
 [![Platform](https://img.shields.io/cocoapods/p/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
