@@ -41,7 +41,9 @@ class RootViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        performSegue(withIdentifier: "default", sender: nil)
+        if let vcs = navigationController?.viewControllers, vcs.count == 1 {
+            performSegue(withIdentifier: "default", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Comet
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url)
+        
+        let dest = Path.documents().resource(url.lastPathComponent)
+        try? FileManager.default.moveItem(at: url, to: dest.url)
+        
+        if let nav = window?.rootViewController as? UINavigationController {
+            let viewController = ViewController.createFromStoryboard()
+            viewController.filePath = dest.string
+            nav.push(viewController)
+        }
+        
+        return true
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
