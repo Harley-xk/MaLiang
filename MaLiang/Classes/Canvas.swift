@@ -284,6 +284,10 @@ open class Canvas: MetalView {
         if gesture.state == .recognized {
             let location = gesture.location(in: self)
             renderTap(at: location)
+            let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: location, force: currentBrush.forceOnTap))
+            if unfishedLines.count > 0 {
+                render(lines: unfishedLines)
+            }
             data.finishCurrentElement()
         }
     }

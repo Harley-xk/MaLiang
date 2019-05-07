@@ -64,6 +64,8 @@ public struct MLLine: Codable {
         try container.encode(end.encodeToInts(), forKey: .end)
         try container.encode(Int(pointSize * 10), forKey: .size)
         try container.encode(Int(pointStep * 10), forKey: .step)
-        try container.encode(color, forKey: .color)
+        if let color = self.color {
+            try container.encode(color, forKey: .color)
+        }
     }
 }

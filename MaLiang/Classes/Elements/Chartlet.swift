@@ -86,6 +86,8 @@ open class Chartlet: CanvasElement {
         try container.encode(center.encodeToInts(), forKey: .center)
         try container.encode(size.encodeToInts(), forKey: .size)
         try container.encode(textureID, forKey: .texture)
-        try container.encode(angle, forKey: .angle)
+        if let angle = self.angle {
+            try container.encode(angle, forKey: .angle)
+        }
     }
 }
