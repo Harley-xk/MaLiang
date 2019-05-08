@@ -77,7 +77,7 @@ class ViewController: UIViewController {
         brush.pointStep = 2
         brush.forceSensitive = 0.6
         brush.color = color
-        brush.forceOnTap = 0.1
+        brush.forceOnTap = 0.5
         
         let texture = try! canvas.makeTexture(with: UIImage(named: "glow")!.pngData()!)
         let glow: GlowingBrush = try! canvas.registerBrush(name: "glow", textureID: texture.id)
