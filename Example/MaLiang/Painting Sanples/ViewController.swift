@@ -94,13 +94,12 @@ class ViewController: UIViewController {
         claw.color = color
 
         
-        // make eraser with a texture for pencil
-        //        let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
-        //        let texture = try? canvas.makeTexture(with: URL(fileURLWithPath: path))
-        //        let eraser = Eraser(texture: texture, target: canvas)
+        // make eraser with a texture for claw
+        let eraser = try! canvas.registerBrush(name: "Eraser", textureID: claw.textureID) as Eraser
+        eraser.rotation = .ahead
         
         /// make eraser with default round point
-        let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
+        //let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
         
         brushes = [pen, pencil, brush, glow, claw, eraser]
         
@@ -235,6 +234,7 @@ class ViewController: UIViewController {
             try FileManager.default.copyItem(at: path.url, to: temp.url)
             try Zip.unzipFile(temp.url, destination: contents.url, overwrite: true, password: nil)
         } catch {
+            self.chrysan.hide()
             let alert = UIAlertController(title: "unzip failed", message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(title: "OK", style: .cancel)
             self.present(alert, animated: true, completion: nil)

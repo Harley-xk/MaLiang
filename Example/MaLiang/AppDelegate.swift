@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dest = Path.documents().resource(url.lastPathComponent)
         try? FileManager.default.moveItem(at: url, to: dest.url)
         
+        let inbox = Path.documents().resource("Inbox")
+        try? FileManager.default.removeItem(at: inbox.url)
+        
         if let nav = window?.rootViewController as? UINavigationController {
             let viewController = ViewController.createFromStoryboard()
             viewController.filePath = dest.string
