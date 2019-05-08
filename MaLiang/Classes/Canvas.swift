@@ -61,9 +61,9 @@ open class Canvas: MetalView {
     open private(set) var registeredBrushes: [Brush] = []
     
     /// find a brush by name
-    /// default brush will retured if brush of name provided not exists
+    /// nill will be retured if brush of name provided not exists
     open func findBrushBy(name: String?) -> Brush? {
-        return registeredBrushes.first { $0.name == name } ?? defaultBrush
+        return registeredBrushes.first { $0.name == name }
     }
     
     /// All textures created by this canvas

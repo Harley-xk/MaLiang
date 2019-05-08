@@ -72,7 +72,7 @@ open class DataImporter {
         }
         
         /// import elements to canvas
-        content.lineStrips.forEach { $0.brush = canvas.findBrushBy(name: $0.brushName) }
+        content.lineStrips.forEach { $0.brush = canvas.findBrushBy(name: $0.brushName) ?? canvas.defaultBrush }
         content.chartlets.forEach { $0.canvas = canvas }
         canvas.data.elements = (content.lineStrips + content.chartlets).sorted(by: { $0.index < $1.index})
         reportProgress(1, on: progress)
