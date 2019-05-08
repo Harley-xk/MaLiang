@@ -16,7 +16,8 @@ open class DataExporter {
     /// create documents from specified canvas
     public init(canvas: Canvas) {
         let data = canvas.data
-        content = CanvasContent(lineStrips: data?.elements.compactMap { $0 as? LineStrip } ?? [],
+        content = CanvasContent(size: canvas.size,
+                                lineStrips: data?.elements.compactMap { $0 as? LineStrip } ?? [],
                                 chartlets: data?.elements.compactMap { $0 as? Chartlet } ?? [])
         textures = canvas.textures
     }

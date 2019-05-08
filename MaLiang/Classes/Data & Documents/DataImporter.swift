@@ -66,6 +66,11 @@ open class DataImporter {
             }
         }
         
+        /// update content size for scrollable canvas
+        if let scrollable = canvas as? ScrollableCanvas, let size = content.size {
+            scrollable.contentSize = size
+        }
+        
         /// import elements to canvas
         content.lineStrips.forEach { $0.brush = canvas.findBrushBy(name: $0.brushName) }
         content.chartlets.forEach { $0.canvas = canvas }

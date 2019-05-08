@@ -41,6 +41,9 @@ public struct DocumentInfo: Codable {
 /// contents' vector data on the canvas
 public struct CanvasContent: Codable {
     
+    /// content size of canvas
+    var size: CGSize?
+    
     /// all linestrips
     var lineStrips: [LineStrip]
     

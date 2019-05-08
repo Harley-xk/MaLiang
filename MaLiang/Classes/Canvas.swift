@@ -17,6 +17,12 @@ open class Canvas: MetalView {
     /// printer to print image textures on canvas
     open private(set) var printer: Printer!
     
+    /// the actural size of canvas in points, may larger than current bounds
+    /// size must between bounds size and 5120x5120
+    open var size: CGSize {
+        return drawableSize / contentScaleFactor
+    }
+    
     /// Register a brush with image data
     ///
     /// - Parameter texture: texture data of brush
@@ -238,8 +244,8 @@ open class Canvas: MetalView {
                     // distance larger than step
                     (pointStep > 1 && lastPan.point.distance(to: p) >= pointStep)
             {
-                let f = lastPan.force + deltaForce
-                let pan = Pan(point: p, force: f)
+                let force = lastPan.force + deltaForce
+                let pan = Pan(point: p, force: force)
                 let line = currentBrush.makeLine(from: lastPan, to: pan)
                 lines.append(contentsOf: line)
                 lastPan = pan

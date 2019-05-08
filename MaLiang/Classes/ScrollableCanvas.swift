@@ -36,6 +36,11 @@ open class ScrollableCanvas: Canvas {
         }
     }
     
+    /// the actural size of canvas in points, wrapper of contentSize
+    open override var size: CGSize {
+        return contentSize
+    }
+    
     /// the actural drawable size of canvas, may larger than current bounds
     /// contentSize must between bounds size and 5120x5120
     open var contentSize: CGSize = .zero {
