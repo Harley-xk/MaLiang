@@ -1,9 +1,9 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Comet"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Chrysan" "${PODS_CONFIGURATION_BUILD_DIR}/Comet" "${PODS_CONFIGURATION_BUILD_DIR}/MaLiang" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit" "${PODS_CONFIGURATION_BUILD_DIR}/Zip"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Chrysan/Chrysan.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Comet/Comet.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MaLiang/MaLiang.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Zip/Zip.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/Comet/Comet.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "Comet"
+OTHER_LDFLAGS = $(inherited) -l"z" -framework "Chrysan" -framework "Comet" -framework "MaLiang" -framework "SnapKit" -framework "Zip"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

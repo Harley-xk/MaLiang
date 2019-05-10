@@ -49,7 +49,7 @@ public extension Bundle {
     ///
     /// - Parameters:
     ///   - name: xib 文件名，默认为指定视图类名
-    public func createView<T: UIView>(_ name: String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil) -> T {
+    func createView<T: UIView>(_ name: String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil) -> T {
         let nibName = name ?? T.typeName
         let view = loadNibNamed(nibName, owner: owner, options: options)![0] as! T
         return view
@@ -62,9 +62,29 @@ public extension UIView {
     /// - Parameters:
     ///   - nibName: xib 文件名，默认为指定视图类名
     ///   - bundle: xib 所在的 bundle，默认为 main bundle
-    public class func createFromXib(_ nibName: String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil, in bundle: Bundle = Bundle.main) -> Self {
+    class func createFromXib(_ nibName: String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil, in bundle: Bundle = Bundle.main) -> Self {
         return bundle.createView(nibName ?? typeName, owner: owner, options: options)
     }
 }
 
 
+public extension UIView {
+    
+    /// 获取视图快照并转换为图片
+    ///
+    /// - Attention:
+    ///   - 常规截图方式无法截取到特殊层级的图像数据，比如 AVSampleBufferDisplayLayer
+    func snapshotImage(afterScreenUpdates: Bool = false) -> UIImage? {
+        if #available(iOS 10.0, *) {
+            return UIGraphicsImageRenderer(size: bounds.size).image { (context) in
+                drawHierarchy(in: bounds, afterScreenUpdates: afterScreenUpdates)
+            }
+        } else {
+            UIGraphicsBeginImageContextWithOptions(bounds.size, true, contentScaleFactor)
+            drawHierarchy(in: bounds, afterScreenUpdates: afterScreenUpdates)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
+        }
+    }
+}

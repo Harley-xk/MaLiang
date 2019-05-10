@@ -1,15 +1,16 @@
-# ![](Images/img_0.png) Comet
+# ![Comet](Images/img_0.png) Comet
 
 [![CI Status](http://img.shields.io/travis/Harley-xk/Comet.svg?style=flat)](https://travis-ci.org/Harley-xk/Comet)
 [![Version](https://img.shields.io/cocoapods/v/Comet.svg?style=flat)](http://cocoapods.org/pods/Comet)
 [![License](https://img.shields.io/cocoapods/l/Comet.svg?style=flat)](http://cocoapods.org/pods/Comet)
 [![Platform](https://img.shields.io/cocoapods/p/Comet.svg?style=flat)](http://cocoapods.org/pods/Comet)
 
-
 iOS 项目的 Swift 基础库，提供大量常用组件、便利方法等。支持 **Swift 3.0+**。
 1.0.0 起支持 Swift 4.x，需要支持 Swift 3.x 请使用 0.7.5 版本。
 1.5.0 起支持 Swift 4.2， 需要支持 Swift 4.0/4.1 请指定 1.4.1 版本。
-### 安装
+
+## 安装
+
 支持 CocoaPods 安装：
 
 ```ruby
@@ -21,44 +22,34 @@ pod 'Comet', :git => 'https://github.com/Harley-xk/Comet.git, :tag=>1.4.1'
 pod 'Comet', :git => 'https://github.com/Harley-xk/Comet.git, :tag=>0.7.5'
 ```
 
-### API 清单
+## API 清单
 
-#### 工具类
-##### 1. KeyboardManager —— 键盘管理器
-键盘输入是几乎每个 App 都要涉及到的内容，当输入框获得焦点，虚拟键盘弹出时，需要动态调整界面 UI 布局以适应新的界面尺寸。一般做法是通过在视图控制器中监听键盘的弹出隐藏等事件通知，根据不同的状态进行 UI 调整处理。当有多个甚至大量的界面需要处理内容输入时，需要在每个视图控制器中实现几乎相同的代码逻辑，繁琐又耗时。**键盘管理器**就是专门用来应对这个问题的。
+### 工具类
+
+#### 1. KeyboardPlacehoder —— 键盘占位符
+
+键盘输入是几乎每个 App 都要涉及到的内容，当输入框获得焦点，虚拟键盘弹出时，需要动态调整界面 UI 布局以适应新的界面尺寸。一般做法是通过在视图控制器中监听键盘的弹出隐藏等事件通知，根据不同的状态进行 UI 调整处理。当有多个甚至大量的界面需要处理内容输入时，需要在每个视图控制器中实现几乎相同的代码逻辑，繁琐又耗时。**键盘占位符**就是专门用来应对这个问题的。
 
 原理：
 
-**键盘管理器**依旧使用常规的通知监听思路，但是将相同的逻辑进行了封装，并且针对 UI 界面处理提供了一个简单粗暴的手段，作为 API 开放出来，使用时只需要根据流程，提供必要的参数给**键盘管理器**对象，就可以对键盘的弹出隐藏事件进行自动处理。~~每个视图控制器都可以通过调用 *setupKeyboardManager* 方法创建一个键盘管理器。~~
+**键盘占位符**就是键盘弹出后在实际试图中的映射。开发时只需要将占位符添加到任意视图中，设置其他视图的相对位置；当键盘弹出或者收起（任意键盘尺寸、位置发生改变）时，占位符将会自动调整自身的高度，保证实际尺寸和位置与键盘在占位符父视图中的投影相一致。
 
-由于创建多个键盘管理器需要消耗更多的资源，另外当存在多个注册了键盘管理器的视图控制器时，所有的控制器都会同时响应键盘事件并调整自身视图，更进一步的餐食了资源。实际上同一时间只可能有一个控件处于第一响应者状态，同时也只有一个视图控制器需要响应键盘事件，因此
+*_键盘占位符相比于原来的键盘管理器更加方便使用，推荐使用新的占位符方式处理键盘事件，键盘管理器后期将会被废除_*
 
-**在 1.2.0 版本中，键盘管理器进行了小规模的重构**
+#### ~~2. HairLine —— 极细的线？（已废除）~~
 
-不再需要在每个视图控制器中单独创建键盘管理器，KeyboardManager 被设计为了单例类型，通过 `KeyboardManager.default` 属性来获取全局默认的键盘管理器。
+#### 3. Path —— 路径
 
-同时用法也有所调整：
-
-1. 根据业务需求设置 UI 界面元素的布局约束。
-2. 在 *viewWillAppear* 方法中将全局 KeyboardManager 的代理对象指向当前视图控制器；
-3. 设置代理对象 *delegate(for viewController...)* 需要提供三个参数：
-
- - ***viewController*** KeyboardManager 代理的对象，只有该视图控制器中指定的视图会响应键盘事件并作出调整；
- - ***positionConstraint*** 表示需要调整的约束，键盘弹出后会根据键盘尺寸调整该约束的值，键盘隐藏后恢复原始值；
- - ***viewToAdjust*** 表示调整 UI 时参照的控件，调整约束值时会参考该控件在键盘弹出前距离视图底部的距离。
-
-4. (可选) 在 *viewDidDisappear* 方法中调用 *stopDelegate* 方法停止对视图控制器的代理。该步骤为可选项，绑定代理设置的三个参数都声明为 *weak* 类型，所以即使不执行该步骤，视图也能正常释放。该方法主要用于解决原来的逻辑中，如果前后几个视图控制器同时注册了键盘管理器，即使视图不可见也会响应键盘事件并调整视图的问题，减少不必要的开销。
-
-窍门：
-
-将所有需要调整的控件都放在一个 **ScrollView** 中并设置合适的约束，初始化键盘控制器时，只需要传入 **ScrollView** 底部到父视图底部的约束以及 **ScrollView** 本身作为参数，就可以实现大多数场景的需求。这时键盘弹出时 **ScrollView** 就可以自行调整大小以适应键盘了。
-
-##### ~~2. HairLine —— 极细的线？（已废除）~~
-
-##### 3. Path —— 路径
 文件读写是大多数 App 或多或少需要涉及的内容，路径类主要用于快速获取设备的各种文件及文件夹路径。 **Path** 类的本质是对路径字符串的封装，在此基础上提供额外的简便操作方法。详细可以查看 **Path** 类的方法注释
 
-##### 4. PinyinIndexer —— 拼音索引器
+#### 4. CollectionGrouper
+
+1.6 新增 `CollectionGrouper` 集合分组工具类，可以对集合进行指定元素属性进行分组，也可以通过自定义分组规则实现自定义分组，详细参考 “Grouper Sample” 实例。
+
+#### ~~4. PinyinIndexer —— 拼音索引器（即将废除）~~
+
+**_即将废除，新增的 `CollectionGrouper` 可以实现拼音分组需求以及更多其他自定义需求，专门的拼音索引器会在将来移除_**
+
 遇到列表类需求时（比如联系人列表），往往需要将列表的内容按照拼音首字母进行索引排序，这是一个简单但又繁琐的工作，因此**拼音索引器**诞生了。
 
 用法：
@@ -75,7 +66,8 @@ pod 'Comet', :git => 'https://github.com/Harley-xk/Comet.git, :tag=>0.7.5'
 
 5. 0.5.0 更新：使用协议的方式代替 KVC，解除了数据对象必须为 NSObject 子类的限制。使用时，声明数据类实现`PinyinIndexable`协议，然后通过`var valueToPinyin: String { get }`这个协议方法，返回需要转换为拼音的属性即可。
 
-##### 5. TaskRecorder —— 任务记录器
+#### 5. TaskRecorder —— 任务记录器
+
 App 的基本功能就是执行各种任务，比如网络任务。正常情况下，发起的任务都能执行完毕并返回结果。在某些情况下，任务并不能或者没有必要执行完毕。比如在一个视图控制器中发起了一个网络请求来获取数据，以显示在当前界面上；但是在请求执行完毕之前，用户操作退出了该界面，此时往往没有必要再继续执行这个请求，因此需要程序作出处理，取消这个网络任务的执行。当一个界面中的网络任务较多时，手动处理这些逻辑就会变得繁琐且容易出错。
 通过任务记录器可以将发起的任务关联到某个对象，并且在这个对象被销毁时，任务纪录器会将所有已纪录并且还没有执行完毕的任务都取消并销毁。
 
@@ -85,12 +77,13 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
 2. 对需要关联的对象调用 *record(task:)* 方法，并将需要纪录的任务作为参数传入，就会自动创建一个记录器并关联到该对象
 3. 对象销毁时记录器会自动执行逻辑，对未完成的任务调用 *cancel* 方法并将其销毁
 
-##### 6. Utils —— 通用工具类
+#### 6. Utils —— 通用工具类
+
 主要提供一些设备相关的工具方法，例如获取设备型号、系统版本、拨打电话等。详情参见 **Utils** 类的方法注释
 
-#### 扩展
+### 扩展
 
-##### 1. Date —— 日期类扩展
+#### 1. Date —— 日期类扩展
 
 日期类扩展提供快速操作日期的一些方法：
 
@@ -169,7 +162,7 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
 	
 	**注：周日为一周的第一天，从 0 开始，周一为 1，依此类推**
 		
-##### 2. String —— 字符串扩展
+#### 2. String —— 字符串扩展
 
 1. **拼音**
 	
@@ -229,7 +222,7 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
 	```
 	根据限定的高或者宽度，计算另一项的值
 
-##### 3. UIColor
+#### 3. UIColor
 
 1. **16进制颜色**
 
@@ -238,7 +231,7 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
 	```
 	用16进制颜色代码创建 UIColor 对象，字符串可以是 0xaaaaaa、#aaaaaa、aaaaaa 三种格式中的任何一种
 
-##### 4. UIResponder
+#### 4. UIResponder
 
 1. **解除任何第一响应者**
 
@@ -253,9 +246,10 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
    @IBAction public func autoResignFirstResponder()
 	```
 	在 IB 中，将特定事件指派到 FirstResponder 上的 *autoResignFirstResponder* 方法，可以在事件触发后解除当前第一响应者状态的操作，如图：
-	
-	![](Images/img_1.png)
-	
+	        
+	<img src="Images/img_1.png" width="430" height="400">
+
+
 3. **在 IB 中设置 - 指定第一响应者**
 
 	```swift
@@ -263,9 +257,9 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
 	```
 	在 IB 中，将特定事件指派到输入框的 *autoBecomFirstResponder* 方法，可以在事件触发后使指定控件成为第一响应者，如图：
 	
-	![](Images/img_2.png)
+	<img src="Images/img_2.png" width="430" height="345">
 
-##### 5. UIView
+#### 5. UIView
 
 1. **在 IB 中快速设置属性**
 
@@ -275,10 +269,10 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
    @IBInspectable var borderColor: UIColor?  // 边框颜色
 	```
 	这些声明实现了直接在 IB 中设置 UIView 相关属性的功能：
-	
-	![](Images/img_3.png)
 
-##### 6. UIStoryboard
+	<img src="Images/img_3.png" width="265" height="220">
+
+#### 6. UIStoryboard
 	
 1. **获取 Storyboard**
 	
@@ -309,7 +303,7 @@ App 的基本功能就是执行各种任务，比如网络任务。正常情况�
 	```
 	每个 Storyboard 文件都可以设置一个入口视图控制器，该方法可以创建当前 Storyboard 文件的入口视图控制器实例
 	
-##### 7. GCD 扩展
+#### 7. GCD 扩展
 
 扩展几个 GCD 方法以更方便地调用 GCD 的延迟函数
 
@@ -335,7 +329,7 @@ DispatchQueue.global().asyncAfter(delay: .nanoseconds(2)) {
 }
 ```
 
-##### 8. KVO & 闭包
+#### 8. KVO & 闭包
 KVO 是 Foundation 框架强大的功能之一，但是由于不支持闭包，导致实现起来比较繁琐。注册和实际处理的代码需要写在不同的地方，对于一些轻量级的逻辑来说并不十分友好。
 
 通过 NSObject+KVOHandler 扩展，可以在注册 KVO 观察者时直接提供一个闭包来实现了。比如下面的代码实现了观察 ScrollView 的 contentOffset 的变化，可以比较一下原来的实现方式和闭包形式的实现方式。
@@ -369,5 +363,6 @@ override func viewDidLoad() {
 ```
 
 ### 移除
-1. 移除 MD5 编码、RC4 加密等相关内容。推荐使用 [CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift)， 更加成熟的加密框架，支持更广泛的加密协议。
+
+1. 移除 MD5 编码、RC4 加密等相关内容。推荐使用更加成熟的加密框架： [CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift)，支持更广泛的加密协议。
 2. 移除 HKUserDefaults。RC4 属于已过时的加密方式，随着 RC4 加密的移除将 KUserDefaults 一并移除了，有加密需求推荐使用更成熟的第三方加密框架。

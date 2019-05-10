@@ -11,6 +11,9 @@ import UIKit
 public enum WindowPresentableAnimation {
     case transform
     case fade
+    /// 自定义动画效果，需要在动画结束后触发回调，用于某些善后工作的处理
+    /// - Attention: 注意，如果使用自定义的动画，completion 回调不会再触发，需要自己处理动画结束后的事务
+    case custom((EmptyHandler?) -> ())
     case none
 }
 
@@ -23,66 +26,82 @@ public protocol WindowPresentable: class {
 /// 全局变量，保存当前所有已弹出 Window 的 Level
 var GloableWindowLevels = [UIWindow.Level.normal]
 
-public extension WindowPresentable where Self: UIViewController {
+extension WindowPresentable where Self: UIViewController {
     
     // MARK: - Show Hide
-    public func showWindow(animation: WindowPresentableAnimation = .transform, completion: (() -> Void)? = nil) {
+    public func showWindow(animation: WindowPresentableAnimation = .transform, completion: EmptyHandler? = nil) {
         let screenFrame = UIScreen.main.bounds
-        window = UIWindow(frame: screenFrame)
-        window?.windowLevel = windowLevel
-            
-        window?.rootViewController = self.windowRoot
-        window?.makeKeyAndVisible()
         
-        GloableWindowLevels.append(windowLevel)
+        if self.window == nil {
+            self.window = UIWindow(frame: screenFrame)
+        }
+        let window = self.window!
         
-        if animation == .transform {
+        window.windowLevel = windowLevel
+        
+        window.rootViewController = self.windowRoot
+        window.makeKeyAndVisible()
+        
+        GloableWindowLevels.append(window.windowLevel)
+        
+        if case .transform = animation {
+            let endFrame = window.frame
             var beginFrame = screenFrame
             beginFrame.origin.y = beginFrame.size.height
-            window?.frame = beginFrame
+            beginFrame.size = window.frame.size
+            window.frame = beginFrame
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseInOut, animations: {
-                self.window?.frame = screenFrame
+                window.frame = endFrame
             }, completion: { (finished) in
                 completion?()
             })
-        } else if animation == .fade {
-            self.window?.alpha = 0
+        } else if case .fade = animation {
+            window.alpha = 0
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseInOut, animations: {
-                self.window?.alpha = 1
+                window.alpha = 1
             }, completion: { (finished) in
                 completion?()
             })
+        } else if case let .custom(ani) = animation {
+            ani(nil)
         } else {
             completion?()
         }
     }
     
     public func hideWindow(animation: WindowPresentableAnimation = .fade, completion: (() -> Void)? = nil) {
+        
+        guard let window = self.window else {
+            return
+        }
+        
         let block = {
-            self.setNeedsStatusBarAppearanceUpdate()
             self.window?.rootViewController = nil
-            self.window?.isHidden = true
             self.window?.resignKey()
+            self.setNeedsStatusBarAppearanceUpdate()
             self.window = nil
             GloableWindowLevels.removeLast()
         }
         
-        if animation == .transform {
+        if case .transform = animation {
             var endFrame = UIScreen.main.bounds
             endFrame.origin.y = endFrame.size.height
+            endFrame.size = window.frame.size
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseInOut, animations: {
-                self.window?.frame = endFrame
+                window.frame = endFrame
             }, completion: { (finished) in
                 block()
                 completion?()
             })
-        } else if animation == .fade {
+        } else if case .fade = animation {
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseInOut, animations: {
-                self.window?.alpha = 0
+                window.alpha = 0
             }, completion: { (finished) in
                 block()
                 completion?()
             })
+        }  else if case let .custom(ani) = animation {
+            ani(block)
         } else {
             block()
             completion?()
@@ -92,12 +111,12 @@ public extension WindowPresentable where Self: UIViewController {
     public var windowRoot: UIViewController {
         return self
     }
-
+    
     public var animationDuration: TimeInterval {
         return 0.2
     }
     
-    public var windowLevel: UIWindow.Level {
+    var windowLevel: UIWindow.Level {
         if let level = GloableWindowLevels.last {
             return level + 1
         }

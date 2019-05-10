@@ -1,47 +1,87 @@
-# ![](icon-32.png) MaLiang
+# ![Banner](Images/banner.png)
 
-[![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg?style=flat)](https://travis-ci.org/Harley-xk/MaLiang)
-[![Version](https://img.shields.io/cocoapods/v/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
-[![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
+[![CI Status](http://img.shields.io/travis/Harley-xk/MaLiang.svg)](https://travis-ci.org/Harley-xk/MaLiang)
 [![Platform](https://img.shields.io/cocoapods/p/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
+[![Version](https://img.shields.io/cocoapods/v/MaLiang.svg)](http://cocoapods.org/pods/MaLiang)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Language](https://img.shields.io/badge/language-Swift%205-orange.svg)](https://swift.org)
+[![codebeat badge](https://codebeat.co/badges/438159fd-b5f9-43d4-a1d5-b07ba5e6cf03)](https://codebeat.co/projects/github-com-harley-xk-maliang-metal)
+[![License](https://img.shields.io/cocoapods/l/MaLiang.svg?style=flat)](http://cocoapods.org/pods/MaLiang)
+[![twitter](https://img.shields.io/badge/twitter-Harley--xk-blue.svg)](https://twitter.com/Harley86589)
+[![weibo](https://img.shields.io/badge/weibo-%E7%BE%A4%E6%98%9F%E9%99%A8%E8%90%BD-orange.svg)](https://weibo.com/u/1161848005)
 
-MaLiang is a painting framework based on OpenGL ES. The name of "MaLiang" comes from a boy who had a magical brush  in Chinese ancient fairy story.
+![icon](Images/icon-32.png) **MaLiang** is a painting framework based on [**Metal**](https://developer.apple.com/metal/). It supports drawing and handwriting with customized textures.
+The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
 
-<img src="sample.png" width=450></img>
+## Features
+
+- [x] Lines with **Bezier Curve**
+- [x] **Chartlet** element (for image and any other content from an UIView snapshot)
+- [x] Adjust stroke size with **Force**
+- [x] **3D Touch** Support
+- [x] **Undo** & **Redo**
+- [x] **Zoom** & **Scale**
+- [x] **Export** to image
+- [x] **Save** vector contents to disk
+- [x] Texture **Rotation**
+- [x] **Glowing** Lines
+
+[Buy me a cup of coffee](DONATE.md) if I have saved your time.
 
 ## Requirements
 
-iOS 9.0+, Swift 4.1+ </br>
+iOS 9.0, Swift 5 </br>
 
-The core painting module is based on OpenGL ES 3.0</br>
+The core painting module is based on Metal</br>
 
 You can simply make it compatible with lower version of iOS and swift by changing only serval lines of code.
 
 ## Installation
 
+### CocoaPods
+
 MaLiang is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+it, simply add the following line to your `Podfile`:
 
 ```ruby
 pod 'MaLiang'
 ```
 
+To use the old OpenGL ES verion:
+
+```ruby
+pod 'MaLiang', '~> 1.1'
+```
+
+### Carthage
+
+To integrate MaLiang into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
+
+```ruby
+github "Harley-xk/MaLiang"
+```
+
+Run `carthage update` to build the framework and drag the built `MaLiang.framework` into your Xcode project.
+
+**Make sure to add `MaLiang.framework` to your target's `Embedded Binaries`**
+
 ## Usage
 
 MaLiang is simple to use.
+
 1. import MaLiang
-3. enjoy painting!
+2. enjoy painting!
 
 ### Canvas
 
 ```swift
-open class Canvas: MLView
+open class Canvas: MetalView
 ```
 
 A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
-`Canvas` extends from `MLView`, whitch extends from `UIView`. `MLView` handles all the logic with OpenGL and hides them from you.
+`Canvas` extends from `MetalView`, whitch extends from `MTKView`. `MetalView` handles all the logic with MetalKit and hides them from you.
 
 `Canvas` can be simply created with xib or code.
 
@@ -51,6 +91,7 @@ A `Canvas` is the basic component of `MaLiang`. You will paint all things on it.
 Now, all things necessary is done!
 
 #### Snapshot
+
 You can take snapshot on canvas now. Just call `snapshot` function on `Canvas` and you will get an optional `UIImage` object.
 
 ### Brush
@@ -59,12 +100,12 @@ With all things done, you can do more with `Brush`!
 
 `Brush` is the key feature to `MaLiang`. It holds textures and colors, whitch makes it possiable to paint amazing things.
 
-`Brush` can be created with a image:
+Register a `Brush` with image data or file to Canvas and paint with it:
 
 ```swift
-let image = UIImage(named: "pencil.png")
-let pencil = Brush(texture: image)
-canvas.brush = pencil
+let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
+let pencil = try? canvas.registerBrush(with: URL(fileURLWithPath: path))
+pencil?.use()
 ```
 
 `Brush` have serval properties for you to custmize:
@@ -86,6 +127,10 @@ open var forceSensitive: CGFloat = 0
 
 /// color of stroke
 open var color: UIColor = .black
+
+// indicate if the stroke size in visual will be scaled along with the Canvas
+// defaults to false, the stroke size in visual will stay with the original value
+open var scaleWithCanvas = false
 ```
 
 With all these properties, you can create you own brush as your imagination.
@@ -96,36 +141,65 @@ MaLiang supports automatically adjustment of stroke size with painting force. 3D
 
 `forceSensitive` is the property that force affects the storke size. It should be set between `0` to `1`. the smaller the value is, the less sensitive will be. if sets to `0`, then force will not affects the stroke size.
 
-### Document
+### Chartlet
 
-`Document` is not required. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
-And you can implement your own **saving logic** with the data holds by `Document`.
-
-To enable the `Document` for `Canvas`, there needs only one line of code: 
+Chartlet elements are supported from 2.1.0. A chartlet must be registered to canvas with its' texture data. You can simply get image data from its' `pngData()` method.
 
 ```swift
-canvas.setupDocument()
+let data = UIImage(named: "chartlet").pngData()
+try canvas.registerChartlet(with: data)
 ```
 
-The operation above may be failed if there's not enough disk rooms. Because we need rooms to keep textures and painting datas on disk.</br>
-Use `do-catch` to process the error when it appears:
+You can apply **rotation** to chartlet by passing a counter clockwise angle in radius when adding it to the canvas:
 
 ```swift
-do {
-    try canvas.setupDocument()
-} catch {
-    // do somthing when error occurs
-}
+canvas.renderChartlet(at: location, size: chartletSize, textureID: texture.id, rotation: angle)
 ```
 
-## TODO
-- [x] Undo & Redo
-- [x] Export to image
-- [ ] Text element
-- [ ] Image element
-- [ ] Texture rotation
+#### Text
+
+Text element can be rendered to canvas by the Chartlet feature. MaLiang leaves the work of text layout and styles to your self.
+
+- Firtst, put your text content to a label, a text view or any other customized views
+- Second, make it properly styled and layouted
+- Then Third, take a snapshot from that view.
+- Finally, now you shoud have an image to your text content, render this image to canvas using the Chartlet apis.
+
+Refer to the samples for more details.
+
+### CanvasData
+
+`CanvasData` is now configured by default. It holds all the data on the `Canvas`, and makes the **undo** and **redo** actions to be possiable. </br>
+And you can implement your own **saving logic** with the data holds by `CanvasData`.
+
+### Saving
+
+🎉 You can save your paintings to disk now.
+
+```swift
+// 1. create an instance of `DataExporter` with your canvas:
+let exporter = DataExporter(canvas: canvas)
+// 2. save to empty folders on disk:
+exporter.save(to: localPath, progress: progressHandler, result: resultHandler)
+
+// also you can use another synchronous method to do de work Synchronously
+exporter.saveSynchronously(to: locakPath, progress: progressHandler)
+```
+
+Then, contents of canvas and some document infomations will be saved to files in the directory you provided.
+
+**`MaLiang` does not implement the archive logic for files, so you can implement your own archive Logics**
+
+### Reading
+
+Use `DataImporter` to read data saved by `MaLiang` to your canvas:
+
+```Swift
+DataImporter.importData(from: localPath, to: canvas, progress: progressHandler, result: resultHandler)
+```
+
+Also, the localPath passed into DataImporter must be a folder where your contents files place. If you are using your own archive logic, unzip the contents first by your own.
 
 ## License
 
 MaLiang is available under the MIT license. See the LICENSE file for more info.
-

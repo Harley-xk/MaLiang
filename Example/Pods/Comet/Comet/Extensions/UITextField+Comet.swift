@@ -10,7 +10,7 @@ import Foundation
 
 public extension UITextField {
     
-    public func setPlaceholderColor(_ color: UIColor) {
+    func setPlaceholderColor(_ color: UIColor) {
         
         if let string = self.placeholder {
             if !string.isEmpty {

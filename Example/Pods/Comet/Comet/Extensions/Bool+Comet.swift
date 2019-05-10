@@ -9,7 +9,8 @@ import Foundation
 
 public extension Bool {
     /// 将当前自身的值取反
-    public mutating func reverse() {
+    @available(*, deprecated, message: "Use the new method toggle() instead", renamed: "toggle()")
+    mutating func reverse() {
         self = !self
     }
 }

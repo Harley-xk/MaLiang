@@ -11,7 +11,7 @@ import Foundation
 public extension UINavigationBar {
     
     /// 定义导航栏的全局颜色
-    public class func customizeAppearenceColorWith(barTint: UIColor, foreground: UIColor) {
+    class func customizeAppearenceColorWith(barTint: UIColor, foreground: UIColor) {
         
         self.appearance().barTintColor = barTint
         self.appearance().tintColor = foreground
@@ -19,7 +19,7 @@ public extension UINavigationBar {
     }
     
     /// 设置导航栏的文字颜色
-    public var textColor: UIColor? {
+    var textColor: UIColor? {
         get {
             return self.titleTextAttributes?[.foregroundColor] as? UIColor
         }
@@ -31,7 +31,7 @@ public extension UINavigationBar {
     }
     
     /// 设置导航栏标题的字体
-    public var titleFont: UIFont? {
+    var titleFont: UIFont? {
         get {
             return self.titleTextAttributes?[.font] as? UIFont
         }

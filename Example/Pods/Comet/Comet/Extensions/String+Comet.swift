@@ -12,7 +12,7 @@ import UIKit
 public extension String {
     
     /// 返回桥接版的 NSString
-    public var ns: NSString {
+    var ns: NSString {
         return self as NSString
     }
 }
@@ -22,7 +22,7 @@ public extension String {
     /// 给空值提供默认替换值, 如果 string 为空字符串，则使用指定的默认值替换
     ///
     /// - Parameter value: 指定用来替换的值
-    public func emptyDefault(_ value: String) -> String {
+    func emptyDefault(_ value: String) -> String {
         return self.isEmpty ? value : self
     }
     
@@ -37,13 +37,13 @@ public extension String {
 public extension String {
     
     /// 拼音的类型
-    public enum PinyinType {
+    enum PinyinType {
         case normal         // 默认类型，不带声调
         case withTone       // 带声调的拼音
         case firstLetter    // 拼音首字母
     }
     
-    public func pinyin(_ type: PinyinType = .normal) -> String {
+    func pinyin(_ type: PinyinType = .normal) -> String {
         switch type {
         case .normal:
             return normalPinyin()
@@ -78,7 +78,7 @@ public extension String {
 // MARK: - Base64
 public extension String {
     
-    public var base64Decode: String? {
+    var base64Decode: String? {
         
         if let data = Data(base64Encoded: self) {
             return String(data: data, encoding: .utf8)
@@ -86,7 +86,7 @@ public extension String {
         return nil
     }
     
-    public var base64Encode: String? {
+    var base64Encode: String? {
         if let data = self.data(using: .utf8) {
             return data.base64EncodedString()
         }
@@ -98,43 +98,43 @@ public extension String {
 public extension String {
     /// 常用正则表达式
     // 邮箱
-    public var regex_email: String {
+    var regex_email: String {
         return "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"
     }
     
     // 电话号码
-    public var regex_phone: String {
+    var regex_phone: String {
         return "^(([+])\\d{1,4})*(\\d{3,4})*\\d{7,8}(\\d{1,4})*$"
     }
     
     // 手机号码
-    public var regex_mobile: String {
+    var regex_mobile: String {
         return "^(([+])\\d{1,4})*1[0-9][0-9]\\d{8}$"
     }
 
     /// 判断是否匹配正则表达式
-    public func match(regex: String) -> Bool {
+    func match(regex: String) -> Bool {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: self)
     }
     
     /// 判断字符串是否是邮箱
-    public var isEmail: Bool {
+    var isEmail: Bool {
         return self.match(regex: regex_email)
     }
     
     /// 判断是否是电话号码
-    public var isPhone: Bool {
+    var isPhone: Bool {
         return self.match(regex: regex_phone)
     }
 
     /// 判断是否是手机号码
-    public var isMobile: Bool {
+    var isMobile: Bool {
         return self.match(regex: regex_mobile)
     }
     
     /// 同时验证电话和手机
-    public var isPhoneOrMobile: Bool {
+    var isPhoneOrMobile: Bool {
         return isPhone || isMobile
     }
 }
@@ -143,13 +143,13 @@ public extension String {
 public extension String {
     
     /// URL 编码
-    public var URLEncode: String? {
+    var URLEncode: String? {
         let characterSet = CharacterSet(charactersIn: ":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`")
         return self.addingPercentEncoding(withAllowedCharacters: characterSet)
     }
     
     /// URL 解码
-    public var URLDecode: String? {
+    var URLDecode: String? {
         return self.removingPercentEncoding
     }
 }
@@ -160,17 +160,17 @@ public extension String {
     /**
      *  计算字符串的大小，根据限定的高或者宽度，计算另一项的值
      */
-    public func width(limitToHeight height: CGFloat, font: UIFont) -> CGFloat {
+    func width(limitToHeight height: CGFloat, font: UIFont) -> CGFloat {
         let size = CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)
         return self.size(limitToSize: size, font: font).width
     }
     
-    public func height(limitToWidth width: CGFloat, font: UIFont) -> CGFloat {
+    func height(limitToWidth width: CGFloat, font: UIFont) -> CGFloat {
         let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         return self.size(limitToSize: size, font: font).height
     }
     
-    public func size(limitToSize size: CGSize, font: UIFont) -> CGSize {
+    func size(limitToSize size: CGSize, font: UIFont) -> CGSize {
         let string = self as NSString
         let rect = string.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [.font:font], context: nil)
         return rect.size

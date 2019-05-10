@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/// 定义一个空函数的别名，方便使用
+public typealias EmptyHandler = () -> ()
+
 open class Utils {
     
     /// 系统版本号

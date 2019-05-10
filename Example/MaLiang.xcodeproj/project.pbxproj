@@ -7,70 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D1EBAA1B445058D51C18AAF /* Pods_MaLiang_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */; };
+		3206061AEBC900E6419B1AC1 /* Pods_MaLiang_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17636DA7E81A7C670D9DA927 /* Pods_MaLiang_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
-		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		B604919D209A71C000372B21 /* PaintingGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */; };
-		B6202B88209F50B900DC0C20 /* PaintingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6202B87209F50B900DC0C20 /* PaintingPreview.swift */; };
-		B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669C208C6117005ED0E1 /* MLTexture.swift */; };
-		B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669D208C6117005ED0E1 /* Canvas.swift */; };
-		B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669E208C6117005ED0E1 /* BezierGenerator.swift */; };
-		B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E669F208C6117005ED0E1 /* ShaderUtil.swift */; };
-		B69E66AC208C6117005ED0E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66A0208C6117005ED0E1 /* Utils.swift */; };
-		B69E66AD208C6117005ED0E1 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66A1208C6117005ED0E1 /* MLColor.swift */; };
-		B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66A2208C6117005ED0E1 /* Brush.swift */; };
-		B69E66AF208C6117005ED0E1 /* point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A4208C6117005ED0E1 /* point.vsh */; };
-		B69E66B0208C6117005ED0E1 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A5208C6117005ED0E1 /* point.png */; };
-		B69E66B1208C6117005ED0E1 /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B69E66A6208C6117005ED0E1 /* point.fsh */; };
-		B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B2208C61C4005ED0E1 /* MLLine.swift */; };
-		B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E66B3208C61C4005ED0E1 /* MLView.swift */; };
-		B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */; };
-		B6C188BF2099AA6800A312B6 /* ScrollableSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */; };
-		B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F023B1208F2A4700D5CFA7 /* Document.swift */; };
-		B6FFA53F209CA26100936E58 /* pencil-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FFA53E209CA26100936E58 /* pencil-2@2x.png */; };
-		B6FFA541209CA2C300936E58 /* water-pen-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */; };
-		B6FFA543209CA31700936E58 /* painting_texture_mb.png in Resources */ = {isa = PBXBuildFile; fileRef = B6FFA542209CA31700936E58 /* painting_texture_mb.png */; };
-		B6FFA545209CAB9600936E58 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FFA544209CAB9600936E58 /* RootViewController.swift */; };
+		C30B2D35226F06B400E3429A /* SavedFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */; };
+		C345EA5D22854A9E0041AA5D /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C345EA5C22854A9E0041AA5D /* MathUtils.swift */; };
+		C35AF7C3227F265E0019ACC3 /* glow.png in Resources */ = {isa = PBXBuildFile; fileRef = C35AF7C2227F265E0019ACC3 /* glow.png */; };
+		C35E4454227E887B005C612D /* claw.png in Resources */ = {isa = PBXBuildFile; fileRef = C35E4453227E887B005C612D /* claw.png */; };
+		C3617DB72272EB2400E5DC7C /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = C3617DB52272EB2400E5DC7C /* brush.png */; };
+		C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = C3617DB82272EC5C00E5DC7C /* pencil.png */; };
+		C3617DC022733FB300E5DC7C /* ChartletPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */; };
+		C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */; };
+		C3617DC42273FFDB00E5DC7C /* ChartletEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DC32273FFDB00E5DC7C /* ChartletEditor.swift */; };
+		C3617DC6227407FC00E5DC7C /* ChartletImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */; };
+		C39C35A72259FBCB00DA0519 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35A62259FBCB00DA0519 /* RootViewController.swift */; };
+		C39C35AB2259FBD100DA0519 /* PaintingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35A82259FBD100DA0519 /* PaintingPreview.swift */; };
+		C39C35AD2259FBD100DA0519 /* ScrollableSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39C35AA2259FBD100DA0519 /* ScrollableSample.swift */; };
+		C39C35BF2259FD7A00DA0519 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39C35BE2259FD7A00DA0519 /* Main.storyboard */; };
+		C3D0644A22685FCF00DD6632 /* ScrollingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0644922685FCF00DD6632 /* ScrollingViewController.swift */; };
+		C3F3749722729A2E00F34376 /* TextureElementSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3749622729A2E00F34376 /* TextureElementSamples.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18764E1B009DE75D84F411D5 /* Pods-MaLiang_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.release.xcconfig"; sourceTree = "<group>"; };
-		3F86637CB2273685F81BBA42 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		17636DA7E81A7C670D9DA927 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* MaLiang_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaLiang_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingGestureRecognizer.swift; sourceTree = "<group>"; };
-		B6202B87209F50B900DC0C20 /* PaintingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingPreview.swift; sourceTree = "<group>"; };
-		B69E669C208C6117005ED0E1 /* MLTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLTexture.swift; sourceTree = "<group>"; };
-		B69E669D208C6117005ED0E1 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		B69E669E208C6117005ED0E1 /* BezierGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierGenerator.swift; sourceTree = "<group>"; };
-		B69E669F208C6117005ED0E1 /* ShaderUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaderUtil.swift; sourceTree = "<group>"; };
-		B69E66A0208C6117005ED0E1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		B69E66A1208C6117005ED0E1 /* MLColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLColor.swift; sourceTree = "<group>"; };
-		B69E66A2208C6117005ED0E1 /* Brush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brush.swift; sourceTree = "<group>"; };
-		B69E66A4208C6117005ED0E1 /* point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vsh; sourceTree = "<group>"; };
-		B69E66A5208C6117005ED0E1 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
-		B69E66A6208C6117005ED0E1 /* point.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.fsh; sourceTree = "<group>"; };
-		B69E66B2208C61C4005ED0E1 /* MLLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLLine.swift; sourceTree = "<group>"; };
-		B69E66B3208C61C4005ED0E1 /* MLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLView.swift; sourceTree = "<group>"; };
-		B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableCanvas.swift; sourceTree = "<group>"; };
-		B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSample.swift; sourceTree = "<group>"; };
-		B6F023B1208F2A4700D5CFA7 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		B6FFA53E209CA26100936E58 /* pencil-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pencil-2@2x.png"; path = "Images.xcassets/pencil.imageset/pencil-2@2x.png"; sourceTree = "<group>"; };
-		B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "water-pen-2@2x.png"; path = "Images.xcassets/water-pen.imageset/water-pen-2@2x.png"; sourceTree = "<group>"; };
-		B6FFA542209CA31700936E58 /* painting_texture_mb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = painting_texture_mb.png; sourceTree = "<group>"; };
-		B6FFA544209CAB9600936E58 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		E4F56C2627A50ADFF8265C8F /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		F3CBFDC0B0167759FA9BD760 /* MaLiang.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MaLiang.podspec; path = ../MaLiang.podspec; sourceTree = "<group>"; };
-		F4B98B2F9C80C87DAC438AFA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		BC1D418F740B155E4322B525 /* Pods-MaLiang_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Tests.release.xcconfig"; path = "Target Support Files/Pods-MaLiang_Tests/Pods-MaLiang_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C052AA7056E3CAE35CF9E23A /* Pods-MaLiang_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.release.xcconfig"; path = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.release.xcconfig"; sourceTree = "<group>"; };
+		C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFilesViewController.swift; sourceTree = "<group>"; };
+		C345EA5C22854A9E0041AA5D /* MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtils.swift; sourceTree = "<group>"; };
+		C35AF7C2227F265E0019ACC3 /* glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glow.png; sourceTree = "<group>"; };
+		C35E4453227E887B005C612D /* claw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = claw.png; sourceTree = "<group>"; };
+		C3617DB52272EB2400E5DC7C /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
+		C3617DB82272EC5C00E5DC7C /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
+		C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletPicker.swift; sourceTree = "<group>"; };
+		C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartletPicker.storyboard; sourceTree = "<group>"; };
+		C3617DC32273FFDB00E5DC7C /* ChartletEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletEditor.swift; sourceTree = "<group>"; };
+		C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletImageCache.swift; sourceTree = "<group>"; };
+		C39C35A62259FBCB00DA0519 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		C39C35A82259FBD100DA0519 /* PaintingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingPreview.swift; sourceTree = "<group>"; };
+		C39C35AA2259FBD100DA0519 /* ScrollableSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSample.swift; sourceTree = "<group>"; };
+		C39C35BE2259FD7A00DA0519 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C3D0644922685FCF00DD6632 /* ScrollingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingViewController.swift; sourceTree = "<group>"; };
+		C3F3749622729A2E00F34376 /* TextureElementSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureElementSamples.swift; sourceTree = "<group>"; };
+		C6F28C17C7927FA0ED972567 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C847720412563A4B8BD1C035 /* Pods_MaLiang_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D76EE9D69205D147C25FBFCA /* Pods-MaLiang_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Example.debug.xcconfig"; path = "Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		F33BD5AE4C677E1850ACE9D1 /* MaLiang.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MaLiang.podspec; path = ../MaLiang.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F856FEC335048D43A107FD49 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FAB04562EF462307E247C51B /* Pods-MaLiang_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaLiang_Tests.debug.xcconfig"; path = "Target Support Files/Pods-MaLiang_Tests/Pods-MaLiang_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,20 +69,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D1EBAA1B445058D51C18AAF /* Pods_MaLiang_Example.framework in Frameworks */,
+				3206061AEBC900E6419B1AC1 /* Pods_MaLiang_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1464B08E9697703EE06D03F5 /* Pods */ = {
+		3532227EA8F3B9732E5108EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E4F56C2627A50ADFF8265C8F /* Pods-MaLiang_Example.debug.xcconfig */,
-				18764E1B009DE75D84F411D5 /* Pods-MaLiang_Example.release.xcconfig */,
+				17636DA7E81A7C670D9DA927 /* Pods_MaLiang_Example.framework */,
+				C847720412563A4B8BD1C035 /* Pods_MaLiang_Tests.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -99,10 +90,9 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for MaLiang */,
-				B69E6699208C6117005ED0E1 /* MaLiang */,
 				607FACD11AFB9204008FA782 /* Products */,
-				1464B08E9697703EE06D03F5 /* Pods */,
-				F678FE9C7E0D82A7E1EBC344 /* Frameworks */,
+				79E287336B46753CDAB0C72E /* Pods */,
+				3532227EA8F3B9732E5108EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,18 +107,16 @@
 		607FACD21AFB9204008FA782 /* Example for MaLiang */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				B6FFA544209CAB9600936E58 /* RootViewController.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				B6C188BE2099AA6800A312B6 /* ScrollableSample.swift */,
-				B6C188BC2099A91B00A312B6 /* ScrollableCanvas.swift */,
-				B6202B87209F50B900DC0C20 /* PaintingPreview.swift */,
-				B6FFA542209CA31700936E58 /* painting_texture_mb.png */,
-				B6FFA53E209CA26100936E58 /* pencil-2@2x.png */,
-				B6FFA540209CA2C200936E58 /* water-pen-2@2x.png */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				C39C35BE2259FD7A00DA0519 /* Main.storyboard */,
+				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				C39C35A62259FBCB00DA0519 /* RootViewController.swift */,
+				C3617DAA2272CD8E00E5DC7C /* Painting Sanples */,
+				C3617DAB2272CDA700E5DC7C /* Scroll Samples */,
+				C3617DAC2272CDBB00E5DC7C /* File Samples */,
+				C3617DBF22733EFB00E5DC7C /* Components */,
+				C3617DAD2272EA8E00E5DC7C /* Textures */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for MaLiang";
@@ -146,73 +134,72 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				F3CBFDC0B0167759FA9BD760 /* MaLiang.podspec */,
-				3F86637CB2273685F81BBA42 /* README.md */,
-				F4B98B2F9C80C87DAC438AFA /* LICENSE */,
+				F33BD5AE4C677E1850ACE9D1 /* MaLiang.podspec */,
+				F856FEC335048D43A107FD49 /* README.md */,
+				C6F28C17C7927FA0ED972567 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		B68CFBE8208DF34F006170E7 /* MLBase */ = {
+		79E287336B46753CDAB0C72E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B69E669C208C6117005ED0E1 /* MLTexture.swift */,
-				B69E66B2208C61C4005ED0E1 /* MLLine.swift */,
-				B69E66B3208C61C4005ED0E1 /* MLView.swift */,
-				B69E66A1208C6117005ED0E1 /* MLColor.swift */,
+				D76EE9D69205D147C25FBFCA /* Pods-MaLiang_Example.debug.xcconfig */,
+				C052AA7056E3CAE35CF9E23A /* Pods-MaLiang_Example.release.xcconfig */,
+				FAB04562EF462307E247C51B /* Pods-MaLiang_Tests.debug.xcconfig */,
+				BC1D418F740B155E4322B525 /* Pods-MaLiang_Tests.release.xcconfig */,
 			);
-			path = MLBase;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		B69E6699208C6117005ED0E1 /* MaLiang */ = {
+		C3617DAA2272CD8E00E5DC7C /* Painting Sanples */ = {
 			isa = PBXGroup;
 			children = (
-				B69E669A208C6117005ED0E1 /* Classes */,
-				B69E66A3208C6117005ED0E1 /* Resources */,
+				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				C39C35A82259FBD100DA0519 /* PaintingPreview.swift */,
+				C3F3749622729A2E00F34376 /* TextureElementSamples.swift */,
 			);
-			name = MaLiang;
-			path = ../MaLiang;
+			path = "Painting Sanples";
 			sourceTree = "<group>";
 		};
-		B69E669A208C6117005ED0E1 /* Classes */ = {
+		C3617DAB2272CDA700E5DC7C /* Scroll Samples */ = {
 			isa = PBXGroup;
 			children = (
-				B69E669D208C6117005ED0E1 /* Canvas.swift */,
-				B69E66A2208C6117005ED0E1 /* Brush.swift */,
-				B6F023B1208F2A4700D5CFA7 /* Document.swift */,
-				B6F023B0208F1E9200D5CFA7 /* Utils */,
-				B68CFBE8208DF34F006170E7 /* MLBase */,
+				C39C35AA2259FBD100DA0519 /* ScrollableSample.swift */,
+				C3D0644922685FCF00DD6632 /* ScrollingViewController.swift */,
 			);
-			path = Classes;
+			path = "Scroll Samples";
 			sourceTree = "<group>";
 		};
-		B69E66A3208C6117005ED0E1 /* Resources */ = {
+		C3617DAC2272CDBB00E5DC7C /* File Samples */ = {
 			isa = PBXGroup;
 			children = (
-				B69E66A4208C6117005ED0E1 /* point.vsh */,
-				B69E66A5208C6117005ED0E1 /* point.png */,
-				B69E66A6208C6117005ED0E1 /* point.fsh */,
+				C30B2D34226F06B400E3429A /* SavedFilesViewController.swift */,
 			);
-			path = Resources;
+			path = "File Samples";
 			sourceTree = "<group>";
 		};
-		B6F023B0208F1E9200D5CFA7 /* Utils */ = {
+		C3617DAD2272EA8E00E5DC7C /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				B69E66A0208C6117005ED0E1 /* Utils.swift */,
-				B69E669F208C6117005ED0E1 /* ShaderUtil.swift */,
-				B69E669E208C6117005ED0E1 /* BezierGenerator.swift */,
-				B604919C209A71C000372B21 /* PaintingGestureRecognizer.swift */,
+				C3617DB52272EB2400E5DC7C /* brush.png */,
+				C3617DB82272EC5C00E5DC7C /* pencil.png */,
+				C35E4453227E887B005C612D /* claw.png */,
+				C35AF7C2227F265E0019ACC3 /* glow.png */,
 			);
-			path = Utils;
+			path = Textures;
 			sourceTree = "<group>";
 		};
-		F678FE9C7E0D82A7E1EBC344 /* Frameworks */ = {
+		C3617DBF22733EFB00E5DC7C /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7FF3FA5B941FF62868122AF9 /* Pods_MaLiang_Example.framework */,
+				C3617DC12273F8C500E5DC7C /* ChartletPicker.storyboard */,
+				C3617DBE22733EFB00E5DC7C /* ChartletPicker.swift */,
+				C3617DC5227407FC00E5DC7C /* ChartletImageCache.swift */,
+				C3617DC32273FFDB00E5DC7C /* ChartletEditor.swift */,
+				C345EA5C22854A9E0041AA5D /* MathUtils.swift */,
 			);
-			name = Frameworks;
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,11 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "MaLiang_Example" */;
 			buildPhases = (
-				0AB7B8A066F8971C13A58EF6 /* [CP] Check Pods Manifest.lock */,
+				4B71C2494D612E3D62CD1961 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				E1EBFC16932D85391E716663 /* [CP] Embed Pods Frameworks */,
+				638379FFFDEFCB11E76B1EDB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,19 +231,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "Harley-xk";
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = H28MQNK878;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "MaLiang" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -277,31 +264,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6FFA541209CA2C300936E58 /* water-pen-2@2x.png in Resources */,
-				B6FFA53F209CA26100936E58 /* pencil-2@2x.png in Resources */,
-				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */,
+				C3617DB72272EB2400E5DC7C /* brush.png in Resources */,
+				C35E4454227E887B005C612D /* claw.png in Resources */,
+				C39C35BF2259FD7A00DA0519 /* Main.storyboard in Resources */,
+				C35AF7C3227F265E0019ACC3 /* glow.png in Resources */,
+				C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				B69E66B0208C6117005ED0E1 /* point.png in Resources */,
-				B6FFA543209CA31700936E58 /* painting_texture_mb.png in Resources */,
-				B69E66AF208C6117005ED0E1 /* point.vsh in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				B69E66B1208C6117005ED0E1 /* point.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0AB7B8A066F8971C13A58EF6 /* [CP] Check Pods Manifest.lock */ = {
+		4B71C2494D612E3D62CD1961 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-MaLiang_Example-checkManifestLockResult.txt",
 			);
@@ -310,18 +300,30 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E1EBFC16932D85391E716663 /* [CP] Embed Pods Frameworks */ = {
+		638379FFFDEFCB11E76B1EDB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MaLiang_Example/Pods-MaLiang_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Chrysan/Chrysan.framework",
 				"${BUILT_PRODUCTS_DIR}/Comet/Comet.framework",
+				"${BUILT_PRODUCTS_DIR}/MaLiang/MaLiang.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chrysan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Comet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaLiang.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -335,37 +337,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B604919D209A71C000372B21 /* PaintingGestureRecognizer.swift in Sources */,
-				B69E66AD208C6117005ED0E1 /* MLColor.swift in Sources */,
+				C39C35AD2259FBD100DA0519 /* ScrollableSample.swift in Sources */,
+				C39C35AB2259FBD100DA0519 /* PaintingPreview.swift in Sources */,
+				C3617DC42273FFDB00E5DC7C /* ChartletEditor.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				B69E66B4208C61C4005ED0E1 /* MLLine.swift in Sources */,
-				B69E66A8208C6117005ED0E1 /* MLTexture.swift in Sources */,
-				B69E66AE208C6117005ED0E1 /* Brush.swift in Sources */,
-				B6FFA545209CAB9600936E58 /* RootViewController.swift in Sources */,
-				B69E66AA208C6117005ED0E1 /* BezierGenerator.swift in Sources */,
-				B6C188BF2099AA6800A312B6 /* ScrollableSample.swift in Sources */,
-				B69E66AC208C6117005ED0E1 /* Utils.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				B6F023B2208F2A4700D5CFA7 /* Document.swift in Sources */,
-				B6202B88209F50B900DC0C20 /* PaintingPreview.swift in Sources */,
-				B69E66AB208C6117005ED0E1 /* ShaderUtil.swift in Sources */,
-				B6C188BD2099A91B00A312B6 /* ScrollableCanvas.swift in Sources */,
-				B69E66B5208C61C4005ED0E1 /* MLView.swift in Sources */,
-				B69E66A9208C6117005ED0E1 /* Canvas.swift in Sources */,
+				C30B2D35226F06B400E3429A /* SavedFilesViewController.swift in Sources */,
+				C3D0644A22685FCF00DD6632 /* ScrollingViewController.swift in Sources */,
+				C3617DC6227407FC00E5DC7C /* ChartletImageCache.swift in Sources */,
+				C3F3749722729A2E00F34376 /* TextureElementSamples.swift in Sources */,
+				C345EA5D22854A9E0041AA5D /* MathUtils.swift in Sources */,
+				C39C35A72259FBCB00DA0519 /* RootViewController.swift in Sources */,
+				C3617DC022733FB300E5DC7C /* ChartletPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				607FACDA1AFB9204008FA782 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -381,6 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -429,7 +419,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -437,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -477,46 +468,41 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4F56C2627A50ADFF8265C8F /* Pods-MaLiang_Example.debug.xcconfig */;
+			baseConfigurationReference = D76EE9D69205D147C25FBFCA /* Pods-MaLiang_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = H28MQNK878;
 				INFOPLIST_FILE = MaLiang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Harley-xk.MaLiang";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18764E1B009DE75D84F411D5 /* Pods-MaLiang_Example.release.xcconfig */;
+			baseConfigurationReference = C052AA7056E3CAE35CF9E23A /* Pods-MaLiang_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = H28MQNK878;
 				INFOPLIST_FILE = MaLiang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Harley-xk.MaLiang";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

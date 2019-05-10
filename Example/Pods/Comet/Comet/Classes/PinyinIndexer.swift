@@ -9,6 +9,7 @@
 import UIKit
 
 /// 拼音索引器，将指定的对象数组按照指定属性进行拼音首字母排序并创建索引
+@available(*, deprecated, message: "拼音索引器已废除，请使用 `CollectionGrouper` 来实现拼音索引功能")
 open class PinyinIndexer<T> {
     
     private var objectList: [T]
@@ -63,6 +64,7 @@ open class PinyinIndexer<T> {
     }
 }
 
+@available(*, deprecated, message: "拼音索引器已废除，请使用 `CollectionGrouper` 来实现拼音索引功能")
 class PinyinIndex<T>: NSObject {
     
     var object: T

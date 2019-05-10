@@ -11,7 +11,7 @@ import Foundation
 public extension Date {
     
     /// 日期单元
-    public struct DateUnit {
+    struct DateUnit {
         var component: Calendar.Component
         var value: Int
         public static func year(_ value: Int) -> DateUnit { return DateUnit(component: .year, value: value) }
@@ -23,7 +23,7 @@ public extension Date {
     }
     
     /// 从日期字符串创建日期对象
-    public init?(string: String, format: String = "yyyy-MM-dd HH:mm:ss", timeZone: TimeZone = TimeZone.current) {
+    init?(string: String, format: String = "yyyy-MM-dd HH:mm:ss", timeZone: TimeZone = TimeZone.current) {
         
         let formatter = DateFormatter()
         formatter.dateFormat = format
@@ -37,7 +37,7 @@ public extension Date {
     }
     
     /// 将日期转换为指定格式的字符串
-    public func string(format: String = "yyyy-MM-dd HH:mm:ss", timeZone: TimeZone = TimeZone.current) -> String {
+    func string(format: String = "yyyy-MM-dd HH:mm:ss", timeZone: TimeZone = TimeZone.current) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         formatter.timeZone = timeZone
@@ -45,13 +45,13 @@ public extension Date {
     }
     
     /// 转换为年月日的字符串
-    public func dateString() -> String {
+    func dateString() -> String {
         return string(format: "yyyy-MM-dd")
     }
 
     /// 日期计算，返回当前日期加上指定单位值之后的日期，会自动进位或减位
     /// 返回计算后的新日期
-    public func add(_ unit: DateUnit) -> Date {
+    func add(_ unit: DateUnit) -> Date {
         
         let calendar = Calendar.current
         var components = calendar.dateComponents(Set(Calendar.Component.dateAndTime), from: self)
@@ -66,7 +66,7 @@ public extension Date {
     
     /// 将指定单位设置为指定的值，返回修改后的新日期
     /// 如果设置的值大于当前单位的最大值或者小于最小值，会自动进位或减位
-    public func set(_ unit: DateUnit) -> Date {
+    func set(_ unit: DateUnit) -> Date {
         let calendar = Calendar.current
         var components = calendar.dateComponents(Set(Calendar.Component.dateAndTime), from: self)
         components.timeZone = TimeZone.current
@@ -76,7 +76,7 @@ public extension Date {
     }
     
     /// 忽略精确时间（时／分／秒）的日期
-    public var withoutTime: Date {
+    var withoutTime: Date {
         let calendar = Calendar.current
         var components = calendar.dateComponents([.year, .month, .day], from: self)
         components.timeZone = TimeZone.current
@@ -85,12 +85,12 @@ public extension Date {
     }
     
     /// 某个日期的开始，即 0 时 0 分 0 秒
-    public var beginTime: Date {
+    var beginTime: Date {
         return withoutTime
     }
     
     /// 某个日期的结束，即 23 时 59 分 59 秒
-    public var endTime: Date {
+    var endTime: Date {
         let calendar = Calendar.current
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
         components.timeZone = TimeZone.current
@@ -103,7 +103,7 @@ public extension Date {
     }
     
     /// 某个单位的值
-    public func unit(_ unit: Calendar.Component) -> Int {
+    func unit(_ unit: Calendar.Component) -> Int {
         let calendar = Calendar.current
         var components = calendar.dateComponents([unit], from: self)
         components.timeZone = TimeZone.current
@@ -111,7 +111,7 @@ public extension Date {
     }
     
     /// 周几，周日为0
-    public var weekday: Int {
+    var weekday: Int {
         let calendar = Calendar.current
         var components = calendar.dateComponents([.weekday], from: self)
         components.timeZone = TimeZone.current
@@ -119,14 +119,14 @@ public extension Date {
     }
     
     // 两个日期相隔的分钟数
-    public func minutesSince(_ date: Date) -> Double {
+    func minutesSince(_ date: Date) -> Double {
         let timeInterval = timeIntervalSince(date)
         let minute = timeInterval / 60
         return minute
     }
     
     // 两个日期相隔的小时数
-    public func hoursSince(_ date: Date) -> Double {
+    func hoursSince(_ date: Date) -> Double {
         let minute = minutesSince(date)
         return minute / 60
     }
@@ -137,7 +137,7 @@ public extension Date {
     ///   - date: 与当前日期比较的日期
     ///   - withoutTime: 是否忽略精确的时分秒，可以启用该属性来比较两个日期的物理天数（即昨天、前天等）
     /// - Returns: 天数
-    public func daysSince(_ date: Date, withoutTime: Bool = false) -> Double {
+    func daysSince(_ date: Date, withoutTime: Bool = false) -> Double {
         var date1 = self
         var date2 = date
         if withoutTime {
@@ -150,7 +150,7 @@ public extension Date {
     
     
     /// 判断两个日期是否在同一天内
-    public func isSameDay(as date: Date?) -> Bool {
+    func isSameDay(as date: Date?) -> Bool {
         guard let date = date else {
             return false
         }
@@ -172,25 +172,25 @@ public func -(lhs: Date, rhs: Date.DateUnit) -> Date {
 public extension TimeZone {
     
     /// 中国时区(东8区)
-    public static var china: TimeZone {
+    static var china: TimeZone {
         return TimeZone(identifier: "Asia/Shanghai")!
     }
     
     // UTC 0 时区
-    public static var zero: TimeZone {
+    static var zero: TimeZone {
         return TimeZone(abbreviation: "UTC")!
     }
     
 }
 
 public extension Calendar.Component {
-    public static var date: [Calendar.Component] {
+    static var date: [Calendar.Component] {
         return [.year, .month, .day]
     }
-    public static var time: [Calendar.Component] {
+    static var time: [Calendar.Component] {
         return [.hour, .minute, .second]
     }
-    public static var dateAndTime: [Calendar.Component] {
+    static var dateAndTime: [Calendar.Component] {
         return [.year, .month, .day, .hour, .minute, .second]
     }
 }
@@ -199,12 +199,12 @@ public extension Calendar.Component {
 public extension Locale {
     
     /// 中国地区
-    public static var china: Locale {
+    static var china: Locale {
         return Locale(identifier: "zh_Hans_CN")
     }
     
     /// 美国地区
-    public static var usa: Locale {
+    static var usa: Locale {
         return Locale(identifier: "es_US")
     }
 }

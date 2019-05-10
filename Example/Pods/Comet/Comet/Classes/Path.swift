@@ -117,6 +117,16 @@ open class Path {
         return nil
     }
     
+    /// 对该目录禁用 iCloud 自动备份
+    open func disableAutoBackup() {
+        let existInfo = fileExist
+        guard existInfo.exist, !existInfo.isFile else {
+            return
+        }
+        var url = self.url
+        url.setTemporaryResourceValue(true, forKey: .isExcludedFromBackupKey)
+    }
+    
     /// 获取文件大小，如果是文件夹，会遍历整个目录及子目录计算所有文件大小
     open var size: UInt64 {
         let fileExist = self.fileExist
@@ -198,7 +208,7 @@ public extension Bundle
     /// - Parameters:
     ///   - name: 资源名称
     /// - Returns: 返回资源路径
-    public func resource(_ name: String) -> Path? {
+    func resource(_ name: String) -> Path? {
         let path = name as NSString
         let pathExtension = path.pathExtension
         var nameWithoutExtension = name
@@ -212,7 +222,7 @@ public extension Bundle
 
 public extension String
 {
-    public var path: Path {
+    var path: Path {
         return Path(self)
     }
 }

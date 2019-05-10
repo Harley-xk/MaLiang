@@ -42,7 +42,7 @@ public extension NSObject {
     
     /// 记录发起的任务，自动创建任务记录器
     /// 会在对象销毁时取消并清空所有已记录且尚未执行完毕的任务
-    public func record(task: TaskProtocol) {
+    func record(task: TaskProtocol) {
         
         if self.taskRecorder == nil {
             self.taskRecorder = TaskRecorder()

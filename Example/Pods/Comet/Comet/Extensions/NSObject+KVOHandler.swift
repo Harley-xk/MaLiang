@@ -36,7 +36,7 @@ public extension NSObject {
     /// 注册一个闭包形式的属性观察者，每当 keyPath 对应的属性发生变更时，会通过 handler 回调通知
     // 该方法会在 object 内部创建一个私有的 observer 来接收通知，并将其转发到 handler 上
     // 只有在实际注册了 handler 观察者后才会创建 observer，并且此过程是自动的
-    public func addObserver(for keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer? = nil, handler: @escaping ObserverHandler) {
+    func addObserver(for keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer? = nil, handler: @escaping ObserverHandler) {
         if keyPathObserver == nil {
             keyPathObserver = KeyPathObserver()
         }
@@ -46,7 +46,7 @@ public extension NSObject {
     
     /// 移除通过 handler 注册的属性观察者
     // 如果不再存在通过 handler 注册的属性观察者，私有的 observer 对象将会被释放
-    public func removeObserver(for keyPath: String) {
+    func removeObserver(for keyPath: String) {
         if keyPathObserver == nil {
             return
         }

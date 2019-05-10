@@ -12,19 +12,19 @@ public extension String {
     
     // convert string to int
     // returns 0 if failed
-    public var intValue: Int {
+    var intValue: Int {
         return Int(self) ?? 0
     }
     
     // convert string to double
     // returns 0 if failed
-    public var doubleValue: Double {
+    var doubleValue: Double {
         return Double(self) ?? 0
     }
     
     // convert string to float
     // returns 0 if failed
-    public var floatValue: Float {
+    var floatValue: Float {
         return Float(self) ?? 0
     }
 }
@@ -33,12 +33,12 @@ public extension String {
 public extension Float {
     
     // 返回指定小数位数的字符串
-    public func string(decimals: Int = 0) -> String {
+    func string(decimals: Int = 0) -> String {
         return String(format: "%.\(decimals)f", self)
     }
     
     // 返回指定格式的字符串
-    public func string(format: String?) -> String {
+    func string(format: String?) -> String {
         if let format = format {
             return String(format: format, self)
         } else {
@@ -50,11 +50,11 @@ public extension Float {
 // Convert Double to String
 public extension Double {
     // 返回指定小数位数的字符串
-    public func string(decimals: Int = 0) -> String {
+    func string(decimals: Int = 0) -> String {
         return String(format: "%.\(decimals)f", self)
     }
     // 返回指定格式的字符串
-    public func string(format: String?) -> String {
+    func string(format: String?) -> String {
         if let format = format {
             return String(format: format, self)
         } else {
@@ -63,10 +63,10 @@ public extension Double {
     }
 }
 
-extension Int {
+public extension Int {
     
     // 返回指定格式的字符串
-    public func string(format: String? = nil) -> String {
+    func string(format: String? = nil) -> String {
         if let format = format {
             return String(format: format, self)
         } else {
@@ -75,15 +75,14 @@ extension Int {
     }
     
     // random number from min to max
-    static public func random(min: Int = 0, max: Int) -> Int {
+    static func random(min: Int = 0, max: Int) -> Int {
         let random = Int(arc4random())
         let number = random % (max + 1 - min) + min
         return number
     }
     
-    
     /// 返回当前值是否是偶数
-    public var isEven: Bool {
+    var isEven: Bool {
         return self % 2 == 0
     }
 }

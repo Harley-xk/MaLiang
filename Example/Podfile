@@ -1,7 +1,11 @@
 use_frameworks!
 
 target 'MaLiang_Example' do
+  pod 'MaLiang', :path => '../'
 
-pod 'Comet'
-
+  pod 'Comet'
+  pod 'Chrysan'
+  pod 'Zip'
+  pod 'SnapKit'
+  
 end
