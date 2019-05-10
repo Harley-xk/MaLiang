@@ -98,7 +98,7 @@ class Matrix {
 }
 
 // MARK: - Point Utils
-public extension CGPoint {
+extension CGPoint {
     
     static func middle(p1: CGPoint, p2: CGPoint) -> CGPoint {
         return CGPoint(x: (p1.x + p2.x) * 0.5, y: (p1.y + p2.y) * 0.5)
@@ -143,56 +143,56 @@ public extension CGPoint {
     }
 }
 
-public func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
     return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
 }
 
-public func +=(lhs: inout CGPoint, rhs: CGPoint) {
+func +=(lhs: inout CGPoint, rhs: CGPoint) {
     lhs = lhs + rhs
 }
 
-public func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
     return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
 }
 
-public func *(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+func *(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
     return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
 }
 
-public func /(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+func /(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
     return CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
 }
 
-public func +(lhs: CGSize, rhs: CGSize) -> CGSize {
+func +(lhs: CGSize, rhs: CGSize) -> CGSize {
     return CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
 }
 
-public func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
+func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
     return CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
 }
 
-public func /(lhs: CGSize, rhs: CGFloat) -> CGSize {
+func /(lhs: CGSize, rhs: CGFloat) -> CGSize {
     return CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
 }
 
-public func +(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+func +(lhs: CGPoint, rhs: CGSize) -> CGPoint {
     return CGPoint(x: lhs.x + rhs.width, y: lhs.y + rhs.height)
 }
 
-public func -(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+func -(lhs: CGPoint, rhs: CGSize) -> CGPoint {
     return CGPoint(x: lhs.x - rhs.width, y: lhs.y - rhs.height)
 }
 
-public func *(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+func *(lhs: CGPoint, rhs: CGSize) -> CGPoint {
     return CGPoint(x: lhs.x * rhs.width, y: lhs.y * rhs.height)
 }
 
-public func /(lhs: CGPoint, rhs: CGSize) -> CGPoint {
+func /(lhs: CGPoint, rhs: CGSize) -> CGPoint {
     return CGPoint(x: lhs.x / rhs.width, y: lhs.y / rhs.height)
 }
 
 
-public extension Comparable {
+extension Comparable {
     func valueBetween(min: Self, max: Self) -> Self {
         if self > max {
             return max
