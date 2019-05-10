@@ -158,7 +158,7 @@ class ViewController: UIViewController {
         canvas.clear()
     }
     
-    @IBAction func moreAction(_ sender: Any) {
+    @IBAction func moreAction(_ sender: UIBarButtonItem) {
         let actionSheet = UIAlertController(title: "Choose Actions", message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(title: "Add Chartlet", style: .default) { [unowned self] (_) in
             self.addChartletAction()
@@ -170,6 +170,7 @@ class ViewController: UIViewController {
             self.saveData()
         }
         actionSheet.addAction(title: "Cancel", style: .cancel)
+        actionSheet.popoverPresentationController?.barButtonItem = sender
         present(actionSheet, animated: true, completion: nil)
     }
     
