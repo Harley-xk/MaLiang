@@ -36,16 +36,17 @@ open class PaintingGestureRecognizer: UIPanGestureRecognizer {
         guard let touch = touches.first else {
             return
         }
-        if forceEnabled, touch.force > 0 {
-            force = touch.force / 3
-            return
-        }
         
-        let vel = velocity(in: targetView)
-        var length = vel.distance(to: .zero)
-        length = min(length, 5000)
-        length = max(100, length)
-        force = sqrt(1000 / length)
+        if forceEnabled {
+            force = max(0, touch.force / 3)
+        } else {
+            // use simulated force
+            let vel = velocity(in: targetView)
+            var length = vel.distance(to: .zero)
+            length = min(length, 5000)
+            length = max(100, length)
+            force = sqrt(1000 / length)
+        }
     }
     
     // MARK: - Touch Handling
