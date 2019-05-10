@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreGraphics
+import UIKit
 import Metal
 
 /// not implemented yet

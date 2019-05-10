@@ -63,7 +63,7 @@ open class Brush {
         case fixed(CGFloat)
         /// angle of texture is random
         case random
-        /// angle of texture is ahead with the line direction
+        /// angle of texture is ahead with to line orientation
         case ahead
     }
     
