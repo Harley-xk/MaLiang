@@ -59,7 +59,7 @@ extension CGSize {
     }
 }
 
-public extension CGRect {
+extension CGRect {
     var center: CGPoint {
         return CGPoint(x: origin.x + width / 2, y: origin.y + height / 2)
     }
