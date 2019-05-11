@@ -1,4 +1,8 @@
-xcuserdata
 /icon
-Carthage
 build
+Carthage
+xcuserdata
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata
+!*.xcworkspace/contents.xcworkspacedata
