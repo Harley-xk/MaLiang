@@ -182,13 +182,13 @@ let exporter = DataExporter(canvas: canvas)
 // 2. save to empty folders on disk:
 exporter.save(to: localPath, progress: progressHandler, result: resultHandler)
 
-// also you can use another synchronous method to do de work Synchronously
+// also you can use another synchronous method to do this work Synchronously
 exporter.saveSynchronously(to: locakPath, progress: progressHandler)
 ```
 
 Then, contents of canvas and some document infomations will be saved to files in the directory you provided.
 
-**`MaLiang` does not implement the archive logic for files, so you can implement your own archive Logics**
+**`MaLiang` does not zip the folders, you can implement your own archive Logics refer to the sample project**
 
 ### Reading
 
