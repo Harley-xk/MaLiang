@@ -11,27 +11,27 @@ import Foundation
 public struct DocumentInfo: Codable {
     
     /// default infomation read form info.plist
-    static let `default` = DocumentInfo()
+    public static let `default` = DocumentInfo()
     
     /// format version of this document, equal to the library version
-    let version: String
+    public let version: String
     
     /// the app whitch uses MaLiang to generate this file
-    let app: BundleInfo?
+    public let app: BundleInfo?
 
     /// library info of MaLiang used in current app
-    let library: BundleInfo?
+    public let library: BundleInfo?
     
     /// number of lines in document
-    var lines: Int = 0
+    public var lines: Int = 0
     
     /// number of chartlets in document
-    var chartlets: Int = 0
+    public var chartlets: Int = 0
     
     /// number of custom textures used for chartlets and so on
-    var textures: Int = 0
+    public var textures: Int = 0
     
-    init() {
+    public init() {
         library = try? Bundle(for: Canvas.classForCoder()).readInfo()
         app = try? Bundle.main.readInfo()
         version = library?.version ?? "unknown"
@@ -42,23 +42,23 @@ public struct DocumentInfo: Codable {
 public struct CanvasContent: Codable {
     
     /// content size of canvas
-    var size: CGSize?
+    public var size: CGSize?
     
     /// all linestrips
-    var lineStrips: [LineStrip]
+    public var lineStrips: [LineStrip]
     
     /// chatlets
-    var chartlets: [Chartlet]
+    public var chartlets: [Chartlet]
 }
 
 /// base infomation for bundle from info.plist
 public struct BundleInfo: Codable {
-    var name: String
-    var version: String
-    var identifier: String
+    public var name: String
+    public var version: String
+    public var identifier: String
 }
 
-public extension Bundle {
+extension Bundle {
     /// read base infomation from info.plist
     func readInfo() throws -> BundleInfo {
         guard let file = url(forResource: "Info", withExtension: "plist") else {

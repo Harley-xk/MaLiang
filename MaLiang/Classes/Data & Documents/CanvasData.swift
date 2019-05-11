@@ -30,14 +30,14 @@ public struct ClearAction: CanvasElement {
 /// content data on canvas
 open class CanvasData {
     
-    /// elements array before an clear action
-    open internal(set) var clearedElements: [[CanvasElement]] = []
+    /// elements array before an clear action, avoid to change this value when drawing
+    open var clearedElements: [[CanvasElement]] = []
     
-    /// current drawing elements
-    open internal(set) var elements: [CanvasElement] = []
+    /// current drawing elements, avoid to change this value when drawing
+    open var elements: [CanvasElement] = []
     
-    /// current unfinished element
-    open internal(set) var currentElement: CanvasElement?
+    /// current unfinished element, avoid to change this value when drawing
+    open var currentElement: CanvasElement?
     
     /// Append a set of lines to current element in document
     ///
@@ -72,7 +72,7 @@ open class CanvasData {
     }
     
     /// index for latest element
-    private var lastElementIndex: Int {
+    open var lastElementIndex: Int {
         return elements.last?.index ?? 0
     }
     

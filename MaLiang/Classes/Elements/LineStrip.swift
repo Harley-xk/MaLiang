@@ -20,10 +20,10 @@ open class LineStrip: CanvasElement {
     
     /// default color
     // this color will be used when line's color not set
-    var color: MLColor
+    public var color: MLColor
     
-    /// line units of this line strip
-    open private(set) var lines: [MLLine] = []
+    /// line units of this line strip, avoid change this value directly when drawing.
+    public var lines: [MLLine] = []
     
     /// brush used to render this line strip
     open internal(set) weak var brush: Brush? {
@@ -32,7 +32,7 @@ open class LineStrip: CanvasElement {
         }
     }
     
-    init(lines: [MLLine], brush: Brush) {
+    open init(lines: [MLLine], brush: Brush) {
         self.lines = lines
         self.brush = brush
         self.brushName = brush.name

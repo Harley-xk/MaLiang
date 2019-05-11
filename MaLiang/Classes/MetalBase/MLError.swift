@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MLError: Error {
+public enum MLError: Error {
     
     /// the requested file does not exists
     case fileNotExists(String)
