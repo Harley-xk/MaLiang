@@ -26,7 +26,7 @@ open class LineStrip: CanvasElement {
     public var lines: [MLLine] = []
     
     /// brush used to render this line strip
-    open internal(set) weak var brush: Brush? {
+    open weak var brush: Brush? {
         didSet {
             brushName = brush?.name
         }

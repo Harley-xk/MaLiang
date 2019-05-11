@@ -23,7 +23,7 @@ open class Chartlet: CanvasElement {
     public var angle: CGFloat?
     
     /// a weak refreance to canvas
-    weak var canvas: Canvas?
+    public weak var canvas: Canvas?
     
     init(center: CGPoint, size: CGSize, textureID: UUID, angle: CGFloat, canvas: Canvas) {
         let offset = canvas.contentOffset
