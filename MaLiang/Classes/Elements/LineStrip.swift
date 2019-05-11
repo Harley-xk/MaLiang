@@ -32,7 +32,7 @@ open class LineStrip: CanvasElement {
         }
     }
     
-    open init(lines: [MLLine], brush: Brush) {
+    public init(lines: [MLLine], brush: Brush) {
         self.lines = lines
         self.brush = brush
         self.brushName = brush.name
