@@ -17,4 +17,7 @@ public enum MLError: Error {
     
     /// directory for saving must not have any ohter contents
     case directoryNotEmpty(URL)
+    
+    /// running MaLiang on a Similator
+    case simulatorUnsupported
 }

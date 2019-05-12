@@ -25,11 +25,9 @@ class TextureElementSamples: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        chartlets = [
-            try! canvas.makeTexture(with: UIImage(named: "chartlet-1")!.pngData()!),
-            try! canvas.makeTexture(with: UIImage(named: "chartlet-2")!.pngData()!),
-            try! canvas.makeTexture(with: UIImage(named: "chartlet-3")!.pngData()!),
-        ]
+        chartlets = ["chartlet-1", "chartlet-2", "chartlet-3"].compactMap({ (name) -> MLTexture? in
+            return try? canvas.makeTexture(with: UIImage(named: name)!.pngData()!)
+        })
         
         canvas.defaultBrush.pointSize = 20
         
@@ -41,7 +39,7 @@ class TextureElementSamples: UIViewController {
 
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         
-        guard gesture.state == .ended else {
+        guard gesture.state == .ended, chartlets.count >= segement.numberOfSegments else {
             return
         }
         

@@ -20,12 +20,12 @@ class ScrollableSample: UIViewController {
         canvas.contentSize = CGSize(width: 1024, height: 1024)
         
         let path = Bundle.main.path(forResource: "pencil", ofType: "png")!
-        let pencil = try! self.canvas.registerBrush(from: URL(fileURLWithPath: path))
-        pencil.pointSize = 5
-        pencil.pointStep = 2
-        pencil.opacity = 0.6
-        pencil.forceSensitive = 0
-        pencil.use()
+        let pencil = try? self.canvas.registerBrush(from: URL(fileURLWithPath: path))
+        pencil?.pointSize = 5
+        pencil?.pointStep = 2
+        pencil?.opacity = 0.6
+        pencil?.forceSensitive = 0
+        pencil?.use()
     }
 
     override func viewDidAppear(_ animated: Bool) {

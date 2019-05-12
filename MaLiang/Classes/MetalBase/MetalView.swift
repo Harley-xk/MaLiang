@@ -17,9 +17,12 @@ open class MetalView: MTKView {
     // MARK: - Brush Textures
     
     func makeTexture(with data: Data, id: UUID? = nil) throws -> MLTexture {
+        #if !targetEnvironment(simulator)
         let textureLoader = MTKTextureLoader(device: device!)
         let texture = try textureLoader.newTexture(data: data, options: [.SRGB : false])
         return MLTexture(id: id ?? UUID(), texture: texture)
+        #endif
+        throw MLError.simulatorUnsupported
     }
     
     func makeTexture(with file: URL, id: UUID? = nil) throws -> MLTexture {
@@ -71,6 +74,12 @@ open class MetalView: MTKView {
     #endif
     
     open func setup() {
+        #if targetEnvironment(simulator)
+        print("<== Attension ==>")
+        print("You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. \nBut you can go on testing your other businesses which are not relative with MaLiang.")
+        print("<== Attension ==>")
+        #endif
+        
         device = sharedDevice
         isOpaque = false
 

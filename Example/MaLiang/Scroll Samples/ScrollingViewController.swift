@@ -21,16 +21,16 @@ class ScrollingViewController: UIViewController {
         scrollView.panGestureRecognizer.minimumNumberOfTouches = 2
         
         let brush = registerBrush(with: "pencil")
-        brush.pointSize = 8
-        brush.pointStep = 1
-        brush.forceSensitive = 0.2
-        brush.color = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
-        brush.use()
+        brush?.pointSize = 8
+        brush?.pointStep = 1
+        brush?.forceSensitive = 0.2
+        brush?.color = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        brush?.use()
     }
     
-    private func registerBrush(with imageName: String) -> Brush {
+    private func registerBrush(with imageName: String) -> Brush? {
         let path = Bundle.main.path(forResource: imageName, ofType: "png")!
-        return try! canvas.registerBrush(from: URL(fileURLWithPath: path))
+        return try? canvas.registerBrush(from: URL(fileURLWithPath: path))
     }
     /*
     // MARK: - Navigation
