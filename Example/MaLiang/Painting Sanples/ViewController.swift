@@ -47,12 +47,14 @@ class ViewController: UIViewController {
         chartlets = ["chartlet-1", "chartlet-2", "chartlet-3"].compactMap({ (name) -> MLTexture? in
             return try? canvas.makeTexture(with: UIImage(named: name)!.pngData()!)
         })
-        
         canvas.backgroundColor = .clear
-        
+        canvas.data.addObserver(self)
+        registerBrushes()
+        readDataIfNeeds()
+    }
+    
+    func registerBrushes() {
         do {
-            
-            
             let pen = canvas.defaultBrush!
             pen.name = "Pen"
             pen.opacity = 0.1
@@ -118,20 +120,6 @@ class ViewController: UIViewController {
             brushSegement.selectedSegmentIndex = 0
             styleChanged(brushSegement)
         }
-        
-        canvas.data.onElementBegin { [unowned self] doc in
-            self.redoButton.isEnabled = false
-            }.onElementFinish { [unowned self] doc in
-                self.undoButton.isEnabled = true
-            }.onRedo { [unowned self] doc in
-                self.undoButton.isEnabled = true
-                self.redoButton.isEnabled = doc.canRedo
-            }.onUndo { [unowned self] doc in
-                self.redoButton.isEnabled = true
-                self.undoButton.isEnabled = doc.canUndo
-        }
-        
-        readDataIfNeeds()
     }
     
     @IBAction func switchBackground(_ sender: UIButton) {
@@ -185,9 +173,6 @@ class ViewController: UIViewController {
     func addChartletAction() {
         ChartletPicker.present(from: self, textures: chartlets) { [unowned self] (texture) in
             self.showEditor(for: texture)
-            //            let x = CGFloat.random(in: 0 ..< self.canvas.bounds.width)
-            //            let y = CGFloat.random(in: 0 ..< self.canvas.bounds.height)
-            //            self.canvas.renderChartlet(at: CGPoint(x: x, y: y), size: texture.size, textureID: texture.id)
         }
     }
     
@@ -297,6 +282,35 @@ class ViewController: UIViewController {
         
         colorSampleView.backgroundColor = color
         canvas.currentBrush.color = color
+    }
+}
+
+extension ViewController: DataObserver {
+    /// called when a line strip is begin
+    func lineStrip(_ strip: LineStrip, didBeginOn data: CanvasData) {
+        self.redoButton.isEnabled = false
+    }
+    
+    /// called when a element is finished
+    func element(_ element: CanvasElement, didFinishOn data: CanvasData) {
+        self.undoButton.isEnabled = true
+    }
+    
+    /// callen when clear the canvas
+    func dataDidClear(_ data: CanvasData) {
+        
+    }
+    
+    /// callen when undo
+    func dataDidUndo(_ data: CanvasData) {
+        self.undoButton.isEnabled = true
+        self.redoButton.isEnabled = data.canRedo
+    }
+    
+    /// callen when redo
+    func dataDidRedo(_ data: CanvasData) {
+        self.undoButton.isEnabled = true
+        self.redoButton.isEnabled = data.canRedo
     }
 }
 

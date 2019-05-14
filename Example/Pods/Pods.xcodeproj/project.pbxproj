@@ -102,6 +102,7 @@
 		BFF4C0573389F918A050E3A5F5D83DB8 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE75EB0FD24C065EE66E7FCDADF0991 /* ConstraintPriority.swift */; };
 		C0D180DF9F6F5F7C864856D1891C3545 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079C86CCA158AC637D074379695086F /* ConstraintConfig.swift */; };
 		C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E4455227F1956005C612D /* GlowingBrush.swift */; };
+		C3DDF317228B099E00D5D1BC /* DataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF315228B08EA00D5D1BC /* DataObserver.swift */; };
 		C77AF6C7F63460B2CB44337D607EC6B0 /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2FE70143593EFB608DD461EC5D1F33 /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9A8C4B589BDF642458D303D379359BF /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B389EC5617E46CABBFEEA981F425FA1 /* ioapi.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CC09E97A0B0E7700D9C1D5472EE99AF8 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63D55E805A6BC4356D18ED047E480F7 /* MLColor.swift */; };
@@ -289,6 +290,7 @@
 		C037841EADE5FFE16C2C078C88AE1A56 /* Chrysan-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Chrysan-dummy.m"; sourceTree = "<group>"; };
 		C2B941F3398F0B599A954007437F05BB /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		C35E4455227F1956005C612D /* GlowingBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowingBrush.swift; sourceTree = "<group>"; };
+		C3DDF315228B08EA00D5D1BC /* DataObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObserver.swift; sourceTree = "<group>"; };
 		C5AB3E5A561E14FE9BE369D84E02585C /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		C7DA178F55AC8F709C1182AEA157F017 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		C81C13CE5C2DB427FECAADE17A9677EE /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				DA96861F211D5C7541B4A424B4EF707B /* CanvasData.swift */,
+				C3DDF315228B08EA00D5D1BC /* DataObserver.swift */,
 				0A890AE1148CBD2CC05F1E806AFEFDFA /* DataExporter.swift */,
 				A98DA18088AD2C9E718981333D157B46 /* DataImporter.swift */,
 				DF7A185D8127A01EBA1FCFE37EAEE624 /* Document.swift */,
@@ -1071,6 +1074,7 @@
 				CE628FC24979FCC20CC95DFF956D88A8 /* PaintingGestureRecognizer.swift in Sources */,
 				1EAE5E629954DAD6A7A89AE6C9029FF2 /* Printer.swift in Sources */,
 				51926B27A1483813B35854E699075B89 /* RenderTarget.swift in Sources */,
+				C3DDF317228B099E00D5D1BC /* DataObserver.swift in Sources */,
 				D2E813E091E76F8EE773F883BBF76D9A /* ScrollableCanvas.swift in Sources */,
 				30B4AAAC634D825B76E13E21D5C46247 /* Shaders.metal in Sources */,
 				82823A1631663E382C7C7923AE9991B1 /* SnapshotTarget.swift in Sources */,
