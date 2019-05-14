@@ -17,12 +17,13 @@ open class MetalView: MTKView {
     // MARK: - Brush Textures
     
     func makeTexture(with data: Data, id: UUID? = nil) throws -> MLTexture {
-        #if !targetEnvironment(simulator)
+        #if targetEnvironment(simulator)
+        throw MLError.simulatorUnsupported
+        #else
         let textureLoader = MTKTextureLoader(device: device!)
         let texture = try textureLoader.newTexture(data: data, options: [.SRGB : false])
         return MLTexture(id: id ?? UUID(), texture: texture)
         #endif
-        throw MLError.simulatorUnsupported
     }
     
     func makeTexture(with file: URL, id: UUID? = nil) throws -> MLTexture {
