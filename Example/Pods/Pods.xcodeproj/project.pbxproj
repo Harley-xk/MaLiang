@@ -104,7 +104,9 @@
 		C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E4455227F1956005C612D /* GlowingBrush.swift */; };
 		C3DDF317228B099E00D5D1BC /* DataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF315228B08EA00D5D1BC /* DataObserver.swift */; };
 		C3DDF32B228BDC5900D5D1BC /* WeakObjectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF32A228BDC5900D5D1BC /* WeakObjectBox.swift */; };
-		C3DDF32D228BEB9E00D5D1BC /* ActionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF32C228BEB9E00D5D1BC /* ActionObserver.swift */; };
+		C3DDF334228BF6B300D5D1BC /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF331228BF6B300D5D1BC /* Canvas.swift */; };
+		C3DDF335228BF6B300D5D1BC /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF332228BF6B300D5D1BC /* ScrollableCanvas.swift */; };
+		C3DDF336228BF6B300D5D1BC /* ActionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF333228BF6B300D5D1BC /* ActionObserver.swift */; };
 		C77AF6C7F63460B2CB44337D607EC6B0 /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2FE70143593EFB608DD461EC5D1F33 /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9A8C4B589BDF642458D303D379359BF /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B389EC5617E46CABBFEEA981F425FA1 /* ioapi.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CC09E97A0B0E7700D9C1D5472EE99AF8 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63D55E805A6BC4356D18ED047E480F7 /* MLColor.swift */; };
@@ -113,7 +115,6 @@
 		CE628FC24979FCC20CC95DFF956D88A8 /* PaintingGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35584F8A5387E5ECB7A14DC14F010B6 /* PaintingGestureRecognizer.swift */; };
 		CF27E8941305994E440E0C04B059011C /* chrysan_cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26A3FBB1ED8327F7907649FA6F49D48B /* chrysan_cross@2x.png */; };
 		CFC3C3C9E1045E8903F5C5AA5C87B26C /* RingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720808934705AB3C0B46A74429B2B8E /* RingProgressView.swift */; };
-		D2E813E091E76F8EE773F883BBF76D9A /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6349D34441D4A0E14AEB8BBBAD9B9 /* ScrollableCanvas.swift */; };
 		D4CEDE16ECDDD95C865B5B4C50778C1A /* Chrysan-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58D143075B1678A762B10FA3E8864A /* Chrysan-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB6948D7C75AF07BA39DBFBACA037CE5 /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF19736E5A952BD7D01A4AC1255628E /* ConstraintOffsetTarget.swift */; };
 		DD614CBBFABACE1B43951D89D7E5DBB6 /* UIViewController+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA0071D0FEAB886B5B9F4FF9B35F8CD /* UIViewController+Comet.swift */; };
@@ -130,7 +131,6 @@
 		F4AAC9EBBFB7B6FE70D2CB162CBE0E15 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC53F431589A305D9AA7C9ECDE7504 /* ConstraintInsetTarget.swift */; };
 		F51487B5EA775E46D47DF77195DABADC /* MLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3252658A644175EA827D1F63C8170A /* MLError.swift */; };
 		F69DD330CAA551E6FADC94B03E625414 /* UIColor+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69CA3172A2F39982F2EA686E2ACA10D /* UIColor+Comet.swift */; };
-		F831C975F71BD94EB55B62527A3FCFD8 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1293650989439CDD623AA3EC4C78B1D7 /* Canvas.swift */; };
 		F874F5E3361A7FFE6967BCC0B9A19342 /* Eraser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB7E2F0E75637663EDDC2FE8A6E3458 /* Eraser.swift */; };
 		FA5AC9044D627D018B5EF88EF62BE513 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CCD8686CFA14CB221DCE7BCFE8D761 /* ConstraintMakerEditable.swift */; };
 		FA6C6761B3839FCE5A5238CACBE0736C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
@@ -192,7 +192,6 @@
 		0FF19736E5A952BD7D01A4AC1255628E /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
 		106AF6C9D466E772C64A0DB774B98EEB /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
 		11FD36A0E6E7C1F0064674F631DF4E29 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1293650989439CDD623AA3EC4C78B1D7 /* Canvas.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Canvas.swift; path = MaLiang/Classes/Canvas.swift; sourceTree = "<group>"; };
 		143A3941C99336510783FECA4E825BAD /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		150504469615403233B7F03922680888 /* Pods-MaLiang_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MaLiang_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		17028D7DB84614D925A6F9FD0EF04367 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -246,7 +245,6 @@
 		82CCD8686CFA14CB221DCE7BCFE8D761 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Source/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		83B40ACFCCA7C6FE245DCC256C3C1A8B /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		847F57CCA8180F814D579CA89BF3E807 /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
-		84B6349D34441D4A0E14AEB8BBBAD9B9 /* ScrollableCanvas.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollableCanvas.swift; path = MaLiang/Classes/ScrollableCanvas.swift; sourceTree = "<group>"; };
 		877AAC649AD35BE1A85D2B57D7733E92 /* UITextField+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITextField+Comet.swift"; path = "Comet/Extensions/UITextField+Comet.swift"; sourceTree = "<group>"; };
 		89B88FB1D596D6F37D353FD53AA9E7EE /* Numbers+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Numbers+Comet.swift"; path = "Comet/Extensions/Numbers+Comet.swift"; sourceTree = "<group>"; };
 		8B5DCA3FAED61518C0C2168349DD750A /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
@@ -294,7 +292,9 @@
 		C35E4455227F1956005C612D /* GlowingBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowingBrush.swift; sourceTree = "<group>"; };
 		C3DDF315228B08EA00D5D1BC /* DataObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObserver.swift; sourceTree = "<group>"; };
 		C3DDF32A228BDC5900D5D1BC /* WeakObjectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakObjectBox.swift; sourceTree = "<group>"; };
-		C3DDF32C228BEB9E00D5D1BC /* ActionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionObserver.swift; sourceTree = "<group>"; };
+		C3DDF331228BF6B300D5D1BC /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Canvas.swift; path = ../MaLiang/Classes/Canvas/Canvas.swift; sourceTree = "<group>"; };
+		C3DDF332228BF6B300D5D1BC /* ScrollableCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollableCanvas.swift; path = ../MaLiang/Classes/Canvas/ScrollableCanvas.swift; sourceTree = "<group>"; };
+		C3DDF333228BF6B300D5D1BC /* ActionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionObserver.swift; path = ../MaLiang/Classes/Canvas/ActionObserver.swift; sourceTree = "<group>"; };
 		C5AB3E5A561E14FE9BE369D84E02585C /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		C7DA178F55AC8F709C1182AEA157F017 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		C81C13CE5C2DB427FECAADE17A9677EE /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
@@ -466,9 +466,7 @@
 		4D11EBBC8A6B3487590E32CFDDCD68AC /* MaLiang */ = {
 			isa = PBXGroup;
 			children = (
-				1293650989439CDD623AA3EC4C78B1D7 /* Canvas.swift */,
-				84B6349D34441D4A0E14AEB8BBBAD9B9 /* ScrollableCanvas.swift */,
-				C3DDF32C228BEB9E00D5D1BC /* ActionObserver.swift */,
+				C3DDF330228BF69500D5D1BC /* Canvas */,
 				28391D5BD9863BF056F6BA484595D5FC /* Brush */,
 				4FC15B19AC6C11CE09A71DE95D9918C4 /* Data & Documents */,
 				FE0B4DDB3B3752894A94A167C3C53BC5 /* Elements */,
@@ -639,6 +637,16 @@
 				95F74C8A92C4BF760B43B79BF8228AB7 /* Pods-MaLiang_Example */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C3DDF330228BF69500D5D1BC /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				C3DDF331228BF6B300D5D1BC /* Canvas.swift */,
+				C3DDF332228BF6B300D5D1BC /* ScrollableCanvas.swift */,
+				C3DDF333228BF6B300D5D1BC /* ActionObserver.swift */,
+			);
+			path = Canvas;
 			sourceTree = "<group>";
 		};
 		C8F84556E2E68FCD0C90FC6635004A0B /* Support Files */ = {
@@ -1060,11 +1068,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0BF2F5EA3C3B01D06A7E3C623CAD08 /* BezierGenerator.swift in Sources */,
+				C3DDF334228BF6B300D5D1BC /* Canvas.swift in Sources */,
 				32855B0C96D3E2227B91BA11E42CD6DF /* Brush.swift in Sources */,
-				F831C975F71BD94EB55B62527A3FCFD8 /* Canvas.swift in Sources */,
 				C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */,
 				EF1A0F18BC980F217803E40628F633E5 /* CanvasData.swift in Sources */,
 				18F21CCEC540ECB07A48260BD6CAE415 /* Chartlet.swift in Sources */,
+				C3DDF335228BF6B300D5D1BC /* ScrollableCanvas.swift in Sources */,
 				1206FA07FAC2062C4786B71B6499A5E1 /* DataExporter.swift in Sources */,
 				117EAA10D680EC2F3A6FA1B9D6A1885B /* DataImporter.swift in Sources */,
 				52FF49CC34390C96E79195FE238C8DFD /* Document.swift in Sources */,
@@ -1079,11 +1088,10 @@
 				C3DDF32B228BDC5900D5D1BC /* WeakObjectBox.swift in Sources */,
 				5DC2F4E575FB7B6DF6A449C6380AA871 /* MLTexture.swift in Sources */,
 				CE628FC24979FCC20CC95DFF956D88A8 /* PaintingGestureRecognizer.swift in Sources */,
+				C3DDF336228BF6B300D5D1BC /* ActionObserver.swift in Sources */,
 				1EAE5E629954DAD6A7A89AE6C9029FF2 /* Printer.swift in Sources */,
-				C3DDF32D228BEB9E00D5D1BC /* ActionObserver.swift in Sources */,
 				51926B27A1483813B35854E699075B89 /* RenderTarget.swift in Sources */,
 				C3DDF317228B099E00D5D1BC /* DataObserver.swift in Sources */,
-				D2E813E091E76F8EE773F883BBF76D9A /* ScrollableCanvas.swift in Sources */,
 				30B4AAAC634D825B76E13E21D5C46247 /* Shaders.metal in Sources */,
 				82823A1631663E382C7C7923AE9991B1 /* SnapshotTarget.swift in Sources */,
 				B8545520E3FAF7263C9B1FCA4772D0F0 /* Utils.swift in Sources */,
