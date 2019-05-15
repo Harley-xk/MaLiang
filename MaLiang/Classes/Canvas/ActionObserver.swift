@@ -16,6 +16,20 @@ public protocol RenderingDelegate: AnyObject {
     func canvas(_ canvas: Canvas, shouldBeginLineAt point: CGPoint, force: CGFloat) -> Bool
 }
 
+extension RenderingDelegate {
+    func canvas(_ canvas: Canvas, shouldRenderTapAt point: CGPoint) -> Bool {
+        return true
+    }
+    
+    func canvas(_ canvas: Canvas, shouldRenderChartlet chartlet: Chartlet) -> Bool {
+        return true
+    }
+    
+    func canvas(_ canvas: Canvas, shouldBeginLineAt point: CGPoint, force: CGFloat) -> Bool {
+        return true
+    }
+}
+
 /// Observer for canvas actions
 public protocol ActionObserver: AnyObject {
     
@@ -84,8 +98,7 @@ extension ActionObserverPool: ActionObserver {
     func canvas(_ canvas: Canvas, didFinishLineAt point: CGPoint, force: CGFloat) {
         aliveObservers.forEach { $0.canvas(canvas, didFinishLineAt: point, force: force) }
     }
-    
-    
+
     func canvas(_ canvas: Canvas, didRedrawOn target: RenderTarget) {
         aliveObservers.forEach { $0.canvas(canvas, didRedrawOn: target) }
     }
@@ -95,7 +108,7 @@ extension ActionObserverPool: ActionObserver {
     func canvas(_ canvas: ScrollableCanvas, didZoomTo zoomLevel: CGFloat) {
         aliveObservers.forEach { $0.canvas(canvas, didZoomTo: zoomLevel) }
     }
-    
+
     func canvasDidScroll(_ canvas: ScrollableCanvas) {
         aliveObservers.forEach { $0.canvasDidScroll(canvas) }
     }

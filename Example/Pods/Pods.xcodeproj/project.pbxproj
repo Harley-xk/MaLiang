@@ -104,9 +104,9 @@
 		C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E4455227F1956005C612D /* GlowingBrush.swift */; };
 		C3DDF317228B099E00D5D1BC /* DataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF315228B08EA00D5D1BC /* DataObserver.swift */; };
 		C3DDF32B228BDC5900D5D1BC /* WeakObjectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF32A228BDC5900D5D1BC /* WeakObjectBox.swift */; };
-		C3DDF334228BF6B300D5D1BC /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF331228BF6B300D5D1BC /* Canvas.swift */; };
-		C3DDF335228BF6B300D5D1BC /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF332228BF6B300D5D1BC /* ScrollableCanvas.swift */; };
-		C3DDF336228BF6B300D5D1BC /* ActionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF333228BF6B300D5D1BC /* ActionObserver.swift */; };
+		C3DDF341228BF7EA00D5D1BC /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF33E228BF7EA00D5D1BC /* Canvas.swift */; };
+		C3DDF342228BF7EA00D5D1BC /* ScrollableCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF33F228BF7EA00D5D1BC /* ScrollableCanvas.swift */; };
+		C3DDF343228BF7EA00D5D1BC /* ActionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF340228BF7EA00D5D1BC /* ActionObserver.swift */; };
 		C77AF6C7F63460B2CB44337D607EC6B0 /* Pods-MaLiang_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2FE70143593EFB608DD461EC5D1F33 /* Pods-MaLiang_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9A8C4B589BDF642458D303D379359BF /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B389EC5617E46CABBFEEA981F425FA1 /* ioapi.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CC09E97A0B0E7700D9C1D5472EE99AF8 /* MLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63D55E805A6BC4356D18ED047E480F7 /* MLColor.swift */; };
@@ -292,9 +292,9 @@
 		C35E4455227F1956005C612D /* GlowingBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowingBrush.swift; sourceTree = "<group>"; };
 		C3DDF315228B08EA00D5D1BC /* DataObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObserver.swift; sourceTree = "<group>"; };
 		C3DDF32A228BDC5900D5D1BC /* WeakObjectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakObjectBox.swift; sourceTree = "<group>"; };
-		C3DDF331228BF6B300D5D1BC /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Canvas.swift; path = ../MaLiang/Classes/Canvas/Canvas.swift; sourceTree = "<group>"; };
-		C3DDF332228BF6B300D5D1BC /* ScrollableCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollableCanvas.swift; path = ../MaLiang/Classes/Canvas/ScrollableCanvas.swift; sourceTree = "<group>"; };
-		C3DDF333228BF6B300D5D1BC /* ActionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionObserver.swift; path = ../MaLiang/Classes/Canvas/ActionObserver.swift; sourceTree = "<group>"; };
+		C3DDF33E228BF7EA00D5D1BC /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		C3DDF33F228BF7EA00D5D1BC /* ScrollableCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableCanvas.swift; sourceTree = "<group>"; };
+		C3DDF340228BF7EA00D5D1BC /* ActionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionObserver.swift; sourceTree = "<group>"; };
 		C5AB3E5A561E14FE9BE369D84E02585C /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		C7DA178F55AC8F709C1182AEA157F017 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		C81C13CE5C2DB427FECAADE17A9677EE /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
@@ -466,7 +466,7 @@
 		4D11EBBC8A6B3487590E32CFDDCD68AC /* MaLiang */ = {
 			isa = PBXGroup;
 			children = (
-				C3DDF330228BF69500D5D1BC /* Canvas */,
+				C3DDF33D228BF7EA00D5D1BC /* Canvas */,
 				28391D5BD9863BF056F6BA484595D5FC /* Brush */,
 				4FC15B19AC6C11CE09A71DE95D9918C4 /* Data & Documents */,
 				FE0B4DDB3B3752894A94A167C3C53BC5 /* Elements */,
@@ -639,14 +639,15 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		C3DDF330228BF69500D5D1BC /* Canvas */ = {
+		C3DDF33D228BF7EA00D5D1BC /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				C3DDF331228BF6B300D5D1BC /* Canvas.swift */,
-				C3DDF332228BF6B300D5D1BC /* ScrollableCanvas.swift */,
-				C3DDF333228BF6B300D5D1BC /* ActionObserver.swift */,
+				C3DDF33E228BF7EA00D5D1BC /* Canvas.swift */,
+				C3DDF33F228BF7EA00D5D1BC /* ScrollableCanvas.swift */,
+				C3DDF340228BF7EA00D5D1BC /* ActionObserver.swift */,
 			);
-			path = Canvas;
+			name = Canvas;
+			path = MaLiang/Classes/Canvas;
 			sourceTree = "<group>";
 		};
 		C8F84556E2E68FCD0C90FC6635004A0B /* Support Files */ = {
@@ -1068,12 +1069,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0BF2F5EA3C3B01D06A7E3C623CAD08 /* BezierGenerator.swift in Sources */,
-				C3DDF334228BF6B300D5D1BC /* Canvas.swift in Sources */,
+				C3DDF341228BF7EA00D5D1BC /* Canvas.swift in Sources */,
 				32855B0C96D3E2227B91BA11E42CD6DF /* Brush.swift in Sources */,
 				C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */,
 				EF1A0F18BC980F217803E40628F633E5 /* CanvasData.swift in Sources */,
 				18F21CCEC540ECB07A48260BD6CAE415 /* Chartlet.swift in Sources */,
-				C3DDF335228BF6B300D5D1BC /* ScrollableCanvas.swift in Sources */,
+				C3DDF342228BF7EA00D5D1BC /* ScrollableCanvas.swift in Sources */,
 				1206FA07FAC2062C4786B71B6499A5E1 /* DataExporter.swift in Sources */,
 				117EAA10D680EC2F3A6FA1B9D6A1885B /* DataImporter.swift in Sources */,
 				52FF49CC34390C96E79195FE238C8DFD /* Document.swift in Sources */,
@@ -1088,7 +1089,7 @@
 				C3DDF32B228BDC5900D5D1BC /* WeakObjectBox.swift in Sources */,
 				5DC2F4E575FB7B6DF6A449C6380AA871 /* MLTexture.swift in Sources */,
 				CE628FC24979FCC20CC95DFF956D88A8 /* PaintingGestureRecognizer.swift in Sources */,
-				C3DDF336228BF6B300D5D1BC /* ActionObserver.swift in Sources */,
+				C3DDF343228BF7EA00D5D1BC /* ActionObserver.swift in Sources */,
 				1EAE5E629954DAD6A7A89AE6C9029FF2 /* Printer.swift in Sources */,
 				51926B27A1483813B35854E699075B89 /* RenderTarget.swift in Sources */,
 				C3DDF317228B099E00D5D1BC /* DataObserver.swift in Sources */,
