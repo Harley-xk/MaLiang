@@ -78,15 +78,26 @@ open class ScrollableCanvas: Canvas {
             scale = scale.valueBetween(min: 1, max: maxScale)
             self.zoom = scale
             self.scale = zoom
-            let offset = offsetAnchor * (scale / currentZoomScale) - location
-            contentOffset = offset.between(min: .zero, max: maxOffset)
+            
+            var offset = offsetAnchor * (scale / currentZoomScale) - location
+            offset = offset.between(min: .zero, max: maxOffset)
+            let offsetChanged = contentOffset == offset
+            contentOffset = offset
+            
             redraw()
             updateScrollIndicators()
+            
+            actionObservers.canvas(self, didZoomTo: zoom)
+            if offsetChanged {
+                actionObservers.canvasDidScroll(self)
+            }
+
         case .ended: fallthrough
         case .cancelled: fallthrough
         case .failed:
             currentZoomScale = zoom
             hidesScrollIndicators()
+            actionObservers.canvas(self, didZoomTo: zoom)
         default: break
         }
     }
@@ -104,6 +115,7 @@ open class ScrollableCanvas: Canvas {
             contentOffset = (offsetAnchor - location).between(min: .zero, max: maxOffset)
             redraw()
             updateScrollIndicators()
+            actionObservers.canvasDidScroll(self)
         default: hidesScrollIndicators()
         }
     }

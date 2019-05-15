@@ -150,14 +150,13 @@ open class CanvasData {
     }
     
     // MARK: - Observers
-
-    private var observers: [WeakObserverBox] = []
+    private var observers = DataObserverPool()
     
     // add an observer to observe data changes, observers are not retained
     open func addObserver(_ observer: DataObserver) {
         // pure nil objects
-        observers = observers.compactMap { return $0.observer == nil ? nil : $0 }
-        observers.append(WeakObserverBox(observer))
+        observers.clean()
+        observers.addObserver(observer)
     }
     
     // MARK: - EventHandler

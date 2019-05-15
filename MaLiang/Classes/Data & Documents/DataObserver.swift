@@ -8,7 +8,7 @@
 import Foundation
 
 /// observers for data on the canvas, will get notification on data change
-public protocol DataObserver: class {
+public protocol DataObserver: AnyObject {
     
     /// called when a line strip is begin
     func lineStrip(_ strip: LineStrip, didBeginOn data: CanvasData)
@@ -35,41 +35,46 @@ public extension DataObserver {
     func dataDidRedo(_ data: CanvasData) {}
 }
 
-final class WeakObserverBox {
-    weak var observer: DataObserver?
-    init(_ observer: DataObserver) {
-        self.observer = observer
+final class DataObserverPool: WeakObjectsPool {
+    
+    func addObserver(_ observer: DataObserver) {
+        super.addObject(observer)
+    }
+    
+    // return unreleased objects
+    var aliveObservers: [DataObserver] {
+        return aliveObjects.compactMap { $0 as? DataObserver }
     }
 }
 
 // transform message to elements
-extension Array where Element: WeakObserverBox {
+extension DataObserverPool {
     func lineStrip(_ strip: LineStrip, didBeginOn data: CanvasData) {
-        compactMap{ $0.observer }.forEach {
+        aliveObservers.forEach {
             $0.lineStrip(strip, didBeginOn: data)
         }
     }
     
     func element(_ element: CanvasElement, didFinishOn data: CanvasData) {
-        compactMap{ $0.observer }.forEach {
+        aliveObservers.forEach {
             $0.element(element, didFinishOn: data)
         }
     }
     
     func dataDidClear(_ data: CanvasData) {
-        compactMap{ $0.observer }.forEach {
+        aliveObservers.forEach {
             $0.dataDidClear(data)
         }
     }
     
     func dataDidUndo(_ data: CanvasData) {
-        compactMap{ $0.observer }.forEach {
+        aliveObservers.forEach {
             $0.dataDidUndo(data)
         }
     }
     
     func dataDidRedo(_ data: CanvasData) {
-        compactMap{ $0.observer }.forEach {
+        aliveObservers.forEach {
             $0.dataDidRedo(data)
         }
     }

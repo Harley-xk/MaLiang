@@ -23,6 +23,19 @@ open class Canvas: MetalView {
         return drawableSize / contentScaleFactor
     }
     
+    // delegate & observers
+    
+    open weak var renderingDelegate: RenderingDelegate?
+    
+    internal var actionObservers = ActionObserverPool()
+    
+    // add an observer to observe data changes, observers are not retained
+    open func addObserver(_ observer: ActionObserver) {
+        // pure nil objects
+        actionObservers.clean()
+        actionObservers.addObserver(observer)
+    }
+
     /// Register a brush with image data
     ///
     /// - Parameter texture: texture data of brush
@@ -216,6 +229,8 @@ open class Canvas: MetalView {
         
         /// submit commands
         target.commitCommands()
+        
+        actionObservers.canvas(self, didRedrawOn: target)
     }
     
     // MARK: - Bezier
@@ -278,23 +293,38 @@ open class Canvas: MetalView {
     ///   - textureID: id of texture for drawing
     ///   - rotation: rotation angle of texture for drawing
     open func renderChartlet(at point: CGPoint, size: CGSize, textureID: UUID, rotation: CGFloat = 0) {
+        
         let chartlet = Chartlet(center: point, size: size, textureID: textureID, angle: rotation, canvas: self)
+
+        guard renderingDelegate?.canvas(self, shouldRenderChartlet: chartlet) ?? true else {
+            return
+        }
+        
         data.append(chartlet: chartlet)
         chartlet.drawSelf(on: screenTarget)
         screenTarget.commitCommands()
         setNeedsDisplay()
+        
+        actionObservers.canvas(self, didRenderChartlet: chartlet)
     }
     
     // MARK: - Gestures
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .recognized {
             let location = gesture.location(in: self)
+            
+            guard renderingDelegate?.canvas(self, shouldRenderTapAt: location) ?? true else {
+                return
+            }
+            
             renderTap(at: location)
             let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: location, force: currentBrush.forceOnTap))
             if unfishedLines.count > 0 {
                 render(lines: unfishedLines)
             }
             data.finishCurrentElement()
+            
+            actionObservers.canvas(self, didRenderTapAt: location)
         }
     }
     
@@ -303,18 +333,30 @@ open class Canvas: MetalView {
         let location = gesture.location(in: self)
         
         if gesture.state == .began {
+            /// 结束上一个图案
+            data.finishCurrentElement()
+
             /// 取实际的手势起点作为笔迹的起点
             let acturalBegin = gesture.acturalBeginLocation
-            data.finishCurrentElement()
+            
+            guard renderingDelegate?.canvas(self, shouldBeginLineAt: acturalBegin, force: gesture.force) ?? true else {
+                return
+            }
+            
             lastRenderedPan = Pan(point: acturalBegin, force: gesture.force)
             bezierGenerator.begin(with: acturalBegin)
             pushPoint(location, to: bezierGenerator, force: gesture.force)
+            
+            actionObservers.canvas(self, didBeginLineAt: acturalBegin, force: gesture.force)
         }
         else if gesture.state == .changed {
+            guard bezierGenerator.points.count > 0 else { return }
             pushPoint(location, to: bezierGenerator, force: gesture.force)
+            actionObservers.canvas(self, didMoveLineTo: location, force: gesture.force)
         }
         else if gesture.state == .ended || gesture.state == .cancelled || gesture.state == .failed {
             let count = bezierGenerator.points.count
+            guard count > 0 else { return }
             if count < 3 {
                 renderTap(at: bezierGenerator.points.first!, to: bezierGenerator.points.last!)
             } else {
@@ -327,6 +369,8 @@ open class Canvas: MetalView {
                 render(lines: unfishedLines)
             }
             data.finishCurrentElement()
+            
+            actionObservers.canvas(self, didFinishLineAt: location, force: gesture.force)
         }
     }
 }
