@@ -87,7 +87,8 @@ open class CanvasData {
         element.index = lastElementIndex + 1
         elements.append(element)
         currentElement = nil
-        
+        undoArray.removeAll()
+
         observers.element(element, didFinishOn: self)
         h_onElementFinish?(self)
     }
@@ -100,7 +101,8 @@ open class CanvasData {
         }
         clearedElements.append(elements)
         elements.removeAll()
-        
+        undoArray.removeAll()
+
         observers.dataDidClear(self)
     }
     
