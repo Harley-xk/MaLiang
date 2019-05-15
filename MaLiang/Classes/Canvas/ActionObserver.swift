@@ -16,7 +16,7 @@ public protocol RenderingDelegate: AnyObject {
     func canvas(_ canvas: Canvas, shouldBeginLineAt point: CGPoint, force: CGFloat) -> Bool
 }
 
-extension RenderingDelegate {
+public extension RenderingDelegate {
     func canvas(_ canvas: Canvas, shouldRenderTapAt point: CGPoint) -> Bool {
         return true
     }
