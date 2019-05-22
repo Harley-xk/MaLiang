@@ -58,7 +58,7 @@ public final class GlowingBrush: Brush {
     
     // designed initializer, will be called by target when reigster called
     // identifier is not necessary if you won't save the content of your canvas to file
-    required public init(name: String?, textureID: UUID?, target: Canvas) {
+    required public init(name: String?, textureID: String?, target: Canvas) {
         super.init(name: name, textureID: textureID, target: target)
         subBrush = Brush(name: self.name + ".sub", textureID: nil, target: target)
         subBrush.color = coreColor

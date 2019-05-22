@@ -18,14 +18,14 @@ open class Chartlet: CanvasElement {
     
     public var size: CGSize
     
-    public var textureID: UUID
+    public var textureID: String
     
     public var angle: CGFloat?
     
     /// a weak refreance to canvas
     public weak var canvas: Canvas?
     
-    init(center: CGPoint, size: CGSize, textureID: UUID, angle: CGFloat, canvas: Canvas) {
+    init(center: CGPoint, size: CGSize, textureID: String, angle: CGFloat, canvas: Canvas) {
         let offset = canvas.contentOffset
         let scale = canvas.scale
         self.canvas = canvas
@@ -76,7 +76,7 @@ open class Chartlet: CanvasElement {
         center = CGPoint.make(from: centerInts)
         let sizeInts = try container.decode([Int].self, forKey: .size)
         size = CGSize.make(from: sizeInts)
-        textureID = try container.decode(UUID.self, forKey: .texture)
+        textureID = try container.decode(String.self, forKey: .texture)
         angle = try? container.decode(CGFloat.self, forKey: .angle)
     }
     

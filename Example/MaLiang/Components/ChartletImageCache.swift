@@ -18,9 +18,9 @@ class ChartletImageCache {
     }
     
     private var textures: [MLTexture]
-    private var imageCache: [UUID: UIImage]
+    private var imageCache: [String: UIImage]
     
-    func retriveImage(for id: UUID) -> UIImage? {
+    func retriveImage(for id: String) -> UIImage? {
         if let image = imageCache[id] {
             return image
         }
@@ -44,13 +44,13 @@ class ChartletImageCache {
         }
     }
     
-    private func findTexture(by id: UUID) -> MLTexture? {
+    private func findTexture(by id: String) -> MLTexture? {
         return textures.first { $0.id == id }
     }
 }
 
 extension UIImageView {
-    func loadImage(by id: UUID, from cache: ChartletImageCache) {
+    func loadImage(by id: String, from cache: ChartletImageCache) {
         image = cache.retriveImage(for: id)
     }
     

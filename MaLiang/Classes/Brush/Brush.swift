@@ -21,7 +21,7 @@ open class Brush {
     open var name: String
     
     /// interal texture
-    open private(set) var textureID: UUID?
+    open private(set) var textureID: String?
     
     /// target to draw
     open private(set) weak var target: Canvas?
@@ -80,7 +80,7 @@ open class Brush {
     
     // designed initializer, will be called by target when reigster called
     // identifier is not necessary if you won't save the content of your canvas to file
-    required public init(name: String?, textureID: UUID?, target: Canvas) {
+    required public init(name: String?, textureID: String?, target: Canvas) {
         self.name = name ?? UUID().uuidString
         self.target = target
         self.textureID = textureID

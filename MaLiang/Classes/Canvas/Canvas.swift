@@ -59,7 +59,7 @@ open class Canvas: MetalView {
     /// Register a new brush with texture already registered on this canvas
     ///
     /// - Parameter textureID: id of a texture, default round texture will be used if sets to nil or texture id not found
-    open func registerBrush<T: Brush>(name: String? = nil, textureID: UUID? = nil) throws -> T {
+    open func registerBrush<T: Brush>(name: String? = nil, textureID: String? = nil) throws -> T {
         let brush = T(name: name, textureID: textureID, target: self)
         registeredBrushes.append(brush)
         return brush
@@ -89,7 +89,7 @@ open class Canvas: MetalView {
     ///   - id: id of texture, will be generated if not provided
     /// - Returns: created texture, if the id provided is already exists, the existing texture will be returend
     @discardableResult
-    override open func makeTexture(with data: Data, id: UUID? = nil) throws -> MLTexture {
+    override open func makeTexture(with data: Data, id: String? = nil) throws -> MLTexture {
         // if id is set, make sure this id is not already exists
         if let id = id, let exists = findTexture(by: id) {
             return exists
@@ -100,7 +100,7 @@ open class Canvas: MetalView {
     }
     
     /// find texture by textureID
-    open func findTexture(by id: UUID) -> MLTexture? {
+    open func findTexture(by id: String) -> MLTexture? {
         return textures.first { $0.id == id }
     }
     
@@ -292,7 +292,7 @@ open class Canvas: MetalView {
     ///   - size: size of texture
     ///   - textureID: id of texture for drawing
     ///   - rotation: rotation angle of texture for drawing
-    open func renderChartlet(at point: CGPoint, size: CGSize, textureID: UUID, rotation: CGFloat = 0) {
+    open func renderChartlet(at point: CGPoint, size: CGSize, textureID: String, rotation: CGFloat = 0) {
         
         let chartlet = Chartlet(center: point, size: size, textureID: textureID, angle: rotation, canvas: self)
 

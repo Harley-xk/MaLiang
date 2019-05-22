@@ -12,11 +12,11 @@ import UIKit
 /// texture with UUID
 open class MLTexture: Hashable {
     
-    open private(set) var id: UUID
+    open private(set) var id: String
     
     open private(set) var texture: MTLTexture
     
-    init(id: UUID, texture: MTLTexture) {
+    init(id: String, texture: MTLTexture) {
         self.id = id
         self.texture = texture
     }

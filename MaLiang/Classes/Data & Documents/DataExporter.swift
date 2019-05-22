@@ -77,7 +77,7 @@ open class DataExporter {
         /// save textures to folder
         // only chartlet textures will be saved
         let chartletTextureIDs = content.chartlets.map { $0.textureID }
-        let idSet = Set<UUID>(chartletTextureIDs)
+        let idSet = Set<String>(chartletTextureIDs)
         let pendingTextures = textures.compactMap { idSet.contains($0.id) ? $0 : nil }
         let textureDirectory = directory.appendingPathComponent("textures")
         if pendingTextures.count > 0 {
@@ -86,7 +86,7 @@ open class DataExporter {
         
         for i in 0 ..< pendingTextures.count {
             let mlTexture = pendingTextures[i]
-            try mlTexture.texture.toData()?.write(to: textureDirectory.appendingPathComponent(mlTexture.id.uuidString))
+            try mlTexture.texture.toData()?.write(to: textureDirectory.appendingPathComponent(mlTexture.id))
             // move on progress to 0.1 when contents file saved
             reportProgress(base: 0.1, unit: i, total: pendingTextures.count, on: progress)
         }
