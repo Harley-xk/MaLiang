@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 /// base infomation for saved documents
 public struct DocumentInfo: Codable {
@@ -18,7 +19,7 @@ public struct DocumentInfo: Codable {
     
     /// the app whitch uses MaLiang to generate this file
     public let app: BundleInfo?
-
+    
     /// library info of MaLiang used in current app
     public let library: BundleInfo?
     
@@ -45,10 +46,16 @@ public struct CanvasContent: Codable {
     public var size: CGSize?
     
     /// all linestrips
-    public var lineStrips: [LineStrip]
+    public var lineStrips: [LineStrip] = []
     
     /// chatlets
-    public var chartlets: [Chartlet]
+    public var chartlets: [Chartlet] = []
+    
+    public init(size: CGSize?, lineStrips: [LineStrip], chartlets: [Chartlet]) {
+        self.size = size
+        self.lineStrips = lineStrips
+        self.chartlets = chartlets
+    }
 }
 
 /// base infomation for bundle from info.plist
