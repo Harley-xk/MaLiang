@@ -202,6 +202,18 @@ open class Canvas: MetalView {
     // MARK: - Document
     public private(set) var data: CanvasData!
     
+    /// reset data on canvas, this method will drop the old data object and create a new one.
+    ///
+    /// - Parameter redraw: if should redraw the canvas after, defaults to true
+    ///
+    /// - Attention: SAVE your data before calling this method!
+    open func resetData(redraw: Bool = true) {
+        data = CanvasData()
+        if redraw {
+            self.redraw()
+        }
+    }
+    
     public func undo() {
         if let data = data, data.undo() {
             redraw()
@@ -215,7 +227,7 @@ open class Canvas: MetalView {
     }
     
     /// redraw elemets in document
-    /// - Attention: thie method must be called on main thread
+    /// - Attention: this method must be called on main thread
     open func redraw(on target: RenderTarget? = nil) {
     
         let target = target ?? screenTarget!
