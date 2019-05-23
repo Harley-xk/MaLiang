@@ -14,6 +14,9 @@ public struct DocumentInfo: Codable {
     /// default infomation read form info.plist
     public static let `default` = DocumentInfo()
     
+    /// identifier for this file
+    public var identifier: String?
+    
     /// format version of this document, equal to the library version
     public let version: String
     
@@ -33,6 +36,7 @@ public struct DocumentInfo: Codable {
     public var textures: Int = 0
     
     public init() {
+        identifier = UUID().uuidString
         library = try? Bundle(for: Canvas.classForCoder()).readInfo()
         app = try? Bundle.main.readInfo()
         version = library?.version ?? "unknown"
