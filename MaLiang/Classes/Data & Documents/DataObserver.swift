@@ -16,14 +16,17 @@ public protocol DataObserver: AnyObject {
     /// called when a element is finished
     func element(_ element: CanvasElement, didFinishOn data: CanvasData)
     
-    /// callen when clear the canvas
+    /// called when clear the canvas
     func dataDidClear(_ data: CanvasData)
     
-    /// callen when undo
+    /// called when undo
     func dataDidUndo(_ data: CanvasData)
     
-    /// callen when redo
+    /// called when redo
     func dataDidRedo(_ data: CanvasData)
+    
+    /// called when data of canvas have been reseted
+    func data(_ data: CanvasData, didResetTo newData: CanvasData)
 }
 
 // empty implementation
@@ -33,6 +36,7 @@ public extension DataObserver {
     func dataDidClear(_ data: CanvasData) {}
     func dataDidUndo(_ data: CanvasData) {}
     func dataDidRedo(_ data: CanvasData) {}
+    func data(_ data: CanvasData, didResetTo newData: CanvasData) {}
 }
 
 final class DataObserverPool: WeakObjectsPool {
@@ -76,6 +80,12 @@ extension DataObserverPool {
     func dataDidRedo(_ data: CanvasData) {
         aliveObservers.forEach {
             $0.dataDidRedo(data)
+        }
+    }
+    
+    func data(_ data: CanvasData, didResetTo newData: CanvasData) {
+        aliveObservers.forEach {
+            $0.data(data, didResetTo: newData)
         }
     }
 }

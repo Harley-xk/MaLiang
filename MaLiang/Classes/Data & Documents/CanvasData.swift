@@ -88,21 +88,21 @@ open class CanvasData {
         elements.append(element)
         currentElement = nil
         undoArray.removeAll()
-
+        
         observers.element(element, didFinishOn: self)
         h_onElementFinish?(self)
     }
     
     open func appendClearAction() {
         finishCurrentElement()
-
+        
         guard elements.count > 0 else {
             return
         }
         clearedElements.append(elements)
         elements.removeAll()
         undoArray.removeAll()
-
+        
         observers.dataDidClear(self)
     }
     
@@ -152,7 +152,7 @@ open class CanvasData {
     }
     
     // MARK: - Observers
-    private var observers = DataObserverPool()
+    internal var observers = DataObserverPool()
     
     // add an observer to observe data changes, observers are not retained
     open func addObserver(_ observer: DataObserver) {
@@ -175,21 +175,21 @@ open class CanvasData {
         h_onElementBegin = h
         return self
     }
-
+    
     @available(*, deprecated, message: "Use Observers instead")
     @discardableResult
     public func onElementFinish(_ h: @escaping EventHandler) -> Self {
         h_onElementFinish = h
         return self
     }
-
+    
     @available(*, deprecated, message: "Use Observers instead")
     @discardableResult
     public func onRedo(_ h: @escaping EventHandler) -> Self {
         h_onRedo = h
         return self
     }
-
+    
     @available(*, deprecated, message: "Use Observers instead")
     @discardableResult
     public func onUndo(_ h: @escaping EventHandler) -> Self {

@@ -35,7 +35,7 @@ open class Canvas: MetalView {
         actionObservers.clean()
         actionObservers.addObserver(observer)
     }
-
+    
     /// Register a brush with image data
     ///
     /// - Parameter texture: texture data of brush
@@ -144,11 +144,11 @@ open class Canvas: MetalView {
             screenTarget.contentOffset = newValue
         }
     }
-
+    
     // setup gestures
     open var paintingGesture: PaintingGestureRecognizer?
     open var tapGesture: UITapGestureRecognizer?
-
+    
     open func setupGestureRecognizers() {
         /// gesture to render line
         paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
@@ -203,15 +203,18 @@ open class Canvas: MetalView {
     public private(set) var data: CanvasData!
     
     /// reset data on canvas, this method will drop the old data object and create a new one.
-    ///
+    /// - Attention: SAVE your data before call this method!
     /// - Parameter redraw: if should redraw the canvas after, defaults to true
-    ///
-    /// - Attention: SAVE your data before calling this method!
     open func resetData(redraw: Bool = true) {
-        data = CanvasData()
+        let oldData = data!
+        let newData = CanvasData()
+        // link registered observers to new data
+        newData.observers = data.observers
+        data = newData
         if redraw {
             self.redraw()
         }
+        data.observers.data(oldData, didResetTo: newData)
     }
     
     public func undo() {
@@ -227,9 +230,9 @@ open class Canvas: MetalView {
     }
     
     /// redraw elemets in document
-    /// - Attention: this method must be called on main thread
+    /// - Attention: thie method must be called on main thread
     open func redraw(on target: RenderTarget? = nil) {
-    
+        
         let target = target ?? screenTarget!
         
         data.finishCurrentElement()
@@ -307,7 +310,7 @@ open class Canvas: MetalView {
     open func renderChartlet(at point: CGPoint, size: CGSize, textureID: String, rotation: CGFloat = 0) {
         
         let chartlet = Chartlet(center: point, size: size, textureID: textureID, angle: rotation, canvas: self)
-
+        
         guard renderingDelegate?.canvas(self, shouldRenderChartlet: chartlet) ?? true else {
             return
         }
@@ -347,7 +350,7 @@ open class Canvas: MetalView {
         if gesture.state == .began {
             /// 结束上一个图案
             data.finishCurrentElement()
-
+            
             /// 取实际的手势起点作为笔迹的起点
             let acturalBegin = gesture.acturalBeginLocation
             
