@@ -35,8 +35,9 @@ public struct DocumentInfo: Codable {
     /// number of custom textures used for chartlets and so on
     public var textures: Int = 0
     
-    public init(id: String? = nil) {
-        identifier = id ?? UUID().uuidString
+    /// initialize a document info with specified identifier, an uuid will be used if passed nil
+    public init(identifier: String? = nil) {
+        self.identifier = identifier ?? UUID().uuidString
         library = try? Bundle(for: Canvas.classForCoder()).readInfo()
         app = try? Bundle.main.readInfo()
         version = library?.version ?? "unknown"

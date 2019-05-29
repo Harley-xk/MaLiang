@@ -30,7 +30,8 @@ open class DataExporter {
     /// - Parameters:
     ///   - directory: the folder where to place all datas
     /// - Throws: error while saving
-    public func save(to directory: URL, identifier: String? = nil, progress: ProgressHandler? = nil, result: ResultHandler? = nil) {
+    public func save(to directory: URL, identifier: String? = nil,
+                     progress: ProgressHandler? = nil, result: ResultHandler? = nil) {
         DispatchQueue(label: "com.maliang.saving").async {
             do {
                 try self.saveSynchronously(to: directory, progress: progress)
@@ -45,7 +46,8 @@ open class DataExporter {
         }
     }
     
-    open func saveSynchronously(to directory: URL, identifier: String? = nil, progress: ProgressHandler?) throws {
+    open func saveSynchronously(to directory: URL, identifier: String? = nil,
+                                progress: ProgressHandler?) throws {
         /// make sure the directory is empty
         let contents = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: [])
         guard contents.count <= 0 else {
@@ -58,7 +60,7 @@ open class DataExporter {
         let encoder = JSONEncoder()
         
         /// save document info
-        var info = DocumentInfo(id: identifier)
+        var info = DocumentInfo(identifier: identifier)
         info.lines = content.lineStrips.count
         info.chartlets = content.chartlets.count
         let infoData = try encoder.encode(info)
@@ -81,7 +83,9 @@ open class DataExporter {
         let pendingTextures = textures.compactMap { idSet.contains($0.id) ? $0 : nil }
         let textureDirectory = directory.appendingPathComponent("textures")
         if pendingTextures.count > 0 {
-            try FileManager.default.createDirectory(at: textureDirectory, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(at: textureDirectory,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
         }
         
         for i in 0 ..< pendingTextures.count {
