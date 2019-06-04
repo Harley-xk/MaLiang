@@ -104,15 +104,8 @@ open class Canvas: MetalView {
         return textures.first { $0.id == id }
     }
     
-    /// enable force
-    open var forceEnabled: Bool {
-        get {
-            return paintingGesture?.forceEnabled ?? false
-        }
-        set {
-            paintingGesture?.forceEnabled = newValue
-        }
-    }
+    @available(*, deprecated, message: "this property will be removed soon, set the property forceSensitive on brush to 0 instead, changing this value will cause no affects")
+    open var forceEnabled: Bool = true
     
     // MARK: - Zoom and scale
     /// the scale level of view, all things scales
