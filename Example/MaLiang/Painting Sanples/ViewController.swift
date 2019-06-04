@@ -59,7 +59,7 @@ class ViewController: UIViewController {
             pen.name = "Pen"
             pen.opacity = 0.1
             pen.pointSize = 5
-            pen.pointStep = 1
+            pen.pointStep = 0.5
             pen.color = color
             
             let pencil = try registerBrush(with: "pencil")
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
             brush.rotation = .ahead
             brush.pointSize = 15
             brush.pointStep = 2
-            brush.forceSensitive = 0.6
+            brush.forceSensitive = 1
             brush.color = color
             brush.forceOnTap = 0.5
             

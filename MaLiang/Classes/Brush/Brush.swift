@@ -60,7 +60,8 @@ open class Brush {
     // defaults to 1, this means erery texture calculated will be rendered, dictance calculation will be skiped
     open var pointStep: CGFloat = 1
     
-    // sensitive of pointsize changed from force, from 0 - 1
+    // sensitive of pointsize changed from force, if sets to 0, stroke size will not be affected by force
+    // sets to 1 to make an everage affect
     open var forceSensitive: CGFloat = 0
     
     // indicate if the stroke size in visual will be scaled along with the Canvas
