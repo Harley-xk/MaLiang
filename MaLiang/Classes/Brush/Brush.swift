@@ -10,8 +10,28 @@ import MetalKit
 import UIKit
 
 public struct Pan {
+    
     var point: CGPoint
     var force: CGFloat
+
+    init(touch: UITouch, on view: UIView) {
+        if #available(iOS 9.1, *) {
+            point = touch.preciseLocation(in: view)
+        } else {
+            point = touch.location(in: view)
+        }
+        force = touch.force
+        
+        // force on iPad from a finger is always 0, reset to 0.3
+        if UIDevice.current.userInterfaceIdiom == .pad, touch.type == .direct, force == 0 {
+            force = 1
+        }
+    }
+    
+    init(point: CGPoint, force: CGFloat) {
+        self.point = point
+        self.force = force
+    }
 }
 
 open class Brush {

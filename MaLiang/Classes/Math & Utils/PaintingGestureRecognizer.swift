@@ -13,7 +13,7 @@ open class PaintingGestureRecognizer: UIPanGestureRecognizer {
     private weak var targetView: UIView!
     
     @discardableResult
-    class func addToTarget(_ target: UIView, action: Selector) -> PaintingGestureRecognizer {
+    class func addToTarget(_ target: UIView, action: Selector?) -> PaintingGestureRecognizer {
         let ges = PaintingGestureRecognizer(targetView: target, action: action)
         target.addGestureRecognizer(ges)
         return ges
@@ -36,7 +36,7 @@ open class PaintingGestureRecognizer: UIPanGestureRecognizer {
         guard let touch = touches.first else {
             return
         }
-        
+                
         if forceEnabled {
             force = max(0, touch.force / 3)
         } else {
@@ -55,9 +55,9 @@ open class PaintingGestureRecognizer: UIPanGestureRecognizer {
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         /// 修正 pan gesture 的延迟导致的第一个点不正确的问题，
-        if let first = touches.first {
-            acturalBeginLocation = first.location(in: targetView)
-        }
+//        if let first = touches.first {
+//            acturalBeginLocation = first.location(in: targetView)
+//        }
         updateForceFromTouches(touches)
         super.touchesBegan(touches, with: event)
     }
