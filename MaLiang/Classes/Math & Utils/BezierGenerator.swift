@@ -23,6 +23,8 @@ class BezierGenerator {
     }
     
     func begin(with point: CGPoint) {
+        step = 0
+        points.removeAll()
         points.append(point)
     }
     

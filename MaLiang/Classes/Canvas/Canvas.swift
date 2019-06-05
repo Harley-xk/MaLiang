@@ -142,16 +142,6 @@ open class Canvas: MetalView {
     open var paintingGesture: PaintingGestureRecognizer?
     open var tapGesture: UITapGestureRecognizer?
     
-    open func setupGestureRecognizers() {
-        /// gesture to render line
-//        paintingGesture = PaintingGestureRecognizer.addToTarget(self, action: #selector(handlePaingtingGesture(_:)))
-        /// gesture to render dot
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        addGestureRecognizer(tapGesture)
-        self.tapGesture = tapGesture
-    }
-    
-    
     /// this will setup the canvas and gestures、default brushs
     open override func setup() {
         super.setup()
@@ -164,7 +154,6 @@ open class Canvas: MetalView {
         printer = Printer(name: "maliang.printer", textureID: nil, target: self)
         
         data = CanvasData()
-        setupGestureRecognizers()
     }
     
     /// take a snapshot on current canvas and export an image
@@ -316,33 +305,7 @@ open class Canvas: MetalView {
         actionObservers.canvas(self, didRenderChartlet: chartlet)
     }
     
-    // MARK: - Gestures
-    @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-        
-        guard gesture.state == .ended else {
-            return
-        }
-        
-        defer {
-            bezierGenerator.finish()
-            lastRenderedPan = nil
-            data.finishCurrentElement()
-        }
-        
-        let location = gesture.location(in: self)
-        
-        guard renderingDelegate?.canvas(self, shouldRenderTapAt: location) ?? true else {
-            return
-        }
-        
-        renderTap(at: location)
-        let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: location, force: currentBrush.forceOnTap))
-        if unfishedLines.count > 0 {
-            render(lines: unfishedLines)
-        }
-        actionObservers.canvas(self, didRenderTapAt: location)
-    }
-    
+    // MARK: - Touches
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         guard let touch = touches.first else {
@@ -367,6 +330,9 @@ open class Canvas: MetalView {
             return
         }
         let pan = Pan(touch: touch, on: self)
+        guard pan.point != lastRenderedPan?.point else {
+            return
+        }
 
         pushPoint(pan.point, to: bezierGenerator, force: pan.force)
         actionObservers.canvas(self, didMoveLineTo: pan.point, force: pan.force)
