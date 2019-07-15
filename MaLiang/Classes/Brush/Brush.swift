@@ -22,8 +22,8 @@ public struct Pan {
         }
         force = touch.force
         
-        // force on iPad from a finger is always 0, reset to 0.3
-        if UIDevice.current.userInterfaceIdiom == .pad, touch.type == .direct, force == 0 {
+        // force on devices not supporting from a finger is always 0, reset to 0.3
+        if touch.type == .direct, force == 0 {
             force = 1
         }
     }

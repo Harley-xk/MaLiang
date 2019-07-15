@@ -12,18 +12,28 @@ import MetalKit
 
 internal let sharedDevice = MTLCreateSystemDefaultDevice()
 
+internal var metalAvaliable: Bool = {
+    #if targetEnvironment(simulator)
+    if #available(iOS 13.0, *) {
+        return true
+    }
+    return false
+    #else
+    return true
+    #endif
+}()
+
 open class MetalView: MTKView {
     
     // MARK: - Brush Textures
     
     func makeTexture(with data: Data, id: String? = nil) throws -> MLTexture {
-        #if targetEnvironment(simulator)
-        throw MLError.simulatorUnsupported
-        #else
+        guard metalAvaliable else {
+            throw MLError.simulatorUnsupported
+        }
         let textureLoader = MTKTextureLoader(device: device!)
         let texture = try textureLoader.newTexture(data: data, options: [.SRGB : false])
         return MLTexture(id: id ?? UUID().uuidString, texture: texture)
-        #endif
     }
     
     func makeTexture(with file: URL, id: String? = nil) throws -> MLTexture {
@@ -65,21 +75,20 @@ open class MetalView: MTKView {
         setup()
     }
     
-    #if !targetEnvironment(simulator)
-    var metalLayer: CAMetalLayer {
-        guard let layer = layer as? CAMetalLayer else {
+    var metalLayer: CAMetalLayer? {
+        guard metalAvaliable, let layer = layer as? CAMetalLayer else {
             fatalError("Metal initialize failed!")
         }
         return layer
     }
-    #endif
     
     open func setup() {
-        #if targetEnvironment(simulator)
-        print("<== Attension ==>")
-        print("You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. \nBut you can go on testing your other businesses which are not relative with MaLiang.")
-        print("<== Attension ==>")
-        #endif
+        guard metalAvaliable else {
+            print("<== Attension ==>")
+            print("You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. \nBut you can go on testing your other businesses which are not relative with MaLiang.")
+            print("<== Attension ==>")
+            return
+        }
         
         device = sharedDevice
         isOpaque = false
@@ -146,10 +155,8 @@ open class MetalView: MTKView {
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
-                
-        #if !targetEnvironment(simulator)
         
-        guard let texture = screenTarget.texture else {
+        guard metalAvaliable, let texture = screenTarget.texture else {
             return
         }
         
@@ -176,7 +183,5 @@ open class MetalView: MTKView {
             commandBuffer?.present(drawable)
         }
         commandBuffer?.commit()
-        
-        #endif
     }
 }
