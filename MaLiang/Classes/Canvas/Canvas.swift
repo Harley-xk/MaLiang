@@ -277,6 +277,11 @@ open class Canvas: MetalView {
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
+        
+        guard renderingDelegate?.canvas(self, shouldRenderTapAt: point) ?? true else {
+            return
+        }
+        
         let brush = currentBrush!
         let lines = brush.makeLine(from: point, to: to ?? point)
         render(lines: lines)
@@ -311,10 +316,10 @@ open class Canvas: MetalView {
         guard let touch = touches.first else {
             return
         }
-
+        
         let pan = Pan(touch: touch, on: self)
         lastRenderedPan = pan
-
+        
         guard renderingDelegate?.canvas(self, shouldBeginLineAt: pan.point, force: pan.force) ?? true else {
             return
         }
@@ -333,7 +338,7 @@ open class Canvas: MetalView {
         guard pan.point != lastRenderedPan?.point else {
             return
         }
-
+        
         pushPoint(pan.point, to: bezierGenerator, force: pan.force)
         actionObservers.canvas(self, didMoveLineTo: pan.point, force: pan.force)
     }
@@ -345,7 +350,7 @@ open class Canvas: MetalView {
             lastRenderedPan = nil
             data.finishCurrentElement()
         }
-
+        
         guard let touch = touches.first else {
             return
         }
@@ -357,7 +362,7 @@ open class Canvas: MetalView {
         } else if count > 0 {
             renderTap(at: bezierGenerator.points.first!, to: bezierGenerator.points.last!)
         }
-
+        
         let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: pan.point, force: pan.force))
         if unfishedLines.count > 0 {
             render(lines: unfishedLines)
