@@ -15,20 +15,22 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
 
+If I have saved your time, [buy me a cup of coffee](DONATE.md)
+
+App based on MaLiang is now avaliable on the [App Store](https://apps.apple.com/cn/app/id1462615532)
+
 ## Features
 
 - [x] Lines with **Bezier Curve**
+- [x] Texture **Rotation**
+- [x] **Glowing** Lines
 - [x] **Chartlet** element (for image and any other content from an UIView snapshot)
-- [x] Adjust stroke size with **Force**
+- [x] **Force** based Adjustment for stroke size
 - [x] **3D Touch** Support
 - [x] **Undo** & **Redo**
 - [x] **Zoom** & **Scale**
 - [x] **Export** to image
 - [x] **Save** vector contents to disk
-- [x] Texture **Rotation**
-- [x] **Glowing** Lines
-
-[Buy me a cup of coffee](DONATE.md) if I have saved your time.
 
 ## Requirements
 
