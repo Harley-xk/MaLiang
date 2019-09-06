@@ -34,7 +34,7 @@ open class DataExporter {
                      progress: ProgressHandler? = nil, result: ResultHandler? = nil) {
         DispatchQueue(label: "com.maliang.saving").async {
             do {
-                try self.saveSynchronously(to: directory, progress: progress)
+                try self.saveSynchronously(to: directory, identifier: identifier, progress: progress)
                 DispatchQueue.main.async {
                     result?(.success(()))
                 }
