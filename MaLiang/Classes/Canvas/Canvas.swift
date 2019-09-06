@@ -111,30 +111,30 @@ open class Canvas: MetalView {
     /// the scale level of view, all things scales
     open var scale: CGFloat {
         get {
-            return screenTarget.scale
+            return screenTarget?.scale ?? 1
         }
         set {
-            screenTarget.scale = newValue
+            screenTarget?.scale = newValue
         }
     }
     
     /// the zoom level of render target, only scale render target
     open var zoom: CGFloat {
         get {
-            return screenTarget.zoom
+            return screenTarget?.zoom ?? 1
         }
         set {
-            screenTarget.zoom = newValue
+            screenTarget?.zoom = newValue
         }
     }
     
     /// the offset of render target with zoomed size
     open var contentOffset: CGPoint {
         get {
-            return screenTarget.contentOffset
+            return screenTarget?.contentOffset ?? .zero
         }
         set {
-            screenTarget.contentOffset = newValue
+            screenTarget?.contentOffset = newValue
         }
     }
     
@@ -215,7 +215,9 @@ open class Canvas: MetalView {
     /// - Attention: thie method must be called on main thread
     open func redraw(on target: RenderTarget? = nil) {
         
-        let target = target ?? screenTarget!
+        guard let target = target ?? screenTarget else {
+            return
+        }
         
         data.finishCurrentElement()
         
@@ -273,7 +275,7 @@ open class Canvas: MetalView {
         // create a temporary line strip and draw it on canvas
         LineStrip(lines: lines, brush: currentBrush).drawSelf(on: screenTarget)
         /// submit commands
-        screenTarget.commitCommands()
+        screenTarget?.commitCommands()
     }
     
     open func renderTap(at point: CGPoint, to: CGPoint? = nil) {
@@ -304,7 +306,7 @@ open class Canvas: MetalView {
         
         data.append(chartlet: chartlet)
         chartlet.drawSelf(on: screenTarget)
-        screenTarget.commitCommands()
+        screenTarget?.commitCommands()
         setNeedsDisplay()
         
         actionObservers.canvas(self, didRenderChartlet: chartlet)

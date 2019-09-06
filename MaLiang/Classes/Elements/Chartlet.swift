@@ -36,7 +36,7 @@ open class Chartlet: CanvasElement {
     }
     
     /// draw self with printer of canvas
-    public func drawSelf(on target: RenderTarget) {
+    public func drawSelf(on target: RenderTarget?) {
         canvas?.printer.render(chartlet: self, on: target)
     }
     

@@ -12,17 +12,6 @@ import MetalKit
 
 internal let sharedDevice = MTLCreateSystemDefaultDevice()
 
-internal var metalAvaliable: Bool = {
-    #if targetEnvironment(simulator)
-    if #available(iOS 13.0, *) {
-        return true
-    }
-    return false
-    #else
-    return true
-    #endif
-}()
-
 open class MetalView: MTKView {
     
     // MARK: - Brush Textures
@@ -44,7 +33,7 @@ open class MetalView: MTKView {
     // MARK: - Functions
     // Erases the screen, redisplay the buffer if display sets to true
     open func clear(display: Bool = true) {
-        screenTarget.clear()
+        screenTarget?.clear()
         if display {
             setNeedsDisplay()
         }
@@ -54,7 +43,7 @@ open class MetalView: MTKView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        screenTarget.updateBuffer(with: drawableSize)
+        screenTarget?.updateBuffer(with: drawableSize)
     }
 
     open override var backgroundColor: UIColor? {
@@ -128,7 +117,7 @@ open class MetalView: MTKView {
     }
 
     // render target for rendering contents to screen
-    internal var screenTarget: RenderTarget!
+    internal var screenTarget: RenderTarget?
     
     private var commandQueue: MTLCommandQueue?
 
@@ -156,14 +145,14 @@ open class MetalView: MTKView {
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        guard metalAvaliable, let texture = screenTarget.texture else {
+        guard metalAvaliable, let texture = screenTarget?.texture else {
             return
         }
         
         let renderPassDescriptor = MTLRenderPassDescriptor()
         let attachment = renderPassDescriptor.colorAttachments[0]
         attachment?.clearColor = clearColor
-        attachment?.texture = currentDrawable?.texture
+        attachment?.texture = textureFromCurrentDrawable
         attachment?.loadAction = .clear
         attachment?.storeAction = .store
         
@@ -183,5 +172,33 @@ open class MetalView: MTKView {
             commandBuffer?.present(drawable)
         }
         commandBuffer?.commit()
+    }
+}
+
+// MARK: - Simulator fix
+
+#if CAMetalLayer
+#endif
+
+#if targetEnvironment(simulator)
+class FakeCAMetalLayer: CALayer {}
+typealias CAMetalLayer = FakeCAMetalLayer
+#endif
+
+internal var metalAvaliable: Bool = {
+    #if targetEnvironment(simulator)
+    return false
+    #else
+    return true
+    #endif
+}()
+
+extension MetalView {
+    var textureFromCurrentDrawable: MTLTexture? {
+        #if targetEnvironment(simulator)
+        return nil
+        #else
+        return currentDrawable?.texture
+        #endif
     }
 }

@@ -92,11 +92,11 @@ class ViewController: UIViewController {
             claw.color = color
             
             // make eraser with a texture for claw
-            let eraser = try canvas.registerBrush(name: "Eraser", textureID: claw.textureID) as Eraser
-            eraser.rotation = .ahead
+//            let eraser = try canvas.registerBrush(name: "Eraser", textureID: claw.textureID) as Eraser
+//            eraser.rotation = .ahead
             
             /// make eraser with default round point
-            //let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
+            let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
             
             brushes = [pen, pencil, brush, glow, claw, eraser]
             

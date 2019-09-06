@@ -148,11 +148,11 @@ open class Brush {
     }
 
     private var canvasScale: CGFloat {
-        return target?.screenTarget.scale ?? 1
+        return target?.screenTarget?.scale ?? 1
     }
     
     private var canvasOffset: CGPoint {
-        return target?.screenTarget.contentOffset ?? .zero
+        return target?.screenTarget?.contentOffset ?? .zero
     }
     
     // MARK: - Render tools

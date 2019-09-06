@@ -45,7 +45,7 @@ open class LineStrip: CanvasElement {
         vertex_buffer = nil
     }
     
-    public func drawSelf(on target: RenderTarget) {
+    public func drawSelf(on target: RenderTarget?) {
         brush?.render(lineStrip: self, on: target)
     }
     

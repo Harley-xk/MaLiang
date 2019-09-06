@@ -16,14 +16,14 @@ public protocol CanvasElement: Codable {
     var index: Int { get set }
     
     /// draw this element on specifyied target
-    func drawSelf(on target: RenderTarget)
+    func drawSelf(on target: RenderTarget?)
 }
 
 /// clear action, a command to clear the canvas
 public struct ClearAction: CanvasElement {
     public var index: Int = 0
-    public func drawSelf(on target: RenderTarget) {
-        target.clear()
+    public func drawSelf(on target: RenderTarget?) {
+        target?.clear()
     }
 }
 
