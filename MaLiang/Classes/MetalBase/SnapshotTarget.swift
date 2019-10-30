@@ -42,9 +42,35 @@ open class SnapshotTarget: RenderTarget {
         syncContent()
         return texture?.toCGImage()
     }
-    
-    private func syncContent() {
-        canvas?.redraw(on: self)
+
+    /// get UIImage of single CanvasElement
+    open func getImage(canvasElement: CanvasElement) -> UIImage? {
+        syncContent(canvasElement: canvasElement)
+        return texture?.toUIImage()
+    }
+
+    /// get CIImage of single CanvasElement
+       open func getCIImage(canvasElement: CanvasElement) -> CIImage? {
+           syncContent(canvasElement: canvasElement)
+           return texture?.toCIImage()
+       }
+
+    /// get CGImage of single CanvasElement
+       open func getCGImage(canvasElement: CanvasElement) -> CGImage? {
+           syncContent(canvasElement: canvasElement)
+           return texture?.toCGImage()
+       }
+
+    private func syncContent(canvasElement: CanvasElement? = nil) {
+        if let canvasElement = canvasElement {
+            let scale = canvas?.contentScaleFactor ?? 1
+            updateBuffer(with: CGSize(width: drawableSize.width * scale, height: drawableSize.height * scale))
+            prepareForDraw()
+            clear()
+            canvasElement.drawSelf(on: self)
+        } else {
+            canvas?.redraw(on: self)
+        }
         commitCommands()
     }
 }
