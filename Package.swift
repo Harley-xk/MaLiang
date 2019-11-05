@@ -5,12 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "MaLiang",
+      platforms: [
+            .iOS(.v13)
+            ],
     products: [
         .library(
             name: "MaLiang",
-            platforms: [
-            .iOS(.v13)
-            ],
             targets: ["MaLiang"]),
     ],
     targets: [
