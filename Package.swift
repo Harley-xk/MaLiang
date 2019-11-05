@@ -8,6 +8,9 @@ let package = Package(
     products: [
         .library(
             name: "MaLiang",
+            platforms: [
+            .iOS(.v13)
+            ],
             targets: ["MaLiang"]),
     ],
     targets: [
