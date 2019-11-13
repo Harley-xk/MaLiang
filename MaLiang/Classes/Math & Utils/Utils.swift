@@ -9,27 +9,6 @@ import UIKit
 import Metal
 import simd
 
-extension Bundle {
-    static var maliang: Bundle {
-        var bundle: Bundle = Bundle.main
-        let framework = Bundle(for: Canvas.self)
-        if let resource = framework.path(forResource: "MaLiang", ofType: "bundle") {
-            bundle = Bundle(path: resource) ?? Bundle.main
-        }
-        return bundle
-    }
-}
-
-extension MTLDevice {
-    func libraryForMaLiang() -> MTLLibrary? {
-        let framework = Bundle(for: Canvas.self)
-        guard let resource = framework.path(forResource: "default", ofType: "metallib") else {
-            return nil
-        }
-        return try? makeLibrary(filepath: resource)
-    }
-}
-
 // MARK: - Point Utils
 extension CGPoint {
     
