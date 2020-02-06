@@ -149,7 +149,7 @@ Chartlet elements are supported from 2.1.0. A chartlet must be registered to can
 
 ```swift
 let data = UIImage(named: "chartlet").pngData()
-try canvas.registerChartlet(with: data)
+let texture = try canvas.makeTexture(with: data)
 ```
 
 You can apply **rotation** to chartlet by passing a counter clockwise angle in radius when adding it to the canvas:
