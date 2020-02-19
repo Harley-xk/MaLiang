@@ -31,7 +31,7 @@ App based on MaLiang is now avaliable on the [App Store](https://apps.apple.com/
 - [x] **Zoom** & **Scale**
 - [x] **Export** to image
 - [x] **Save** vector contents to disk
-- [x] support macOS Catalyst
+- [x] support macOS **Catalyst**
 
 ## Requirements
 
