@@ -980,6 +980,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 1020;
+				TargetAttributes = {
+					722A99B189591D8B58784D65732D91E6 = {
+						DevelopmentTeam = H28MQNK878;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1619,6 +1624,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Chrysan";
+				DEVELOPMENT_TEAM = H28MQNK878;
 				INFOPLIST_FILE = "Target Support Files/Chrysan/ResourceBundle-Chrysan-Chrysan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_NAME = Chrysan;
@@ -1762,6 +1768,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Chrysan";
+				DEVELOPMENT_TEAM = H28MQNK878;
 				INFOPLIST_FILE = "Target Support Files/Chrysan/ResourceBundle-Chrysan-Chrysan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_NAME = Chrysan;

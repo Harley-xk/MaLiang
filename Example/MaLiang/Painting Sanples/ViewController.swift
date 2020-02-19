@@ -101,7 +101,7 @@ class ViewController: UIViewController {
             brushes = [pen, pencil, brush, glow, claw, eraser]
             
         } catch MLError.simulatorUnsupported {
-            let alert = UIAlertController(title: "Attension", message: "You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. But you can go on testing your other businesses which are not relative with MaLiang.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Attension", message: "You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. But you can go on testing your other businesses which are not relative with MaLiang. Or you can also runs MaLiang on your Mac with Catalyst enabled now.", preferredStyle: .alert)
             alert.addAction(title: "确定", style: .cancel)
             self.present(alert, animated: true, completion: nil)
         } catch {
