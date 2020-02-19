@@ -54,6 +54,7 @@
 		C39C35A82259FBD100DA0519 /* PaintingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingPreview.swift; sourceTree = "<group>"; };
 		C39C35AA2259FBD100DA0519 /* ScrollableSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSample.swift; sourceTree = "<group>"; };
 		C39C35BE2259FD7A00DA0519 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C39F30AE23FCB8AB00B27845 /* MaLiang_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MaLiang_Example.entitlements; sourceTree = "<group>"; };
 		C3D0644922685FCF00DD6632 /* ScrollingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingViewController.swift; sourceTree = "<group>"; };
 		C3F3749622729A2E00F34376 /* TextureElementSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureElementSamples.swift; sourceTree = "<group>"; };
 		C6F28C17C7927FA0ED972567 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				C39F30AE23FCB8AB00B27845 /* MaLiang_Example.entitlements */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for MaLiang */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -478,6 +480,8 @@
 			baseConfigurationReference = D76EE9D69205D147C25FBFCA /* Pods-MaLiang_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MaLiang_Example.entitlements;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = H28MQNK878;
 				INFOPLIST_FILE = MaLiang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -485,6 +489,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Harley-xk.MaLiang";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -495,6 +500,8 @@
 			baseConfigurationReference = C052AA7056E3CAE35CF9E23A /* Pods-MaLiang_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MaLiang_Example.entitlements;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = H28MQNK878;
 				INFOPLIST_FILE = MaLiang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -502,6 +509,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Harley-xk.MaLiang";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

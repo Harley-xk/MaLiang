@@ -111,7 +111,9 @@ open class RenderTarget {
                                                                          height: Int(drawableSize.height),
                                                                          mipmapped: false)
         textureDescriptor.usage = [.renderTarget, .shaderRead]
-        return device?.makeTexture(descriptor: textureDescriptor)
+        let texture = device?.makeTexture(descriptor: textureDescriptor)
+        texture?.clear()
+        return texture
     }
     
 }

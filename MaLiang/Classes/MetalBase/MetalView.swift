@@ -74,7 +74,7 @@ open class MetalView: MTKView {
     open func setup() {
         guard metalAvaliable else {
             print("<== Attension ==>")
-            print("You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. \nBut you can go on testing your other businesses which are not relative with MaLiang.")
+            print("You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. \nBut you can go on testing your other businesses which are not relative with MaLiang. Or you can also runs MaLiang on your Mac with Catalyst enabled now.")
             print("<== Attension ==>")
             return
         }

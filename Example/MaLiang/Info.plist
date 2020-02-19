@@ -73,6 +73,6 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save snapshots to your photo album</string>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<false/>
+	<true/>
 </dict>
 </plist>
