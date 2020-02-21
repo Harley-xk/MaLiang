@@ -145,7 +145,9 @@ open class MetalView: MTKView {
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        guard metalAvaliable, let texture = screenTarget?.texture else {
+        guard metalAvaliable,
+            let target = screenTarget, target.modified,
+            let texture = target.texture else {
             return
         }
         
@@ -172,6 +174,8 @@ open class MetalView: MTKView {
             commandBuffer?.present(drawable)
         }
         commandBuffer?.commit()
+        
+        target.modified = false
     }
 }
 
