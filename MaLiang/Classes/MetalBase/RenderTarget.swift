@@ -65,6 +65,7 @@ open class RenderTarget {
     internal var commandBuffer: MTLCommandBuffer?
     internal var commandQueue: MTLCommandQueue?
     internal var device: MTLDevice?
+    internal var modified = false
     
     internal func updateBuffer(with size: CGSize) {
         self.drawableSize = size
@@ -99,6 +100,7 @@ open class RenderTarget {
     internal func commitCommands() {
         commandBuffer?.commit()
         commandBuffer = nil
+        modified = true
     }
     
     // make empty testure
