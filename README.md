@@ -15,9 +15,9 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
 
 [Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
 
-If I have saved your time, [buy me a cup of coffee](DONATE.md)
+☕️ If I have saved your time, [buy me a cup of coffee](DONATE.md)
 
-App based on MaLiang is now avaliable on the [App Store](https://apps.apple.com/cn/app/id1462615532)
+📱 App based on MaLiang is now avaliable on the [App Store](https://apps.apple.com/cn/app/id1462615532)
 
 ## Features
 
