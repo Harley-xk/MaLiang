@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kdy-L1-4Gm">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16092.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kdy-L1-4Gm">
+    <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16082.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +12,7 @@
             <objects>
                 <navigationController id="kdy-L1-4Gm" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dGx-NF-YUP">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -30,28 +28,28 @@
             <objects>
                 <tableViewController id="qk8-Ea-M28" customClass="RootViewController" customModule="MaLiang_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="K6L-gb-p9b">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="7sN-Vs-VBT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="024-RR-suc" detailTextLabel="J25-QJ-lba" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="FTj-gl-6pp">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="28" width="1194" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FTj-gl-6pp" id="7TW-uQ-e89">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1163" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Single View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="024-RR-suc">
-                                                    <rect key="frame" x="16" y="9.9999999999999982" width="88.333333333333329" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="10" width="88.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="a single painting view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J25-QJ-lba">
-                                                    <rect key="frame" x="15.999999999999993" y="33.333333333333329" width="121.33333333333333" height="14.333333333333334"/>
+                                                    <rect key="frame" x="20" y="33.5" width="121.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,21 +62,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="QIp-3L-1rY" detailTextLabel="lXm-De-3h8" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="mAF-7q-XCa">
-                                        <rect key="frame" x="0.0" y="60" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="88" width="1194" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mAF-7q-XCa" id="W07-Oo-yUH">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1163" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Scale &amp; Scroll" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QIp-3L-1rY">
-                                                    <rect key="frame" x="15.999999999999993" y="9.9999999999999982" width="105.33333333333333" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="10" width="105.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="a scaleable and scrollable canvas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lXm-De-3h8">
-                                                    <rect key="frame" x="16" y="33.333333333333329" width="188.33333333333334" height="14.333333333333334"/>
+                                                    <rect key="frame" x="20" y="33.5" width="188.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,21 +89,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="jhl-Ie-yEX" detailTextLabel="nwY-3W-zBX" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="ee4-KU-blQ">
-                                        <rect key="frame" x="0.0" y="120" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="148" width="1194" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ee4-KU-blQ" id="Z1N-d3-M95">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1163" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="ScrollView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jhl-Ie-yEX">
-                                                    <rect key="frame" x="16" y="3" width="80" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="3" width="80" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nwY-3W-zBX">
-                                                    <rect key="frame" x="16.000000000000014" y="26.333333333333329" width="247.33333333333334" height="28.666666666666668"/>
+                                                    <rect key="frame" x="20" y="26.5" width="247.5" height="29"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <string key="text">canvas in a UIScrollView, can only scroll.
 may have performance issue on old devices</string>
@@ -120,21 +118,21 @@ may have performance issue on old devices</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="AyR-DD-kEG" detailTextLabel="d8C-cw-CmX" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="VSO-7t-rDH">
-                                        <rect key="frame" x="0.0" y="180" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="208" width="1194" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VSO-7t-rDH" id="Hh1-Jo-zXe">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1163" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Image Elements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AyR-DD-kEG">
-                                                    <rect key="frame" x="16.000000000000007" y="9.9999999999999982" width="121.66666666666667" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="10" width="122" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="add image to canvas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d8C-cw-CmX">
-                                                    <rect key="frame" x="16.000000000000007" y="33.333333333333329" width="116.66666666666667" height="14.333333333333334"/>
+                                                    <rect key="frame" x="20" y="33.5" width="116.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -147,21 +145,21 @@ may have performance issue on old devices</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7VH-wD-rmz" detailTextLabel="38u-w8-jHO" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="JSb-lO-wrc">
-                                        <rect key="frame" x="0.0" y="240" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="268" width="1194" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JSb-lO-wrc" id="IU4-e4-jdD">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1163" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Data Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7VH-wD-rmz">
-                                                    <rect key="frame" x="16" y="9.9999999999999982" width="101" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="10" width="101" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="load data from saved files and redraw" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="38u-w8-jHO">
-                                                    <rect key="frame" x="16" y="33.333333333333329" width="212.33333333333334" height="14.333333333333334"/>
+                                                    <rect key="frame" x="20" y="33.5" width="212.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -196,11 +194,11 @@ may have performance issue on old devices</string>
                         <viewControllerLayoutGuide type="bottom" id="osM-ui-Ibo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mcJ-RZ-dVd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="Inh-fV-Hq4">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="50" width="1194" height="784"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQz-kA-LLl" customClass="Canvas" customModule="MaLiang">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1024"/>
@@ -245,18 +243,30 @@ may have performance issue on old devices</string>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="ZIH-iH-bgj">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="50" width="1194" height="764"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK1-D2-5F7" customClass="ScrollableCanvas" customModule="MaLiang">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hES-Gz-WQy">
+                                <rect key="frame" x="1120" y="634" width="51" height="31"/>
+                                <connections>
+                                    <action selector="togglePencilMode:" destination="vXZ-lx-hvc" eventType="valueChanged" id="SNf-uw-eYp"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pencil Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ud-p6-xdR">
+                                <rect key="frame" x="1005" y="639.5" width="94" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFV-Mf-5bf">
-                                <rect key="frame" x="124" y="103" width="236" height="136"/>
+                                <rect key="frame" x="943" y="65" width="236" height="136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rz-xR-sMg">
                                         <rect key="frame" x="8" y="8" width="20" height="120"/>
@@ -272,7 +282,7 @@ may have performance issue on old devices</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VN-5N-3lT">
-                                                        <rect key="frame" x="8" y="9.9999999999999982" width="15" height="20.333333333333329"/>
+                                                        <rect key="frame" x="8" y="10" width="15" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="zMf-ld-vhW"/>
                                                         </constraints>
@@ -287,7 +297,7 @@ may have performance issue on old devices</string>
                                                         </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNS-xD-riD">
-                                                        <rect key="frame" x="165" y="9.9999999999999982" width="35" height="20.333333333333329"/>
+                                                        <rect key="frame" x="165" y="10" width="35" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="VzK-LO-kvy"/>
                                                         </constraints>
@@ -312,7 +322,7 @@ may have performance issue on old devices</string>
                                                 <rect key="frame" x="0.0" y="40" width="200" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fr-4h-bMC">
-                                                        <rect key="frame" x="8" y="9.9999999999999982" width="15" height="20.333333333333329"/>
+                                                        <rect key="frame" x="8" y="10" width="15" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="2dM-rE-XEN"/>
                                                         </constraints>
@@ -327,7 +337,7 @@ may have performance issue on old devices</string>
                                                         </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go5-Cs-Qn4">
-                                                        <rect key="frame" x="165" y="9.9999999999999982" width="35" height="20.333333333333329"/>
+                                                        <rect key="frame" x="165" y="10" width="35" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="86Z-h9-xOJ"/>
                                                         </constraints>
@@ -352,7 +362,7 @@ may have performance issue on old devices</string>
                                                 <rect key="frame" x="0.0" y="80" width="200" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfP-tk-uGM">
-                                                        <rect key="frame" x="8" y="9.9999999999999982" width="15" height="20.333333333333329"/>
+                                                        <rect key="frame" x="8" y="10" width="15" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="lq1-QP-Q9c"/>
                                                         </constraints>
@@ -367,7 +377,7 @@ may have performance issue on old devices</string>
                                                         </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nu8-A6-wuf">
-                                                        <rect key="frame" x="165" y="9.9999999999999982" width="35" height="20.333333333333329"/>
+                                                        <rect key="frame" x="165" y="10" width="35" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="LeR-4D-2p7"/>
                                                         </constraints>
@@ -412,7 +422,7 @@ may have performance issue on old devices</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AID-gC-Kue">
-                                <rect key="frame" x="16" y="685" width="343" height="29"/>
+                                <rect key="frame" x="16" y="718" width="1162" height="32"/>
                                 <segments>
                                     <segment title="pen"/>
                                     <segment title="pencil"/>
@@ -424,7 +434,7 @@ may have performance issue on old devices</string>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7T-Is-9js">
-                                <rect key="frame" x="304" y="647" width="50" height="30"/>
+                                <rect key="frame" x="1119" y="680" width="50" height="30"/>
                                 <color key="backgroundColor" red="0.0077354029609999998" green="0.51773045490000003" blue="0.81304125920000003" alpha="0.79831414473684215" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="7aH-KV-Xcl"/>
@@ -444,7 +454,7 @@ may have performance issue on old devices</string>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMu-Jd-al0">
-                                <rect key="frame" x="184" y="647" width="100" height="30"/>
+                                <rect key="frame" x="999" y="680" width="100" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="mJl-Xa-AYY"/>
@@ -462,19 +472,19 @@ may have performance issue on old devices</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoO-2f-vXQ">
-                                <rect key="frame" x="351.33333333333331" y="733" width="7.6666666666666856" height="20.333333333333371"/>
+                                <rect key="frame" x="1166" y="769" width="8" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="y2M-JQ-hAq">
-                                <rect key="frame" x="14" y="728" width="331.33333333333331" height="31"/>
+                                <rect key="frame" x="18" y="764" width="1142" height="31"/>
                                 <connections>
                                     <action selector="changeSizeAction:" destination="vXZ-lx-hvc" eventType="valueChanged" id="1eg-Zu-CyY"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arX-yu-Unn">
-                                <rect key="frame" x="16" y="643" width="50" height="30"/>
+                                <rect key="frame" x="20" y="676" width="50" height="30"/>
                                 <color key="backgroundColor" red="0.0077354029609999998" green="0.51773045490000003" blue="0.81304125920000003" alpha="0.79831414469999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="r3s-vI-uH8"/>
@@ -496,7 +506,7 @@ may have performance issue on old devices</string>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9t-VJ-CAY">
-                                <rect key="frame" x="74" y="643" width="50" height="30"/>
+                                <rect key="frame" x="78" y="676" width="50" height="30"/>
                                 <color key="backgroundColor" red="0.0077354029609999998" green="0.51773045490000003" blue="0.81304125920000003" alpha="0.79831414469999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Zds-Av-og1"/>
@@ -523,9 +533,11 @@ may have performance issue on old devices</string>
                             <constraint firstItem="y2M-JQ-hAq" firstAttribute="top" secondItem="AID-gC-Kue" secondAttribute="bottom" constant="15" id="0G7-OG-6nm"/>
                             <constraint firstItem="arX-yu-Unn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2sr-El-CpJ"/>
                             <constraint firstItem="y2M-JQ-hAq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="4ez-NC-2I7"/>
+                            <constraint firstItem="X7T-Is-9js" firstAttribute="top" secondItem="hES-Gz-WQy" secondAttribute="bottom" constant="15" id="4lh-gU-PGa"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Aqn-Ev-Yxs"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ZIH-iH-bgj" secondAttribute="bottom" id="Awa-uu-Mv8"/>
                             <constraint firstItem="N9t-VJ-CAY" firstAttribute="leading" secondItem="arX-yu-Unn" secondAttribute="trailing" constant="8" id="Bpk-kh-IFT"/>
+                            <constraint firstItem="hES-Gz-WQy" firstAttribute="trailing" secondItem="X7T-Is-9js" secondAttribute="trailing" id="CT1-1b-p47"/>
                             <constraint firstItem="fMu-Jd-al0" firstAttribute="centerY" secondItem="X7T-Is-9js" secondAttribute="centerY" id="Gk3-iJ-pYn"/>
                             <constraint firstItem="IoO-2f-vXQ" firstAttribute="leading" secondItem="y2M-JQ-hAq" secondAttribute="trailing" constant="8" id="Hnq-Yj-r3Y"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="y2M-JQ-hAq" secondAttribute="bottom" constant="20" id="J1c-NG-Rrz"/>
@@ -538,10 +550,12 @@ may have performance issue on old devices</string>
                             <constraint firstItem="JK1-D2-5F7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ULh-pR-Daa"/>
                             <constraint firstAttribute="trailing" secondItem="JK1-D2-5F7" secondAttribute="trailing" id="XBE-88-81q"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="arX-yu-Unn" secondAttribute="bottom" constant="12" id="b1P-JI-o0c"/>
+                            <constraint firstItem="7ud-p6-xdR" firstAttribute="centerY" secondItem="hES-Gz-WQy" secondAttribute="centerY" id="chz-W4-e8w"/>
                             <constraint firstAttribute="trailing" secondItem="AID-gC-Kue" secondAttribute="trailing" constant="16" id="dSQ-CA-N3L"/>
                             <constraint firstItem="ZIH-iH-bgj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ezN-wy-Ety"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IoO-2f-vXQ" secondAttribute="trailing" id="fam-Nf-FS9"/>
                             <constraint firstItem="ZIH-iH-bgj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="kZC-W1-x7Q"/>
+                            <constraint firstItem="hES-Gz-WQy" firstAttribute="leading" secondItem="7ud-p6-xdR" secondAttribute="trailing" constant="21" id="n8z-WS-KJr"/>
                             <constraint firstAttribute="trailing" secondItem="GFV-Mf-5bf" secondAttribute="trailing" constant="15" id="pAg-dj-mVb"/>
                             <constraint firstAttribute="trailing" secondItem="ZIH-iH-bgj" secondAttribute="trailing" id="pGL-0U-6Sh"/>
                             <constraint firstItem="AID-gC-Kue" firstAttribute="top" secondItem="N9t-VJ-CAY" secondAttribute="bottom" constant="12" id="uby-W8-tDr"/>
@@ -575,7 +589,7 @@ may have performance issue on old devices</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243.74999999999997" y="373.4375"/>
+            <point key="canvasLocation" x="243.71859296482413" y="373.38129496402883"/>
         </scene>
         <!--Texture Element Samples-->
         <scene sceneID="njU-Xa-j4e">
@@ -586,15 +600,15 @@ may have performance issue on old devices</string>
                         <viewControllerLayoutGuide type="bottom" id="BCG-y9-C6A"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zb8-2J-P1C">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9I-J6-IzH" customClass="Canvas" customModule="MaLiang">
-                                <rect key="frame" x="15" y="221" width="345" height="542"/>
+                                <rect key="frame" x="15" y="186" width="1164" height="613"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ogn-6x-A5V">
-                                <rect key="frame" x="15" y="178" width="345" height="29"/>
+                                <rect key="frame" x="15" y="140" width="1164" height="32"/>
                                 <segments>
                                     <segment title="Texture-1"/>
                                     <segment title="Texture-2"/>
@@ -602,16 +616,16 @@ may have performance issue on old devices</string>
                                 </segments>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-3G-Sy3">
-                                <rect key="frame" x="16" y="103" width="343" height="60"/>
+                                <rect key="frame" x="16" y="65" width="1162" height="60"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chartlet-1" translatesAutoresizingMaskIntoConstraints="NO" id="vOG-Au-OzK">
-                                        <rect key="frame" x="0.0" y="0.0" width="114.33333333333333" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="387.5" height="60"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chartlet-2" translatesAutoresizingMaskIntoConstraints="NO" id="flA-RR-CeN">
-                                        <rect key="frame" x="114.33333333333334" y="0.0" width="114.33333333333334" height="60"/>
+                                        <rect key="frame" x="387.5" y="0.0" width="387" height="60"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chartlet-3" translatesAutoresizingMaskIntoConstraints="NO" id="vWm-tu-VK6">
-                                        <rect key="frame" x="228.66666666666666" y="0.0" width="114.33333333333334" height="60"/>
+                                        <rect key="frame" x="774.5" y="0.0" width="387.5" height="60"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -651,11 +665,11 @@ may have performance issue on old devices</string>
                         <viewControllerLayoutGuide type="bottom" id="DVd-yH-Jkd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tWd-HY-QHR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ag-qD-mlj">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="50" width="1194" height="764"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
@@ -692,11 +706,11 @@ may have performance issue on old devices</string>
                         <viewControllerLayoutGuide type="bottom" id="Qkn-qG-5cl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="egp-KQ-7Do">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snQ-Ei-YrR" customClass="ScrollableCanvas" customModule="MaLiang">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="50" width="1194" height="764"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -732,22 +746,22 @@ may have performance issue on old devices</string>
                         <viewControllerLayoutGuide type="bottom" id="cJp-NJ-lbL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="78f-rs-9p5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tEZ-Vs-ZzD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="FileListCell" textLabel="fyU-kg-Hv3" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Swj-GV-4rj">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="1194" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Swj-GV-4rj" id="E7X-tr-dyg">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1136" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fyU-kg-Hv3">
-                                                    <rect key="frame" x="15" y="0.0" width="293" height="49.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="1113" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -781,10 +795,10 @@ may have performance issue on old devices</string>
         </scene>
     </scenes>
     <resources>
-        <image name="chartlet-1" width="135.5" height="149"/>
-        <image name="chartlet-2" width="112.5" height="90"/>
+        <image name="chartlet-1" width="150" height="150"/>
+        <image name="chartlet-2" width="112.5" height="112.5"/>
         <image name="chartlet-3" width="100" height="100"/>
         <image name="image" width="1280" height="720"/>
-        <image name="more" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="more" width="21" height="21"/>
     </resources>
 </document>

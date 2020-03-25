@@ -142,6 +142,10 @@ class ViewController: UIViewController {
         sizeSlider.value = Float(brush.pointSize)
     }
     
+    @IBAction func togglePencilMode(_ sender: UISwitch) {
+        canvas.isPencilMode = sender.isOn
+    }
+    
     @IBAction func undoAction(_ sender: Any) {
         canvas.undo()
     }
