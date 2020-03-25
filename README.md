@@ -26,7 +26,8 @@ The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancien
 - [x] **Glowing** Lines
 - [x] **Chartlet** element (for image and any other content from an UIView snapshot)
 - [x] **Force** based Adjustment for stroke size
-- [x] **3D Touch** Support
+- [x] ** Pencil** supported
+- [x] **3D Touch** supported
 - [x] **Undo** & **Redo**
 - [x] **Zoom** & **Scale**
 - [x] **Export** to image
