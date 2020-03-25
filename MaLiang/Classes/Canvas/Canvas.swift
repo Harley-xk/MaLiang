@@ -17,6 +17,18 @@ open class Canvas: MetalView {
     /// printer to print image textures on canvas
     open private(set) var printer: Printer!
     
+    /// pencil only mode for apple pencil, defaults to false
+    /// if sets to true, all touches with toucheType that is not pencil will be ignored
+    open var isPencilMode = false {
+        didSet {
+            // enable multiple touch for pencil mode
+            // this makes user to draw with pencil when finger is already on the screen
+            isMultipleTouchEnabled = isPencilMode
+        }
+    }
+    
+    open var useFingersToErase = false
+    
     /// the actural size of canvas in points, may larger than current bounds
     /// size must between bounds size and 5120x5120
     open var size: CGSize {
@@ -315,7 +327,7 @@ open class Canvas: MetalView {
     // MARK: - Touches
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        guard let touch = touches.first else {
+        guard let touch = firstAvaliableTouch(from: touches) else {
             return
         }
         
@@ -332,10 +344,11 @@ open class Canvas: MetalView {
     }
     
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard bezierGenerator.points.count > 0 else { return }
-        guard let touch = touches.first else {
+        guard let touch = firstAvaliableTouch(from: touches) else {
             return
         }
+        
+        guard bezierGenerator.points.count > 0 else { return }
         let pan = Pan(touch: touch, on: self)
         guard pan.point != lastRenderedPan?.point else {
             return
@@ -346,6 +359,10 @@ open class Canvas: MetalView {
     }
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        guard let touch = firstAvaliableTouch(from: touches) else {
+            return
+        }
         
         defer {
             bezierGenerator.finish()
@@ -353,9 +370,6 @@ open class Canvas: MetalView {
             data.finishCurrentElement()
         }
         
-        guard let touch = touches.first else {
-            return
-        }
         let pan = Pan(touch: touch, on: self)
         let count = bezierGenerator.points.count
         
@@ -370,5 +384,15 @@ open class Canvas: MetalView {
             render(lines: unfishedLines)
         }
         actionObservers.canvas(self, didFinishLineAt: pan.point, force: pan.force)
+    }
+    
+    private func firstAvaliableTouch(from touches: Set<UITouch>) -> UITouch? {
+        if #available(iOS 9.1, *), isPencilMode {
+            return touches.first { (t) -> Bool in
+                return t.type == .pencil
+            }
+        } else {
+            return touches.first
+        }
     }
 }
