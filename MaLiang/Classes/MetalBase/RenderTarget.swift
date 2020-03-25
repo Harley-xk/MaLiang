@@ -55,6 +55,7 @@ open class RenderTarget {
     open func clear() {
         texture = makeEmptyTexture()
         renderPassDescriptor?.colorAttachments[0].texture = texture
+        commitCommands()
     }
     
     internal var pixelFormat: MTLPixelFormat = .bgra8Unorm
