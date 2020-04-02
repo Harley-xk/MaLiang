@@ -63,14 +63,7 @@ open class MetalView: MTKView {
         super.init(coder: coder)
         setup()
     }
-    
-    var metalLayer: CAMetalLayer? {
-        guard metalAvaliable, let layer = layer as? CAMetalLayer else {
-            fatalError("Metal initialize failed!")
-        }
-        return layer
-    }
-    
+
     open func setup() {
         guard metalAvaliable else {
             print("<== Attension ==>")
@@ -106,13 +99,6 @@ open class MetalView: MTKView {
         rpd.vertexFunction = vertex_func
         rpd.fragmentFunction = fragment_func
         rpd.colorAttachments[0].pixelFormat = colorPixelFormat
-//        rpd.colorAttachments[0].isBlendingEnabled = true
-//        rpd.colorAttachments[0].alphaBlendOperation = .add
-//        rpd.colorAttachments[0].rgbBlendOperation = .add
-//        rpd.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-//        rpd.colorAttachments[0].sourceAlphaBlendFactor = .one
-//        rpd.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
-//        rpd.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
         pipelineState = try device?.makeRenderPipelineState(descriptor: rpd)
     }
 
@@ -154,7 +140,7 @@ open class MetalView: MTKView {
         let renderPassDescriptor = MTLRenderPassDescriptor()
         let attachment = renderPassDescriptor.colorAttachments[0]
         attachment?.clearColor = clearColor
-        attachment?.texture = textureFromCurrentDrawable
+        attachment?.texture = currentDrawable?.texture
         attachment?.loadAction = .clear
         attachment?.storeAction = .store
         
@@ -181,28 +167,14 @@ open class MetalView: MTKView {
 
 // MARK: - Simulator fix
 
-#if CAMetalLayer
-#endif
-
-#if targetEnvironment(simulator)
-class FakeCAMetalLayer: CALayer {}
-typealias CAMetalLayer = FakeCAMetalLayer
-#endif
-
 internal var metalAvaliable: Bool = {
     #if targetEnvironment(simulator)
-    return false
+    if #available(iOS 13.0, *) {
+        return true
+    } else {
+        return false
+    }
     #else
     return true
     #endif
 }()
-
-extension MetalView {
-    var textureFromCurrentDrawable: MTLTexture? {
-        #if targetEnvironment(simulator)
-        return nil
-        #else
-        return currentDrawable?.texture
-        #endif
-    }
-}
