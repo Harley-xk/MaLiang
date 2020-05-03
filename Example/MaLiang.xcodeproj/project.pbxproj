@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19BBFB7F245F1E07002849E2 /* glitter-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7A245F1E06002849E2 /* glitter-02.png */; };
+		19BBFB80245F1E07002849E2 /* glitter-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7B245F1E06002849E2 /* glitter-03.png */; };
+		19BBFB81245F1E07002849E2 /* glitter-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7C245F1E07002849E2 /* glitter-01.png */; };
+		19BBFB82245F1E07002849E2 /* glitter-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7D245F1E07002849E2 /* glitter-04.png */; };
+		19BBFB83245F1E07002849E2 /* glitter-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7E245F1E07002849E2 /* glitter-05.png */; };
 		3206061AEBC900E6419B1AC1 /* Pods_MaLiang_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17636DA7E81A7C670D9DA927 /* Pods_MaLiang_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -32,6 +37,11 @@
 
 /* Begin PBXFileReference section */
 		17636DA7E81A7C670D9DA927 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19BBFB7A245F1E06002849E2 /* glitter-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-02.png"; sourceTree = "<group>"; };
+		19BBFB7B245F1E06002849E2 /* glitter-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-03.png"; sourceTree = "<group>"; };
+		19BBFB7C245F1E07002849E2 /* glitter-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-01.png"; sourceTree = "<group>"; };
+		19BBFB7D245F1E07002849E2 /* glitter-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-04.png"; sourceTree = "<group>"; };
+		19BBFB7E245F1E07002849E2 /* glitter-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-05.png"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MaLiang_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaLiang_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +87,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19BBFB79245F1DD5002849E2 /* Brushes */ = {
+			isa = PBXGroup;
+			children = (
+				C3617DB52272EB2400E5DC7C /* brush.png */,
+				C3617DB82272EC5C00E5DC7C /* pencil.png */,
+				C35E4453227E887B005C612D /* claw.png */,
+				C35AF7C2227F265E0019ACC3 /* glow.png */,
+			);
+			path = Brushes;
+			sourceTree = "<group>";
+		};
 		3532227EA8F3B9732E5108EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,10 +205,12 @@
 		C3617DAD2272EA8E00E5DC7C /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				C3617DB52272EB2400E5DC7C /* brush.png */,
-				C3617DB82272EC5C00E5DC7C /* pencil.png */,
-				C35E4453227E887B005C612D /* claw.png */,
-				C35AF7C2227F265E0019ACC3 /* glow.png */,
+				19BBFB7C245F1E07002849E2 /* glitter-01.png */,
+				19BBFB7A245F1E06002849E2 /* glitter-02.png */,
+				19BBFB7B245F1E06002849E2 /* glitter-03.png */,
+				19BBFB7D245F1E07002849E2 /* glitter-04.png */,
+				19BBFB7E245F1E07002849E2 /* glitter-05.png */,
+				19BBFB79245F1DD5002849E2 /* Brushes */,
 			);
 			path = Textures;
 			sourceTree = "<group>";
@@ -238,7 +261,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = H28MQNK878;
+						DevelopmentTeam = WVKHVF37Y5;
 						LastSwiftMigration = 1020;
 					};
 				};
@@ -270,8 +293,13 @@
 				C3617DB72272EB2400E5DC7C /* brush.png in Resources */,
 				C35E4454227E887B005C612D /* claw.png in Resources */,
 				C39C35BF2259FD7A00DA0519 /* Main.storyboard in Resources */,
+				19BBFB81245F1E07002849E2 /* glitter-01.png in Resources */,
+				19BBFB80245F1E07002849E2 /* glitter-03.png in Resources */,
 				C35AF7C3227F265E0019ACC3 /* glow.png in Resources */,
+				19BBFB7F245F1E07002849E2 /* glitter-02.png in Resources */,
+				19BBFB83245F1E07002849E2 /* glitter-05.png in Resources */,
 				C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */,
+				19BBFB82245F1E07002849E2 /* glitter-04.png in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -482,7 +510,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MaLiang_Example.entitlements;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = H28MQNK878;
+				DEVELOPMENT_TEAM = WVKHVF37Y5;
 				INFOPLIST_FILE = MaLiang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -502,7 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MaLiang_Example.entitlements;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = H28MQNK878;
+				DEVELOPMENT_TEAM = WVKHVF37Y5;
 				INFOPLIST_FILE = MaLiang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

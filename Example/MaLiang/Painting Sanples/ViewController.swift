@@ -83,6 +83,15 @@ class ViewController: UIViewController {
             glow.coreProportion = 0.2
             glow.pointSize = 20
             glow.rotation = .ahead
+
+            let brushTexture = try canvas.makeTexture(with: UIImage(named: "brush")!.pngData()!)
+            let textured: TexturedBrush = try canvas.registerBrush(name: "textured", textureID: brushTexture.id)
+            textured.foregroundImage = UIImage(named: "glitter-04")
+            textured.rotation = .ahead
+            textured.pointSize = 15
+            textured.pointStep = 2
+            textured.forceSensitive = 1
+            textured.forceOnTap = 0.5
             
             let claw = try registerBrush(with: "claw")
             claw.rotation = .ahead
@@ -98,7 +107,7 @@ class ViewController: UIViewController {
             /// make eraser with default round point
             let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
             
-            brushes = [pen, pencil, brush, glow, claw, eraser]
+            brushes = [pen, pencil, brush, glow, textured, claw, eraser]
             
         } catch MLError.simulatorUnsupported {
             let alert = UIAlertController(title: "Attension", message: "You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. But you can go on testing your other businesses which are not relative with MaLiang. Or you can also runs MaLiang on your Mac with Catalyst enabled now.", preferredStyle: .alert)

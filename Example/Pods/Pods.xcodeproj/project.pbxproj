@@ -21,6 +21,7 @@
 		16F1B344C4820E10B8247B6124A97FC6 /* Zip.h in Headers */ = {isa = PBXBuildFile; fileRef = F033879E55AB0086D97A1DC758F98FB5 /* Zip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1722A74EB49D9751AFE05C10ACC44BC5 /* Numbers+Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B88FB1D596D6F37D353FD53AA9E7EE /* Numbers+Comet.swift */; };
 		18F21CCEC540ECB07A48260BD6CAE415 /* Chartlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5601C13CF0AE664D772F7D2A629E74C /* Chartlet.swift */; };
+		19BBFB78245EFBF6002849E2 /* TexturedBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BBFB77245EFBF6002849E2 /* TexturedBrush.swift */; };
 		1A10E6837E587D6125B7E1D34E8BEA1B /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C0F54A68A6E5479F26C76E184665A6 /* ConstraintView.swift */; };
 		1B43E39DEE6389F05F8739C96A754CDC /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 143A3941C99336510783FECA4E825BAD /* SnapKit-dummy.m */; };
 		1C5241B8198488DA6AE8C60C5679582F /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95370E9B519193DE793C7BA32D65D754 /* ConstraintDescription.swift */; };
@@ -196,6 +197,7 @@
 		150504469615403233B7F03922680888 /* Pods-MaLiang_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MaLiang_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		17028D7DB84614D925A6F9FD0EF04367 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		185EB91E5E4EBBDB28E9DD947392FE98 /* Chrysan-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Chrysan-prefix.pch"; sourceTree = "<group>"; };
+		19BBFB77245EFBF6002849E2 /* TexturedBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexturedBrush.swift; sourceTree = "<group>"; };
 		1A0F099EE2F1A44FF8BCBA0E39D50E10 /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = Zip/minizip/crypt.h; sourceTree = "<group>"; };
 		1C73A0D6C229F77BCEF088531BFF2294 /* MetalView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		1CE9559BD6A8813A99F28186E36CB503 /* Comet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Comet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -424,6 +426,7 @@
 				D9232808684395280A8B945C1341A3E1 /* Brush.swift */,
 				FEB7E2F0E75637663EDDC2FE8A6E3458 /* Eraser.swift */,
 				701EC10C2F99E97477806181F7276A81 /* Printer.swift */,
+				19BBFB77245EFBF6002849E2 /* TexturedBrush.swift */,
 				C35E4455227F1956005C612D /* GlowingBrush.swift */,
 			);
 			name = Brush;
@@ -1073,6 +1076,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19BBFB78245EFBF6002849E2 /* TexturedBrush.swift in Sources */,
 				4C0BF2F5EA3C3B01D06A7E3C623CAD08 /* BezierGenerator.swift in Sources */,
 				C3DDF341228BF7EA00D5D1BC /* Canvas.swift in Sources */,
 				32855B0C96D3E2227B91BA11E42CD6DF /* Brush.swift in Sources */,
