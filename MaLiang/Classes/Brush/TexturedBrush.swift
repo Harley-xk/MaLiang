@@ -32,6 +32,19 @@ public final class TexturedBrush: Brush {
         return library.makeFunction(name: "fragment_point_func_test")
     }
 
+    /// Blending options for this brush, overrides to implement your own blending options
+    public override func setupBlendOptions(for attachment: MTLRenderPipelineColorAttachmentDescriptor) {
+        attachment.isBlendingEnabled = true
+
+        attachment.rgbBlendOperation = .add
+        attachment.sourceRGBBlendFactor = .sourceAlpha
+        attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
+
+        attachment.alphaBlendOperation = .add
+        attachment.sourceAlphaBlendFactor = .sourceAlpha
+        attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
+    }
+
     /// render a specifyed line strip by this brush
     internal override func render(lineStrip: LineStrip, on renderTarget: RenderTarget? = nil) {
 

@@ -144,6 +144,10 @@ fragment float4 fragment_point_func_test(Point point_data [[ stage_in ]],
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
     float2 text_coord = transformPointCoord(pointCoord, point_data.angle, float2(0.5));
     float4 maskColor = float4(tex2d.sample(textureSampler, text_coord));
-    float4 color = float4(testTex2d.sample(textureSampler, pointCoord));
+    uint height = testTex2d.get_height();
+    uint width = testTex2d.get_width();
+    float2 testTex2dPos = float2(point_data.position.x / width,
+                                 point_data.position.y / height);
+    float4 color = float4(testTex2d.sample(textureSampler, testTex2dPos));
     return float4(color.rgb, maskColor.a * color.a);
 };
