@@ -85,11 +85,9 @@ class ViewController: UIViewController {
             glow.pointSize = 20
             glow.rotation = .ahead
 
-            let image = UIImage(named: "glitter-04") ?? UIImage()
-            let foregroundImage = resize(image)
-            let brushTexture = try canvas.makeTexture(with: UIImage(named: "Brush1")!.pngData()!)
+            let brushTexture = try canvas.makeTexture(with: UIImage(named: "brush")!.pngData()!)
             let texturedBrush: TexturedBrush = try canvas.registerBrush(name: "textured", textureID: brushTexture.id)
-            texturedBrush.foregroundImage = foregroundImage
+            texturedBrush.foregroundImage = UIImage(named: "textureTest")
             texturedBrush.rotation = .ahead
             texturedBrush.pointSize = 15
             texturedBrush.pointStep = 2
@@ -132,20 +130,6 @@ class ViewController: UIViewController {
             brushSegement.selectedSegmentIndex = 0
             styleChanged(brushSegement)
         }
-    }
-
-    private func resize(_ image: UIImage) -> UIImage {
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        let newImageRect = CGRect(origin: .zero, size: view.bounds.size)
-        let renderer = UIGraphicsImageRenderer(bounds: newImageRect)
-        let newImage = renderer.image { context in
-            guard let cgImage = image.cgImage else { return }
-            let rect = AVMakeRect(aspectRatio: newImageRect.size,
-                                  insideRect: newImageRect)
-            context.cgContext.draw(cgImage, in: rect)
-        }
-        return newImage
     }
     
     @IBAction func switchBackground(_ sender: UIButton) {

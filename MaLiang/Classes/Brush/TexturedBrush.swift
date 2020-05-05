@@ -23,9 +23,19 @@ public final class TexturedBrush: Brush {
     private func updateRenderingTexture() {
         guard let foregroundImage = foregroundImage,
             let target = target else { return }
-        if let texture = try? target.makeTexture(with: foregroundImage.pngData()!) {
+        let resizedForegroundImage = resize(foregroundImage)
+        if let texture = try? target.makeTexture(with: resizedForegroundImage.pngData()!) {
             foregroundBrushTexture = target.findTexture(by: texture.id)?.texture
         }
+    }
+
+    private func resize(_ image: UIImage) -> UIImage {
+        guard let target = target else { return UIImage() }
+        target.setNeedsLayout()
+        target.layoutIfNeeded()
+        let targetRect = CGRect(origin: .zero,
+                                size: target.drawableSize / target.contentScaleFactor)
+        return image.resized(in: targetRect)
     }
 
     /// make shader fragment function from the library made by makeShaderLibrary()
