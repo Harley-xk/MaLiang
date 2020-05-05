@@ -41,7 +41,7 @@ public final class TexturedBrush: Brush {
     /// make shader fragment function from the library made by makeShaderLibrary()
     /// overrides to provide your own fragment function
     public override func makeShaderFragmentFunction(from library: MTLLibrary) -> MTLFunction? {
-        return library.makeFunction(name: "fragment_point_func_test")
+        return library.makeFunction(name: "fragment_point_func_textured")
     }
 
     /// Blending options for this brush, overrides to implement your own blending options

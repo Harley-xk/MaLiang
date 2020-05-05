@@ -136,10 +136,10 @@ fragment float4 fragment_point_func_without_texture(Point point_data [[ stage_in
     return point_data.color;
 };
 
-fragment float4 fragment_point_func_test(Point point_data [[ stage_in ]],
-                                         texture2d<float> tex2d [[ texture(0) ]],
-                                         texture2d<float> testTex2d [[ texture(1) ]],
-                                         float2 pointCoord  [[ point_coord ]])
+fragment float4 fragment_point_func_textured(Point point_data [[ stage_in ]],
+                                             texture2d<float> tex2d [[ texture(0) ]],
+                                             texture2d<float> testTex2d [[ texture(1) ]],
+                                             float2 pointCoord  [[ point_coord ]])
 {
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
     float2 text_coord = transformPointCoord(pointCoord, point_data.angle, float2(0.5));
