@@ -11,6 +11,7 @@ import MaLiang
 import Comet
 import Chrysan
 import Zip
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -84,14 +85,16 @@ class ViewController: UIViewController {
             glow.pointSize = 20
             glow.rotation = .ahead
 
-            let brushTexture = try canvas.makeTexture(with: UIImage(named: "brush")!.pngData()!)
-            let textured: TexturedBrush = try canvas.registerBrush(name: "textured", textureID: brushTexture.id)
-            textured.foregroundImage = UIImage(named: "glitter-04")
-            textured.rotation = .ahead
-            textured.pointSize = 15
-            textured.pointStep = 2
-            textured.forceSensitive = 1
-            textured.forceOnTap = 0.5
+            let image = UIImage(named: "glitter-04") ?? UIImage()
+            let foregroundImage = resize(image)
+            let brushTexture = try canvas.makeTexture(with: UIImage(named: "Brush1")!.pngData()!)
+            let texturedBrush: TexturedBrush = try canvas.registerBrush(name: "textured", textureID: brushTexture.id)
+            texturedBrush.foregroundImage = foregroundImage
+            texturedBrush.rotation = .ahead
+            texturedBrush.pointSize = 15
+            texturedBrush.pointStep = 2
+            texturedBrush.forceSensitive = 1
+            texturedBrush.forceOnTap = 0.5
             
             let claw = try registerBrush(with: "claw")
             claw.rotation = .ahead
@@ -107,7 +110,7 @@ class ViewController: UIViewController {
             /// make eraser with default round point
             let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
             
-            brushes = [pen, pencil, brush, glow, textured, claw, eraser]
+            brushes = [pen, pencil, brush, glow, texturedBrush, claw, eraser]
             
         } catch MLError.simulatorUnsupported {
             let alert = UIAlertController(title: "Attension", message: "You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. But you can go on testing your other businesses which are not relative with MaLiang. Or you can also runs MaLiang on your Mac with Catalyst enabled now.", preferredStyle: .alert)
@@ -129,6 +132,20 @@ class ViewController: UIViewController {
             brushSegement.selectedSegmentIndex = 0
             styleChanged(brushSegement)
         }
+    }
+
+    private func resize(_ image: UIImage) -> UIImage {
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        let newImageRect = CGRect(origin: .zero, size: view.bounds.size)
+        let renderer = UIGraphicsImageRenderer(bounds: newImageRect)
+        let newImage = renderer.image { context in
+            guard let cgImage = image.cgImage else { return }
+            let rect = AVMakeRect(aspectRatio: newImageRect.size,
+                                  insideRect: newImageRect)
+            context.cgContext.draw(cgImage, in: rect)
+        }
+        return newImage
     }
     
     @IBAction func switchBackground(_ sender: UIButton) {

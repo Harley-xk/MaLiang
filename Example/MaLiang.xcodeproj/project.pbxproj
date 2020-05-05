@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19604E472460790600224274 /* gradient-background-png-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 19604E462460790600224274 /* gradient-background-png-5.png */; };
+		19604E4C24607F9900224274 /* Brush1.png in Resources */ = {isa = PBXBuildFile; fileRef = 19604E4B24607E4000224274 /* Brush1.png */; };
+		19604E4D24607F9C00224274 /* marker2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19604E4A24607BF900224274 /* marker2.png */; };
 		19BBFB7F245F1E07002849E2 /* glitter-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7A245F1E06002849E2 /* glitter-02.png */; };
 		19BBFB80245F1E07002849E2 /* glitter-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7B245F1E06002849E2 /* glitter-03.png */; };
 		19BBFB81245F1E07002849E2 /* glitter-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BBFB7C245F1E07002849E2 /* glitter-01.png */; };
@@ -37,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		17636DA7E81A7C670D9DA927 /* Pods_MaLiang_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaLiang_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19604E462460790600224274 /* gradient-background-png-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient-background-png-5.png"; sourceTree = "<group>"; };
+		19604E4A24607BF900224274 /* marker2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker2.png; sourceTree = "<group>"; };
+		19604E4B24607E4000224274 /* Brush1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brush1.png; sourceTree = "<group>"; };
 		19BBFB7A245F1E06002849E2 /* glitter-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-02.png"; sourceTree = "<group>"; };
 		19BBFB7B245F1E06002849E2 /* glitter-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-03.png"; sourceTree = "<group>"; };
 		19BBFB7C245F1E07002849E2 /* glitter-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glitter-01.png"; sourceTree = "<group>"; };
@@ -90,6 +96,8 @@
 		19BBFB79245F1DD5002849E2 /* Brushes */ = {
 			isa = PBXGroup;
 			children = (
+				19604E4B24607E4000224274 /* Brush1.png */,
+				19604E4A24607BF900224274 /* marker2.png */,
 				C3617DB52272EB2400E5DC7C /* brush.png */,
 				C3617DB82272EC5C00E5DC7C /* pencil.png */,
 				C35E4453227E887B005C612D /* claw.png */,
@@ -205,6 +213,7 @@
 		C3617DAD2272EA8E00E5DC7C /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				19604E462460790600224274 /* gradient-background-png-5.png */,
 				19BBFB7C245F1E07002849E2 /* glitter-01.png */,
 				19BBFB7A245F1E06002849E2 /* glitter-02.png */,
 				19BBFB7B245F1E06002849E2 /* glitter-03.png */,
@@ -291,12 +300,15 @@
 			files = (
 				C3617DB92272EC5D00E5DC7C /* pencil.png in Resources */,
 				C3617DB72272EB2400E5DC7C /* brush.png in Resources */,
+				19604E4D24607F9C00224274 /* marker2.png in Resources */,
 				C35E4454227E887B005C612D /* claw.png in Resources */,
 				C39C35BF2259FD7A00DA0519 /* Main.storyboard in Resources */,
 				19BBFB81245F1E07002849E2 /* glitter-01.png in Resources */,
 				19BBFB80245F1E07002849E2 /* glitter-03.png in Resources */,
 				C35AF7C3227F265E0019ACC3 /* glow.png in Resources */,
+				19604E472460790600224274 /* gradient-background-png-5.png in Resources */,
 				19BBFB7F245F1E07002849E2 /* glitter-02.png in Resources */,
+				19604E4C24607F9900224274 /* Brush1.png in Resources */,
 				19BBFB83245F1E07002849E2 /* glitter-05.png in Resources */,
 				C3617DC22273F8C500E5DC7C /* ChartletPicker.storyboard in Resources */,
 				19BBFB82245F1E07002849E2 /* glitter-04.png in Resources */,

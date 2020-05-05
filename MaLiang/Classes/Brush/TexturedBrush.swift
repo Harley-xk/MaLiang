@@ -8,6 +8,7 @@
 import Foundation
 import CoreGraphics
 import Metal
+import AVFoundation
 
 public final class TexturedBrush: Brush {
 
@@ -17,12 +18,13 @@ public final class TexturedBrush: Brush {
             updateRenderingTexture()
         }
     }
-    private var testTexture: MTLTexture?
+    private var foregroundBrushTexture: MTLTexture?
 
     private func updateRenderingTexture() {
-        guard let foregroundImage = foregroundImage else { return }
-        if let texture = try? target?.makeTexture(with: foregroundImage.pngData()!) {
-            testTexture = target?.findTexture(by: texture.id)?.texture
+        guard let foregroundImage = foregroundImage,
+            let target = target else { return }
+        if let texture = try? target.makeTexture(with: foregroundImage.pngData()!) {
+            foregroundBrushTexture = target.findTexture(by: texture.id)?.texture
         }
     }
 
@@ -40,7 +42,7 @@ public final class TexturedBrush: Brush {
         attachment.sourceRGBBlendFactor = .sourceAlpha
         attachment.destinationRGBBlendFactor = .oneMinusSourceAlpha
 
-        attachment.alphaBlendOperation = .add
+        attachment.alphaBlendOperation = .max
         attachment.sourceAlphaBlendFactor = .sourceAlpha
         attachment.destinationAlphaBlendFactor = .oneMinusSourceAlpha
     }
@@ -69,7 +71,7 @@ public final class TexturedBrush: Brush {
             if let texture = texture {
                 commandEncoder?.setFragmentTexture(texture, index: 0)
             }
-            if let testTexture = testTexture {
+            if let testTexture = foregroundBrushTexture {
                 commandEncoder?.setFragmentTexture(testTexture, index: 1)
             }
             commandEncoder?.drawPrimitives(type: .point, vertexStart: 0, vertexCount: lineStrip.vertexCount)
