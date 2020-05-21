@@ -166,6 +166,8 @@ open class Canvas: MetalView {
         printer = Printer(name: "maliang.printer", textureID: nil, target: self)
         
         data = CanvasData()
+        let gestures = UIPanGestureRecognizer(target: self, action: #selector(onPanGesture(recognizer:)))
+        addGestureRecognizer(gestures)
     }
     
     /// take a snapshot on current canvas and export an image
@@ -325,67 +327,58 @@ open class Canvas: MetalView {
     }
     
     // MARK: - Touches
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        guard let touch = firstAvaliableTouch(from: touches) else {
-            return
-        }
-        
-        let pan = Pan(touch: touch, on: self)
-        lastRenderedPan = pan
-        
-        guard renderingDelegate?.canvas(self, shouldBeginLineAt: pan.point, force: pan.force) ?? true else {
-            return
-        }
-        
-        bezierGenerator.begin(with: pan.point)
-        pushPoint(pan.point, to: bezierGenerator, force: pan.force)
-        actionObservers.canvas(self, didBeginLineAt: pan.point, force: pan.force)
-    }
-    
-    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = firstAvaliableTouch(from: touches) else {
-            return
-        }
-        
-        guard bezierGenerator.points.count > 0 else { return }
-        let pan = Pan(touch: touch, on: self)
-        guard pan.point != lastRenderedPan?.point else {
-            return
-        }
-        
-        pushPoint(pan.point, to: bezierGenerator, force: pan.force)
-        actionObservers.canvas(self, didMoveLineTo: pan.point, force: pan.force)
-    }
-    
-    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @objc private func onPanGesture(recognizer: UIPanGestureRecognizer) {
+        let pointsPerSecond = recognizer.velocity(in: recognizer.view)
+        switch recognizer.state {
+        case .began:
+            let location = recognizer.location(in: recognizer.view)
+            let pan = Pan(point: location, pointsPerSecond: pointsPerSecond)
+            lastRenderedPan = pan
 
-        guard let touch = firstAvaliableTouch(from: touches) else {
-            return
+            guard renderingDelegate?.canvas(self, shouldBeginLineAt: pan.point, force: pan.force) ?? true else {
+                return
+            }
+
+            bezierGenerator.begin(with: pan.point)
+            pushPoint(pan.point, to: bezierGenerator, force: pan.force)
+            actionObservers.canvas(self, didBeginLineAt: pan.point, force: pan.force)
+        case .changed:
+            let location = recognizer.location(in: recognizer.view)
+            guard bezierGenerator.points.count > 0 else { return }
+            let pan = Pan(point: location, pointsPerSecond: pointsPerSecond)
+
+            guard pan.point != lastRenderedPan?.point else {
+                return
+            }
+
+            pushPoint(pan.point, to: bezierGenerator, force: pan.force)
+            actionObservers.canvas(self, didMoveLineTo: pan.point, force: pan.force)
+        case .ended:
+            let location = recognizer.location(in: recognizer.view)
+            defer {
+                bezierGenerator.finish()
+                lastRenderedPan = nil
+                data.finishCurrentElement()
+            }
+
+            let pan = Pan(point: location, pointsPerSecond: pointsPerSecond)
+            let count = bezierGenerator.points.count
+
+            if count >= 3 {
+                pushPoint(pan.point, to: bezierGenerator, force: pan.force, isEnd: true)
+            } else if count > 0 {
+                renderTap(at: bezierGenerator.points.first!, to: bezierGenerator.points.last!)
+            }
+
+            let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: pan.point, force: pan.force))
+            if unfishedLines.count > 0 {
+                render(lines: unfishedLines)
+            }
+            actionObservers.canvas(self, didFinishLineAt: pan.point, force: pan.force)
+        default: break
         }
-        
-        defer {
-            bezierGenerator.finish()
-            lastRenderedPan = nil
-            data.finishCurrentElement()
-        }
-        
-        let pan = Pan(touch: touch, on: self)
-        let count = bezierGenerator.points.count
-        
-        if count >= 3 {
-            pushPoint(pan.point, to: bezierGenerator, force: pan.force, isEnd: true)
-        } else if count > 0 {
-            renderTap(at: bezierGenerator.points.first!, to: bezierGenerator.points.last!)
-        }
-        
-        let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: pan.point, force: pan.force))
-        if unfishedLines.count > 0 {
-            render(lines: unfishedLines)
-        }
-        actionObservers.canvas(self, didFinishLineAt: pan.point, force: pan.force)
     }
-    
+
     private func firstAvaliableTouch(from touches: Set<UITouch>) -> UITouch? {
         if #available(iOS 9.1, *), isPencilMode {
             return touches.first { (t) -> Bool in

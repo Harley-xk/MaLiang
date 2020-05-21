@@ -27,6 +27,15 @@ public struct Pan {
             force = 1
         }
     }
+
+    init(point: CGPoint, pointsPerSecond: CGPoint) {
+        self.point = point
+
+        let speed = pointsPerSecond.distance(to: .zero) / 1000
+        var pressure = sin(1 - min(4, speed) / 4)
+        pressure = 1 - pressure
+        self.force = pressure
+    }
     
     init(point: CGPoint, force: CGFloat) {
         self.point = point
@@ -119,7 +128,7 @@ open class Brush {
     /// get a line with specified begin and end location with force info
     open func makeLine(from: Pan, to: Pan) -> [MLLine] {
         let endForce = from.force * 0.95 + to.force * 0.05
-        let forceRate = pow(endForce, forceSensitive)
+        let forceRate = 1 - (endForce * forceSensitive)
         return makeLine(from: from.point, to: to.point, force: forceRate)
     }
     
