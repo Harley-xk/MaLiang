@@ -37,10 +37,10 @@ open class RenderTarget {
     public init(size: CGSize, pixelFormat: MTLPixelFormat, device: MTLDevice?) {
         
         self.drawableSize = size
+        self.pixelFormat = pixelFormat
         self.device = device
         self.texture = makeEmptyTexture()
         self.commandQueue = device?.makeCommandQueue()
-        self.pixelFormat = pixelFormat
         
         renderPassDescriptor = MTLRenderPassDescriptor()
         let attachment = renderPassDescriptor?.colorAttachments[0]
