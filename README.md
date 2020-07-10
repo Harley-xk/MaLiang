@@ -13,7 +13,7 @@
 ![icon](Images/icon-32.png) **MaLiang** is a painting framework based on [**Metal**](https://developer.apple.com/metal/). It supports drawing and handwriting with customized textures.
 The name of "MaLiang" comes from a boy who had a magical brush in Chinese ancient fairy story.
 
-[Simplified Chinese](https://www.jianshu.com/p/13849a90064a)
+[Simplified Chinese](https://me.harley-xk.studio/posts/201805072231)
 
 ☕️ If I have saved your time, [buy me a cup of coffee](DONATE.md)
 
