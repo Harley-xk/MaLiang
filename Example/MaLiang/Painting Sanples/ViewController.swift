@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var backgroundSwitchButton: UIButton!
     @IBOutlet weak var backgroundView: UIImageView!
     
-    @IBOutlet weak var canvas: ScrollableCanvas!
+    @IBOutlet weak var canvas: Canvas!
     
     var filePath: String?
     

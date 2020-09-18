@@ -59,10 +59,10 @@ struct Uniforms {
 }
 
 struct ColorBuffer {
-    var color: float4
+    var color: SIMD4<Float>
     
     init(r: Float, g: Float, b: Float, a: Float) {
-        color = float4(r,g,b,a)
+        color = SIMD4(r,g,b,a)
     }
 }
 

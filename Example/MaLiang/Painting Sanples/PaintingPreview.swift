@@ -72,7 +72,8 @@ class PaintingPreview: UIViewController {
                 self.checkAblumAuthorized(finished: finished)
             }
         case .denied: alert(message: "can not access album")
-        case .authorized: finished(nil)
+        case .authorized: fallthrough
+        case .limited: finished(nil)
         case .restricted:
             let error = NSError(domain: "Ablunm Authorization", code: -99, userInfo: [NSLocalizedDescriptionKey: "can not access album"])
             finished(error)
