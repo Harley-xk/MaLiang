@@ -132,7 +132,7 @@ open class MetalView: MTKView {
         super.draw(rect)
         
         guard metalAvaliable,
-            let target = screenTarget, target.modified,
+            let target = screenTarget,
             let texture = target.texture else {
             return
         }
@@ -159,9 +159,7 @@ open class MetalView: MTKView {
         if let drawable = currentDrawable {
             commandBuffer?.present(drawable)
         }
-        commandBuffer?.commit()
-        
-        target.modified = false
+        commandBuffer?.commit()        
     }
 }
 
