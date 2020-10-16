@@ -48,7 +48,7 @@ open class MetalView: MTKView {
 
     open override var backgroundColor: UIColor? {
         didSet {
-            clearColor = (backgroundColor ?? .white).toClearColor()
+            clearColor = (backgroundColor ?? .black).toClearColor()
         }
     }
 
