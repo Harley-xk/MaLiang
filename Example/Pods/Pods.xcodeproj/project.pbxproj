@@ -102,6 +102,8 @@
 		BFF4C0573389F918A050E3A5F5D83DB8 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE75EB0FD24C065EE66E7FCDADF0991 /* ConstraintPriority.swift */; };
 		C0D180DF9F6F5F7C864856D1891C3545 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079C86CCA158AC637D074379695086F /* ConstraintConfig.swift */; };
 		C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E4455227F1956005C612D /* GlowingBrush.swift */; };
+		C3C7839725466F4D00418CAD /* ChartletBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C7839625466F4D00418CAD /* ChartletBrush.swift */; };
+		C3C784272546E40A00418CAD /* ElementGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C784262546E40A00418CAD /* ElementGroup.swift */; };
 		C3DDF317228B099E00D5D1BC /* DataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF315228B08EA00D5D1BC /* DataObserver.swift */; };
 		C3DDF32B228BDC5900D5D1BC /* WeakObjectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF32A228BDC5900D5D1BC /* WeakObjectBox.swift */; };
 		C3DDF341228BF7EA00D5D1BC /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DDF33E228BF7EA00D5D1BC /* Canvas.swift */; };
@@ -290,6 +292,8 @@
 		C037841EADE5FFE16C2C078C88AE1A56 /* Chrysan-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Chrysan-dummy.m"; sourceTree = "<group>"; };
 		C2B941F3398F0B599A954007437F05BB /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		C35E4455227F1956005C612D /* GlowingBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowingBrush.swift; sourceTree = "<group>"; };
+		C3C7839625466F4D00418CAD /* ChartletBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletBrush.swift; sourceTree = "<group>"; };
+		C3C784262546E40A00418CAD /* ElementGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementGroup.swift; sourceTree = "<group>"; };
 		C3DDF315228B08EA00D5D1BC /* DataObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObserver.swift; sourceTree = "<group>"; };
 		C3DDF32A228BDC5900D5D1BC /* WeakObjectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakObjectBox.swift; sourceTree = "<group>"; };
 		C3DDF33E228BF7EA00D5D1BC /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
@@ -425,6 +429,7 @@
 				FEB7E2F0E75637663EDDC2FE8A6E3458 /* Eraser.swift */,
 				701EC10C2F99E97477806181F7276A81 /* Printer.swift */,
 				C35E4455227F1956005C612D /* GlowingBrush.swift */,
+				C3C7839625466F4D00418CAD /* ChartletBrush.swift */,
 			);
 			name = Brush;
 			path = MaLiang/Classes/Brush;
@@ -777,6 +782,7 @@
 				A5601C13CF0AE664D772F7D2A629E74C /* Chartlet.swift */,
 				F50E82CC74A4E0EFA68ECA7615A6BB85 /* LineStrip.swift */,
 				8FC3B48B25587917FEA6FFA766B50D9D /* MLLine.swift */,
+				C3C784262546E40A00418CAD /* ElementGroup.swift */,
 			);
 			name = Elements;
 			path = MaLiang/Classes/Elements;
@@ -1079,6 +1085,8 @@
 				C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */,
 				EF1A0F18BC980F217803E40628F633E5 /* CanvasData.swift in Sources */,
 				18F21CCEC540ECB07A48260BD6CAE415 /* Chartlet.swift in Sources */,
+				C3C784272546E40A00418CAD /* ElementGroup.swift in Sources */,
+				C3C7839725466F4D00418CAD /* ChartletBrush.swift in Sources */,
 				C3DDF342228BF7EA00D5D1BC /* ScrollableCanvas.swift in Sources */,
 				1206FA07FAC2062C4786B71B6499A5E1 /* DataExporter.swift in Sources */,
 				117EAA10D680EC2F3A6FA1B9D6A1885B /* DataImporter.swift in Sources */,
@@ -1282,7 +1290,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.9.0;
 				MODULEMAP_FILE = "Target Support Files/MaLiang/MaLiang.modulemap";
 				PRODUCT_MODULE_NAME = MaLiang;
 				PRODUCT_NAME = MaLiang;
@@ -1684,7 +1692,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.9.0;
 				MODULEMAP_FILE = "Target Support Files/MaLiang/MaLiang.modulemap";
 				PRODUCT_MODULE_NAME = MaLiang;
 				PRODUCT_NAME = MaLiang;

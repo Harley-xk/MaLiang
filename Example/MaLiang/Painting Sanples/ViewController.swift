@@ -57,7 +57,6 @@ class ViewController: UIViewController {
         do {
             let pen = canvas.defaultBrush!
             pen.name = "Pen"
-            pen.opacity = 0.1
             pen.pointSize = 5
             pen.pointStep = 0.5
             pen.color = color
@@ -70,16 +69,17 @@ class ViewController: UIViewController {
             pencil.opacity = 1
             
             let brush = try registerBrush(with: "brush")
+            brush.opacity = 1
             brush.rotation = .ahead
             brush.pointSize = 15
-            brush.pointStep = 2
+            brush.pointStep = 1
             brush.forceSensitive = 1
             brush.color = color
             brush.forceOnTap = 0.5
             
             let texture = try canvas.makeTexture(with: UIImage(named: "glow")!.pngData()!)
             let glow: GlowingBrush = try canvas.registerBrush(name: "glow", textureID: texture.id)
-            glow.opacity = 0.05
+            glow.opacity = 0.5
             glow.coreProportion = 0.2
             glow.pointSize = 20
             glow.rotation = .ahead
@@ -91,14 +91,20 @@ class ViewController: UIViewController {
             claw.forceSensitive = 0.1
             claw.color = color
             
+            /// make a chartlet brush
+            let chartletBrush = try ChartletBrush(name: "Chartlet", imageNames: ["rect-1", "rect-2", "rect-3"], target: canvas)
+            chartletBrush.renderStyle = .ordered
+            chartletBrush.rotation = .random
+            
             // make eraser with a texture for claw
 //            let eraser = try canvas.registerBrush(name: "Eraser", textureID: claw.textureID) as Eraser
 //            eraser.rotation = .ahead
             
             /// make eraser with default round point
             let eraser = try! canvas.registerBrush(name: "Eraser") as Eraser
+            eraser.opacity = 1
             
-            brushes = [pen, pencil, brush, glow, claw, eraser]
+            brushes = [pen, pencil, brush, glow, claw, chartletBrush, eraser]
             
         } catch MLError.simulatorUnsupported {
             let alert = UIAlertController(title: "Attension", message: "You are running MaLiang on a Simulator, whitch is not supported by Metal. So painting is not alvaliable now. But you can go on testing your other businesses which are not relative with MaLiang. Or you can also runs MaLiang on your Mac with Catalyst enabled now.", preferredStyle: .alert)
