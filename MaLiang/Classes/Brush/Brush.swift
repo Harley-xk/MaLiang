@@ -44,7 +44,7 @@ open class Brush {
     open private(set) var textureID: String?
     
     /// target to draw
-    open private(set) weak var target: Canvas?
+    open weak var target: Canvas?
 
     // opacity of texture, affects the darkness of stroke
     open var opacity: CGFloat = 0.3 {
@@ -245,6 +245,81 @@ open class Brush {
         }
         
         commandEncoder?.endEncoding()
+    }
+    
+    // MARK: - Bezier
+    // optimize stroke with bezier path, defaults to true
+    //    private var enableBezierPath = true
+    private var bezierGenerator = BezierGenerator()
+    
+    // MARK: - Drawing Actions
+    private var lastRenderedPan: Pan?
+    
+    private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator, force: CGFloat, isEnd: Bool = false, on canvas: Canvas) {
+        var lines: [MLLine] = []
+        let vertices = bezier.pushPoint(point)
+        guard vertices.count >= 2 else {
+            return
+        }
+        var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
+        let deltaForce = (force - (lastRenderedPan?.force ?? force)) / CGFloat(vertices.count)
+        for i in 1 ..< vertices.count {
+            let p = vertices[i]
+            if  // end point of line
+                (isEnd && i == vertices.count - 1) ||
+                    // ignore step
+                    pointStep <= 1 ||
+                    // distance larger than step
+                    (pointStep > 1 && lastPan.point.distance(to: p) >= pointStep)
+            {
+                let force = lastPan.force + deltaForce
+                let pan = Pan(point: p, force: force)
+                let line = makeLine(from: lastPan, to: pan)
+                lines.append(contentsOf: line)
+                lastPan = pan
+                lastRenderedPan = pan
+            }
+        }
+        canvas.render(lines: lines)
+    }
+
+    // MARK: - Touches
+
+    open func renderBegan(from pan: Pan, on canvas: Canvas) -> Bool {
+        lastRenderedPan = pan
+        bezierGenerator.begin(with: pan.point)
+        pushPoint(pan.point, to: bezierGenerator, force: pan.force, on: canvas)
+        return true
+    }
+    
+    open func renderMoved(to pan: Pan, on canvas: Canvas) -> Bool {
+        guard bezierGenerator.points.count > 0 else { return false }
+        guard pan.point != lastRenderedPan?.point else {
+            return false
+        }
+        pushPoint(pan.point, to: bezierGenerator, force: pan.force, on: canvas)
+        return true
+    }
+    
+    open func renderEnded(at pan: Pan, on canvas: Canvas) {
+        
+        defer {
+            bezierGenerator.finish()
+            lastRenderedPan = nil
+        }
+        
+        let count = bezierGenerator.points.count
+        
+        if count >= 3 {
+            pushPoint(pan.point, to: bezierGenerator, force: pan.force, isEnd: true, on: canvas)
+        } else if count > 0 {
+            canvas.renderTap(at: bezierGenerator.points.first!, to: bezierGenerator.points.last!)
+        }
+        
+        let unfishedLines = finishLineStrip(at: Pan(point: pan.point, force: pan.force))
+        if unfishedLines.count > 0 {
+            canvas.render(lines: unfishedLines)
+        }
     }
 }
 

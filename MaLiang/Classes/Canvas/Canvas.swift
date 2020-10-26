@@ -77,6 +77,14 @@ open class Canvas: MetalView {
         return brush
     }
     
+    /// Reigster an already initialized Brush to this Canvas
+    /// - Parameter brush: Brush already initialized
+    
+    open func register<T: Brush>(brush: T) {
+        brush.target = self
+        registeredBrushes.append(brush)
+    }
+    
     /// current brush used to draw
     /// only registered brushed can be set to current
     /// get a brush from registeredBrushes and call it's use() method to make it current
@@ -244,43 +252,6 @@ open class Canvas: MetalView {
         actionObservers.canvas(self, didRedrawOn: target)
     }
     
-    // MARK: - Bezier
-    // optimize stroke with bezier path, defaults to true
-    //    private var enableBezierPath = true
-    private var bezierGenerator = BezierGenerator()
-    
-    // MARK: - Drawing Actions
-    private var lastRenderedPan: Pan?
-    
-    private func pushPoint(_ point: CGPoint, to bezier: BezierGenerator, force: CGFloat, isEnd: Bool = false) {
-        var lines: [MLLine] = []
-        let vertices = bezier.pushPoint(point)
-        guard vertices.count >= 2 else {
-            return
-        }
-        var lastPan = lastRenderedPan ?? Pan(point: vertices[0], force: force)
-        let deltaForce = (force - (lastRenderedPan?.force ?? force)) / CGFloat(vertices.count)
-        for i in 1 ..< vertices.count {
-            let p = vertices[i]
-            let pointStep = currentBrush.pointStep
-            if  // end point of line
-                (isEnd && i == vertices.count - 1) ||
-                    // ignore step
-                    pointStep <= 1 ||
-                    // distance larger than step
-                    (pointStep > 1 && lastPan.point.distance(to: p) >= pointStep)
-            {
-                let force = lastPan.force + deltaForce
-                let pan = Pan(point: p, force: force)
-                let line = currentBrush.makeLine(from: lastPan, to: pan)
-                lines.append(contentsOf: line)
-                lastPan = pan
-                lastRenderedPan = pan
-            }
-        }
-        render(lines: lines)
-    }
-    
     // MARK: - Rendering
     open func render(lines: [MLLine]) {
         data.append(lines: lines, with: currentBrush)
@@ -326,73 +297,47 @@ open class Canvas: MetalView {
     
     // MARK: - Touches
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        guard let touch = firstAvaliableTouch(from: touches) else {
+        guard let pan = firstAvaliablePan(from: touches) else {
             return
         }
-        
-        let pan = Pan(touch: touch, on: self)
-        lastRenderedPan = pan
-        
         guard renderingDelegate?.canvas(self, shouldBeginLineAt: pan.point, force: pan.force) ?? true else {
             return
         }
-        
-        bezierGenerator.begin(with: pan.point)
-        pushPoint(pan.point, to: bezierGenerator, force: pan.force)
-        actionObservers.canvas(self, didBeginLineAt: pan.point, force: pan.force)
+        if currentBrush.renderBegan(from: pan, on: self) {
+            actionObservers.canvas(self, didBeginLineAt: pan.point, force: pan.force)
+        }
     }
     
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = firstAvaliableTouch(from: touches) else {
+        guard let pan = firstAvaliablePan(from: touches) else {
             return
         }
-        
-        guard bezierGenerator.points.count > 0 else { return }
-        let pan = Pan(touch: touch, on: self)
-        guard pan.point != lastRenderedPan?.point else {
-            return
+        if currentBrush.renderMoved(to: pan, on: self) {
+            actionObservers.canvas(self, didMoveLineTo: pan.point, force: pan.force)
         }
-        
-        pushPoint(pan.point, to: bezierGenerator, force: pan.force)
-        actionObservers.canvas(self, didMoveLineTo: pan.point, force: pan.force)
     }
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-        guard let touch = firstAvaliableTouch(from: touches) else {
+        guard let pan = firstAvaliablePan(from: touches) else {
             return
         }
-        
-        defer {
-            bezierGenerator.finish()
-            lastRenderedPan = nil
-            data.finishCurrentElement()
-        }
-        
-        let pan = Pan(touch: touch, on: self)
-        let count = bezierGenerator.points.count
-        
-        if count >= 3 {
-            pushPoint(pan.point, to: bezierGenerator, force: pan.force, isEnd: true)
-        } else if count > 0 {
-            renderTap(at: bezierGenerator.points.first!, to: bezierGenerator.points.last!)
-        }
-        
-        let unfishedLines = currentBrush.finishLineStrip(at: Pan(point: pan.point, force: pan.force))
-        if unfishedLines.count > 0 {
-            render(lines: unfishedLines)
-        }
+        currentBrush.renderEnded(at: pan, on: self)
+        data.finishCurrentElement()
         actionObservers.canvas(self, didFinishLineAt: pan.point, force: pan.force)
     }
     
-    private func firstAvaliableTouch(from touches: Set<UITouch>) -> UITouch? {
+    public func firstAvaliablePan(from touches: Set<UITouch>) -> Pan? {
+        var touch: UITouch?
         if #available(iOS 9.1, *), isPencilMode {
-            return touches.first { (t) -> Bool in
+            touch = touches.first { (t) -> Bool in
                 return t.type == .pencil
             }
         } else {
-            return touches.first
+            touch = touches.first
         }
+        guard let t = touch else {
+            return nil
+        }
+        return Pan(touch: t, on: self)
     }
 }
