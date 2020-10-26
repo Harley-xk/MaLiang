@@ -72,11 +72,12 @@ open class LineStrip: CanvasElement {
         
         lines.forEach { (line) in
             let scale = brush?.target?.contentScaleFactor ?? UIScreen.main.nativeScale
+            let count = max(line.length / line.pointStep, 1)
+            
             var line = line
             line.begin = line.begin * scale
             line.end = line.end * scale
-            let count = max(line.length / line.pointStep, 1)
-            
+
             // fix opacity of line color
             let overlapping = max(1, line.pointSize / line.pointStep)
             var renderingColor = line.color ?? color
