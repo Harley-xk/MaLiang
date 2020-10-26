@@ -63,16 +63,22 @@ open class CanvasData {
             h_onElementBegin?(self)
         }
     }
-    
-    /// add a chartlet to elements
-    open func append(chartlet: Chartlet) {
-        finishCurrentElement()
-        chartlet.index = lastElementIndex + 1
-        elements.append(chartlet)
-        undoArray.removeAll()
         
-        observers.element(chartlet, didFinishOn: self)
-        h_onElementFinish?(self)
+    /// add a chartlet to elements
+    /// - Parameters:
+    ///   - grouped: if grouped, a ChartletGroup will be created
+    open func append(chartlet: Chartlet, grouped: Bool = false) {
+        
+        if !grouped {
+            currentElement = chartlet
+            finishCurrentElement()
+        } else if let group = currentElement as? ElementGroup<Chartlet> {
+            group.append(chartlet)
+        } else {
+            let group = ElementGroup<Chartlet>()
+            currentElement = group
+            group.append(chartlet)
+        }
     }
     
     /// index for latest element

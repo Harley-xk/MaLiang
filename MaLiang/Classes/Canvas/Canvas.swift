@@ -279,7 +279,13 @@ open class Canvas: MetalView {
     ///   - size: size of texture
     ///   - textureID: id of texture for drawing
     ///   - rotation: rotation angle of texture for drawing
-    open func renderChartlet(at point: CGPoint, size: CGSize, textureID: String, rotation: CGFloat = 0) {
+    open func renderChartlet(
+        at point: CGPoint,
+        size: CGSize,
+        textureID: String,
+        rotation: CGFloat = 0,
+        grouped: Bool = false
+    ) {
         
         let chartlet = Chartlet(center: point, size: size, textureID: textureID, angle: rotation, canvas: self)
         
@@ -287,7 +293,7 @@ open class Canvas: MetalView {
             return
         }
         
-        data.append(chartlet: chartlet)
+        data.append(chartlet: chartlet, grouped: grouped)
         chartlet.drawSelf(on: screenTarget)
         screenTarget?.commitCommands()
         setNeedsDisplay()

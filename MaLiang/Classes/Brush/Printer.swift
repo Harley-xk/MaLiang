@@ -9,7 +9,7 @@ import Foundation
 import Metal
 
 /// Printer is a special brush witch can print images to canvas
-public final class Printer: Brush {
+open class Printer: Brush {
     
     /// make shader vertex function from the library made by makeShaderLibrary()
     /// overrides to provide your own vertex function

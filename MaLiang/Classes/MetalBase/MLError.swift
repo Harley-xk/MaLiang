@@ -12,6 +12,11 @@ public enum MLError: Error {
     /// the requested file does not exists
     case fileNotExists(String)
     
+    /// this image with specified name does not exists
+    case imageNotExists(String)
+    
+    case convertPNGDataFailed
+    
     /// file is damaged
     case fileDamaged
     

@@ -280,11 +280,16 @@ open class Brush {
                 lastRenderedPan = pan
             }
         }
+        render(lines: lines, on: canvas)
+    }
+    
+    open func render(lines: [MLLine], on canvas: Canvas) {
         canvas.render(lines: lines)
     }
 
     // MARK: - Touches
 
+    // called when touches began event triggered on canvas
     open func renderBegan(from pan: Pan, on canvas: Canvas) -> Bool {
         lastRenderedPan = pan
         bezierGenerator.begin(with: pan.point)
@@ -292,6 +297,7 @@ open class Brush {
         return true
     }
     
+    // called when touches moved event triggered on canvas
     open func renderMoved(to pan: Pan, on canvas: Canvas) -> Bool {
         guard bezierGenerator.points.count > 0 else { return false }
         guard pan.point != lastRenderedPan?.point else {
@@ -301,15 +307,14 @@ open class Brush {
         return true
     }
     
+    // called when touches ended event triggered on canvas
     open func renderEnded(at pan: Pan, on canvas: Canvas) {
-        
         defer {
             bezierGenerator.finish()
             lastRenderedPan = nil
         }
         
         let count = bezierGenerator.points.count
-        
         if count >= 3 {
             pushPoint(pan.point, to: bezierGenerator, force: pan.force, isEnd: true, on: canvas)
         } else if count > 0 {
