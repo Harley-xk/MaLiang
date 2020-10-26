@@ -62,7 +62,7 @@ public final class GlowingBrush: Brush {
         super.init(name: name, textureID: textureID, target: target)
         subBrush = Brush(name: self.name + ".sub", textureID: nil, target: target)
         subBrush.color = coreColor
-        subBrush.opacity = 1
+        subBrush.opacity = 10
     }
 
     /// get a line with specified begin and end location
