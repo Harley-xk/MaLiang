@@ -101,6 +101,7 @@
 		BD6A7D08726C8AEEC5A7C1C1B80E8015 /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008DBC184DE1334C7AE52B031FF85603 /* ConstraintLayoutGuide+Extensions.swift */; };
 		BFF4C0573389F918A050E3A5F5D83DB8 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE75EB0FD24C065EE66E7FCDADF0991 /* ConstraintPriority.swift */; };
 		C0D180DF9F6F5F7C864856D1891C3545 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079C86CCA158AC637D074379695086F /* ConstraintConfig.swift */; };
+		C325964425528ACF00EF6C30 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325964325528ACF00EF6C30 /* Renderer.swift */; };
 		C35E4458227F196E005C612D /* GlowingBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E4455227F1956005C612D /* GlowingBrush.swift */; };
 		C3C7839725466F4D00418CAD /* ChartletBrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C7839625466F4D00418CAD /* ChartletBrush.swift */; };
 		C3C784272546E40A00418CAD /* ElementGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C784262546E40A00418CAD /* ElementGroup.swift */; };
@@ -291,6 +292,7 @@
 		C037476C501D22CD2F7F79CE0EBA8267 /* UINavigationController+Comet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+Comet.swift"; path = "Comet/Extensions/UINavigationController+Comet.swift"; sourceTree = "<group>"; };
 		C037841EADE5FFE16C2C078C88AE1A56 /* Chrysan-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Chrysan-dummy.m"; sourceTree = "<group>"; };
 		C2B941F3398F0B599A954007437F05BB /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
+		C325964325528ACF00EF6C30 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C35E4455227F1956005C612D /* GlowingBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowingBrush.swift; sourceTree = "<group>"; };
 		C3C7839625466F4D00418CAD /* ChartletBrush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartletBrush.swift; sourceTree = "<group>"; };
 		C3C784262546E40A00418CAD /* ElementGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementGroup.swift; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 				A25B5F48A64292003B35CB7537591324 /* RenderTarget.swift */,
 				B33E85E39AB5B8EE392C87FE6E7F6853 /* Shaders.metal */,
 				D5758FA0699603CCE3E4E8329A7EB7F5 /* SnapshotTarget.swift */,
+				C325964325528ACF00EF6C30 /* Renderer.swift */,
 			);
 			name = MetalBase;
 			path = MaLiang/Classes/MetalBase;
@@ -1091,6 +1094,7 @@
 				1206FA07FAC2062C4786B71B6499A5E1 /* DataExporter.swift in Sources */,
 				117EAA10D680EC2F3A6FA1B9D6A1885B /* DataImporter.swift in Sources */,
 				52FF49CC34390C96E79195FE238C8DFD /* Document.swift in Sources */,
+				C325964425528ACF00EF6C30 /* Renderer.swift in Sources */,
 				F874F5E3361A7FFE6967BCC0B9A19342 /* Eraser.swift in Sources */,
 				4B6187475C78EDB98D9D62F8EF64D427 /* LineStrip.swift in Sources */,
 				8B62FF545C6BA903EF7A47111CAC0779 /* MaLiang-dummy.m in Sources */,
