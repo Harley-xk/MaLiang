@@ -1,6 +1,6 @@
 //
 //  MetalView.swift
-//  MaLiang_Example
+//  MaLiang
 //
 //  Created by Harley-xk on 2019/4/3.
 //  Copyright © 2019 Harley-xk. All rights reserved.

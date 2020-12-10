@@ -1,9 +1,9 @@
 //
 //  Shaders.metal
-//  MetalKitTest
+//  MaLiang
 //
 //  Created by Harley-xk on 2019/3/28.
-//  Copyright © 2019 Someone Co.,Ltd. All rights reserved.
+//  Copyright © 2019 Harley-xk. All rights reserved.
 //
 
 #include <metal_stdlib>
