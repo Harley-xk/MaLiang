@@ -56,21 +56,62 @@ public struct MLColor: Codable {
 }
 
 extension UIColor {
+    
+    var sRGB: CGColor {
+        return cgColor.converted(
+            to: CGColorSpace(name: CGColorSpace.sRGB)!,
+            intent: CGColorRenderingIntent.defaultIntent,
+            options: nil
+        ) ?? cgColor
+    }
+    
     func toMLColor(opacity: CGFloat = 1) -> MLColor {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-        return MLColor(red: Float(r), green: Float(g), blue: Float(b), alpha: Float(a * opacity))
+        let sRGB = self.sRGB
+        return MLColor(
+            red: Float(sRGB.red),
+            green: Float(sRGB.green),
+            blue: Float(sRGB.blue),
+            alpha: Float(sRGB.alpha * opacity)
+        )
     }
     
     func toClearColor() -> MTLClearColor {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-        return MTLClearColorMake(Double(r), Double(g), Double(b), Double(a))
+        let sRGB = self.sRGB
+        return MTLClearColorMake(
+            Double(sRGB.red),
+            Double(sRGB.green),
+            Double(sRGB.blue),
+            Double(sRGB.alpha)
+        )
+    }
+}
+
+extension CGColor {
+    var red: CGFloat {
+        guard let components = components, components.count == 4 else {
+            return 0
+        }
+        return components[0]
+    }
+    
+    var green: CGFloat {
+        guard let components = components, components.count == 4 else {
+            return 0
+        }
+        return components[1]
+    }
+    
+    var blue: CGFloat {
+        guard let components = components, components.count == 4 else {
+            return 0
+        }
+        return components[2]
+    }
+    
+    var alpha: CGFloat {
+        guard let components = components, components.count == 4 else {
+            return 0
+        }
+        return components[3]
     }
 }
