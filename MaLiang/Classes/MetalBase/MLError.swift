@@ -9,6 +9,8 @@ import Foundation
 
 public enum MLError: Error {
     
+    case initializationError
+    
     /// the requested file does not exists
     case fileNotExists(String)
     
