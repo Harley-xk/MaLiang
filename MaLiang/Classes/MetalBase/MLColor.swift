@@ -45,10 +45,13 @@ public struct MLColor: Codable {
     // hex string must be saved as format of: AARRGGBB
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
+        let reds = red < 0 ? 0 : red
+        let greens = green < 0 ? 0 : green
+        let blues = blue < 0 ? 0 : blue
         let aInt = Int(alpha * 255) << 24
-        let rInt = Int(red * 255) << 16
-        let gInt = Int(green * 255) << 8
-        let bInt = Int(blue * 255)
+        let rInt = Int(reds * 255) << 16
+        let gInt = Int(greens * 255) << 8
+        let bInt = Int(blues * 255)
         let argb = aInt | rInt | gInt | bInt
         let hex = String(format:"%08x", argb)
         try container.encode(hex)
