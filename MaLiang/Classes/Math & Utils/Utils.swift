@@ -37,9 +37,17 @@ extension MTLTexture {
             size: MTLSize(width: width, height: height, depth: 1)
         )
         let bytesPerRow = 4 * width
-        let data = Data(capacity: Int(bytesPerRow * height))
-        if let bytes = data.withUnsafeBytes({ $0.baseAddress }) {
-            replace(region: region, mipmapLevel: 0, withBytes: bytes, bytesPerRow: bytesPerRow)
+        // Use Data(count:) instead of Data(capacity:) so the buffer is actually
+        // allocated AND zero-filled. Data(capacity:) only reserves capacity while
+        // leaving count == 0, so replace(region:) would read uninitialized/garbage
+        // memory and upload it into the texture — causing pink/magenta tints and
+        // noise ("砂嵐") on newer GPUs (M1/A16). Zero-filled bytes clear the
+        // texture to transparent black as intended.
+        let data = Data(count: Int(bytesPerRow * height))
+        data.withUnsafeBytes { rawBuffer in
+            if let bytes = rawBuffer.baseAddress {
+                replace(region: region, mipmapLevel: 0, withBytes: bytes, bytesPerRow: bytesPerRow)
+            }
         }
     }
 }
